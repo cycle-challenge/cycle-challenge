@@ -1,50 +1,61 @@
 import 'package:yeohaeng_ttukttak/data/models/image.dart';
+import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/models/place/place_location.dart';
 
 class PlaceModel {
-  final int id;
+  final int _id;
 
-  final String name;
+  final String _name;
 
-  final Location location;
+  final PlaceLocation _location;
 
-  final String type;
+  final String _type;
 
-  final List<Image> images;
+  final List<Image> _images;
 
-  final List<dynamic> travels;
+  final String _googlePlaceId;
 
-  const PlaceModel({
-    required this.id,
-    required this.name,
-    required this.location,
-    required this.type,
-    required this.images,
-    required this.travels,
-  });
+  PlaceDetail? _detail;
+
+  PlaceDetail? get detail => _detail;
+
+  String get name => _name;
+
+  PlaceLocation get location => _location;
+
+  String get type => _type;
+
+  List<Image> get images => _images;
+
+  String get googlePlaceId => _googlePlaceId;
+
+  void setDetail(PlaceDetail detail) {
+    _detail = detail;
+  }
+
+  PlaceModel({
+    required id,
+    required name,
+    required location,
+    required type,
+    required images,
+    required googlePlaceId,
+  })  : _id = id,
+        _name = name,
+        _location = location,
+        _type = type,
+        _images = images,
+        _googlePlaceId = googlePlaceId;
+
+  int get id => _id;
 
   factory PlaceModel.of(Map<String, dynamic> json) {
     return PlaceModel(
-      id: json["id"],
-      name: json["name"],
-      location: Location.of(json["location"]),
-      type: json["type"],
-      images: List.of(json["images"]).map((e) => Image.of(e)).toList(),
-      travels: json["travels"],
-    );
-  }
-}
-
-class Location {
-  final double latitude;
-
-  final double longitude;
-
-  final double distance;
-
-  const Location({required this.latitude, required this.longitude, required this.distance});
-
-  factory Location.of(Map<String, dynamic> json) {
-    return Location(
-        latitude: json['latitude'], longitude: json['longitude'], distance: json['distance']);
+        id: json["id"],
+        name: json["name"],
+        location: PlaceLocation.of(json["location"]),
+        type: json["type"],
+        images: List.of(json["images"]).map((e) => Image.of(e)).toList(),
+        googlePlaceId: json["googlePlaceId"]);
   }
 }
