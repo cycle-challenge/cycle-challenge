@@ -103,8 +103,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       floatingActionButton: isSheetShown && isPlaceSelected
           ? FloatingActionButton(
               onPressed: () {},
+              elevation: 0,
+
               backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(Icons.bookmark_outline),
+              child: Icon(Icons.bookmark_outline, color: Theme.of(context).colorScheme.onSurface),
             )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
