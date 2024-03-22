@@ -33,18 +33,25 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: isSheetShown && isExpanded && isPlaceSelected
-          ? AppBar(
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  context.read<BottomSheetState>().reduce();
-                },
-              ),
-              title: Text(selectedPlace != null ? selectedPlace.name : ""),
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(51.0),
-                child: TabBar(
+      appBar: AppBar(
+        leading:
+            (isSheetShown && context.watch<NavigationState>().stack.isNotEmpty)
+                ? IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => popNavigate(context),
+                  )
+                : null,
+        title: (isSheetShown && isExpanded && isPlaceSelected)
+            ? Text(selectedPlace?.name ?? "")
+            : const MapSearchBar(),
+        backgroundColor: (isSheetShown && isExpanded)
+            ? Theme.of(context).colorScheme.surface
+            : Theme.of(context).colorScheme.surface.withOpacity(0.0),
+        scrolledUnderElevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(51.0),
+          child: (isSheetShown && isExpanded && isPlaceSelected)
+              ? TabBar(
                   controller: tabController,
                   tabs: const [
                     Tab(text: "메인"),
@@ -52,24 +59,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                     Tab(text: "리뷰"),
                     Tab(text: "여행")
                   ],
-                ),
-              ),
-            )
-          : AppBar(
-              backgroundColor: (isSheetShown && isExpanded)
-                  ? Theme.of(context).colorScheme.surface
-                  : Theme.of(context).colorScheme.surface.withOpacity(0.0),
-              scrolledUnderElevation: 0,
-              bottom: const PreferredSize(
-                preferredSize: Size.fromHeight(51.0),
-                child: Column(
-                  children: [
-                    MapSearchBar(),
-                    PlaceTypeFilterWidget(),
-                  ],
-                ),
-              ),
-            ),
+                )
+              : const PlaceTypeFilterWidget(),
+        ),
+      ),
       body: LayoutBuilder(builder: (context, constraints) {
         context.read<BottomSheetState>().maxHeight =
             constraints.maxHeight - MediaQuery.of(context).padding.top;
