@@ -8,6 +8,7 @@ import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceDetailView extends StatelessWidget {
   Future<DateTime> _getPlaceDetail(BuildContext context) async {
@@ -72,16 +73,7 @@ class PlaceDetailView extends StatelessWidget {
                               onTap: () async {
                                 await Clipboard.setData(
                                     ClipboardData(text: detail.address!));
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        backgroundColor:
-                                            Theme.of(context)
-                                                .colorScheme
-                                                .secondaryContainer,
-                                        duration:
-                                            const Duration(milliseconds: 2000),
-                                        content: Text("성공적으로 복사되었습니다.",
-                                            style: bodyLarge)));
+                                showSnackbar(context, "성공적으로 복사되었습니다.");
                               },
                               child: Container(
                                 padding:
@@ -127,8 +119,7 @@ class PlaceDetailView extends StatelessWidget {
                           Linkify(
                               onOpen: (link) async {
                                 if (!await launchUrl(Uri.parse(link.url))) {
-                                  throw Exception(
-                                      'Could not launch ${link.url}');
+                                  showSnackbar(context, "웹사이트에 접근할 수 없습니다.");
                                 }
                               },
                               text: detail.siteURL!,
@@ -157,16 +148,7 @@ class PlaceDetailView extends StatelessWidget {
                               onTap: () async {
                                 await Clipboard.setData(
                                     ClipboardData(text: detail.phoneNumber!));
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        backgroundColor:
-                                            Theme.of(context)
-                                                .colorScheme
-                                                .secondaryContainer,
-                                        duration:
-                                            const Duration(milliseconds: 2000),
-                                        content: Text("성공적으로 복사되었습니다.",
-                                            style: bodyLarge)));
+                                showSnackbar(context, "성공적으로 복사되었습니다.");
                               },
                               child: Container(
                                 padding:

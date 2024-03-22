@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
@@ -9,6 +12,7 @@ import 'package:yeohaeng_ttukttak/ui/place/bottom_sheet_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/place/place_type_filter_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/map_search_bar.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/search_nearby_button_widget.dart';
+import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 import '../data/models/place_model.dart';
 import 'main/custom_google_map.dart';
@@ -98,8 +102,39 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               surfaceTintColor: Theme.of(context).colorScheme.surface,
               child: Row(
                 children: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.phone))
+                  IconButton(
+                    icon: const Icon(Icons.share),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                      icon: const Icon(Icons.phone),
+                      onPressed: () async {
+                        if (!context.read<BottomSheetState>().isExpanded) {
+                          pushNavigate(context);
+                          context.read<BottomSheetState>().expand();
+                          return;
+                        }
+                        String? phoneNumber = context
+                            .read<PlaceViewModel>()
+                            .selectedPlace
+                            ?.detail
+                            ?.phoneNumber;
+
+                        if (phoneNumber == null) {
+                          showSnackbar(context, "제공된 전화번호가 없습니다.");
+                          return;
+                        }
+
+                        phoneNumber = Platform.isIOS
+                            ? phoneNumber.replaceAll("-", "")
+                            : phoneNumber;
+
+                        if (!await canLaunch("tel:$phoneNumber")) {
+                          showSnackbar(context, "전화를 걸 수 없습니다.");
+                          return;
+                        }
+                        await launch("tel:$phoneNumber");
+                      })
                 ],
               ),
             )
