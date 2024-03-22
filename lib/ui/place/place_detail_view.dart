@@ -20,7 +20,8 @@ class PlaceDetailView extends StatelessWidget {
     return GestureDetector(
       onVerticalDragUpdate: (details) {
         double? delta = details.primaryDelta;
-        if (delta == null) return;
+        bool isAnimating = context.read<BottomSheetState>().isAnimating;
+        if (delta == null || isAnimating) return;
 
         bool isExpanded = context.read<BottomSheetState>().isExpanded;
 

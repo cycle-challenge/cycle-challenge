@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_type.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
+import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 import '../../data/models/place_model.dart';
@@ -18,11 +19,11 @@ class PlaceSimpleView extends StatelessWidget {
     return GestureDetector(
       onVerticalDragUpdate: (details) {
         double? delta = details.primaryDelta;
-        if (delta == null) return;
 
-        bool isExpanded = context
-            .read<BottomSheetState>()
-            .isExpanded;
+        bool isAnimating = context.read<BottomSheetState>().isAnimating;
+        if (delta == null || isAnimating) return;
+
+        bool isExpanded = context.read<BottomSheetState>().isExpanded;
 
         if (!isExpanded && delta < 0) {
           pushNavigate(context);
