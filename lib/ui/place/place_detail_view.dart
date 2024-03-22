@@ -12,7 +12,14 @@ import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
-class PlaceDetailView extends StatelessWidget {
+class PlaceDetailView extends StatefulWidget {
+  @override
+  State<PlaceDetailView> createState() => _PlaceDetailViewState();
+}
+
+class _PlaceDetailViewState extends State<PlaceDetailView> {
+  bool _isBusinessHourExpanded = false;
+
   Future<DateTime> _getPlaceDetail(BuildContext context) async {
     await context.read<PlaceViewModel>().getDetail();
     return await NTP.now();
@@ -100,77 +107,52 @@ class PlaceDetailView extends StatelessWidget {
                         if (detail.businessHours != null &&
                             detail.isOpeningNow != null)
                           Container(
-                            margin: const EdgeInsets.only(bottom: 10),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
+                            margin: const EdgeInsets.only(bottom: 10.0),
+
+                            child: ExpansionPanelList(
+                              expandedHeaderPadding: EdgeInsets.zero,
+                              materialGapSize: 0,
+                              expansionCallback: (_, isExpanded) => setState(() {
+                                _isBusinessHourExpanded = isExpanded;
+                              }),
                               children: [
-                                Container(
-                                    margin: const EdgeInsets.only(right: 10.0),
-                                    child:
-                                        const Icon(Icons.access_time_outlined)),
-                                Row(
-                                  children: [
-                                    Text(
-                                        overflow: TextOverflow.ellipsis,
-                                        detail.isOpeningNow!
-                                            ? "영업 중 · "
-                                            : "영업 종료 · ",
-                                        style: bodyLarge?.copyWith(
-                                            fontWeight: FontWeight.w600)),
-                                  ],
-                                ),
-                                Text(
-                                    detail.businessHours![now.weekday - 1]
-                                        .split(": ")[1],
-                                    style: bodyLarge),
-                                IconButton(
-                                    // onPressed: () {
-                                    //   showModalBottomSheet(
-                                    //       context: context,
-                                    //       builder: (context) => Container(
-                                    //             height: 440,
-                                    //             padding:
-                                    //                 const EdgeInsets.symmetric(
-                                    //                     horizontal: 30.0,
-                                    //                     vertical: 30.0),
-                                    //             child: Column(
-                                    //               crossAxisAlignment:
-                                    //                   CrossAxisAlignment.start,
-                                    //               children: [
-                                    //                 Text(
-                                    //                   " 영업 시간",
-                                    //                   style:
-                                    //                       titleLarge?.copyWith(
-                                    //                           fontWeight:
-                                    //                               FontWeight
-                                    //                                   .w600),
-                                    //                 ),
-                                    //                 Divider(thickness: 1.5,),
-                                    //                 const SizedBox(height: 16),
-                                    //                 Center(
-                                    //                   child: ListView.separated(
-                                    //                     shrinkWrap: true,
-                                    //                     physics: const NeverScrollableScrollPhysics(),
-                                    //                     itemBuilder: (context,
-                                    //                             index) =>
-                                    //                         Text(
-                                    //                             "• ${detail.businessHours![
-                                    //                                 index]}",
-                                    //                             style:
-                                    //                                 bodyLarge),
-                                    //                     separatorBuilder:
-                                    //                         (context, _) =>
-                                    //                             const SizedBox(
-                                    //                                 height: 16),
-                                    //                     itemCount: 7,
-                                    //                   ),
-                                    //                 ),
-                                    //               ],
-                                    //             ),
-                                    //           ));
-                                    // },
-                                    onPressed: () {},
-                                    icon: Icon(Icons.arrow_right))
+                                ExpansionPanel(
+                                    headerBuilder: (context, isExpanded) => Row(
+                                          children: [
+                                            Container(
+                                                margin: const EdgeInsets.only(
+                                                    right: 10.0),
+                                                child: const Icon(
+                                                    Icons.access_time_outlined)),
+                                            Text(
+                                                overflow: TextOverflow.ellipsis,
+                                                detail.isOpeningNow!
+                                                    ? "영업 중 · "
+                                                    : "영업 종료 · ",
+                                                style: bodyLarge?.copyWith(
+                                                    fontWeight: FontWeight.w600)),
+                                            Text(
+                                                detail.businessHours![
+                                                        now.weekday - 1]
+                                                    .split(": ")[1],
+                                                style: bodyLarge),
+                                          ],
+                                        ),
+                                    body: ListTile(
+                                      title: ListView.separated(
+                                        padding: const EdgeInsets.only(bottom: 12),
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, index) => Text(
+                                            "• ${detail.businessHours![index]}",
+                                            style: bodyLarge),
+                                        separatorBuilder: (context, _) =>
+                                            const SizedBox(height: 12),
+                                        itemCount: 7,
+                                      ),
+                                    ),
+                                    isExpanded: _isBusinessHourExpanded)
                               ],
                             ),
                           ),
