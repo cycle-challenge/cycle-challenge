@@ -4,7 +4,7 @@ import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/my_location_button_widget.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_list_view_sheet_widget.dart';
+import 'package:yeohaeng_ttukttak/ui/place/place_list_view.dart';
 import 'package:yeohaeng_ttukttak/ui/place/place_sheet_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/place/place_type_filter_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/map_search_bar.dart';
@@ -87,26 +87,18 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             ),
           )),
           const MyLocationButtonWidget(),
-          isSheetShown && !isPlaceSelected
-              ? Positioned(
-                  bottom: 0.0,
-                  left: 0.0,
-                  right: 0.0,
-                  child: PlaceListViewSheet())
-              : const SizedBox(),
-          isPlaceSelected
-              ? Positioned(
-                  bottom: 0.0, left: 0.0, right: 0.0, child: PlaceViewSheet())
-              : const SizedBox()
+          if (isSheetShown)
+            Positioned(
+                bottom: 0.0, left: 0.0, right: 0.0, child: PlaceViewSheet())
         ]);
       }),
       floatingActionButton: isSheetShown && isPlaceSelected
           ? FloatingActionButton(
               onPressed: () {},
               elevation: 0,
-
               backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(Icons.bookmark_outline, color: Theme.of(context).colorScheme.onSurface),
+              child: Icon(Icons.bookmark_outline,
+                  color: Theme.of(context).colorScheme.onSurface),
             )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
