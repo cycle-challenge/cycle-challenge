@@ -4,14 +4,13 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_sheet_widget.dart';
 
 import '../../data/models/place_model.dart';
 import '../../data/models/place_type.dart';
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
-  double prevScrollOffset = -1.0;
+  double _prevScrollOffset = -1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +28,14 @@ class PlaceListView extends StatelessWidget {
       if (isExpanded &&
           isScrollingUp &&
           !canScrollUp &&
-          prevScrollOffset == 0) {
+          _prevScrollOffset == 0) {
         context.read<BottomSheetState>().reduce();
       }
 
       if (!isExpanded && !isScrollingUp) {
         context.read<BottomSheetState>().expand();
       }
-      prevScrollOffset = _scrollController.offset;
+      _prevScrollOffset = _scrollController.offset;
     });
 
     return Column(
