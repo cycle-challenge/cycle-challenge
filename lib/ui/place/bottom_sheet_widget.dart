@@ -19,25 +19,30 @@ class BottomSheetWidget extends StatelessWidget {
         ? (isExpanded ? PlaceDetailView() : PlaceSimpleView())
         : PlaceListView();
 
-    return AnimatedContainer(
-      width: MediaQuery.of(context).size.width,
-      height: context.watch<BottomSheetState>().height,
-      constraints: const BoxConstraints(
-        maxWidth: 500,
+    return Positioned(
+      bottom: 0.0,
+      left: 0.0,
+      right: 0.0,
+      child: AnimatedContainer(
+        width: MediaQuery.of(context).size.width,
+        height: context.watch<BottomSheetState>().height,
+        constraints: const BoxConstraints(
+          maxWidth: 500,
+        ),
+        onEnd: () {
+          if (context.read<BottomSheetState>().isAnimating) {
+            context.read<BottomSheetState>().setIsAnimating(false);
+          }
+        },
+        curve: Curves.fastOutSlowIn,
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: isExpanded
+                ? null
+                : const BorderRadius.vertical(top: Radius.circular(20))),
+        duration: const Duration(milliseconds: 400),
+        child: view,
       ),
-      onEnd: () {
-        if (context.read<BottomSheetState>().isAnimating) {
-          context.read<BottomSheetState>().setIsAnimating(false);
-        }
-      },
-      curve: Curves.fastOutSlowIn,
-      decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
-          borderRadius: isExpanded
-              ? null
-              : const BorderRadius.vertical(top: Radius.circular(20))),
-      duration: const Duration(milliseconds: 400),
-      child: view,
     );
   }
 }

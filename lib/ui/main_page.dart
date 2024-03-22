@@ -87,9 +87,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             ),
           )),
           const MyLocationButtonWidget(),
-          if (isSheetShown)
-            Positioned(
-                bottom: 0.0, left: 0.0, right: 0.0, child: BottomSheetWidget())
+          if (isSheetShown) const BottomSheetWidget()
         ]);
       }),
       floatingActionButton: isSheetShown && isPlaceSelected
