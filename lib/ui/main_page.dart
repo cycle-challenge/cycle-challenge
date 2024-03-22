@@ -1,14 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/my_location_button_widget.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_list_view_sheet_widget.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_sheet_widget.dart';
+import 'package:yeohaeng_ttukttak/ui/place/place_list_view.dart';
+import 'package:yeohaeng_ttukttak/ui/place/bottom_sheet_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/place/place_type_filter_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/map_search_bar.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/search_nearby_button_widget.dart';
+import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 import '../data/models/place_model.dart';
 import 'main/custom_google_map.dart';
@@ -33,18 +37,25 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: isSheetShown && isExpanded && isPlaceSelected
-          ? AppBar(
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  context.read<BottomSheetState>().reduce();
-                },
-              ),
-              title: Text(selectedPlace != null ? selectedPlace.name : ""),
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(51.0),
-                child: TabBar(
+      appBar: AppBar(
+        leading:
+            (isSheetShown && context.watch<NavigationState>().stack.isNotEmpty)
+                ? IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => popNavigate(context),
+                )
+                : null,
+        title: (isSheetShown && isExpanded && isPlaceSelected)
+            ? Text(selectedPlace?.name ?? "")
+            : const MapSearchBar(),
+        backgroundColor: (isSheetShown && isExpanded)
+            ? Theme.of(context).colorScheme.surface
+            : Theme.of(context).colorScheme.surface.withOpacity(0.0),
+        scrolledUnderElevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(51.0),
+          child: (isSheetShown && isExpanded && isPlaceSelected)
+              ? TabBar(
                   controller: tabController,
                   tabs: const [
                     Tab(text: "메인"),
@@ -52,24 +63,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                     Tab(text: "리뷰"),
                     Tab(text: "여행")
                   ],
-                ),
-              ),
-            )
-          : AppBar(
-              backgroundColor: (isSheetShown && isExpanded)
-                  ? Theme.of(context).colorScheme.surface
-                  : Theme.of(context).colorScheme.surface.withOpacity(0.0),
-              scrolledUnderElevation: 0,
-              bottom: const PreferredSize(
-                preferredSize: Size.fromHeight(51.0),
-                child: Column(
-                  children: [
-                    MapSearchBar(),
-                    PlaceTypeFilterWidget(),
-                  ],
-                ),
-              ),
-            ),
+                )
+              : const PlaceTypeFilterWidget(),
+        ),
+      ),
       body: LayoutBuilder(builder: (context, constraints) {
         context.read<BottomSheetState>().maxHeight =
             constraints.maxHeight - MediaQuery.of(context).padding.top;
@@ -87,26 +84,16 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             ),
           )),
           const MyLocationButtonWidget(),
-          isSheetShown && !isPlaceSelected
-              ? Positioned(
-                  bottom: 0.0,
-                  left: 0.0,
-                  right: 0.0,
-                  child: PlaceListViewSheet())
-              : const SizedBox(),
-          isPlaceSelected
-              ? Positioned(
-                  bottom: 0.0, left: 0.0, right: 0.0, child: PlaceViewSheet())
-              : const SizedBox()
+          if (isSheetShown) const BottomSheetWidget()
         ]);
       }),
       floatingActionButton: isSheetShown && isPlaceSelected
           ? FloatingActionButton(
               onPressed: () {},
               elevation: 0,
-
               backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(Icons.bookmark_outline, color: Theme.of(context).colorScheme.onSurface),
+              child: Icon(Icons.bookmark_outline,
+                  color: Theme.of(context).colorScheme.onSurface),
             )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
@@ -115,19 +102,51 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               surfaceTintColor: Theme.of(context).colorScheme.surface,
               child: Row(
                 children: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.phone))
+                  IconButton(
+                    icon: const Icon(Icons.share),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                      icon: const Icon(Icons.phone),
+                      onPressed: () async {
+                        if (!context.read<BottomSheetState>().isExpanded) {
+                          pushNavigate(context);
+                          context.read<BottomSheetState>().expand();
+                          return;
+                        }
+                        String? phoneNumber = context
+                            .read<PlaceViewModel>()
+                            .selectedPlace
+                            ?.detail
+                            ?.phoneNumber;
+
+                        if (phoneNumber == null) {
+                          showSnackbar(context, "제공된 전화번호가 없습니다.");
+                          return;
+                        }
+
+                        phoneNumber = Platform.isIOS
+                            ? phoneNumber.replaceAll("-", "")
+                            : phoneNumber;
+
+                        if (!await canLaunch("tel:$phoneNumber")) {
+                          showSnackbar(context, "전화를 걸 수 없습니다.");
+                          return;
+                        }
+                        await launch("tel:$phoneNumber");
+                      })
                 ],
               ),
             )
           : NavigationBar(
               onDestinationSelected: (index) {
-                context.read<NavigationState>().setSelectedIndex(index);
                 context.read<BottomSheetState>().init();
 
                 if (index == 1) {
+                  pushNavigate(context);
                   context.read<BottomSheetState>().setIsSheetShown(true);
                 }
+                context.read<NavigationState>().setSelectedIndex(index);
               },
               selectedIndex: context.watch<NavigationState>().selectedIndex,
               surfaceTintColor: Theme.of(context).colorScheme.surface,

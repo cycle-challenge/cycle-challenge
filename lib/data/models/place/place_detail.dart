@@ -37,8 +37,9 @@ class PlaceDetail {
         siteURL: json['websiteUri'],
         phoneNumber: json['nationalPhoneNumber'],
         isOpeningNow: json['regularOpeningHours']?["openNow"],
-        businessHours:
-            List.of(json['regularOpeningHours']?['weekdayDescriptions'])
+        businessHours: json['regularOpeningHours'] == null
+            ? []
+            : List.of(json['regularOpeningHours']?['weekdayDescriptions'])
                 .map((e) => e.toString())
                 .toList());
   }

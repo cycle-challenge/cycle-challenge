@@ -20,7 +20,7 @@ class CustomGoogleMap extends StatelessWidget {
       markerIcon[type.value] = await loadSvg(
           "assets/markers/${type.value}.svg", const Size(24.0, 24.0));
       selectedMarkerIcon[type.value] = await loadSvg(
-          "assets/markers/select/${type.value}.svg", const Size(24.0, 36.0));
+          "assets/markers/select/${type.value}.svg", const Size(28.0, 37.0));
     }
 
     return {"markerIcon": markerIcon, "selectedMarkerIcon": selectedMarkerIcon};
@@ -37,7 +37,9 @@ class CustomGoogleMap extends StatelessWidget {
       future: _loadMarkers(),
       builder: (BuildContext context,
           AsyncSnapshot<Map<String, Map<String, BitmapDescriptor>>> snapshot) {
-        if (snapshot.hasData == false || snapshot.data == null) return const CircularProgressIndicator();
+        if (snapshot.hasData == false || snapshot.data == null) {
+          return const CircularProgressIndicator();
+        }
         if (snapshot.hasError) return const SizedBox();
 
         Map<String, BitmapDescriptor> markerIcon =
@@ -63,12 +65,14 @@ class CustomGoogleMap extends StatelessWidget {
             context.read<GoogleMapState>().setIsMoving(true);
           },
           onTap: (_) {
+            popNavigate(context);
             context.read<BottomSheetState>().init();
             context.read<PlaceViewModel>().unSelectPlace();
           },
           markers: Set.of(places.map((e) => Marker(
               markerId: MarkerId(e.id.toString()),
               onTap: () {
+                pushNavigate(context);
                 context.read<PlaceViewModel>().selectPlace(e.id);
                 context.read<BottomSheetState>().setIsSheetShown(true);
                 context.read<NavigationState>().setSelectedIndex(0);

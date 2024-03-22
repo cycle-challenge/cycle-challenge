@@ -52,4 +52,12 @@ class GoogleMapState with ChangeNotifier {
     notifyListeners();
   }
 
+  void moveToCenter() async {
+    GoogleMapController controller = await _completer.future;
+
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(latitude, longitude), zoom: 13)
+    ));
+  }
+
 }

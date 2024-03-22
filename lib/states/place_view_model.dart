@@ -10,6 +10,7 @@ import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
 import '../data/models/place_type.dart';
 import '../data/repositories/visit_repository.dart';
+import 'navigation_state.dart';
 
 class PlaceViewModel with ChangeNotifier {
   final VisitRepository _visitRepository = VisitRepository();
@@ -34,7 +35,6 @@ class PlaceViewModel with ChangeNotifier {
   bool get isSelected => _selectedPlaceID != -1;
 
   bool _isFetchingDetail = false;
-
   PlaceViewModel() {
     for (PlaceType type in placeTypes) {
       areFiltered[type.value] = false;
@@ -66,8 +66,13 @@ class PlaceViewModel with ChangeNotifier {
   }
 
   void search(double latitude, double longitude) async {
-    VisitModel visit = await _visitRepository.get(latitude, longitude, 5000);
+    VisitModel visit = await _visitRepository.get(latitude, longitude, 3000);
     _places = visit.places;
+    notifyListeners();
+  }
+
+  void update(Navigate navigate) {
+    _selectedPlaceID = navigate.selectedPlaceId ?? _selectedPlaceID;
     notifyListeners();
   }
 
@@ -79,11 +84,11 @@ class PlaceViewModel with ChangeNotifier {
 
     _isFetchingDetail = true;
 
-    PlaceDetail detail = await _placeRepository.getDetailInfo(place.googlePlaceId);
+    PlaceDetail detail =
+        await _placeRepository.getDetailInfo(place.googlePlaceId);
     place.setDetail(detail);
 
     _isFetchingDetail = false;
     notifyListeners();
   }
-
 }
