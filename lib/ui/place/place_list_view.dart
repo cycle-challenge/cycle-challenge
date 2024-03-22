@@ -10,35 +10,18 @@ import '../../data/models/place_type.dart';
 import '../../states/navigation_state.dart';
 
 class PlaceListView extends StatelessWidget {
-  final ScrollController _scrollController = ScrollController();
-  double _prevScrollOffset = -1.0;
+  final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     List<PlaceModel> places = context.watch<PlaceViewModel>().places;
 
-    _scrollController.addListener(() {
-      bool isAnimating = context.read<BottomSheetState>().isAnimating;
-      if (isAnimating) return;
+    _controller.addListener(() {
+      bool canScrollUp = _controller.offset > 0;
 
-      bool isScrollingUp = _scrollController.position.userScrollDirection ==
-          ScrollDirection.forward;
-      bool canScrollUp = _scrollController.offset > 0;
-      bool isExpanded = context.read<BottomSheetState>().isExpanded;
-
-      if (isExpanded &&
-          isScrollingUp &&
-          !canScrollUp &&
-          _prevScrollOffset == 0) {
-        pushNavigate(context);
-        context.read<BottomSheetState>().reduce();
-      }
-
-      if (!isExpanded && !isScrollingUp) {
-        pushNavigate(context);
-        context.read<BottomSheetState>().expand();
-      }
-      _prevScrollOffset = _scrollController.offset;
+      context
+          .read<BottomSheetState>()
+          .setCanViewScrollUp(canScrollUp);
     });
 
     return Column(
@@ -59,7 +42,7 @@ class PlaceListView extends StatelessWidget {
         ),
         Expanded(
           child: ListView.separated(
-            controller: _scrollController,
+            controller: _controller,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             itemBuilder: (BuildContext context, int index) {
