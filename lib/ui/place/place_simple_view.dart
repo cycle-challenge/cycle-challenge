@@ -40,11 +40,8 @@ class PlaceSimpleView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    constraints: const BoxConstraints(maxWidth: 230),
-                    child: Text(place.name,
-                        style: Theme.of(context).textTheme.titleLarge),
-                  ),
+                  Text(place.name,
+                      style: Theme.of(context).textTheme.titleLarge, softWrap: false,),
                   Text('$distance km · $type',
                       style: Theme.of(context).textTheme.labelLarge)
                 ],

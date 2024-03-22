@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:ntp/ntp.dart';
 import 'package:provider/provider.dart';
@@ -63,8 +64,9 @@ class PlaceDetailView extends StatelessWidget {
                       if (detail.address != null)
                         Container(
                           margin: const EdgeInsets.only(bottom: 10.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
+                          child: Wrap(
+                            direction: Axis.horizontal,
+                            alignment: WrapAlignment.start,
                             children: [
                               Container(
                                   margin: const EdgeInsets.only(right: 10.0),
@@ -112,18 +114,23 @@ class PlaceDetailView extends StatelessWidget {
                                                   right: 10.0),
                                               child: const Icon(
                                                   Icons.access_time_outlined)),
-                                          Text(
-                                              overflow: TextOverflow.ellipsis,
-                                              detail.isOpeningNow!
-                                                  ? "영업 중 · "
-                                                  : "영업 종료 · ",
-                                              style: bodyLarge?.copyWith(
-                                                  fontWeight: FontWeight.w600)),
-                                          Text(
-                                              detail.businessHours![
-                                                      now.weekday - 1]
-                                                  .split(": ")[1],
-                                              style: bodyLarge),
+                                          Expanded(
+                                            child: RichText(
+                                                text: TextSpan(children: [
+                                              TextSpan(
+                                                  text: detail.isOpeningNow!
+                                                      ? "영업 중 · "
+                                                      : "영업 종료 · ",
+                                                  style: bodyLarge?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w600)),
+                                              TextSpan(
+                                                  text: detail.businessHours![
+                                                          now.weekday - 1]
+                                                      .split(": ")[1],
+                                                  style: bodyLarge)
+                                            ])),
+                                          ),
                                         ],
                                       ),
                                   body: ListTile(
@@ -156,17 +163,20 @@ class PlaceDetailView extends StatelessWidget {
                               Container(
                                   margin: const EdgeInsets.only(right: 10.0),
                                   child: const Icon(Icons.language_outlined)),
-                              Linkify(
-                                  onOpen: (link) async {
-                                    if (!await launchUrl(Uri.parse(link.url))) {
-                                      showSnackbar(
-                                          context, "웹사이트에 접근할 수 없습니다.");
-                                    }
-                                  },
-                                  text: detail.siteURL!,
-                                  style: bodyLarge?.copyWith(
-                                      color: Colors.blue,
-                                      decorationColor: Colors.blue)),
+                              Expanded(
+                                child: Linkify(
+                                    onOpen: (link) async {
+                                      if (!await launchUrl(
+                                          Uri.parse(link.url))) {
+                                        showSnackbar(
+                                            context, "웹사이트에 접근할 수 없습니다.");
+                                      }
+                                    },
+                                    text: detail.siteURL!,
+                                    style: bodyLarge?.copyWith(
+                                        color: Colors.blue,
+                                        decorationColor: Colors.blue)),
+                              ),
                             ],
                           ),
                         ),
