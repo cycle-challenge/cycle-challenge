@@ -35,7 +35,6 @@ class PlaceViewModel with ChangeNotifier {
   bool get isSelected => _selectedPlaceID != -1;
 
   bool _isFetchingDetail = false;
-
   PlaceViewModel() {
     for (PlaceType type in placeTypes) {
       areFiltered[type.value] = false;
@@ -67,7 +66,7 @@ class PlaceViewModel with ChangeNotifier {
   }
 
   void search(double latitude, double longitude) async {
-    VisitModel visit = await _visitRepository.get(latitude, longitude, 5000);
+    VisitModel visit = await _visitRepository.get(latitude, longitude, 3000);
     _places = visit.places;
     notifyListeners();
   }

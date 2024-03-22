@@ -18,10 +18,8 @@ class PlaceListView extends StatelessWidget {
 
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
+      context.read<BottomSheetState>().setCanViewScrollUp(canScrollUp);
 
-      context
-          .read<BottomSheetState>()
-          .setCanViewScrollUp(canScrollUp);
     });
 
     return Column(
