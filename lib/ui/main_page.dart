@@ -41,9 +41,9 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         leading:
             (isSheetShown && context.watch<NavigationState>().stack.isNotEmpty)
                 ? IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () => popNavigate(context),
-                  )
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => popNavigate(context),
+                )
                 : null,
         title: (isSheetShown && isExpanded && isPlaceSelected)
             ? Text(selectedPlace?.name ?? "")

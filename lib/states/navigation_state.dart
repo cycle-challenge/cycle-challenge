@@ -57,6 +57,8 @@ void pushNavigate(BuildContext context) {
 }
 
 void popNavigate(BuildContext context) {
+  if (context.read<NavigationState>().stack.isEmpty) return;
+
   Navigate navigate = context.read<NavigationState>().stack.pop();
   context.read<BottomSheetState>().update(navigate);
   context.read<NavigationState>().update(navigate);

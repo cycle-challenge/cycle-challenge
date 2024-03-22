@@ -64,13 +64,13 @@ class PlaceSimpleView extends StatelessWidget {
                   ],
                 ),
                 Container(
-                    height: 120,
+                    height: 144,
                     margin: const EdgeInsets.only(top: 10.0),
                     child: ListView.separated(
                       shrinkWrap: true,
                       primary: false,
                       scrollDirection: Axis.horizontal,
-                      itemCount: place.images.length,
+                      itemCount: 5,
                       separatorBuilder: (context, index) =>
                           const SizedBox(width: 8),
                       itemBuilder: (BuildContext context, int index) {
@@ -78,12 +78,20 @@ class PlaceSimpleView extends StatelessWidget {
                           onTap: () {},
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Image.network(
-                              place.images[index].small,
-                              width: 120.0,
-                              height: 120.0,
-                              fit: BoxFit.cover,
-                            ),
+                            child: index < place.images.length
+                                ? Image.network(
+                                    place.images[index].small,
+                                    width: 144,
+                                    height: 144,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Container(
+                                    width: 144,
+                                    height: 144,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondaryContainer,
+                                  ),
                           ),
                         );
                       },

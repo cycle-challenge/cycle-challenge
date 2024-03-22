@@ -5,10 +5,10 @@ import 'navigation_state.dart';
 
 class BottomSheetState with ChangeNotifier {
 
-    double minHeight = 230;
+    double minHeight = 244;
     double maxHeight = 0.0;
 
-    double _height = 230;
+    double _height = 244;
     double get height => _height;
 
     bool _isAnimating = false;
