@@ -25,6 +25,7 @@ class PlaceSimpleView extends StatelessWidget {
             .isExpanded;
 
         if (!isExpanded && delta < 0) {
+          pushNavigate(context);
           context.read<BottomSheetState>().expand();
         }
       },
@@ -70,7 +71,7 @@ class PlaceSimpleView extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: place.images.length,
                       separatorBuilder: (context, index) =>
-                      const SizedBox(width: 8),
+                          const SizedBox(width: 8),
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {},

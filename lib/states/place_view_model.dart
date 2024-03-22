@@ -10,6 +10,7 @@ import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
 import '../data/models/place_type.dart';
 import '../data/repositories/visit_repository.dart';
+import 'navigation_state.dart';
 
 class PlaceViewModel with ChangeNotifier {
   final VisitRepository _visitRepository = VisitRepository();
@@ -71,6 +72,11 @@ class PlaceViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void update(Navigate navigate) {
+    _selectedPlaceID = navigate.selectedPlaceId ?? _selectedPlaceID;
+    notifyListeners();
+  }
+
   Future<void> getDetail() async {
     PlaceModel? place = selectedPlace;
     if (_isFetchingDetail || place == null) return;
@@ -79,11 +85,11 @@ class PlaceViewModel with ChangeNotifier {
 
     _isFetchingDetail = true;
 
-    PlaceDetail detail = await _placeRepository.getDetailInfo(place.googlePlaceId);
+    PlaceDetail detail =
+        await _placeRepository.getDetailInfo(place.googlePlaceId);
     place.setDetail(detail);
 
     _isFetchingDetail = false;
     notifyListeners();
   }
-
 }

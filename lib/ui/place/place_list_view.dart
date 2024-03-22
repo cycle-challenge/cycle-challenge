@@ -7,6 +7,7 @@ import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 import '../../data/models/place_model.dart';
 import '../../data/models/place_type.dart';
+import '../../states/navigation_state.dart';
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
@@ -29,10 +30,12 @@ class PlaceListView extends StatelessWidget {
           isScrollingUp &&
           !canScrollUp &&
           _prevScrollOffset == 0) {
+        pushNavigate(context);
         context.read<BottomSheetState>().reduce();
       }
 
       if (!isExpanded && !isScrollingUp) {
+        pushNavigate(context);
         context.read<BottomSheetState>().expand();
       }
       _prevScrollOffset = _scrollController.offset;
@@ -68,6 +71,7 @@ class PlaceListView extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
+                  pushNavigate(context);
                   context.read<PlaceViewModel>().selectPlace(place.id);
                   context.read<BottomSheetState>().expand();
                 },
@@ -130,7 +134,7 @@ class PlaceListView extends StatelessWidget {
               );
             },
             separatorBuilder: (BuildContext context, int index) =>
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
             itemCount: places.length,
           ),
         ),

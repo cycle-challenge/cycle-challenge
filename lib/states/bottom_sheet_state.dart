@@ -1,6 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 
+import 'navigation_state.dart';
+
 class BottomSheetState with ChangeNotifier {
 
     double minHeight = 230;
@@ -16,6 +18,7 @@ class BottomSheetState with ChangeNotifier {
     bool _isSheetShown = false;
     bool get isSheetShown => _isSheetShown;
 
+
     void setIsSheetShown(bool isSheetShown) {
         _isSheetShown = isSheetShown;
         notifyListeners();
@@ -25,6 +28,12 @@ class BottomSheetState with ChangeNotifier {
         _isSheetShown = false;
         _isAnimating = false;
         _height = minHeight;
+        notifyListeners();
+    }
+
+    void update(Navigate navigate) {
+        _isSheetShown = navigate.isSheetShown ?? _isSheetShown;
+        _height = navigate.bottomSheetHeight ?? _height;
         notifyListeners();
     }
 
