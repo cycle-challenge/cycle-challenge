@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
+import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 class PlaceDetailView extends StatelessWidget {
@@ -21,19 +22,19 @@ class PlaceDetailView extends StatelessWidget {
         double? delta = details.primaryDelta;
         if (delta == null) return;
 
-        bool isExpanded = context
-            .read<BottomSheetState>()
-            .isExpanded;
+        bool isExpanded = context.read<BottomSheetState>().isExpanded;
 
         if (isExpanded && delta > 0) {
+          popNavigate(context);
           context.read<BottomSheetState>().reduce();
         }
       },
       child: FutureBuilder(
         future: _getPlaceDetail(context),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (!snapshot.hasData)
+          if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
+          }
 
           DateTime now = snapshot.data;
 
@@ -61,7 +62,9 @@ class PlaceDetailView extends StatelessWidget {
                           Container(
                               margin: const EdgeInsets.only(right: 10.0),
                               child: const Icon(Icons.place_outlined)),
-                          Container(margin: EdgeInsets.only(right: 5.0),child: Text(detail.address!, style: bodyLarge)),
+                          Container(
+                              margin: const EdgeInsets.only(right: 5.0),
+                              child: Text(detail.address!, style: bodyLarge)),
                           Material(
                             child: InkWell(
                               borderRadius: BorderRadius.circular(5),
@@ -70,25 +73,29 @@ class PlaceDetailView extends StatelessWidget {
                                     ClipboardData(text: detail.address!));
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-                                        duration: const Duration(milliseconds: 2000),
+                                        backgroundColor:
+                                            Theme.of(context)
+                                                .colorScheme
+                                                .secondaryContainer,
+                                        duration:
+                                            const Duration(milliseconds: 2000),
                                         content: Text("성공적으로 복사되었습니다.",
                                             style: bodyLarge)));
                               },
                               child: Container(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 5.0),
-
+                                    const EdgeInsets.symmetric(horizontal: 5.0),
                                 child: Text("복사",
-                                    style:
-                                    bodyLarge?.copyWith(color: Colors.blue)),
+                                    style: bodyLarge?.copyWith(
+                                        color: Colors.blue)),
                               ),
                             ),
                           )
                         ],
                       ),
                     ),
-                  if (detail.businessHours != null && detail.isOpeningNow != null)
+                  if (detail.businessHours != null &&
+                      detail.isOpeningNow != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       child: Row(
@@ -97,7 +104,9 @@ class PlaceDetailView extends StatelessWidget {
                           Container(
                               margin: const EdgeInsets.only(right: 10.0),
                               child: const Icon(Icons.access_time_outlined)),
-                          Text(detail.isOpeningNow! ? "영업 중 · " : "영업 종료 · ",
+                          Text(
+                              overflow: TextOverflow.ellipsis,
+                              detail.isOpeningNow! ? "영업 중 · " : "영업 종료 · ",
                               style: bodyLarge?.copyWith(
                                   fontWeight: FontWeight.w600)),
                           Text(detail.businessHours![now.weekday - 1],
@@ -117,7 +126,8 @@ class PlaceDetailView extends StatelessWidget {
                           Linkify(
                               onOpen: (link) async {
                                 if (!await launchUrl(Uri.parse(link.url))) {
-                                  throw Exception('Could not launch ${link.url}');
+                                  throw Exception(
+                                      'Could not launch ${link.url}');
                                 }
                               },
                               text: detail.siteURL!,
@@ -138,7 +148,8 @@ class PlaceDetailView extends StatelessWidget {
                               child: const Icon(Icons.phone_outlined)),
                           Container(
                               margin: const EdgeInsets.only(right: 10.0),
-                              child: Text(detail.phoneNumber!, style: bodyLarge)),
+                              child:
+                                  Text(detail.phoneNumber!, style: bodyLarge)),
                           Material(
                             child: InkWell(
                               borderRadius: BorderRadius.circular(5),
@@ -147,17 +158,21 @@ class PlaceDetailView extends StatelessWidget {
                                     ClipboardData(text: detail.phoneNumber!));
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-                                        duration: const Duration(milliseconds: 2000),
+                                        backgroundColor:
+                                            Theme.of(context)
+                                                .colorScheme
+                                                .secondaryContainer,
+                                        duration:
+                                            const Duration(milliseconds: 2000),
                                         content: Text("성공적으로 복사되었습니다.",
                                             style: bodyLarge)));
                               },
                               child: Container(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 5.0),
+                                    const EdgeInsets.symmetric(horizontal: 5.0),
                                 child: Text("복사",
-                                    style:
-                                    bodyLarge?.copyWith(color: Colors.blue)),
+                                    style: bodyLarge?.copyWith(
+                                        color: Colors.blue)),
                               ),
                             ),
                           )

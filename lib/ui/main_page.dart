@@ -114,12 +114,13 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             )
           : NavigationBar(
               onDestinationSelected: (index) {
-                context.read<NavigationState>().setSelectedIndex(index);
                 context.read<BottomSheetState>().init();
 
                 if (index == 1) {
+                  pushNavigate(context);
                   context.read<BottomSheetState>().setIsSheetShown(true);
                 }
+                context.read<NavigationState>().setSelectedIndex(index);
               },
               selectedIndex: context.watch<NavigationState>().selectedIndex,
               surfaceTintColor: Theme.of(context).colorScheme.surface,
