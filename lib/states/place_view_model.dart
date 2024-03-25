@@ -8,8 +8,9 @@ import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
-import '../data/models/place_type.dart';
-import '../data/repositories/visit_repository.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_type.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/visit_repository.dart';
+import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'navigation_state.dart';
 
 class PlaceViewModel with ChangeNotifier {
@@ -33,6 +34,14 @@ class PlaceViewModel with ChangeNotifier {
   int _selectedPlaceID = -1;
   int get selectedPlaceID => _selectedPlaceID;
   bool get isSelected => _selectedPlaceID != -1;
+
+  final TravelFilter _travelFilter = TravelFilter();
+  TravelFilter get travelFilter => _travelFilter;
+
+  void notify(var callback) {
+    callback();
+    notifyListeners();
+  }
 
   bool _isFetchingDetail = false;
   PlaceViewModel() {
