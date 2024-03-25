@@ -11,14 +11,14 @@ import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceDetailView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
 
   Future<DateTime> _getPlaceDetail(BuildContext context) async {
-    await context.read<PlaceViewModel>().getDetail();
+    await context.read<TravelViewModel>().getDetail();
     return await NTP.now();
   }
 
@@ -38,9 +38,9 @@ class PlaceDetailView extends StatelessWidget {
 
         DateTime now = snapshot.data;
 
-        PlaceModel? place = context.watch<PlaceViewModel>().selectedPlace;
+        PlaceModel? place = context.watch<TravelViewModel>().selectedPlace;
         PlaceDetail? detail =
-            context.watch<PlaceViewModel>().selectedPlace?.detail;
+            context.watch<TravelViewModel>().selectedPlace?.detail;
 
         if (detail == null || place == null) return const SizedBox();
 

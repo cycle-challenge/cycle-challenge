@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/stack.dart';
 
 class NavigationState with ChangeNotifier {
@@ -42,7 +42,7 @@ class Navigate {
   Navigate(
       {BottomSheetState? bottomSheetState,
       NavigationState? navigationState,
-      PlaceViewModel? placeViewModel})
+      TravelViewModel? placeViewModel})
       : _isSheetShown = bottomSheetState?.isSheetShown,
         _bottomSheetHeight = bottomSheetState?.height,
         _selectedIndex = navigationState?.selectedIndex,
@@ -53,7 +53,7 @@ void pushNavigate(BuildContext context) {
   context.read<NavigationState>().stack.push(Navigate(
       bottomSheetState: context.read<BottomSheetState>(),
       navigationState: context.read<NavigationState>(),
-      placeViewModel: context.read<PlaceViewModel>()));
+      placeViewModel: context.read<TravelViewModel>()));
 }
 
 void popNavigate(BuildContext context) {
@@ -62,5 +62,5 @@ void popNavigate(BuildContext context) {
   Navigate navigate = context.read<NavigationState>().stack.pop();
   context.read<BottomSheetState>().update(navigate);
   context.read<NavigationState>().update(navigate);
-  context.read<PlaceViewModel>().update(navigate);
+  context.read<TravelViewModel>().update(navigate);
 }

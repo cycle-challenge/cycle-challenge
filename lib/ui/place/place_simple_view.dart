@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_type.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
 
 import '../../data/models/place_model.dart';
 
 class PlaceSimpleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    PlaceModel? place = context.read<PlaceViewModel>().selectedPlace;
+    PlaceModel? place = context.read<TravelViewModel>().selectedPlace;
     if (place == null) return const SizedBox();
 
     String distance = place.location.distance.toStringAsFixed(1).toString();
-    String type = placeTypeMap[place.type]?.label ?? place.type;
+    String type = place.type.name;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

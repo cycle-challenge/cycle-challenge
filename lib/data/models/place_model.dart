@@ -1,6 +1,7 @@
 import 'package:yeohaeng_ttukttak/data/models/image.dart';
 import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place/place_location.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
 
 class PlaceModel {
   final int _id;
@@ -9,7 +10,7 @@ class PlaceModel {
 
   final PlaceLocation _location;
 
-  final String _type;
+  final PlaceType _type;
 
   final List<Image> _images;
 
@@ -23,7 +24,7 @@ class PlaceModel {
 
   PlaceLocation get location => _location;
 
-  String get type => _type;
+  PlaceType get type => _type;
 
   List<Image> get images => _images;
 
@@ -54,7 +55,7 @@ class PlaceModel {
         id: json["id"],
         name: json["name"],
         location: PlaceLocation.of(json["location"]),
-        type: json["type"],
+        type: PlaceType.of(json["type"]),
         images: List.of(json["images"]).map((e) => Image.of(e)).toList(),
         googlePlaceId: json["googlePlaceId"]);
   }

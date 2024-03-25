@@ -1,32 +1,23 @@
-import 'dart:math';
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
-import 'package:yeohaeng_ttukttak/data/models/place_type.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'navigation_state.dart';
 
-class PlaceViewModel with ChangeNotifier {
+class TravelViewModel with ChangeNotifier {
   final TravelRepository _travelRepository = TravelRepository();
   final PlaceRepository _placeRepository = PlaceRepository();
 
-  final Map<String, BitmapDescriptor> _markerIcon = {},
-      _selectedMarkerIcon = {};
-  Map<String, BitmapDescriptor> get makerIcon => _markerIcon;
-  Map<String, BitmapDescriptor> get selectedMakerIcon => _selectedMarkerIcon;
-
   List<PlaceModel> _places = [];
   List<PlaceModel> get places =>
-      travels.map((e) => e.places).expand((e) => e).toList()
-          .where((place) => isFiltered(place.type)).toList();
+      placeFilter.apply(travels.map((e) => e.places).expand((e) => e).toList());
 
   List<TravelModel> _travels = [];
   List<TravelModel> get travels => _travelFilter.apply(_travels);
@@ -43,18 +34,15 @@ class PlaceViewModel with ChangeNotifier {
   final TravelFilter _travelFilter = TravelFilter();
   TravelFilter get travelFilter => _travelFilter;
 
+  final PlaceFilter _placeFilter = PlaceFilter();
+  PlaceFilter get placeFilter => _placeFilter;
+
   void notify(var callback) {
     callback();
     notifyListeners();
   }
 
   bool _isFetchingDetail = false;
-  PlaceViewModel() {
-    for (PlaceType type in placeTypes) {
-      areFiltered[type.value] = false;
-    }
-    notifyListeners();
-  }
 
   selectPlace(int id) {
     _selectedPlaceID = id;

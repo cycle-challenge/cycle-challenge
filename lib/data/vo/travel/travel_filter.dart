@@ -51,12 +51,13 @@ class TravelFilter {
     if (!hasAnyFilter) return travels;
 
     return travels
-        .where((travel) {
-           return _filterSingle<TravelAgeGroup>(_ageGroup, travel.ageGroup) &&
-                (_period.isEmpty || _period.intersection(travel.seasons).isNotEmpty) &&
-                _filterSingle<TravelTransport>(_transport, travel.transport) &&
-                _filterSingle<TravelMotivation>(_motivation, travel.motivation) &&
-                _filterSingle<TravelAccompany>(_accompany, travel.accompany);})
+        .where((travel) =>
+            _filterSingle<TravelAgeGroup>(_ageGroup, travel.ageGroup) &&
+            (_period.isEmpty ||
+                _period.intersection(travel.seasons).isNotEmpty) &&
+            _filterSingle<TravelTransport>(_transport, travel.transport) &&
+            _filterSingle<TravelMotivation>(_motivation, travel.motivation) &&
+            _filterSingle<TravelAccompany>(_accompany, travel.accompany))
         .toList();
   }
 }
