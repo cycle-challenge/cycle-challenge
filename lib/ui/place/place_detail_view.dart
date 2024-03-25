@@ -7,7 +7,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:ntp/ntp.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';

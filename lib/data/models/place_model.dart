@@ -1,6 +1,6 @@
-import 'package:yeohaeng_ttukttak/data/models/image.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_location.dart';
+import 'package:yeohaeng_ttukttak/data/vo/image.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_location.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
 
 class PlaceModel {

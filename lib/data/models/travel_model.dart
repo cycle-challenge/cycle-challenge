@@ -1,4 +1,4 @@
-import 'package:yeohaeng_ttukttak/data/models/image.dart';
+import 'package:yeohaeng_ttukttak/data/vo/image.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_accompany.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_age_group.dart';

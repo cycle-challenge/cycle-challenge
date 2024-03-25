@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 
 class PlaceRepository {
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
