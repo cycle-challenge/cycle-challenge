@@ -5,16 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
 import 'package:yeohaeng_ttukttak/data/models/place_type.dart';
-import 'package:yeohaeng_ttukttak/data/repositories/visit_repository.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'navigation_state.dart';
 
 class PlaceViewModel with ChangeNotifier {
-  final VisitRepository _visitRepository = VisitRepository();
+  final TravelRepository _travelRepository = TravelRepository();
   final PlaceRepository _placeRepository = PlaceRepository();
 
   final Map<String, BitmapDescriptor> _markerIcon = {},
@@ -24,7 +25,11 @@ class PlaceViewModel with ChangeNotifier {
 
   List<PlaceModel> _places = [];
   List<PlaceModel> get places =>
-      _places.where((place) => isFiltered(place.type)).toList();
+      travels.map((e) => e.places).expand((e) => e).toList()
+          .where((place) => isFiltered(place.type)).toList();
+
+  List<TravelModel> _travels = [];
+  List<TravelModel> get travels => _travelFilter.apply(_travels);
 
   PlaceModel? get selectedPlace =>
       _places.where((place) => place.id == _selectedPlaceID).firstOrNull;
@@ -75,8 +80,8 @@ class PlaceViewModel with ChangeNotifier {
   }
 
   void search(double latitude, double longitude) async {
-    VisitModel visit = await _visitRepository.get(latitude, longitude, 3000);
-    _places = visit.places;
+    _travels = await _travelRepository.get(latitude, longitude, 3000);
+    _places = _travels.map((e) => e.places).expand((e) => e).toList();
     notifyListeners();
   }
 

@@ -17,4 +17,16 @@ enum TravelAccompany {
   const TravelAccompany(
       {required this.label, required this.iconData });
 
+
+  factory TravelAccompany.of(String value) {
+
+    for (TravelAccompany element in TravelAccompany.values) {
+      if (element.name == value) {
+        return element;
+      }
+    }
+
+    throw Exception("$value를 찾을 수 없습니댜.");
+  }
+
 }

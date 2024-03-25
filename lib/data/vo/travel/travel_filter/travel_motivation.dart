@@ -20,4 +20,13 @@ enum TravelMotivation {
   const TravelMotivation(
       {required this.label, required this.iconData });
 
+  factory TravelMotivation.of(String value) {
+
+    for (TravelMotivation element in TravelMotivation.values) {
+      if (element.name == value) {
+        return element;
+      }
+    }
+    throw Exception("$value를 찾을 수 없습니댜.");
+  }
 }

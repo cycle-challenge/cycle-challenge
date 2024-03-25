@@ -13,4 +13,15 @@ enum TravelTransport {
   const TravelTransport(
       {required this.label, required this.iconData});
 
+  factory TravelTransport.of(String value) {
+
+    for (TravelTransport element in TravelTransport.values) {
+      if (element.name == value) {
+        return element;
+      }
+    }
+
+    return TravelTransport.public;
+  }
+
 }

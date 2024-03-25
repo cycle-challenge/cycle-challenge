@@ -15,4 +15,13 @@ enum TravelPeriod {
   const TravelPeriod(
       {required this.label, required this.iconData});
 
+  factory TravelPeriod.of(String value) {
+
+    for (TravelPeriod element in TravelPeriod.values) {
+      if (element.name == value) {
+        return element;
+      }
+    }
+    throw Exception("$value를 찾을 수 없습니댜.");
+  }
 }

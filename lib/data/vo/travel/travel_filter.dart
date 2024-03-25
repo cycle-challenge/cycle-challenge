@@ -4,8 +4,9 @@ import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_motivation
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_period.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_transport.dart';
 
-class TravelFilter {
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 
+class TravelFilter {
   final Set<TravelAgeGroup> _ageGroup = <TravelAgeGroup>{};
 
   final Set<TravelPeriod> _period = <TravelPeriod>{};
@@ -28,10 +29,10 @@ class TravelFilter {
 
   bool get hasAnyFilter =>
       _ageGroup.isNotEmpty ||
-          _period.isNotEmpty ||
-          _transport.isNotEmpty ||
-          _motivation.isNotEmpty ||
-          _accompany.isNotEmpty;
+      _period.isNotEmpty ||
+      _transport.isNotEmpty ||
+      _motivation.isNotEmpty ||
+      _accompany.isNotEmpty;
 
   void init() {
     _ageGroup.clear();
@@ -41,4 +42,21 @@ class TravelFilter {
     _accompany.clear();
   }
 
+  bool _filterSingle<T>(Set<T> filters, T value) {
+    if (filters.isEmpty) return true;
+    return filters.contains(value);
+  }
+
+  List<TravelModel> apply(List<TravelModel> travels) {
+    if (!hasAnyFilter) return travels;
+
+    return travels
+        .where((travel) {
+           return _filterSingle<TravelAgeGroup>(_ageGroup, travel.ageGroup) &&
+                (_period.isEmpty || _period.intersection(travel.seasons).isNotEmpty) &&
+                _filterSingle<TravelTransport>(_transport, travel.transport) &&
+                _filterSingle<TravelMotivation>(_motivation, travel.motivation) &&
+                _filterSingle<TravelAccompany>(_accompany, travel.accompany);})
+        .toList();
+  }
 }

@@ -17,4 +17,13 @@ enum TravelAgeGroup {
   const TravelAgeGroup(
       {required this.label, required this.iconData });
 
+  factory TravelAgeGroup.of(String value) {
+
+    for (TravelAgeGroup element in TravelAgeGroup.values) {
+      if (element.name == value) {
+        return element;
+      }
+    }
+    throw Exception("$value를 찾을 수 없습니댜.");
+  }
 }
