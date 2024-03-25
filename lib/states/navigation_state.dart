@@ -62,6 +62,22 @@ void popNavigate(BuildContext context) {
   context.read<TravelViewModel>().update(navigate);
 }
 
+void clearNavigate(BuildContext context) {
+
+  Navigate? navigate;
+
+  while (context.read<NavigationState>().stack.isNotEmpty) {
+    navigate = context.read<NavigationState>().stack.pop();
+  }
+
+  if (navigate == null) return;
+
+  context.read<BottomSheetState>().update(navigate);
+  context.read<NavigationState>().update(navigate);
+  context.read<TravelViewModel>().update(navigate);
+
+}
+
 bool getIsSheetShown(BuildContext context) {
   int navIndex = context.watch<NavigationState>().selectedIndex;
   bool isPlaceSelected = context.watch<TravelViewModel>().isSelected;

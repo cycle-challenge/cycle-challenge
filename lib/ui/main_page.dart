@@ -9,7 +9,7 @@ import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/place/place_list_view.dart';
 import 'package:yeohaeng_ttukttak/ui/main/bottom_sheet_widget.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_type_filter_widget.dart';
+import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/place_type_filter_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/map_search_bar.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/search_nearby_button_widget.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';

@@ -65,7 +65,7 @@ class CustomGoogleMap extends StatelessWidget {
             context.read<GoogleMapState>().setIsMoving(true);
           },
           onTap: (_) {
-            popNavigate(context);
+            clearNavigate(context);
             context.read<BottomSheetState>().init();
             context.read<TravelViewModel>().unSelectPlace();
           },
