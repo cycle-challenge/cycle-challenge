@@ -7,6 +7,8 @@ import 'package:yeohaeng_ttukttak/ui/place/place_detail_view.dart';
 import 'package:yeohaeng_ttukttak/ui/place/place_list_view.dart';
 import 'package:yeohaeng_ttukttak/ui/place/place_simple_view.dart';
 
+import 'package:yeohaeng_ttukttak/ui/travel/travel_list_view.dart';
+
 class BottomSheetWidget extends StatelessWidget {
   const BottomSheetWidget({super.key});
 
@@ -16,9 +18,11 @@ class BottomSheetWidget extends StatelessWidget {
 
     bool isPlaceSelected = context.watch<TravelViewModel>().isSelected;
 
+    int navigationIndex = context.watch<NavigationState>().selectedIndex;
+
     Widget view = isPlaceSelected
         ? (isExpanded ? PlaceDetailView() : PlaceSimpleView())
-        : PlaceListView();
+        : (navigationIndex == 1 ? PlaceListView() : TravelLIstView());
 
     return Positioned(
       bottom: 0.0,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
+import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 
 
 class MapSearchBar extends StatelessWidget {
@@ -10,7 +11,7 @@ class MapSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSheetShown = context.watch<BottomSheetState>().isSheetShown;
+    bool isSheetShown = getIsSheetShown(context);
     bool isExpanded = context.watch<BottomSheetState>().isExpanded;
 
     return Container(

@@ -74,7 +74,6 @@ class CustomGoogleMap extends StatelessWidget {
               onTap: () {
                 pushNavigate(context);
                 context.read<TravelViewModel>().selectPlace(e.id);
-                context.read<BottomSheetState>().setIsSheetShown(true);
                 context.read<NavigationState>().setSelectedIndex(0);
               },
               draggable: true,
