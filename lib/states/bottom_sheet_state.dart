@@ -16,7 +16,7 @@ class BottomSheetState with ChangeNotifier {
   bool _isSheetShown = false;
   bool get isSheetShown => _isSheetShown;
 
-  bool _canViewScrollUp = true;
+  bool _canViewScrollUp = false;
   bool get canViewScrollUp => _canViewScrollUp;
 
   bool _isBusinessHourExpanded = false;
