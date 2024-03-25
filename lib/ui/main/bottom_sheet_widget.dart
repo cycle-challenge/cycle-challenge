@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_detail_view.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_list_view.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_simple_view.dart';
+import 'package:yeohaeng_ttukttak/ui/main/place/place_detail_view.dart';
+import 'package:yeohaeng_ttukttak/ui/main/place/place_list_view.dart';
+import 'package:yeohaeng_ttukttak/ui/main/place/place_simple_view.dart';
 
-import 'package:yeohaeng_ttukttak/ui/travel/travel_list_view.dart';
+import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
 
 class BottomSheetWidget extends StatelessWidget {
   const BottomSheetWidget({super.key});

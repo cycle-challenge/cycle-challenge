@@ -1,14 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
-
-import '../../data/models/place_model.dart';
-import '../../states/navigation_state.dart';
 
 class TravelLIstView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
@@ -21,7 +15,8 @@ class TravelLIstView extends StatelessWidget {
         .textTheme
         .titleLarge
         ?.copyWith(color: Colors.white, fontSize: 20);
-    TextStyle? bodyMedium = Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
+    TextStyle? bodyMedium =
+        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
@@ -58,9 +53,7 @@ class TravelLIstView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   width: double.infinity,
                   height: 240,
-                  constraints: const BoxConstraints(
-                    maxWidth: 480
-                  ),
+                  constraints: const BoxConstraints(maxWidth: 480),
                   child: Stack(
                     children: [
                       Container(
@@ -117,7 +110,12 @@ class TravelLIstView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            IconButton(onPressed: () {}, icon: const Icon(Icons.bookmark_outline, color: Colors.white,))
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.bookmark_outline,
+                                  color: Colors.white,
+                                ))
                           ],
                         ),
                       )

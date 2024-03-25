@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
 
-import '../../data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 
 class PlaceSimpleView extends StatelessWidget {
   @override

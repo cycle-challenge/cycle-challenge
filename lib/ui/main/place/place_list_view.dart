@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
 
-import '../../data/models/place_model.dart';
-import '../../states/navigation_state.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
