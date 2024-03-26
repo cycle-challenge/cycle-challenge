@@ -6,12 +6,16 @@ import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
-class TravelLIstView extends StatelessWidget {
+class TravelListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
+
+  final List<TravelModel> _travels;
+
+  TravelListView({super.key, required travels }) : _travels = travels;
+
 
   @override
   Widget build(BuildContext context) {
-    List<TravelModel> travels = context.watch<PlaceViewModel>().travels;
 
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
@@ -21,32 +25,31 @@ class TravelLIstView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Container(
-            margin: const EdgeInsets.only(top: 24, bottom: 12),
-            width: 25,
-            height: 4,
-            decoration: BoxDecoration(
-              color: context.watch<BottomSheetState>().isExpanded
-                  ? Theme.of(context).colorScheme.surface
-                  : Theme.of(context).colorScheme.outline,
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
+        if (!context.watch<BottomSheetState>().isExpanded)
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 24, bottom: 12),
+              width: 25,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.outline,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+              ),
             ),
           ),
-        ),
         Expanded(
           child: ListView.separated(
             controller: _controller,
             shrinkWrap: true,
-            padding: EdgeInsets.zero,
+            padding: EdgeInsets.only(top: 20.0),
             itemBuilder: (BuildContext context, int index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child:
-                  TravelWidget(travel: travels[index], width: double.maxFinite),
+                  TravelWidget(travel: _travels[index], width: double.maxFinite),
             ),
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
-            itemCount: travels.length,
+            itemCount: _travels.length,
           ),
         ),
       ],

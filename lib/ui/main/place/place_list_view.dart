@@ -21,19 +21,18 @@ class PlaceListView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Container(
-            margin: const EdgeInsets.only(top: 24, bottom: 12),
-            width: 25,
-            height: 4,
-            decoration: BoxDecoration(
-              color: context.watch<BottomSheetState>().isExpanded
-                  ? Theme.of(context).colorScheme.surface
-                  : Theme.of(context).colorScheme.outline,
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
+        if (!context.watch<BottomSheetState>().isExpanded)
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 24, bottom: 12),
+              width: 25,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.outline,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+              ),
             ),
           ),
-        ),
         Expanded(
           child: ListView.separated(
             controller: _controller,

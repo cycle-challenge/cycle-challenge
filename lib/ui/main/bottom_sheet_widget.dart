@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
@@ -19,10 +20,12 @@ class BottomSheetWidget extends StatelessWidget {
     bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
 
     int navigationIndex = context.watch<NavigationState>().selectedIndex;
+    List<TravelModel> travels = context.watch<PlaceViewModel>().travels;
+
 
     Widget view = isPlaceSelected
         ? (isExpanded ? PlaceDetailView() : PlaceSimpleView())
-        : (navigationIndex == 1 ? PlaceListView() : TravelLIstView());
+        : (navigationIndex == 1 ? PlaceListView() : TravelListView(travels: travels));
 
     return Positioned(
       bottom: 0.0,
