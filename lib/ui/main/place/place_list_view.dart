@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
-import '../../data/models/place_model.dart';
-import '../../data/models/place_type.dart';
-import '../../states/navigation_state.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
@@ -19,7 +16,6 @@ class PlaceListView extends StatelessWidget {
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
       context.read<BottomSheetState>().setCanViewScrollUp(canScrollUp);
-
     });
 
     return Column(
@@ -48,7 +44,7 @@ class PlaceListView extends StatelessWidget {
 
               String distance =
                   place.location.distance.toStringAsFixed(1).toString();
-              String type = placeTypeMap[place.type]?.label ?? place.type;
+              String type = place.type.label;
 
               return GestureDetector(
                 onTap: () {

@@ -7,11 +7,12 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:ntp/ntp.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceDetailView extends StatelessWidget {
@@ -385,36 +386,17 @@ class PlaceDetailView extends StatelessWidget {
                           ],
                         ),
                         Container(
-                            height: 204,
+                            height: 220,
+                            alignment: Alignment.centerLeft,
                             margin: const EdgeInsets.only(top: 10.0),
                             child: ListView.separated(
                               shrinkWrap: true,
-                              primary: false,
                               scrollDirection: Axis.horizontal,
-                              itemCount: 3,
+                              itemCount: place.travels.length,
                               separatorBuilder: (context, index) =>
                                   const SizedBox(width: 8),
                               itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () {},
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: index < place.images.length
-                                        ? Image.network(
-                                            place.images[index].small,
-                                            width: 204,
-                                            height: 204,
-                                            fit: BoxFit.cover,
-                                          )
-                                        : Container(
-                                            width: 204,
-                                            height: 204,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondaryContainer,
-                                          ),
-                                  ),
-                                );
+                                return TravelWidget(width: 280.0, travel: place.travels[index]);
                               },
                             )),
                       ],

@@ -2,10 +2,33 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 
 class PlaceRepository {
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
+  final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
+
+  Future<List<PlaceModel>> findNearby(double latitude, double longitude, int radius) async {
+
+    Map<String, String> params = {
+      'location': '$latitude,$longitude',
+      'radius': radius.toString(),
+    };
+
+    Uri uri = Uri.http(remoteUrl, '/api/v1/places/nearby', params);
+
+    Response response  = await get(uri, headers: {'Content-type': 'application/json; charset=UTF-8'});
+
+    if (response.statusCode == HttpStatus.ok) {
+      Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
+      return List.of(json["data"])
+          .map((place) => PlaceModel.of(place))
+          .toList();
+    } else {
+      throw Exception(response.body);
+    }
+  }
 
   Future<PlaceDetail> getDetailInfo(String googlePlaceId) async {
 

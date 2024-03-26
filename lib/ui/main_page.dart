@@ -7,9 +7,8 @@ import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/my_location_button_widget.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_list_view.dart';
-import 'package:yeohaeng_ttukttak/ui/place/bottom_sheet_widget.dart';
-import 'package:yeohaeng_ttukttak/ui/place/place_type_filter_widget.dart';
+import 'package:yeohaeng_ttukttak/ui/main/bottom_sheet_widget.dart';
+import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/place_type_filter_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/map_search_bar.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/search_nearby_button_widget.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
@@ -27,9 +26,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    bool isSheetShown = context.watch<BottomSheetState>().isSheetShown;
-    bool isExpanded = context.watch<BottomSheetState>().isExpanded;
     bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
+    bool isSheetShown = getIsSheetShown(context);
+
+    bool isExpanded = context.watch<BottomSheetState>().isExpanded;
 
     PlaceModel? selectedPlace = context.watch<PlaceViewModel>().selectedPlace;
 
@@ -141,11 +141,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           : NavigationBar(
               onDestinationSelected: (index) {
                 context.read<BottomSheetState>().init();
-
-                if (index == 1) {
-                  pushNavigate(context);
-                  context.read<BottomSheetState>().setIsSheetShown(true);
-                }
+                pushNavigate(context);
                 context.read<NavigationState>().setSelectedIndex(index);
               },
               selectedIndex: context.watch<NavigationState>().selectedIndex,

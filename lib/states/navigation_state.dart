@@ -23,7 +23,6 @@ class NavigationState with ChangeNotifier {
 }
 
 class Navigate {
-  bool? _isSheetShown;
 
   int? _selectedIndex;
 
@@ -33,8 +32,6 @@ class Navigate {
 
   int? get selectedPlaceId => _selectedPlaceId;
 
-  bool? get isSheetShown => _isSheetShown;
-
   int? get selectedIndex => _selectedIndex;
 
   double? get bottomSheetHeight => _bottomSheetHeight;
@@ -43,7 +40,7 @@ class Navigate {
       {BottomSheetState? bottomSheetState,
       NavigationState? navigationState,
       PlaceViewModel? placeViewModel})
-      : _isSheetShown = bottomSheetState?.isSheetShown,
+      :
         _bottomSheetHeight = bottomSheetState?.height,
         _selectedIndex = navigationState?.selectedIndex,
         _selectedPlaceId = placeViewModel?.selectedPlaceID;
@@ -63,4 +60,27 @@ void popNavigate(BuildContext context) {
   context.read<BottomSheetState>().update(navigate);
   context.read<NavigationState>().update(navigate);
   context.read<PlaceViewModel>().update(navigate);
+}
+
+void clearNavigate(BuildContext context) {
+
+  Navigate? navigate;
+
+  while (context.read<NavigationState>().stack.isNotEmpty) {
+    navigate = context.read<NavigationState>().stack.pop();
+  }
+
+  if (navigate == null) return;
+
+  context.read<BottomSheetState>().update(navigate);
+  context.read<NavigationState>().update(navigate);
+  context.read<PlaceViewModel>().update(navigate);
+
+}
+
+bool getIsSheetShown(BuildContext context) {
+  int navIndex = context.watch<NavigationState>().selectedIndex;
+  bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
+
+  return navIndex == 1 || navIndex == 2 || isPlaceSelected;
 }

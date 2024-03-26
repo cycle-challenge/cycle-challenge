@@ -13,10 +13,7 @@ class BottomSheetState with ChangeNotifier {
   bool get isAnimating => _isAnimating;
   bool get isExpanded => _height == maxHeight && !isAnimating;
 
-  bool _isSheetShown = false;
-  bool get isSheetShown => _isSheetShown;
-
-  bool _canViewScrollUp = true;
+  bool _canViewScrollUp = false;
   bool get canViewScrollUp => _canViewScrollUp;
 
   bool _isBusinessHourExpanded = false;
@@ -32,21 +29,13 @@ class BottomSheetState with ChangeNotifier {
     _canViewScrollUp = isSheetDragging;
     notifyListeners();
   }
-
-  void setIsSheetShown(bool isSheetShown) {
-    _isSheetShown = isSheetShown;
-    notifyListeners();
-  }
-
   void init() {
-    _isSheetShown = false;
     _isAnimating = false;
     _height = minHeight;
     notifyListeners();
   }
 
   void update(Navigate navigate) {
-    _isSheetShown = navigate.isSheetShown ?? _isSheetShown;
     _height = navigate.bottomSheetHeight ?? _height;
     notifyListeners();
   }

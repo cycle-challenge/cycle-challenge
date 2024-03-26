@@ -1,29 +1,21 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:yeohaeng_ttukttak/data/models/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
-import '../data/models/place_type.dart';
-import '../data/repositories/visit_repository.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
+import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'navigation_state.dart';
 
 class PlaceViewModel with ChangeNotifier {
-  final VisitRepository _visitRepository = VisitRepository();
   final PlaceRepository _placeRepository = PlaceRepository();
 
-  final Map<String, BitmapDescriptor> _markerIcon = {},
-      _selectedMarkerIcon = {};
-  Map<String, BitmapDescriptor> get makerIcon => _markerIcon;
-  Map<String, BitmapDescriptor> get selectedMakerIcon => _selectedMarkerIcon;
-
   List<PlaceModel> _places = [];
-  List<PlaceModel> get places =>
-      _places.where((place) => isFiltered(place.type)).toList();
+  List<PlaceModel> get places => _placeFilter.apply(_places);
+
+  List<TravelModel> get travels => _travelFilter.apply(
+      Set.of(_places.map((e) => e.travels).expand((e) => e).toList()).toList());
 
   PlaceModel? get selectedPlace =>
       _places.where((place) => place.id == _selectedPlaceID).firstOrNull;
@@ -34,13 +26,18 @@ class PlaceViewModel with ChangeNotifier {
   int get selectedPlaceID => _selectedPlaceID;
   bool get isSelected => _selectedPlaceID != -1;
 
-  bool _isFetchingDetail = false;
-  PlaceViewModel() {
-    for (PlaceType type in placeTypes) {
-      areFiltered[type.value] = false;
-    }
+  final TravelFilter _travelFilter = TravelFilter();
+  TravelFilter get travelFilter => _travelFilter;
+
+  final PlaceFilter _placeFilter = PlaceFilter();
+  PlaceFilter get placeFilter => _placeFilter;
+
+  void notify(var callback) {
+    callback();
     notifyListeners();
   }
+
+  bool _isFetchingDetail = false;
 
   selectPlace(int id) {
     _selectedPlaceID = id;
@@ -66,8 +63,8 @@ class PlaceViewModel with ChangeNotifier {
   }
 
   void search(double latitude, double longitude) async {
-    VisitModel visit = await _visitRepository.get(latitude, longitude, 3000);
-    _places = visit.places;
+    _places = await _placeRepository.findNearby(latitude, longitude, 5000);
+    _places = _places.where((elm) => elm.travels.isNotEmpty).toList();
     notifyListeners();
   }
 
