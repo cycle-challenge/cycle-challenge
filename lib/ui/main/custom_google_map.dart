@@ -66,7 +66,7 @@ class CustomGoogleMap extends StatelessWidget {
           },
           onTap: (_) {
             clearNavigate(context);
-            context.read<BottomSheetState>().init();
+            context.read<BottomSheetState>().clear();
             context.read<PlaceViewModel>().unSelectPlace();
           },
           markers: Set.of(places.map((e) => Marker(

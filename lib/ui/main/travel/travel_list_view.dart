@@ -13,13 +13,6 @@ class TravelLIstView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<TravelModel> travels = context.watch<PlaceViewModel>().travels;
 
-    TextStyle? titleLarge = Theme.of(context)
-        .textTheme
-        .titleLarge
-        ?.copyWith(color: Colors.white, fontSize: 20);
-    TextStyle? bodyMedium =
-        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
-
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
       context.read<BottomSheetState>().setCanViewScrollUp(canScrollUp);
@@ -116,6 +109,7 @@ class TravelWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(18),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       _travel.name,

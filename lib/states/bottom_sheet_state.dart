@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'navigation_state.dart';
 
@@ -20,6 +23,9 @@ class BottomSheetState with ChangeNotifier {
 
   bool get isBusinessHourExpanded => _isBusinessHourExpanded;
 
+  late final TabController? _tabController;
+  TabController? get tabController => _tabController;
+
   set isBusinessHourExpanded(bool value) {
     _isBusinessHourExpanded = value;
     notifyListeners();
@@ -29,7 +35,11 @@ class BottomSheetState with ChangeNotifier {
     _canViewScrollUp = isSheetDragging;
     notifyListeners();
   }
-  void init() {
+  void init(TabController controller) {
+    _tabController = controller;
+  }
+
+  void clear() {
     _isAnimating = false;
     _height = minHeight;
     notifyListeners();
