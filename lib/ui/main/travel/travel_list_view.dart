@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
@@ -44,8 +46,11 @@ class TravelLIstView extends StatelessWidget {
             controller: _controller,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
-            itemBuilder: (BuildContext context, int index) =>
-                TravelWidget(travel: travels[index], width: double.maxFinite),
+            itemBuilder: (BuildContext context, int index) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child:
+                  TravelWidget(travel: travels[index], width: double.maxFinite),
+            ),
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
             itemCount: travels.length,
@@ -57,11 +62,12 @@ class TravelLIstView extends StatelessWidget {
 }
 
 class TravelWidget extends StatelessWidget {
-
   final TravelModel _travel;
   double _width;
 
-  TravelWidget({super.key, required width, required travel }) : _travel = travel, _width = width;
+  TravelWidget({super.key, required width, required travel})
+      : _travel = travel,
+        _width = width;
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +76,11 @@ class TravelWidget extends StatelessWidget {
         .titleLarge
         ?.copyWith(color: Colors.white, fontSize: 20);
     TextStyle? bodyMedium =
-    Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
+        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
         width: _width,
         height: 240,
         constraints: const BoxConstraints(maxWidth: 480),
@@ -106,49 +111,43 @@ class TravelWidget extends StatelessWidget {
               ),
             ),
             Container(
-              width: double.infinity,
-              height: double.infinity,
-              padding: const EdgeInsets.all(18),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _travel.name,
-                          style: titleLarge?.copyWith(
-                              fontWeight: FontWeight.w600),
-                        ),
-                        RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: _travel.nickname,
-                                  style: bodyMedium?.copyWith(
-                                      fontWeight: FontWeight.w600)),
-                              TextSpan(
-                                  text:
-                                  " · ${_travel.ageGroup.label} · ${_travel.transport.label}")
-                            ]))
-                      ],
+                width: double.infinity,
+                height: double.infinity,
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      _travel.name,
+                      style: titleLarge?.copyWith(fontWeight: FontWeight.w600),
                     ),
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.bookmark_outline,
-                        color: Colors.white,
-                      ))
-                ],
-              ),
-            )
+                    Row(
+                      children: [
+                        Expanded(
+                          child: RichText(
+                              text: TextSpan(children: [
+                            TextSpan(
+                                text: _travel.nickname,
+                                style: bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.w600)),
+                            TextSpan(
+                                text:
+                                    " · ${_travel.ageGroup.label} · ${_travel.transport.label}")
+                          ])),
+                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.bookmark_outline,
+                              color: Colors.white,
+                            ))
+                      ],
+                    )
+                  ],
+                ))
           ],
         ),
       ),
     );
   }
-
-
 }

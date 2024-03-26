@@ -386,11 +386,11 @@ class PlaceDetailView extends StatelessWidget {
                           ],
                         ),
                         Container(
-                            height: 204,
+                            height: 220,
+                            alignment: Alignment.centerLeft,
                             margin: const EdgeInsets.only(top: 10.0),
                             child: ListView.separated(
                               shrinkWrap: true,
-                              primary: false,
                               scrollDirection: Axis.horizontal,
                               itemCount: place.travels.length,
                               separatorBuilder: (context, index) =>
