@@ -1,5 +1,5 @@
 
-class Image {
+class ImageModel {
   final int id;
 
   final String small;
@@ -8,14 +8,14 @@ class Image {
 
   final String large;
 
-  const Image(
+  const ImageModel(
       {required this.id,
         required this.small,
         required this.medium,
         required this.large});
 
-  factory Image.of(Map<String, dynamic> json) {
-    return Image(
+  factory ImageModel.of(Map<String, dynamic> json) {
+    return ImageModel(
         id: json['id'],
         small: json['small'],
         medium: json['medium'],

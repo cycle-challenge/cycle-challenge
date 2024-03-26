@@ -12,6 +12,7 @@ import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/ui/main/place/place_image_view.dart';
 import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
@@ -50,7 +51,8 @@ class PlaceDetailView extends StatelessWidget {
         TextStyle? bodySmall = Theme.of(context).textTheme.bodySmall;
         TextStyle? titleLarge = Theme.of(context).textTheme.titleLarge;
 
-        TabController? controller = context.watch<BottomSheetState>().tabController;
+        TabController? controller =
+            context.watch<BottomSheetState>().tabController;
 
         return TabBarView(
           controller: controller,
@@ -75,18 +77,19 @@ class PlaceDetailView extends StatelessWidget {
                                 alignment: WrapAlignment.start,
                                 children: [
                                   Container(
-                                      margin: const EdgeInsets.only(right: 10.0),
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
                                       child: const Icon(Icons.place_outlined)),
                                   Container(
                                       margin: const EdgeInsets.only(right: 5.0),
-                                      child:
-                                          Text(detail.address!, style: bodyLarge)),
+                                      child: Text(detail.address!,
+                                          style: bodyLarge)),
                                   Material(
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(5),
                                       onTap: () async {
-                                        await Clipboard.setData(
-                                            ClipboardData(text: detail.address!));
+                                        await Clipboard.setData(ClipboardData(
+                                            text: detail.address!));
                                         showSnackbar(context, "성공적으로 복사되었습니다.");
                                       },
                                       child: Container(
@@ -113,13 +116,14 @@ class PlaceDetailView extends StatelessWidget {
                                     .isBusinessHourExpanded = isExpanded,
                                 children: [
                                   ExpansionPanel(
-                                      headerBuilder: (context, isExpanded) => Row(
+                                      headerBuilder: (context, isExpanded) =>
+                                          Row(
                                             children: [
                                               Container(
                                                   margin: const EdgeInsets.only(
                                                       right: 10.0),
-                                                  child: const Icon(
-                                                      Icons.access_time_outlined)),
+                                                  child: const Icon(Icons
+                                                      .access_time_outlined)),
                                               Expanded(
                                                 child: RichText(
                                                     text: TextSpan(children: [
@@ -127,11 +131,14 @@ class PlaceDetailView extends StatelessWidget {
                                                       text: detail.isOpeningNow!
                                                           ? "영업 중 · "
                                                           : "영업 종료 · ",
-                                                      style: bodyLarge?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w600)),
+                                                      style:
+                                                          bodyLarge?.copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600)),
                                                   TextSpan(
-                                                      text: detail.businessHours![
+                                                      text: detail
+                                                          .businessHours![
                                                               now.weekday - 1]
                                                           .split(": ")[1],
                                                       style: bodyLarge)
@@ -167,8 +174,10 @@ class PlaceDetailView extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Container(
-                                      margin: const EdgeInsets.only(right: 10.0),
-                                      child: const Icon(Icons.language_outlined)),
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      child:
+                                          const Icon(Icons.language_outlined)),
                                   Expanded(
                                     child: Linkify(
                                         onOpen: (link) async {
@@ -193,10 +202,12 @@ class PlaceDetailView extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Container(
-                                      margin: const EdgeInsets.only(right: 10.0),
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
                                       child: const Icon(Icons.phone_outlined)),
                                   Container(
-                                      margin: const EdgeInsets.only(right: 10.0),
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
                                       child: Text(detail.phoneNumber!,
                                           style: bodyLarge)),
                                   Material(
@@ -256,7 +267,8 @@ class PlaceDetailView extends StatelessWidget {
                                   itemCount: 5,
                                   separatorBuilder: (context, index) =>
                                       const SizedBox(width: 8),
-                                  itemBuilder: (BuildContext context, int index) {
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
                                     return GestureDetector(
                                       onTap: () {},
                                       child: ClipRRect(
@@ -317,7 +329,8 @@ class PlaceDetailView extends StatelessWidget {
                                   const SizedBox(width: 10),
                                   Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "사용자 이름",
@@ -337,7 +350,8 @@ class PlaceDetailView extends StatelessWidget {
                                               TextSpan(
                                                   text: " 4.5",
                                                   style: bodySmall?.copyWith(
-                                                      fontWeight: FontWeight.w600)),
+                                                      fontWeight:
+                                                          FontWeight.w600)),
                                               TextSpan(
                                                   text: " / 5.0 2023.11.10",
                                                   style: bodySmall)
@@ -400,8 +414,11 @@ class PlaceDetailView extends StatelessWidget {
                                   itemCount: place.travels.length,
                                   separatorBuilder: (context, index) =>
                                       const SizedBox(width: 8),
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return TravelWidget(width: 280.0, travel: place.travels[index]);
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return TravelWidget(
+                                        width: 280.0,
+                                        travel: place.travels[index]);
                                   },
                                 )),
                           ],
@@ -412,7 +429,7 @@ class PlaceDetailView extends StatelessWidget {
                 ],
               ),
             ),
-            SingleChildScrollView(),
+            PlaceImageView(),
             SingleChildScrollView(),
             SingleChildScrollView()
           ],
