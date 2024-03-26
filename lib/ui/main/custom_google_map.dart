@@ -7,7 +7,7 @@ import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import '../../data/models/place_model.dart';
 import '../../states/bottom_sheet_state.dart';
 import '../../states/google_map_state.dart';
-import '../../states/travel_view_model.dart';
+import '../../states/place_view_model.dart';
 import '../../utils/json.dart';
 import '../../utils/marker.dart';
 
@@ -28,7 +28,7 @@ class CustomGoogleMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<PlaceModel> places = context.watch<TravelViewModel>().places;
+    List<PlaceModel> places = context.watch<PlaceViewModel>().places;
 
     final Brightness brightness = MediaQuery.platformBrightnessOf(context);
     bool isDarkMode = brightness == Brightness.dark;
@@ -54,7 +54,7 @@ class CustomGoogleMap extends StatelessWidget {
           ),
           onMapCreated: (GoogleMapController controller) async {
             context.read<GoogleMapState>().init(controller);
-            context.read<TravelViewModel>().search(36.6272, 127.4987);
+            context.read<PlaceViewModel>().search(36.6272, 127.4987);
 
             String path = isDarkMode
                 ? "assets/map/map_style_dark.json"
@@ -67,17 +67,17 @@ class CustomGoogleMap extends StatelessWidget {
           onTap: (_) {
             clearNavigate(context);
             context.read<BottomSheetState>().init();
-            context.read<TravelViewModel>().unSelectPlace();
+            context.read<PlaceViewModel>().unSelectPlace();
           },
           markers: Set.of(places.map((e) => Marker(
               markerId: MarkerId(e.id.toString()),
               onTap: () {
                 pushNavigate(context);
-                context.read<TravelViewModel>().selectPlace(e.id);
+                context.read<PlaceViewModel>().selectPlace(e.id);
                 context.read<NavigationState>().setSelectedIndex(0);
               },
               draggable: true,
-              icon: context.read<TravelViewModel>().selectedPlaceID == e.id
+              icon: context.read<PlaceViewModel>().selectedPlaceID == e.id
                   ? selectedMarkerIcon[e.type.name]!
                   : markerIcon[e.type.name]!,
               position: LatLng(e.location.latitude, e.location.longitude)))),

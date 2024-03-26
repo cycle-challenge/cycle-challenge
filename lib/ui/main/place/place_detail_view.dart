@@ -11,14 +11,15 @@ import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceDetailView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
 
   Future<DateTime> _getPlaceDetail(BuildContext context) async {
-    await context.read<TravelViewModel>().getDetail();
+    await context.read<PlaceViewModel>().getDetail();
     return await NTP.now();
   }
 
@@ -38,9 +39,9 @@ class PlaceDetailView extends StatelessWidget {
 
         DateTime now = snapshot.data;
 
-        PlaceModel? place = context.watch<TravelViewModel>().selectedPlace;
+        PlaceModel? place = context.watch<PlaceViewModel>().selectedPlace;
         PlaceDetail? detail =
-            context.watch<TravelViewModel>().selectedPlace?.detail;
+            context.watch<PlaceViewModel>().selectedPlace?.detail;
 
         if (detail == null || place == null) return const SizedBox();
 
@@ -391,30 +392,11 @@ class PlaceDetailView extends StatelessWidget {
                               shrinkWrap: true,
                               primary: false,
                               scrollDirection: Axis.horizontal,
-                              itemCount: 3,
+                              itemCount: place.travels.length,
                               separatorBuilder: (context, index) =>
                                   const SizedBox(width: 8),
                               itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () {},
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: index < place.images.length
-                                        ? Image.network(
-                                            place.images[index].small,
-                                            width: 204,
-                                            height: 204,
-                                            fit: BoxFit.cover,
-                                          )
-                                        : Container(
-                                            width: 204,
-                                            height: 204,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondaryContainer,
-                                          ),
-                                  ),
-                                );
+                                return TravelWidget(width: 280.0, travel: place.travels[index]);
                               },
                             )),
                       ],

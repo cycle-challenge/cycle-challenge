@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/place/place_detail_view.dart';
 import 'package:yeohaeng_ttukttak/ui/main/place/place_list_view.dart';
 import 'package:yeohaeng_ttukttak/ui/main/place/place_simple_view.dart';
@@ -16,7 +16,7 @@ class BottomSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isExpanded = context.read<BottomSheetState>().isExpanded;
 
-    bool isPlaceSelected = context.watch<TravelViewModel>().isSelected;
+    bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
 
     int navigationIndex = context.watch<NavigationState>().selectedIndex;
 

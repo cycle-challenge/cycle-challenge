@@ -9,7 +9,7 @@ import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_age_group.
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_motivation.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_transport.dart';
 
-import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 class PlaceTypeFilterWidget extends StatelessWidget {
   const PlaceTypeFilterWidget({super.key});
@@ -21,10 +21,10 @@ class PlaceTypeFilterWidget extends StatelessWidget {
         (Scaffold.of(context).appBarMaxHeight!);
 
     bool hasAnyTravelFilter =
-        context.watch<TravelViewModel>().travelFilter.hasAnyFilter;
-    var notify = context.read<TravelViewModel>().notify;
+        context.watch<PlaceViewModel>().travelFilter.hasAnyFilter;
+    var notify = context.read<PlaceViewModel>().notify;
 
-    Set<PlaceType> placeTypeFilter = context.watch<TravelViewModel>().placeFilter.type;
+    Set<PlaceType> placeTypeFilter = context.watch<PlaceViewModel>().placeFilter.type;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -98,33 +98,33 @@ class TravelFilterBottomSheetWidget extends StatelessWidget {
                       label: "연령대",
                       target: TravelAgeGroup.values,
                       filters: context
-                          .watch<TravelViewModel>()
+                          .watch<PlaceViewModel>()
                           .travelFilter
                           .ageGroup),
                   FilterWidgetGroup(
                       label: "시기",
                       target: TravelPeriod.values,
                       filters:
-                          context.watch<TravelViewModel>().travelFilter.period),
+                          context.watch<PlaceViewModel>().travelFilter.period),
                   FilterWidgetGroup(
                       label: "이동",
                       target: TravelTransport.values,
                       filters: context
-                          .watch<TravelViewModel>()
+                          .watch<PlaceViewModel>()
                           .travelFilter
                           .transport),
                   FilterWidgetGroup(
                       label: "목적",
                       target: TravelMotivation.values,
                       filters: context
-                          .watch<TravelViewModel>()
+                          .watch<PlaceViewModel>()
                           .travelFilter
                           .motivation),
                   FilterWidgetGroup(
                       label: "동반",
                       target: TravelAccompany.values,
                       filters: context
-                          .watch<TravelViewModel>()
+                          .watch<PlaceViewModel>()
                           .travelFilter
                           .accompany),
                 ],
@@ -137,8 +137,8 @@ class TravelFilterBottomSheetWidget extends StatelessWidget {
               Expanded(
                   child: OutlinedButton(
                       onPressed: () {
-                        context.read<TravelViewModel>().notify(() =>
-                            context.read<TravelViewModel>().travelFilter.init());
+                        context.read<PlaceViewModel>().notify(() =>
+                            context.read<PlaceViewModel>().travelFilter.init());
                       },
                       child: Text("초기화"))),
               const SizedBox(width: 16),
@@ -179,7 +179,7 @@ class FilterWidgetGroup extends StatelessWidget {
     TextStyle? titleLarge = Theme.of(context).textTheme.titleLarge;
     TextStyle? bodyMedium = Theme.of(context).textTheme.bodyMedium;
 
-    var notify = context.read<TravelViewModel>().notify;
+    var notify = context.read<PlaceViewModel>().notify;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

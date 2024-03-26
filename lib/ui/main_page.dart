@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/bottom_sheet_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/place_type_filter_widget.dart';
@@ -26,12 +26,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    bool isPlaceSelected = context.watch<TravelViewModel>().isSelected;
+    bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
     bool isSheetShown = getIsSheetShown(context);
 
     bool isExpanded = context.watch<BottomSheetState>().isExpanded;
 
-    PlaceModel? selectedPlace = context.watch<TravelViewModel>().selectedPlace;
+    PlaceModel? selectedPlace = context.watch<PlaceViewModel>().selectedPlace;
 
     TabController tabController = TabController(length: 4, vsync: this);
 
@@ -97,7 +97,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      bottomNavigationBar: context.watch<TravelViewModel>().isSelected
+      bottomNavigationBar: context.watch<PlaceViewModel>().isSelected
           ? BottomAppBar(
               surfaceTintColor: Theme.of(context).colorScheme.surface,
               child: Row(
@@ -115,7 +115,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                           return;
                         }
                         String? phoneNumber = context
-                            .read<TravelViewModel>()
+                            .read<PlaceViewModel>()
                             .selectedPlace
                             ?.detail
                             ?.phoneNumber;

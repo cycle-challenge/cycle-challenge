@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/stack.dart';
 
 class NavigationState with ChangeNotifier {
@@ -39,7 +39,7 @@ class Navigate {
   Navigate(
       {BottomSheetState? bottomSheetState,
       NavigationState? navigationState,
-      TravelViewModel? placeViewModel})
+      PlaceViewModel? placeViewModel})
       :
         _bottomSheetHeight = bottomSheetState?.height,
         _selectedIndex = navigationState?.selectedIndex,
@@ -50,7 +50,7 @@ void pushNavigate(BuildContext context) {
   context.read<NavigationState>().stack.push(Navigate(
       bottomSheetState: context.read<BottomSheetState>(),
       navigationState: context.read<NavigationState>(),
-      placeViewModel: context.read<TravelViewModel>()));
+      placeViewModel: context.read<PlaceViewModel>()));
 }
 
 void popNavigate(BuildContext context) {
@@ -59,7 +59,7 @@ void popNavigate(BuildContext context) {
   Navigate navigate = context.read<NavigationState>().stack.pop();
   context.read<BottomSheetState>().update(navigate);
   context.read<NavigationState>().update(navigate);
-  context.read<TravelViewModel>().update(navigate);
+  context.read<PlaceViewModel>().update(navigate);
 }
 
 void clearNavigate(BuildContext context) {
@@ -74,13 +74,13 @@ void clearNavigate(BuildContext context) {
 
   context.read<BottomSheetState>().update(navigate);
   context.read<NavigationState>().update(navigate);
-  context.read<TravelViewModel>().update(navigate);
+  context.read<PlaceViewModel>().update(navigate);
 
 }
 
 bool getIsSheetShown(BuildContext context) {
   int navIndex = context.watch<NavigationState>().selectedIndex;
-  bool isPlaceSelected = context.watch<TravelViewModel>().isSelected;
+  bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
 
   return navIndex == 1 || navIndex == 2 || isPlaceSelected;
 }

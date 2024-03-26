@@ -1,26 +1,21 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
-import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'navigation_state.dart';
 
-class TravelViewModel with ChangeNotifier {
-  final TravelRepository _travelRepository = TravelRepository();
+class PlaceViewModel with ChangeNotifier {
   final PlaceRepository _placeRepository = PlaceRepository();
 
   List<PlaceModel> _places = [];
-  List<PlaceModel> get places =>
-      placeFilter.apply(travels.map((e) => e.places).expand((e) => e).toList());
+  List<PlaceModel> get places => _placeFilter.apply(_places);
 
-  List<TravelModel> _travels = [];
-  List<TravelModel> get travels => _travelFilter.apply(_travels);
+  List<TravelModel> get travels => _travelFilter.apply(
+      Set.of(_places.map((e) => e.travels).expand((e) => e).toList()).toList());
 
   PlaceModel? get selectedPlace =>
       _places.where((place) => place.id == _selectedPlaceID).firstOrNull;
@@ -68,8 +63,8 @@ class TravelViewModel with ChangeNotifier {
   }
 
   void search(double latitude, double longitude) async {
-    _travels = await _travelRepository.get(latitude, longitude, 3000);
-    _places = _travels.map((e) => e.places).expand((e) => e).toList();
+    _places = await _placeRepository.findNearby(latitude, longitude, 5000);
+    _places = _places.where((elm) => elm.travels.isNotEmpty).toList();
     notifyListeners();
   }
 

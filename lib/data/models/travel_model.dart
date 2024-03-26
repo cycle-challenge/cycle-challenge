@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_accompany.dart';
@@ -6,7 +7,7 @@ import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_motivation
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_period.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_transport.dart';
 
-class TravelModel {
+class TravelModel extends Equatable {
   final int _id;
 
   final String _name;
@@ -22,8 +23,6 @@ class TravelModel {
   final String _nickname;
 
   final TravelAgeGroup _ageGroup;
-
-  final List<PlaceModel> _places;
 
   final Set<TravelPeriod> _seasons;
 
@@ -43,8 +42,6 @@ class TravelModel {
 
   TravelAgeGroup get ageGroup => _ageGroup;
 
-  List<PlaceModel> get places => _places;
-
   Set<TravelPeriod> get seasons => _seasons;
 
   TravelModel(
@@ -56,7 +53,6 @@ class TravelModel {
       this._thumbnail,
       this._nickname,
       this._ageGroup,
-      this._places,
       this._seasons);
 
   factory TravelModel.of(Map<String, dynamic> json) {
@@ -69,7 +65,10 @@ class TravelModel {
         Image.of(json["thumbnail"]),
         json["member"]?["nickname"],
         TravelAgeGroup.of(json["member"]?["ageGroup"]),
-        List.of(json["places"]).map((place) => PlaceModel.of(place)).toList(),
         Set.from(json["seasons"]?.map((season) => TravelPeriod.of(season))));
   }
+
+  @override
+  List<Object?> get props => [_id];
+
 }

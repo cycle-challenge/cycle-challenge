@@ -1,3 +1,4 @@
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_location.dart';
@@ -16,6 +17,8 @@ class PlaceModel {
 
   final String _googlePlaceId;
 
+  final List<TravelModel> _travels;
+
   PlaceDetail? _detail;
 
   PlaceDetail? get detail => _detail;
@@ -30,6 +33,8 @@ class PlaceModel {
 
   String get googlePlaceId => _googlePlaceId;
 
+  List<TravelModel> get travels => _travels;
+
   void setDetail(PlaceDetail detail) {
     _detail = detail;
   }
@@ -41,12 +46,14 @@ class PlaceModel {
     required type,
     required images,
     required googlePlaceId,
+    required travels,
   })  : _id = id,
         _name = name,
         _location = location,
         _type = type,
         _images = images,
-        _googlePlaceId = googlePlaceId;
+        _googlePlaceId = googlePlaceId,
+        _travels = travels;
 
   int get id => _id;
 
@@ -57,6 +64,7 @@ class PlaceModel {
         location: PlaceLocation.of(json["location"]),
         type: PlaceType.of(json["type"]),
         images: List.of(json["images"]).map((e) => Image.of(e)).toList(),
+        travels: List.of(json["travels"]).map((e) => TravelModel.of(e)).toList(),
         googlePlaceId: json["googlePlaceId"]);
   }
 }

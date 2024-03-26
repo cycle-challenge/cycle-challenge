@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 class TravelLIstView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    List<TravelModel> travels = context.watch<TravelViewModel>().travels;
+    List<TravelModel> travels = context.watch<PlaceViewModel>().travels;
 
     TextStyle? titleLarge = Theme.of(context)
         .textTheme
@@ -44,86 +44,8 @@ class TravelLIstView extends StatelessWidget {
             controller: _controller,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
-            itemBuilder: (BuildContext context, int index) {
-              TravelModel travel = travels[index];
-
-              return GestureDetector(
-                onTap: () {},
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  width: double.infinity,
-                  height: 240,
-                  constraints: const BoxConstraints(maxWidth: 480),
-                  child: Stack(
-                    children: [
-                      Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              image: DecorationImage(
-                                  image: NetworkImage(travel.thumbnail.medium),
-                                  fit: BoxFit.cover))),
-                      Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.transparent,
-                                Colors.black.withOpacity(0.1),
-                                Colors.black.withOpacity(0.3),
-                                Colors.black.withOpacity(0.75),
-                              ]),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        padding: const EdgeInsets.all(18),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    travel.name,
-                                    style: titleLarge?.copyWith(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  RichText(
-                                      text: TextSpan(children: [
-                                    TextSpan(
-                                        text: travel.nickname,
-                                        style: bodyMedium?.copyWith(
-                                            fontWeight: FontWeight.w600)),
-                                    TextSpan(
-                                        text:
-                                            " · ${travel.ageGroup.label} · ${travel.transport.label}")
-                                  ]))
-                                ],
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.bookmark_outline,
-                                  color: Colors.white,
-                                ))
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              );
-            },
+            itemBuilder: (BuildContext context, int index) =>
+                TravelWidget(travel: travels[index], width: double.maxFinite),
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
             itemCount: travels.length,
@@ -132,4 +54,101 @@ class TravelLIstView extends StatelessWidget {
       ],
     );
   }
+}
+
+class TravelWidget extends StatelessWidget {
+
+  final TravelModel _travel;
+  double _width;
+
+  TravelWidget({super.key, required width, required travel }) : _travel = travel, _width = width;
+
+  @override
+  Widget build(BuildContext context) {
+    TextStyle? titleLarge = Theme.of(context)
+        .textTheme
+        .titleLarge
+        ?.copyWith(color: Colors.white, fontSize: 20);
+    TextStyle? bodyMedium =
+    Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
+
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        width: _width,
+        height: 240,
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: Stack(
+          children: [
+            Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    image: DecorationImage(
+                        image: NetworkImage(_travel.thumbnail.medium),
+                        fit: BoxFit.cover))),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withOpacity(0.1),
+                      Colors.black.withOpacity(0.3),
+                      Colors.black.withOpacity(0.75),
+                    ]),
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              padding: const EdgeInsets.all(18),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _travel.name,
+                          style: titleLarge?.copyWith(
+                              fontWeight: FontWeight.w600),
+                        ),
+                        RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                  text: _travel.nickname,
+                                  style: bodyMedium?.copyWith(
+                                      fontWeight: FontWeight.w600)),
+                              TextSpan(
+                                  text:
+                                  " · ${_travel.ageGroup.label} · ${_travel.transport.label}")
+                            ]))
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.bookmark_outline,
+                        color: Colors.white,
+                      ))
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+
 }

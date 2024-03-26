@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/states/google_map_state.dart';
-import 'package:yeohaeng_ttukttak/states/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 class SearchNearbyButtonWidget extends StatelessWidget {
   const SearchNearbyButtonWidget({
@@ -20,7 +20,7 @@ class SearchNearbyButtonWidget extends StatelessWidget {
               context.read<GoogleMapState>().setIsMoving(false);
               double latitude = context.read<GoogleMapState>().latitude;
               double longitude = context.read<GoogleMapState>().longitude;
-              context.read<TravelViewModel>().search(latitude, longitude);
+              context.read<PlaceViewModel>().search(latitude, longitude);
 
               context.read<GoogleMapState>().moveToCenter();
             },
