@@ -1,13 +1,16 @@
 import 'dart:io';
 
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
+import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceImageView extends StatefulWidget {
-
   @override
   State<PlaceImageView> createState() => _PlaceImageViewState();
 }
@@ -16,7 +19,7 @@ class _PlaceImageViewState extends State<PlaceImageView> {
   static const _pageSize = 20;
 
   final PagingController<int, ImageModel> _pagingController =
-      PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 1);
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -34,20 +37,15 @@ class _PlaceImageViewState extends State<PlaceImageView> {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      final List<ImageModel> newItems = [];
+      final PageModel<ImageModel> page =
+          await context.read<PlaceViewModel>().getImages(pageKey, _pageSize);
 
-      for (int i = pageKey; i < pageKey + _pageSize; i++) {
-        newItems.add(ImageModel(id: i, small: "1", medium: "1", large: "1"));
+      if (!page.hasNextPage) {
+        return _pagingController.appendLastPage(page.entities);
       }
 
-      final isLastPage = newItems.length < _pageSize;
-
-      if (isLastPage) {
-        _pagingController.appendLastPage(newItems);
-      } else {
-        final nextPageKey = pageKey + newItems.length;
-        _pagingController.appendPage(newItems, nextPageKey);
-      }
+      final int nextPageKey = pageKey + page.entities.length;
+      return _pagingController.appendPage(page.entities, nextPageKey);
     } catch (error) {
       _pagingController.error = error;
     }
@@ -61,26 +59,36 @@ class _PlaceImageViewState extends State<PlaceImageView> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => Future.sync(
-          () => _pagingController.refresh(),
-      ),
-      child: PagedGridView<int, ImageModel>(
-        pagingController: _pagingController,
-        scrollController: _scrollController,
-        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-        builderDelegate: PagedChildBuilderDelegate<ImageModel>(
-            itemBuilder: (context, item, index) => ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Container(color: Colors.red,),
+    return PagedGridView<int, ImageModel>(
+      pagingController: _pagingController,
+      scrollController: _scrollController,
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+      builderDelegate: PagedChildBuilderDelegate<ImageModel>(
+          itemBuilder: (context, item, index) => InkWell(
+                onTap: () {
+                  List<NetworkImage>? images = _pagingController.itemList
+                      ?.map((e) => NetworkImage(e.large))
+                      .toList();
 
-      )),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 185 / 180,
-          crossAxisSpacing: 15,
-          mainAxisSpacing: 15,
-          crossAxisCount: 2,
-        ),
+                  if (images == null) {
+                    return showSnackbar(context, "이미지가 존재하지 않습니다.");
+                  }
+
+                  showImageViewerPager(context,
+                      useSafeArea: true,
+                      MultiImageProvider(images, initialIndex: index));
+
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(item.medium, fit: BoxFit.cover),
+                ),
+              )),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 185 / 180,
+        crossAxisSpacing: 15,
+        mainAxisSpacing: 15,
+        crossAxisCount: 2,
       ),
     );
   }

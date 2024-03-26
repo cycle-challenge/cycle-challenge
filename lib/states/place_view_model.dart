@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
+import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
@@ -87,5 +89,12 @@ class PlaceViewModel with ChangeNotifier {
 
     _isFetchingDetail = false;
     notifyListeners();
+  }
+
+  Future<PageModel<ImageModel>> getImages(int page, int pageSize) async {
+    PlaceModel? place = selectedPlace;
+
+    if (place == null) throw Exception("선택된 장소가 없습니다.");
+    return _placeRepository.getImages(place.id, page, pageSize);
   }
 }
