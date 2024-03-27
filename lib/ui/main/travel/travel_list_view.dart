@@ -5,18 +5,17 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/ui/main/travel/travel_detail_view.dart';
 
 class TravelListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
 
   final List<TravelModel> _travels;
 
-  TravelListView({super.key, required travels }) : _travels = travels;
-
+  TravelListView({super.key, required travels}) : _travels = travels;
 
   @override
   Widget build(BuildContext context) {
-
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
       context.read<BottomSheetState>().setCanViewScrollUp(canScrollUp);
@@ -44,8 +43,8 @@ class TravelListView extends StatelessWidget {
             padding: EdgeInsets.only(top: 20.0),
             itemBuilder: (BuildContext context, int index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
-              child:
-                  TravelWidget(travel: _travels[index], width: double.maxFinite),
+              child: TravelWidget(
+                  travel: _travels[index], width: double.maxFinite),
             ),
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
@@ -75,7 +74,10 @@ class TravelWidget extends StatelessWidget {
         Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => TravelDetailPage(travelID: _travel.id)));
+      },
       child: Container(
         width: _width,
         height: 240,

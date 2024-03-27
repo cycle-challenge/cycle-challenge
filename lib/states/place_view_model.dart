@@ -14,7 +14,7 @@ class PlaceViewModel with ChangeNotifier {
   final PlaceRepository _placeRepository = PlaceRepository();
 
   List<PlaceModel> _places = [];
-  List<PlaceModel> get places => _placeFilter.apply(_places);
+  List<PlaceModel> get places => _placeFilter.apply(_places.where((e) => _travelFilter.apply(e.travels).isNotEmpty).toList());
 
   List<TravelModel> get travels => _travelFilter.apply(
       Set.of(_places.map((e) => e.travels).expand((e) => e).toList()).toList());

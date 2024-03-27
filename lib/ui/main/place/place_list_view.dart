@@ -42,7 +42,8 @@ class PlaceListView extends StatelessWidget {
               PlaceModel place = places[index];
 
               String distance =
-                  place.location.distance.toStringAsFixed(1).toString();
+                  place.location.distance?.toStringAsFixed(1).toString() ??
+                      "0.0";
               String type = place.type.label;
 
               return GestureDetector(

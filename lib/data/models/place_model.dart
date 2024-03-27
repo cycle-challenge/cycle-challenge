@@ -63,8 +63,12 @@ class PlaceModel {
         name: json["name"],
         location: PlaceLocation.of(json["location"]),
         type: PlaceType.of(json["type"]),
-        images: List.of(json["images"]).map((e) => ImageModel.of(e)).toList(),
-        travels: List.of(json["travels"]).map((e) => TravelModel.of(e)).toList(),
+        images: json["images"] != null
+            ? List.of(json["images"]).map((e) => ImageModel.of(e)).toList()
+            : <ImageModel>[],
+        travels: json["travels"] != null
+            ? List.of(json["travels"]).map((e) => TravelModel.of(e)).toList()
+            : <TravelModel>[],
         googlePlaceId: json["googlePlaceId"]);
   }
 }

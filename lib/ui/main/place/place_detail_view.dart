@@ -65,8 +65,7 @@ class PlaceDetailView extends StatelessWidget {
                 children: [
                   Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      constraints: const BoxConstraints(maxWidth: 380),
+                      width: MediaQuery.of(context).size.width * 0.9,
                       margin: const EdgeInsets.only(top: 30.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -241,8 +240,7 @@ class PlaceDetailView extends StatelessWidget {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(top: 10.0),
-                        constraints: const BoxConstraints(maxWidth: 380),
-                        width: MediaQuery.of(context).size.width * 0.85,
+                        width: MediaQuery.of(context).size.width * 0.9,
                         child: Column(
                           children: [
                             Row(
@@ -301,8 +299,7 @@ class PlaceDetailView extends StatelessWidget {
                   DetailDivider(context),
                   Container(
                     margin: const EdgeInsets.only(top: 10.0),
-                    constraints: const BoxConstraints(maxWidth: 380),
-                    width: MediaQuery.of(context).size.width * 0.85,
+                    width: MediaQuery.of(context).size.width * 0.9,
                     child: Column(
                       children: [
                         Row(
@@ -324,6 +321,7 @@ class PlaceDetailView extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context, index) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 children: [
@@ -388,8 +386,7 @@ class PlaceDetailView extends StatelessWidget {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(top: 10.0),
-                        constraints: const BoxConstraints(maxWidth: 380),
-                        width: MediaQuery.of(context).size.width * 0.85,
+                        width: MediaQuery.of(context).size.width * 0.9,
                         child: Column(
                           children: [
                             Row(

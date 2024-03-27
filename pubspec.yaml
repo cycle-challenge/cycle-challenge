@@ -71,6 +71,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/image/
     - assets/map/
     - assets/markers/
     - assets/markers/select/

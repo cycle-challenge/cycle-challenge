@@ -11,7 +11,8 @@ class PlaceSimpleView extends StatelessWidget {
     PlaceModel? place = context.read<PlaceViewModel>().selectedPlace;
     if (place == null) return const SizedBox();
 
-    String distance = place.location.distance.toStringAsFixed(1).toString();
+    String distance =
+        place.location.distance?.toStringAsFixed(1).toString() ?? "0.0";
     String type = place.type.label;
 
     return Column(
@@ -38,8 +39,11 @@ class PlaceSimpleView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(place.name,
-                      style: Theme.of(context).textTheme.titleLarge, softWrap: false,),
+                  Text(
+                    place.name,
+                    style: Theme.of(context).textTheme.titleLarge,
+                    softWrap: false,
+                  ),
                   Text('$distance km · $type',
                       style: Theme.of(context).textTheme.labelLarge)
                 ],
