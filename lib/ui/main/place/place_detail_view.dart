@@ -429,7 +429,7 @@ class PlaceDetailView extends StatelessWidget {
               ),
             ),
             PlaceImageView(),
-            SingleChildScrollView(),
+            const SingleChildScrollView(),
             TravelListView(travels: place.travels ?? [])
           ],
         );

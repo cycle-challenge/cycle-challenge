@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 import 'package:yeohaeng_ttukttak/states/daily_visit_summary_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
+import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class TravelDetailView extends StatelessWidget {
   GoogleMapController? _controller;
@@ -115,58 +117,77 @@ class TravelDetailView extends StatelessWidget {
             child: Stack(
               children: [
                 CarouselSlider.builder(
-                    itemCount: visit?.images.length,
-                    itemBuilder: (context, index, realIndex) => Stack(
-                          children: [
-                            Image.network(
-                              width: double.maxFinite,
-                              height: double.maxFinite,
-                              visit?.images[index].medium ?? "",
-                              fit: BoxFit.fitWidth,
-                              errorBuilder: (context, exception, trace) =>
-                                  Image.asset("assets/image/default.png",
-                                      fit: BoxFit.cover),
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      Colors.transparent,
-                                      Colors.black.withOpacity(0.1),
-                                      Colors.black.withOpacity(0.75),
-                                    ]),
-                              ),
-                            ),
-                            Container(
+                    itemCount: visit == null ? 0 : visit.images.length,
+                    itemBuilder: (context, index, realIndex) => InkWell(
+                          onTap: () {
+                            if (visit == null || visit.images.isEmpty) {
+                              return showSnackbar(context, "이미지가 존재하지 않습니다.");
+                            }
+
+                            List<NetworkImage>? images = visit.images
+                                .map((e) => NetworkImage(e.large))
+                                .toList();
+
+                            showImageViewerPager(
+                                context,
+                                useSafeArea: true,
+                                MultiImageProvider(images,
+                                    initialIndex: index));
+                          },
+                          child: Stack(
+                            children: [
+                              if (visit != null && visit.images.isNotEmpty)
+                                Image.network(
+                                  width: double.maxFinite,
+                                  height: double.maxFinite,
+                                  visit.images[index].medium ?? "",
+                                  fit: BoxFit.fitWidth,
+                                  errorBuilder: (context, exception, trace) =>
+                                      Image.asset("assets/image/default.png",
+                                          fit: BoxFit.cover),
+                                ),
+                              Container(
                                 width: double.infinity,
                                 height: double.infinity,
-                                padding: const EdgeInsets.all(18),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      visit?.place.name ?? "",
-                                      style: titleLarge?.copyWith(
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    RichText(
-                                        text: TextSpan(children: [
-                                      TextSpan(
-                                          text: visit?.place.type.label,
-                                          style: bodyMedium?.copyWith(
-                                              fontWeight: FontWeight.w600)),
-                                      TextSpan(
-                                          text:
-                                              " · 사진 ${visit?.images.length ?? 0}장")
-                                    ])),
-                                  ],
-                                ))
-                          ],
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.transparent,
+                                        Colors.black.withOpacity(0.1),
+                                        Colors.black.withOpacity(0.75),
+                                      ]),
+                                ),
+                              ),
+                              Container(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  padding: const EdgeInsets.all(18),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        visit?.place.name ?? "",
+                                        style: titleLarge?.copyWith(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                            text: visit?.place.type.label,
+                                            style: bodyMedium?.copyWith(
+                                                fontWeight: FontWeight.w600)),
+                                        TextSpan(
+                                            text:
+                                                " · 사진 ${visit?.images.length ?? 0}장")
+                                      ])),
+                                    ],
+                                  ))
+                            ],
+                          ),
                         ),
                     options: CarouselOptions(
                         scrollDirection: Axis.horizontal,
