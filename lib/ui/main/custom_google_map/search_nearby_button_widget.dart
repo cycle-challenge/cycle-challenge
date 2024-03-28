@@ -30,6 +30,7 @@ class SearchNearbyButtonWidget extends StatelessWidget {
               margin: const EdgeInsets.only(top: 15.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1, color: Theme.of(context).colorScheme.outlineVariant),
                   color: Theme.of(context).colorScheme.surface),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

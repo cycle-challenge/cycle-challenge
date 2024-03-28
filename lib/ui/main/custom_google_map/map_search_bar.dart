@@ -11,9 +11,6 @@ class MapSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSheetShown = getIsSheetShown(context);
-    bool isExpanded = context.watch<BottomSheetState>().isExpanded;
-
     return Center(
       child: Container(
         constraints: const BoxConstraints(maxWidth: 360),
@@ -29,10 +26,8 @@ class MapSearchBar extends StatelessWidget {
             fillColor: Theme.of(context).colorScheme.surface,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(100),
-              borderSide: (isSheetShown && isExpanded)
-                  ? BorderSide(
-                      color: Theme.of(context).colorScheme.secondary, width: 1.0)
-                  : BorderSide.none,
+              borderSide: BorderSide(
+                  color:Theme.of(context).colorScheme.outlineVariant, width: 1.0)
             ),
           ),
           onChanged: (value) {},

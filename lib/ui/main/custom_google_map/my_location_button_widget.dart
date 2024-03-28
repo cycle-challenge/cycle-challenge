@@ -11,6 +11,7 @@ class MyLocationButtonWidget extends StatelessWidget {
     return Align(
       alignment: const Alignment(0.93, 0.95),
       child: FloatingActionButton(
+        heroTag: "my_location",
           onPressed: () async {
             await context.read<GoogleMapState>().moveToMyLocation();
           },

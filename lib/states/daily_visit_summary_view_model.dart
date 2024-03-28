@@ -48,7 +48,7 @@ class TravelDetailViewModel with ChangeNotifier {
 
   int get visitIndex => _visitIndex;
 
-  int _zoomLevel = 3;
+  int _zoomLevel = 2;
   int get zoomLevel => _zoomLevel;
 
   bool get canZoomIn => _zoomLevel + 1 < 3;
@@ -174,7 +174,7 @@ class TravelDetailViewModel with ChangeNotifier {
             polylineId: PolylineId("poly-$i"),
             color: visit.id == selectedId || nextVisit.id == selectedId
                 ? Colors.red
-                : Colors.white,
+                : Colors.black.withOpacity(0.3),
             width: 2,
             zIndex: 1,
             points: [

@@ -16,7 +16,6 @@ class PlaceTypeFilterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double filterSheetHeight = MediaQuery.of(context).size.height -
         (Scaffold.of(context).appBarMaxHeight!);
 
@@ -24,7 +23,8 @@ class PlaceTypeFilterWidget extends StatelessWidget {
         context.watch<PlaceViewModel>().travelFilter.hasAnyFilter;
     var notify = context.read<PlaceViewModel>().notify;
 
-    Set<PlaceType> placeTypeFilter = context.watch<PlaceViewModel>().placeFilter.type;
+    Set<PlaceType> placeTypeFilter =
+        context.watch<PlaceViewModel>().placeFilter.type;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -50,9 +50,11 @@ class PlaceTypeFilterWidget extends StatelessWidget {
                     ? Theme.of(context).colorScheme.onPrimary
                     : null,
               ),
-              shape: StadiumBorder(side: BorderSide(color: hasAnyTravelFilter
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.surface)),
+              shape: StadiumBorder(
+                  side: BorderSide(
+                      color: hasAnyTravelFilter
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.outlineVariant)),
               selected: hasAnyTravelFilter,
               onSelected: (_) => showModalBottomSheet(
                   isScrollControlled: true,
@@ -61,7 +63,6 @@ class PlaceTypeFilterWidget extends StatelessWidget {
                       height: filterSheetHeight,
                       constraints: const BoxConstraints(maxHeight: 772),
                       child: TravelFilterBottomSheetWidget()))),
-
           for (int index = 0; index < PlaceType.values.length; index++)
             Container(
               margin: const EdgeInsets.only(left: 8.0),
@@ -73,7 +74,8 @@ class PlaceTypeFilterWidget extends StatelessWidget {
                   if (selected)
                     notify(() => placeTypeFilter.add(PlaceType.values[index]));
                   else
-                    notify(() => placeTypeFilter.remove(PlaceType.values[index]));
+                    notify(
+                        () => placeTypeFilter.remove(PlaceType.values[index]));
                 },
               ),
             )
@@ -244,8 +246,7 @@ class FilterWidget extends StatelessWidget {
       required IconData? iconData,
       required String label,
       required dynamic onSelected,
-        bool? showCheckmark
-      })
+      bool? showCheckmark})
       : _onSelected = onSelected,
         _label = label,
         _iconData = iconData,
@@ -257,9 +258,11 @@ class FilterWidget extends StatelessWidget {
     return ChoiceChip(
         showCheckmark: _showCheckmark,
         checkmarkColor: Theme.of(context).colorScheme.onPrimary,
-        shape: StadiumBorder(side: BorderSide(color: _isSelected
-            ? Theme.of(context).colorScheme.primary
-            : Theme.of(context).colorScheme.surface)),
+        shape: StadiumBorder(
+            side: BorderSide(
+                color: _isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.outlineVariant)),
         label: Text(
           _label,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(

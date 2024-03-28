@@ -58,7 +58,7 @@ class _TravelDetailViewState extends State<TravelDetailView> {
     var visitIndex = context.watch<TravelDetailViewModel>().visitIndex;
 
     if (_controller != null && summary != null) {
-      if (viewModel.zoomLevel == 1) {
+      if (viewModel.zoomLevel == 0) {
         Bound entire = summary.bound.entire;
 
         LatLngBounds bounds = LatLngBounds(
@@ -68,7 +68,7 @@ class _TravelDetailViewState extends State<TravelDetailView> {
                 LatLng(entire.northeast.latitude, entire.northeast.longitude));
 
         _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
-      } else if (viewModel.zoomLevel == 2) {
+      } else if (viewModel.zoomLevel == 1) {
         Bound bound = summary.bound.visits[visitIndex];
 
         LatLngBounds bounds = LatLngBounds(
@@ -84,7 +84,7 @@ class _TravelDetailViewState extends State<TravelDetailView> {
             _controller?.moveCamera(CameraUpdate.zoomTo(14.0));
           }
         });
-      } else if (viewModel.zoomLevel == 3) {
+      } else if (viewModel.zoomLevel == 2) {
         Bound bound = summary.bound.visits[visitIndex];
 
         LatLngBounds bounds = LatLngBounds(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -112,6 +114,7 @@ class PlaceDetailView extends StatelessWidget {
                               child: ExpansionPanelList(
                                 expandedHeaderPadding: EdgeInsets.zero,
                                 materialGapSize: 0,
+                                elevation: 0,
                                 expansionCallback: (_, isExpanded) => context
                                     .read<BottomSheetState>()
                                     .isBusinessHourExpanded = isExpanded,
@@ -410,14 +413,16 @@ class PlaceDetailView extends StatelessWidget {
                                 child: ListView.separated(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: place.travels.length,
+                                  itemCount: min(place.travels.length, 3),
                                   separatorBuilder: (context, index) =>
                                       const SizedBox(width: 8),
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return TravelWidget(
-                                        width: 280.0,
-                                        travel: place.travels[index]);
+                                    return GestureDetector(
+                                      child: TravelWidget(
+                                          width: 280.0,
+                                          travel: place.travels[index]),
+                                    );
                                   },
                                 )),
                           ],
