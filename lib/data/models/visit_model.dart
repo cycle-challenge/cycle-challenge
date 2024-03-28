@@ -1,6 +1,7 @@
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_location.dart';
+import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 
 class VisitModel {
   final int _id;
@@ -41,26 +42,20 @@ class DailyVisitSummary {
 
   final List<VisitModel> _visits;
 
-  final PlaceLocation _southWest;
-
-  final PlaceLocation _northEast;
+  final BoundModel _bound;
 
   int get dayOfTravel => _dayOfTravel;
 
   List<VisitModel> get visits => _visits;
 
-  PlaceLocation get southWest => _southWest;
+  BoundModel get bound => _bound;
 
-  PlaceLocation get northEast => _northEast;
-
-  DailyVisitSummary(
-      this._dayOfTravel, this._visits, this._southWest, this._northEast);
+  DailyVisitSummary(this._dayOfTravel, this._visits, this._bound);
 
   factory DailyVisitSummary.of(Map<String, dynamic> json) {
     return DailyVisitSummary(
         json["dayOfTravel"],
         List.of(json["visits"]).map((e) => VisitModel.of(e)).toList(),
-        PlaceLocation.of(json["bounds"]?["southWest"]),
-        PlaceLocation.of(json["bounds"]?["northEast"]));
+        BoundModel.of(json["bound"]));
   }
 }

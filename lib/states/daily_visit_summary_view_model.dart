@@ -17,6 +17,15 @@ class TravelDetailViewModel with ChangeNotifier {
   }
   bool get hasPrevVisit => _visitIndex - 1 >= 0;
 
+  bool _isExpanded = false;
+
+  bool get isExpanded => _isExpanded;
+
+  void switchExpanded() {
+    _isExpanded = !_isExpanded;
+    notifyListeners();
+  }
+
   int _index = 0;
   int get index => _index;
 
