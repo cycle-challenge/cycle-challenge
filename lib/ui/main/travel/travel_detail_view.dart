@@ -10,32 +10,16 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
-import 'package:yeohaeng_ttukttak/states/daily_visit_summary_view_model.dart';
+import 'package:yeohaeng_ttukttak/states/travel_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
-class TravelDetailView extends StatefulWidget {
+class TravelDetailView extends StatelessWidget {
   final TravelModel travel;
 
   TravelDetailView({super.key, required this.travel});
 
-  @override
-  State<TravelDetailView> createState() => _TravelDetailViewState();
-}
-
-class _TravelDetailViewState extends State<TravelDetailView> {
   GoogleMapController? _controller;
-
-  Completer<GoogleMapController> _completer = Completer();
-
-  List<double> _zoomLevels = [0, 14, 0];
-
-  List<LatLngBounds> _bounds = [];
-
-  @override
-  void initState() {
-    // _completer.future;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +95,7 @@ class _TravelDetailViewState extends State<TravelDetailView> {
                       .titleLarge
                       ?.copyWith(fontWeight: FontWeight.w600)),
               Text(
-                widget.travel.name,
+                travel.name,
                 style: Theme.of(context).textTheme.titleMedium,
               )
             ],

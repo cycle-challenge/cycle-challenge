@@ -143,7 +143,7 @@ class TravelDetailViewModel with ChangeNotifier {
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black.withOpacity(0.3)),
             shape: BoxShape.circle,
-            color: visit.id == selectedId ? Colors.red : Colors.white),
+            color: visit.id == selectedId ?  Colors.blue : Colors.white),
         child: Center(
           child: Text(
             (i + 1).toString(),
@@ -173,8 +173,8 @@ class TravelDetailViewModel with ChangeNotifier {
         _polylines.add(Polyline(
             polylineId: PolylineId("poly-$i"),
             color: visit.id == selectedId || nextVisit.id == selectedId
-                ? Colors.red
-                : Colors.black.withOpacity(0.3),
+                ? Colors.blue
+                : Theme.of(_context).colorScheme.onSurface,
             width: 2,
             zIndex: 1,
             points: [
