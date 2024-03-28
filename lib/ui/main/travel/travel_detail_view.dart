@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -33,31 +32,27 @@ class TravelDetailView extends StatelessWidget {
     bool isExpanded = context.watch<TravelDetailViewModel>().isExpanded;
 
     if (_controller != null && summary != null) {
-
       if (isExpanded) {
-
         Bound entire = summary.bound.entire;
 
         LatLngBounds bounds = LatLngBounds(
             southwest:
-            LatLng(entire.southwest.latitude, entire.southwest.longitude),
+                LatLng(entire.southwest.latitude, entire.southwest.longitude),
             northeast:
-            LatLng(entire.northeast.latitude, entire.northeast.longitude));
+                LatLng(entire.northeast.latitude, entire.northeast.longitude));
 
         _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
-
       } else {
         Bound bound = summary.bound.visits[visitIndex];
 
         LatLngBounds bounds = LatLngBounds(
             southwest:
-            LatLng(bound.southwest.latitude, bound.southwest.longitude),
+                LatLng(bound.southwest.latitude, bound.southwest.longitude),
             northeast:
-            LatLng(bound.northeast.latitude, bound.northeast.longitude));
+                LatLng(bound.northeast.latitude, bound.northeast.longitude));
 
         _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
       }
-
     }
 
     return Scaffold(
@@ -89,17 +84,8 @@ class TravelDetailView extends StatelessWidget {
                     controller.setMapStyle(await getJsonFile(path));
                     _controller = controller;
                   },
-                  markers: summary != null
-                      ? Set.of(summary.visits
-                          .map((e) => e.place)
-                          .map((e) => Marker(
-                              markerId: MarkerId(e.id.toString()),
-                              onTap: () {},
-                              consumeTapEvents: true,
-                              position: LatLng(
-                                  e.location.latitude, e.location.longitude)))
-                          .toList())
-                      : {},
+                  markers: context.watch<TravelDetailViewModel>().markers,
+                  polylines: context.watch<TravelDetailViewModel>().polylines,
                 ),
                 Positioned(
                     bottom: 20,
@@ -109,7 +95,9 @@ class TravelDetailView extends StatelessWidget {
                         viewModel.switchExpanded();
                       },
                       backgroundColor: Theme.of(context).colorScheme.surface,
-                      child: isExpanded ?  const Icon(Icons.expand_less): const Icon(Icons.expand_more),
+                      child: isExpanded
+                          ? const Icon(Icons.expand_less)
+                          : const Icon(Icons.expand_more),
                     ))
               ],
             ),
@@ -212,7 +200,7 @@ class TravelDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TravelDetailViewModel>(
-        create: (_) => TravelDetailViewModel(travelID),
+        create: (context) => TravelDetailViewModel(context, travelID),
         child: TravelDetailView());
   }
 }
