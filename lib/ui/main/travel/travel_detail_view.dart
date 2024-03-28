@@ -84,7 +84,7 @@ class TravelDetailView extends StatelessWidget {
                     controller.setMapStyle(await getJsonFile(path));
                     _controller = controller;
                   },
-                  markers: context.watch<TravelDetailViewModel>().markers,
+                  markers: context.watch<TravelDetailViewModel>().markers.isNotEmpty ? context.watch<TravelDetailViewModel>().markers[index] : {},
                   polylines: context.watch<TravelDetailViewModel>().polylines,
                 ),
                 Positioned(

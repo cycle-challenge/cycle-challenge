@@ -77,6 +77,7 @@ class CustomGoogleMap extends StatelessWidget {
                 context.read<NavigationState>().setSelectedIndex(0);
               },
               draggable: true,
+              anchor: const Offset(0.5, 0.5),
               icon: context.read<PlaceViewModel>().selectedPlaceID == e.id
                   ? selectedMarkerIcon[e.type.name]!
                   : markerIcon[e.type.name]!,

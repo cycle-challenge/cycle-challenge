@@ -33,9 +33,8 @@ class TravelDetailViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  final Set<Marker> _markers = {};
-
-  Set<Marker> get markers => _markers;
+  final List<Set<Marker>> _markers = [];
+  List<Set<Marker>> get markers => _markers;
 
   Set<Polyline> _polylines = {};
 
@@ -88,7 +87,12 @@ class TravelDetailViewModel with ChangeNotifier {
   TravelDetailViewModel(BuildContext context, int travelID) {
     _repository = TravelRepository();
     _context = context;
-    _loadItems(travelID).then((_) => initMarker());
+    _loadItems(travelID).then((_) {
+      for (var _ in _dailySummaries) {
+        _markers.add({});
+      }
+      initMarker();
+    });
   }
 
   Future<void> initMarker() async {
@@ -96,7 +100,6 @@ class TravelDetailViewModel with ChangeNotifier {
 
     List<LatLng> locations = [];
 
-    _markers.clear();
     _polylines.clear();
 
     for (int i = 0; i < _dailySummaries[_index].visits.length; i++) {
@@ -123,7 +126,7 @@ class TravelDetailViewModel with ChangeNotifier {
                 color: visit.id == selectedId ? Colors.white : Colors.black),
           ),
         ),
-      ).toBitmapDescriptor().then((widget) => _markers.add(Marker(
+      ).toBitmapDescriptor().then((widget) => _markers[_index].add(Marker(
           markerId: MarkerId(place.id.toString()),
           onTap: () {
             _visitIndex = i;
