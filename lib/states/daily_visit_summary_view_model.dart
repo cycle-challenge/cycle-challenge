@@ -48,6 +48,17 @@ class TravelDetailViewModel with ChangeNotifier {
 
   int get visitIndex => _visitIndex;
 
+
+  int _imageIndex = 0;
+
+  int get imageIndex => _imageIndex;
+
+  set imageIndex(int value) {
+    _imageIndex = value;
+    notifyListeners();
+  }
+
+
   DailyVisitSummary? get summary =>
       _dailySummaries.isNotEmpty ? _dailySummaries[_index] : null;
 
@@ -59,6 +70,7 @@ class TravelDetailViewModel with ChangeNotifier {
     if (!hasNextVisit) return;
 
     _visitIndex++;
+    _imageIndex = 0;
     initMarker();
   }
 
@@ -67,6 +79,7 @@ class TravelDetailViewModel with ChangeNotifier {
     if (!hasPrevVisit) return;
 
     _visitIndex--;
+    _imageIndex = 0;
     initMarker();
   }
 
@@ -74,6 +87,7 @@ class TravelDetailViewModel with ChangeNotifier {
     if (!hasNext) return;
     _index++;
     _visitIndex = 0;
+    _imageIndex = 0;
     initMarker();
   }
 
@@ -81,6 +95,7 @@ class TravelDetailViewModel with ChangeNotifier {
     if (!hasPrev) return;
     _index--;
     _visitIndex = 0;
+    _imageIndex = 0;
     initMarker();
   }
 
