@@ -1,22 +1,45 @@
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 import 'package:yeohaeng_ttukttak/states/daily_visit_summary_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
-class TravelDetailView extends StatelessWidget {
+class TravelDetailView extends StatefulWidget {
+  final TravelModel travel;
+
+  TravelDetailView({super.key, required this.travel});
+
+  @override
+  State<TravelDetailView> createState() => _TravelDetailViewState();
+}
+
+class _TravelDetailViewState extends State<TravelDetailView> {
   GoogleMapController? _controller;
+
+  Completer<GoogleMapController> _completer = Completer();
+
+  List<double> _zoomLevels = [0, 14, 0];
+
+  List<LatLngBounds> _bounds = [];
+
+  @override
+  void initState() {
+    // _completer.future;
+  }
 
   @override
   Widget build(BuildContext context) {
-    TravelDetailViewModel viewModel = context.read<TravelDetailViewModel>();
+    TravelDetailViewModel viewModel = context.watch<TravelDetailViewModel>();
 
     int index = context.watch<TravelDetailViewModel>().index;
 
@@ -34,10 +57,8 @@ class TravelDetailView extends StatelessWidget {
     VisitModel? visit = context.watch<TravelDetailViewModel>().visit;
     var visitIndex = context.watch<TravelDetailViewModel>().visitIndex;
 
-    bool isExpanded = context.watch<TravelDetailViewModel>().isExpanded;
-
     if (_controller != null && summary != null) {
-      if (isExpanded) {
+      if (viewModel.zoomLevel == 1) {
         Bound entire = summary.bound.entire;
 
         LatLngBounds bounds = LatLngBounds(
@@ -47,7 +68,23 @@ class TravelDetailView extends StatelessWidget {
                 LatLng(entire.northeast.latitude, entire.northeast.longitude));
 
         _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
-      } else {
+      } else if (viewModel.zoomLevel == 2) {
+        Bound bound = summary.bound.visits[visitIndex];
+
+        LatLngBounds bounds = LatLngBounds(
+            southwest:
+                LatLng(bound.southwest.latitude, bound.southwest.longitude),
+            northeast:
+                LatLng(bound.northeast.latitude, bound.northeast.longitude));
+
+        _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
+
+        _controller?.getZoomLevel().then((value) {
+          if (value > 14.0) {
+            _controller?.moveCamera(CameraUpdate.zoomTo(14.0));
+          }
+        });
+      } else if (viewModel.zoomLevel == 3) {
         Bound bound = summary.bound.visits[visitIndex];
 
         LatLngBounds bounds = LatLngBounds(
@@ -61,9 +98,35 @@ class TravelDetailView extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "${index + 1}일 차",
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(64),
+        child: AppBar(
+          centerTitle: false,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("${index + 1}일 차",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.w600)),
+              Text(
+                widget.travel.name,
+                style: Theme.of(context).textTheme.titleMedium,
+              )
+            ],
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: IconButton(
+                  onPressed: () {},
+                  icon: const Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: Icon(Icons.copy),
+                  )),
+            ),
+          ],
         ),
       ),
       body: Column(
@@ -100,14 +163,36 @@ class TravelDetailView extends StatelessWidget {
                 Positioned(
                     bottom: 20,
                     right: 15,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        viewModel.switchExpanded();
-                      },
-                      backgroundColor: Theme.of(context).colorScheme.surface,
-                      child: isExpanded
-                          ? const Icon(Icons.expand_less)
-                          : const Icon(Icons.expand_more),
+                    child: Wrap(
+                      direction: Axis.vertical,
+                      children: [
+                        IconButton(
+                          onPressed:
+                              context.watch<TravelDetailViewModel>().canZoomIn
+                                  ? () => {
+                                        if (viewModel.canZoomIn)
+                                          viewModel.zoomLevel++
+                                      }
+                                  : null,
+                          icon: const Icon(Icons.add),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).colorScheme.surface)),
+                        ),
+                        IconButton(
+                          onPressed:
+                              context.watch<TravelDetailViewModel>().canZoomOut
+                                  ? () => {
+                                        if (viewModel.canZoomOut)
+                                          viewModel.zoomLevel--
+                                      }
+                                  : null,
+                          icon: const Icon(Icons.remove),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).colorScheme.surface)),
+                        )
+                      ],
                     ))
               ],
             ),
@@ -250,14 +335,14 @@ class TravelDetailView extends StatelessWidget {
 }
 
 class TravelDetailPage extends StatelessWidget {
-  final int travelID;
+  final TravelModel travel;
 
-  const TravelDetailPage({super.key, required this.travelID});
+  const TravelDetailPage({super.key, required this.travel});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TravelDetailViewModel>(
-        create: (context) => TravelDetailViewModel(context, travelID),
-        child: TravelDetailView());
+        create: (context) => TravelDetailViewModel(context, travel.id),
+        child: TravelDetailView(travel: travel));
   }
 }

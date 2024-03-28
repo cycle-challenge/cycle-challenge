@@ -48,6 +48,11 @@ class TravelDetailViewModel with ChangeNotifier {
 
   int get visitIndex => _visitIndex;
 
+  int _zoomLevel = 3;
+  int get zoomLevel => _zoomLevel;
+
+  bool get canZoomIn => _zoomLevel + 1 < 3;
+  bool get canZoomOut => _zoomLevel - 1 >= 0;
 
   int _imageIndex = 0;
 
@@ -58,6 +63,11 @@ class TravelDetailViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+
+  set zoomLevel(int value) {
+    _zoomLevel = value;
+    notifyListeners();
+  }
 
   DailyVisitSummary? get summary =>
       _dailySummaries.isNotEmpty ? _dailySummaries[_index] : null;
