@@ -65,14 +65,11 @@ class CustomGoogleMap extends StatelessWidget {
             context.read<GoogleMapState>().setIsMoving(true);
           },
           onTap: (_) {
-            clearNavigate(context);
-            context.read<BottomSheetState>().clear();
             context.read<PlaceViewModel>().unSelectPlace();
           },
           markers: Set.of(places.map((e) => Marker(
               markerId: MarkerId(e.id.toString()),
               onTap: () {
-                pushNavigate(context);
                 context.read<PlaceViewModel>().selectPlace(e.id);
                 context.read<NavigationState>().setSelectedIndex(0);
               },

@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
@@ -11,6 +13,7 @@ import 'package:yeohaeng_ttukttak/ui/main/bottom_sheet_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/place_type_filter_widget.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/map_search_bar.dart';
 import 'package:yeohaeng_ttukttak/ui/main/custom_google_map/search_nearby_button_widget.dart';
+import 'package:yeohaeng_ttukttak/ui/main/place/place_simple_view.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 import '../data/models/place_model.dart';
@@ -26,9 +29,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
     bool isSheetShown = getIsSheetShown(context);
     bool isExpanded = context.watch<BottomSheetState>().isExpanded;
+
+    final viewModel = context.watch<PlaceViewModel>();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -60,100 +64,64 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               child: SizedBox(
             width: double.maxFinite,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SearchNearbyButtonWidget(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SearchNearbyButtonWidget(),
+                  ],
+                ),
               ],
             ),
           )),
-          const MyLocationButtonWidget(),
-          if (isSheetShown) const BottomSheetWidget()
-        ]);
-      }),
-      floatingActionButton: isSheetShown && isPlaceSelected
-          ? FloatingActionButton(
-              onPressed: () {},
-              elevation: 0,
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(Icons.bookmark_outline,
-                  color: Theme.of(context).colorScheme.onSurface),
-            )
-          : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      bottomNavigationBar: context.watch<PlaceViewModel>().isSelected
-          ? BottomAppBar(
-              surfaceTintColor: Theme.of(context).colorScheme.surface,
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.share),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                      icon: const Icon(Icons.phone),
-                      onPressed: () async {
-                        if (!context.read<BottomSheetState>().isExpanded) {
-                          pushNavigate(context);
-                          context.read<BottomSheetState>().expand();
-                          return;
-                        }
-                        String? phoneNumber = context
-                            .read<PlaceViewModel>()
-                            .selectedPlace
-                            ?.detail
-                            ?.phoneNumber;
-
-                        if (phoneNumber == null) {
-                          showSnackbar(context, "제공된 전화번호가 없습니다.");
-                          return;
-                        }
-
-                        phoneNumber = Platform.isIOS
-                            ? phoneNumber.replaceAll("-", "")
-                            : phoneNumber;
-
-                        if (!await canLaunch("tel:$phoneNumber")) {
-                          showSnackbar(context, "전화를 걸 수 없습니다.");
-                          return;
-                        }
-                        await launch("tel:$phoneNumber");
-                      })
-                ],
-              ),
-            )
-          : NavigationBar(
-              onDestinationSelected: (index) {
-                context.read<BottomSheetState>().clear();
-                pushNavigate(context);
-                context.read<NavigationState>().setSelectedIndex(index);
-              },
-              selectedIndex: context.watch<NavigationState>().selectedIndex,
-              surfaceTintColor: Theme.of(context).colorScheme.surface,
-              destinations: const [
-                NavigationDestination(
-                  icon: Icon(Icons.map),
-                  label: '주변',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.place),
-                  label: '관광지',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.flight),
-                  label: '여행',
-                ),
-                NavigationDestination(
-                  icon: Icon(
-                    Icons.bookmark,
-                  ),
-                  label: '저장',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.account_circle),
-                  label: '프로필',
-                ),
+          SizedBox(
+            width: double.maxFinite,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const MyLocationButtonWidget(),
+                const SizedBox(height: 20,),
+                if (isSheetShown) const BottomSheetWidget(),
+                if (viewModel.isSelected) PlaceSimpleView(place: viewModel.selectedPlace)
               ],
             ),
+          )
+        ]);
+      }),
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (index) {
+          context.read<BottomSheetState>().clear();
+          pushNavigate(context);
+          context.read<NavigationState>().setSelectedIndex(index);
+        },
+        selectedIndex: context.watch<NavigationState>().selectedIndex,
+        surfaceTintColor: Theme.of(context).colorScheme.surface,
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.map),
+            label: '주변',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.place),
+            label: '관광지',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.flight),
+            label: '여행',
+          ),
+          NavigationDestination(
+            icon: Icon(
+              Icons.bookmark,
+            ),
+            label: '저장',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.account_circle),
+            label: '프로필',
+          ),
+        ],
+      ),
     );
   }
 }

@@ -39,17 +39,13 @@ class PlaceViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  bool _isFetchingDetail = false;
-
   selectPlace(int id) {
     _selectedPlaceID = id;
-    _isFetchingDetail = false;
     notifyListeners();
   }
 
   unSelectPlace() {
     _selectedPlaceID = -1;
-    _isFetchingDetail = false;
     notifyListeners();
   }
 
@@ -75,26 +71,4 @@ class PlaceViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getDetail() async {
-    PlaceModel? place = selectedPlace;
-    if (_isFetchingDetail || place == null) return;
-
-    if (place.detail != null) return;
-
-    _isFetchingDetail = true;
-
-    PlaceDetail detail =
-        await _placeRepository.getDetailInfo(place.googlePlaceId);
-    place.setDetail(detail);
-
-    _isFetchingDetail = false;
-    notifyListeners();
-  }
-
-  Future<PageModel<ImageModel>> getImages(int page, int pageSize) async {
-    PlaceModel? place = selectedPlace;
-
-    if (place == null) throw Exception("선택된 장소가 없습니다.");
-    return _placeRepository.getImages(place.id, page, pageSize);
-  }
 }

@@ -80,7 +80,6 @@ void clearNavigate(BuildContext context) {
 
 bool getIsSheetShown(BuildContext context) {
   int navIndex = context.watch<NavigationState>().selectedIndex;
-  bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
 
-  return navIndex == 1 || navIndex == 2 || isPlaceSelected;
+  return navIndex == 1 || navIndex == 2;
 }

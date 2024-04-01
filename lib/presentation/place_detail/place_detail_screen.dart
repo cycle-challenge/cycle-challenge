@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_image_view.dart';
 import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
@@ -106,8 +106,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5.0),
                                       child: Text("복사",
-                                          style: textTheme.bodyLarge?.copyWith(
-                                              color: Colors.blue)),
+                                          style: textTheme.bodyLarge
+                                              ?.copyWith(color: Colors.blue)),
                                     ),
                                   ),
                                 )
@@ -142,9 +142,11 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
                                                             .isOpeningNow!
                                                         ? "영업 중 · "
                                                         : "영업 종료 · ",
-                                                    style: textTheme.bodyLarge?.copyWith(
-                                                        fontWeight:
-                                                            FontWeight.w600)),
+                                                    style: textTheme.bodyLarge
+                                                        ?.copyWith(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600)),
                                                 TextSpan(
                                                     text: state
                                                         .placeDetail!
@@ -227,8 +229,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5.0),
                                       child: Text("복사",
-                                          style: textTheme.bodyLarge?.copyWith(
-                                              color: Colors.blue)),
+                                          style: textTheme.bodyLarge
+                                              ?.copyWith(color: Colors.blue)),
                                     ),
                                   ),
                                 ),
@@ -313,8 +315,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("리뷰",
-                                  style: textTheme.titleLarge?.copyWith(
-                                      fontWeight: FontWeight.w600)),
+                                  style: textTheme.titleLarge
+                                      ?.copyWith(fontWeight: FontWeight.w600)),
                               TextButton(
                                   onPressed: () => _tabController.animateTo(2),
                                   child: Text(
@@ -356,9 +358,11 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
                                                   text: TextSpan(children: [
                                                 TextSpan(
                                                     text: " 4.5",
-                                                    style: textTheme.bodySmall?.copyWith(
-                                                        fontWeight:
-                                                            FontWeight.w600)),
+                                                    style: textTheme.bodySmall
+                                                        ?.copyWith(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600)),
                                                 TextSpan(
                                                     text: " / 5.0 2023.11.10",
                                                     style: textTheme.bodySmall)
@@ -446,6 +450,45 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
           const SingleChildScrollView(),
           TravelListView(travels: widget.place.travels ?? [])
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        elevation: 0,
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        child: Icon(Icons.bookmark_outline,
+            color: Theme.of(context).colorScheme.onSurface),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      bottomNavigationBar: BottomAppBar(
+        surfaceTintColor: Theme.of(context).colorScheme.surface,
+        child: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.share),
+              onPressed: () {},
+            ),
+            IconButton(
+                icon: const Icon(Icons.phone),
+                onPressed: () async {
+                  String? phoneNumber = state.placeDetail?.phoneNumber;
+
+                  if (phoneNumber == null) {
+                    showSnackbar(context, "제공된 전화번호가 없습니다.");
+                    return;
+                  }
+
+                  phoneNumber = Platform.isIOS
+                      ? phoneNumber.replaceAll("-", "")
+                      : phoneNumber;
+
+                  if (!await canLaunch("tel:$phoneNumber")) {
+                    showSnackbar(context, "전화를 걸 수 없습니다.");
+                    return;
+                  }
+                  await launch("tel:$phoneNumber");
+                })
+          ],
+        ),
       ),
     );
   }

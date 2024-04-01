@@ -9,7 +9,7 @@ class MyLocationButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const Alignment(0.93, 0.95),
+      alignment: const Alignment(0.9, 0),
       child: FloatingActionButton(
         heroTag: "my_location",
           onPressed: () async {
