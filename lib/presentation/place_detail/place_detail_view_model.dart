@@ -8,6 +8,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_state.dart';
+import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class PlaceDetailViewModel with ChangeNotifier {
   final UseCases useCases;
@@ -28,7 +29,10 @@ class PlaceDetailViewModel with ChangeNotifier {
     event.when(
         load: _load,
         toggleBusinessHourExpanded: _toggleBusinessHourExpanded,
-        fetchImage: _fetchPlaceImage);
+        fetchImage: _fetchPlaceImage,
+        callPhone: _callPhone,
+        copyText: _copyText,
+        launchURL: _launchURL);
   }
 
   void _load(String googlePlaceID) async {
@@ -48,13 +52,39 @@ class PlaceDetailViewModel with ChangeNotifier {
         await useCases.getPlaceImage(placeID, pageNumber, pageSize);
     List<ImageModel> images = page.entities;
 
-
     if (!page.hasNextPage) {
       return _eventController.add(PlaceDetailUIEvent.addLastImages(images));
     }
 
     final int nextPageNumber = pageNumber + images.length;
-
     _eventController.add(PlaceDetailUIEvent.addImages(images, nextPageNumber));
+  }
+
+  void _callPhone(String? phoneNumber) async {
+    Result<void> result = await useCases.callPhone(phoneNumber);
+
+    result.when(
+        success: (_) {},
+        error: (message) =>
+            _eventController.add(PlaceDetailUIEvent.showSnackBar(message)));
+  }
+
+  void _copyText(String? text) async {
+    Result result = await useCases.copyText(text);
+
+    result.when(
+        success: (_) => _eventController
+            .add(const PlaceDetailUIEvent.showSnackBar("성공적으로 복사되었습니다.")),
+        error: (message) =>
+            _eventController.add(PlaceDetailUIEvent.showSnackBar(message)));
+  }
+
+  void _launchURL(String? url) async {
+    Result result = await useCases.launchURL(url);
+
+    result.when(
+        success: (_) {},
+        error: (message) =>
+            _eventController.add(PlaceDetailUIEvent.showSnackBar(message)));
   }
 }

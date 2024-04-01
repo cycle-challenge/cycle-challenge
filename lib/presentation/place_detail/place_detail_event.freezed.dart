@@ -21,6 +21,9 @@ mixin _$PlaceDetailEvent {
     required TResult Function(String googlePlaceID) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
+    required TResult Function(String? phoneNumber) callPhone,
+    required TResult Function(String? text) copyText,
+    required TResult Function(String? url) launchURL,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +31,9 @@ mixin _$PlaceDetailEvent {
     TResult? Function(String googlePlaceID)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult? Function(String? phoneNumber)? callPhone,
+    TResult? Function(String? text)? copyText,
+    TResult? Function(String? url)? launchURL,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +41,9 @@ mixin _$PlaceDetailEvent {
     TResult Function(String googlePlaceID)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult Function(String? phoneNumber)? callPhone,
+    TResult Function(String? text)? copyText,
+    TResult Function(String? url)? launchURL,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +53,9 @@ mixin _$PlaceDetailEvent {
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
+    required TResult Function(CallPhoneEvent value) callPhone,
+    required TResult Function(CopyTextEvent value) copyText,
+    required TResult Function(LaunchURL value) launchURL,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +64,9 @@ mixin _$PlaceDetailEvent {
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult? Function(CallPhoneEvent value)? callPhone,
+    TResult? Function(CopyTextEvent value)? copyText,
+    TResult? Function(LaunchURL value)? launchURL,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +75,9 @@ mixin _$PlaceDetailEvent {
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult Function(CallPhoneEvent value)? callPhone,
+    TResult Function(CopyTextEvent value)? copyText,
+    TResult Function(LaunchURL value)? launchURL,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +171,9 @@ class _$LoadPlaceDetailEventImpl implements LoadPlaceDetailEvent {
     required TResult Function(String googlePlaceID) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
+    required TResult Function(String? phoneNumber) callPhone,
+    required TResult Function(String? text) copyText,
+    required TResult Function(String? url) launchURL,
   }) {
     return load(googlePlaceID);
   }
@@ -163,6 +184,9 @@ class _$LoadPlaceDetailEventImpl implements LoadPlaceDetailEvent {
     TResult? Function(String googlePlaceID)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult? Function(String? phoneNumber)? callPhone,
+    TResult? Function(String? text)? copyText,
+    TResult? Function(String? url)? launchURL,
   }) {
     return load?.call(googlePlaceID);
   }
@@ -173,6 +197,9 @@ class _$LoadPlaceDetailEventImpl implements LoadPlaceDetailEvent {
     TResult Function(String googlePlaceID)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult Function(String? phoneNumber)? callPhone,
+    TResult Function(String? text)? copyText,
+    TResult Function(String? url)? launchURL,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -188,6 +215,9 @@ class _$LoadPlaceDetailEventImpl implements LoadPlaceDetailEvent {
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
+    required TResult Function(CallPhoneEvent value) callPhone,
+    required TResult Function(CopyTextEvent value) copyText,
+    required TResult Function(LaunchURL value) launchURL,
   }) {
     return load(this);
   }
@@ -199,6 +229,9 @@ class _$LoadPlaceDetailEventImpl implements LoadPlaceDetailEvent {
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult? Function(CallPhoneEvent value)? callPhone,
+    TResult? Function(CopyTextEvent value)? copyText,
+    TResult? Function(LaunchURL value)? launchURL,
   }) {
     return load?.call(this);
   }
@@ -210,6 +243,9 @@ class _$LoadPlaceDetailEventImpl implements LoadPlaceDetailEvent {
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult Function(CallPhoneEvent value)? callPhone,
+    TResult Function(CopyTextEvent value)? copyText,
+    TResult Function(LaunchURL value)? launchURL,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -275,6 +311,9 @@ class _$ToggleBusinessHourExpandedEventImpl
     required TResult Function(String googlePlaceID) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
+    required TResult Function(String? phoneNumber) callPhone,
+    required TResult Function(String? text) copyText,
+    required TResult Function(String? url) launchURL,
   }) {
     return toggleBusinessHourExpanded();
   }
@@ -285,6 +324,9 @@ class _$ToggleBusinessHourExpandedEventImpl
     TResult? Function(String googlePlaceID)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult? Function(String? phoneNumber)? callPhone,
+    TResult? Function(String? text)? copyText,
+    TResult? Function(String? url)? launchURL,
   }) {
     return toggleBusinessHourExpanded?.call();
   }
@@ -295,6 +337,9 @@ class _$ToggleBusinessHourExpandedEventImpl
     TResult Function(String googlePlaceID)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult Function(String? phoneNumber)? callPhone,
+    TResult Function(String? text)? copyText,
+    TResult Function(String? url)? launchURL,
     required TResult orElse(),
   }) {
     if (toggleBusinessHourExpanded != null) {
@@ -310,6 +355,9 @@ class _$ToggleBusinessHourExpandedEventImpl
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
+    required TResult Function(CallPhoneEvent value) callPhone,
+    required TResult Function(CopyTextEvent value) copyText,
+    required TResult Function(LaunchURL value) launchURL,
   }) {
     return toggleBusinessHourExpanded(this);
   }
@@ -321,6 +369,9 @@ class _$ToggleBusinessHourExpandedEventImpl
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult? Function(CallPhoneEvent value)? callPhone,
+    TResult? Function(CopyTextEvent value)? copyText,
+    TResult? Function(LaunchURL value)? launchURL,
   }) {
     return toggleBusinessHourExpanded?.call(this);
   }
@@ -332,6 +383,9 @@ class _$ToggleBusinessHourExpandedEventImpl
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult Function(CallPhoneEvent value)? callPhone,
+    TResult Function(CopyTextEvent value)? copyText,
+    TResult Function(LaunchURL value)? launchURL,
     required TResult orElse(),
   }) {
     if (toggleBusinessHourExpanded != null) {
@@ -432,6 +486,9 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
     required TResult Function(String googlePlaceID) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
+    required TResult Function(String? phoneNumber) callPhone,
+    required TResult Function(String? text) copyText,
+    required TResult Function(String? url) launchURL,
   }) {
     return fetchImage(placeID, page, pageSize);
   }
@@ -442,6 +499,9 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
     TResult? Function(String googlePlaceID)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult? Function(String? phoneNumber)? callPhone,
+    TResult? Function(String? text)? copyText,
+    TResult? Function(String? url)? launchURL,
   }) {
     return fetchImage?.call(placeID, page, pageSize);
   }
@@ -452,6 +512,9 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
     TResult Function(String googlePlaceID)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult Function(String? phoneNumber)? callPhone,
+    TResult Function(String? text)? copyText,
+    TResult Function(String? url)? launchURL,
     required TResult orElse(),
   }) {
     if (fetchImage != null) {
@@ -467,6 +530,9 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
+    required TResult Function(CallPhoneEvent value) callPhone,
+    required TResult Function(CopyTextEvent value) copyText,
+    required TResult Function(LaunchURL value) launchURL,
   }) {
     return fetchImage(this);
   }
@@ -478,6 +544,9 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult? Function(CallPhoneEvent value)? callPhone,
+    TResult? Function(CopyTextEvent value)? copyText,
+    TResult? Function(LaunchURL value)? launchURL,
   }) {
     return fetchImage?.call(this);
   }
@@ -489,6 +558,9 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult Function(CallPhoneEvent value)? callPhone,
+    TResult Function(CopyTextEvent value)? copyText,
+    TResult Function(LaunchURL value)? launchURL,
     required TResult orElse(),
   }) {
     if (fetchImage != null) {
@@ -509,4 +581,487 @@ abstract class FetchPlaceImageEvent implements PlaceDetailEvent {
   @JsonKey(ignore: true)
   _$$FetchPlaceImageEventImplCopyWith<_$FetchPlaceImageEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CallPhoneEventImplCopyWith<$Res> {
+  factory _$$CallPhoneEventImplCopyWith(_$CallPhoneEventImpl value,
+          $Res Function(_$CallPhoneEventImpl) then) =
+      __$$CallPhoneEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? phoneNumber});
+}
+
+/// @nodoc
+class __$$CallPhoneEventImplCopyWithImpl<$Res>
+    extends _$PlaceDetailEventCopyWithImpl<$Res, _$CallPhoneEventImpl>
+    implements _$$CallPhoneEventImplCopyWith<$Res> {
+  __$$CallPhoneEventImplCopyWithImpl(
+      _$CallPhoneEventImpl _value, $Res Function(_$CallPhoneEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phoneNumber = freezed,
+  }) {
+    return _then(_$CallPhoneEventImpl(
+      freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CallPhoneEventImpl implements CallPhoneEvent {
+  const _$CallPhoneEventImpl(this.phoneNumber);
+
+  @override
+  final String? phoneNumber;
+
+  @override
+  String toString() {
+    return 'PlaceDetailEvent.callPhone(phoneNumber: $phoneNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CallPhoneEventImpl &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, phoneNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CallPhoneEventImplCopyWith<_$CallPhoneEventImpl> get copyWith =>
+      __$$CallPhoneEventImplCopyWithImpl<_$CallPhoneEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String googlePlaceID) load,
+    required TResult Function() toggleBusinessHourExpanded,
+    required TResult Function(int placeID, int page, int pageSize) fetchImage,
+    required TResult Function(String? phoneNumber) callPhone,
+    required TResult Function(String? text) copyText,
+    required TResult Function(String? url) launchURL,
+  }) {
+    return callPhone(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String googlePlaceID)? load,
+    TResult? Function()? toggleBusinessHourExpanded,
+    TResult? Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult? Function(String? phoneNumber)? callPhone,
+    TResult? Function(String? text)? copyText,
+    TResult? Function(String? url)? launchURL,
+  }) {
+    return callPhone?.call(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String googlePlaceID)? load,
+    TResult Function()? toggleBusinessHourExpanded,
+    TResult Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult Function(String? phoneNumber)? callPhone,
+    TResult Function(String? text)? copyText,
+    TResult Function(String? url)? launchURL,
+    required TResult orElse(),
+  }) {
+    if (callPhone != null) {
+      return callPhone(phoneNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadPlaceDetailEvent value) load,
+    required TResult Function(ToggleBusinessHourExpandedEvent value)
+        toggleBusinessHourExpanded,
+    required TResult Function(FetchPlaceImageEvent value) fetchImage,
+    required TResult Function(CallPhoneEvent value) callPhone,
+    required TResult Function(CopyTextEvent value) copyText,
+    required TResult Function(LaunchURL value) launchURL,
+  }) {
+    return callPhone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadPlaceDetailEvent value)? load,
+    TResult? Function(ToggleBusinessHourExpandedEvent value)?
+        toggleBusinessHourExpanded,
+    TResult? Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult? Function(CallPhoneEvent value)? callPhone,
+    TResult? Function(CopyTextEvent value)? copyText,
+    TResult? Function(LaunchURL value)? launchURL,
+  }) {
+    return callPhone?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadPlaceDetailEvent value)? load,
+    TResult Function(ToggleBusinessHourExpandedEvent value)?
+        toggleBusinessHourExpanded,
+    TResult Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult Function(CallPhoneEvent value)? callPhone,
+    TResult Function(CopyTextEvent value)? copyText,
+    TResult Function(LaunchURL value)? launchURL,
+    required TResult orElse(),
+  }) {
+    if (callPhone != null) {
+      return callPhone(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CallPhoneEvent implements PlaceDetailEvent {
+  const factory CallPhoneEvent(final String? phoneNumber) =
+      _$CallPhoneEventImpl;
+
+  String? get phoneNumber;
+  @JsonKey(ignore: true)
+  _$$CallPhoneEventImplCopyWith<_$CallPhoneEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CopyTextEventImplCopyWith<$Res> {
+  factory _$$CopyTextEventImplCopyWith(
+          _$CopyTextEventImpl value, $Res Function(_$CopyTextEventImpl) then) =
+      __$$CopyTextEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? text});
+}
+
+/// @nodoc
+class __$$CopyTextEventImplCopyWithImpl<$Res>
+    extends _$PlaceDetailEventCopyWithImpl<$Res, _$CopyTextEventImpl>
+    implements _$$CopyTextEventImplCopyWith<$Res> {
+  __$$CopyTextEventImplCopyWithImpl(
+      _$CopyTextEventImpl _value, $Res Function(_$CopyTextEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = freezed,
+  }) {
+    return _then(_$CopyTextEventImpl(
+      freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CopyTextEventImpl implements CopyTextEvent {
+  const _$CopyTextEventImpl(this.text);
+
+  @override
+  final String? text;
+
+  @override
+  String toString() {
+    return 'PlaceDetailEvent.copyText(text: $text)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CopyTextEventImpl &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CopyTextEventImplCopyWith<_$CopyTextEventImpl> get copyWith =>
+      __$$CopyTextEventImplCopyWithImpl<_$CopyTextEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String googlePlaceID) load,
+    required TResult Function() toggleBusinessHourExpanded,
+    required TResult Function(int placeID, int page, int pageSize) fetchImage,
+    required TResult Function(String? phoneNumber) callPhone,
+    required TResult Function(String? text) copyText,
+    required TResult Function(String? url) launchURL,
+  }) {
+    return copyText(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String googlePlaceID)? load,
+    TResult? Function()? toggleBusinessHourExpanded,
+    TResult? Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult? Function(String? phoneNumber)? callPhone,
+    TResult? Function(String? text)? copyText,
+    TResult? Function(String? url)? launchURL,
+  }) {
+    return copyText?.call(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String googlePlaceID)? load,
+    TResult Function()? toggleBusinessHourExpanded,
+    TResult Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult Function(String? phoneNumber)? callPhone,
+    TResult Function(String? text)? copyText,
+    TResult Function(String? url)? launchURL,
+    required TResult orElse(),
+  }) {
+    if (copyText != null) {
+      return copyText(text);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadPlaceDetailEvent value) load,
+    required TResult Function(ToggleBusinessHourExpandedEvent value)
+        toggleBusinessHourExpanded,
+    required TResult Function(FetchPlaceImageEvent value) fetchImage,
+    required TResult Function(CallPhoneEvent value) callPhone,
+    required TResult Function(CopyTextEvent value) copyText,
+    required TResult Function(LaunchURL value) launchURL,
+  }) {
+    return copyText(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadPlaceDetailEvent value)? load,
+    TResult? Function(ToggleBusinessHourExpandedEvent value)?
+        toggleBusinessHourExpanded,
+    TResult? Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult? Function(CallPhoneEvent value)? callPhone,
+    TResult? Function(CopyTextEvent value)? copyText,
+    TResult? Function(LaunchURL value)? launchURL,
+  }) {
+    return copyText?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadPlaceDetailEvent value)? load,
+    TResult Function(ToggleBusinessHourExpandedEvent value)?
+        toggleBusinessHourExpanded,
+    TResult Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult Function(CallPhoneEvent value)? callPhone,
+    TResult Function(CopyTextEvent value)? copyText,
+    TResult Function(LaunchURL value)? launchURL,
+    required TResult orElse(),
+  }) {
+    if (copyText != null) {
+      return copyText(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CopyTextEvent implements PlaceDetailEvent {
+  const factory CopyTextEvent(final String? text) = _$CopyTextEventImpl;
+
+  String? get text;
+  @JsonKey(ignore: true)
+  _$$CopyTextEventImplCopyWith<_$CopyTextEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LaunchURLImplCopyWith<$Res> {
+  factory _$$LaunchURLImplCopyWith(
+          _$LaunchURLImpl value, $Res Function(_$LaunchURLImpl) then) =
+      __$$LaunchURLImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? url});
+}
+
+/// @nodoc
+class __$$LaunchURLImplCopyWithImpl<$Res>
+    extends _$PlaceDetailEventCopyWithImpl<$Res, _$LaunchURLImpl>
+    implements _$$LaunchURLImplCopyWith<$Res> {
+  __$$LaunchURLImplCopyWithImpl(
+      _$LaunchURLImpl _value, $Res Function(_$LaunchURLImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = freezed,
+  }) {
+    return _then(_$LaunchURLImpl(
+      freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LaunchURLImpl implements LaunchURL {
+  const _$LaunchURLImpl(this.url);
+
+  @override
+  final String? url;
+
+  @override
+  String toString() {
+    return 'PlaceDetailEvent.launchURL(url: $url)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LaunchURLImpl &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LaunchURLImplCopyWith<_$LaunchURLImpl> get copyWith =>
+      __$$LaunchURLImplCopyWithImpl<_$LaunchURLImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String googlePlaceID) load,
+    required TResult Function() toggleBusinessHourExpanded,
+    required TResult Function(int placeID, int page, int pageSize) fetchImage,
+    required TResult Function(String? phoneNumber) callPhone,
+    required TResult Function(String? text) copyText,
+    required TResult Function(String? url) launchURL,
+  }) {
+    return launchURL(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String googlePlaceID)? load,
+    TResult? Function()? toggleBusinessHourExpanded,
+    TResult? Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult? Function(String? phoneNumber)? callPhone,
+    TResult? Function(String? text)? copyText,
+    TResult? Function(String? url)? launchURL,
+  }) {
+    return launchURL?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String googlePlaceID)? load,
+    TResult Function()? toggleBusinessHourExpanded,
+    TResult Function(int placeID, int page, int pageSize)? fetchImage,
+    TResult Function(String? phoneNumber)? callPhone,
+    TResult Function(String? text)? copyText,
+    TResult Function(String? url)? launchURL,
+    required TResult orElse(),
+  }) {
+    if (launchURL != null) {
+      return launchURL(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadPlaceDetailEvent value) load,
+    required TResult Function(ToggleBusinessHourExpandedEvent value)
+        toggleBusinessHourExpanded,
+    required TResult Function(FetchPlaceImageEvent value) fetchImage,
+    required TResult Function(CallPhoneEvent value) callPhone,
+    required TResult Function(CopyTextEvent value) copyText,
+    required TResult Function(LaunchURL value) launchURL,
+  }) {
+    return launchURL(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadPlaceDetailEvent value)? load,
+    TResult? Function(ToggleBusinessHourExpandedEvent value)?
+        toggleBusinessHourExpanded,
+    TResult? Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult? Function(CallPhoneEvent value)? callPhone,
+    TResult? Function(CopyTextEvent value)? copyText,
+    TResult? Function(LaunchURL value)? launchURL,
+  }) {
+    return launchURL?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadPlaceDetailEvent value)? load,
+    TResult Function(ToggleBusinessHourExpandedEvent value)?
+        toggleBusinessHourExpanded,
+    TResult Function(FetchPlaceImageEvent value)? fetchImage,
+    TResult Function(CallPhoneEvent value)? callPhone,
+    TResult Function(CopyTextEvent value)? copyText,
+    TResult Function(LaunchURL value)? launchURL,
+    required TResult orElse(),
+  }) {
+    if (launchURL != null) {
+      return launchURL(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LaunchURL implements PlaceDetailEvent {
+  const factory LaunchURL(final String? url) = _$LaunchURLImpl;
+
+  String? get url;
+  @JsonKey(ignore: true)
+  _$$LaunchURLImplCopyWith<_$LaunchURLImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

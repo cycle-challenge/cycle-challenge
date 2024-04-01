@@ -40,8 +40,14 @@ class _PlaceImageViewState extends State<PlaceImageView> {
     _subscription = viewModel.stream.listen((event) => event.when(
         addImages: (images, nextPageNumber) =>
             _pagingController.appendPage(images, nextPageNumber),
-        addLastImages: (images) => _pagingController.appendLastPage(images)));
-
+        addLastImages: (images) => _pagingController.appendLastPage(images),
+        showSnackBar: (message) {
+          final snackBar = SnackBar(
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              content:
+                  Text(message, style: Theme.of(context).textTheme.bodyLarge));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }));
   }
 
   @override
