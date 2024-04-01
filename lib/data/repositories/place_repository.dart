@@ -8,11 +8,12 @@ import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 
 class PlaceRepository {
+
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
   final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
 
-  Future<List<PlaceModel>> findNearby(double latitude, double longitude, int radius) async {
-
+  Future<List<PlaceModel>> findNearby(
+      double latitude, double longitude, int radius) async {
     Map<String, String> params = {
       'location': '$latitude,$longitude',
       'radius': radius.toString(),
@@ -20,7 +21,8 @@ class PlaceRepository {
 
     Uri uri = Uri.http(remoteUrl, '/api/v1/places/nearby', params);
 
-    Response response = await get(uri, headers: {'Content-type': 'application/json; charset=UTF-8'});
+    Response response = await get(uri,
+        headers: {'Content-type': 'application/json; charset=UTF-8'});
 
     if (response.statusCode == HttpStatus.ok) {
       Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
@@ -40,8 +42,8 @@ class PlaceRepository {
       'languageCode': 'ko'
     };
 
-    Uri uri = Uri.https(
-        'places.googleapis.com', '/v1/places/$googlePlaceId', params);
+    Uri uri =
+        Uri.https('places.googleapis.com', '/v1/places/$googlePlaceId', params);
 
     Response response = await get(uri,
         headers: {'Content-type': 'application/json; charset=UTF-8'});
@@ -54,7 +56,8 @@ class PlaceRepository {
     }
   }
 
-  Future<PageModel<ImageModel>> getImages(int id, int page, int pageSize) async {
+  Future<PageModel<ImageModel>> getImages(
+      int id, int page, int pageSize) async {
     Map<String, String> params = {
       'page': page.toString(),
       'pageSize': pageSize.toString()

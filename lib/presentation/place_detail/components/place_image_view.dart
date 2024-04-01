@@ -1,16 +1,21 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
-import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceImageView extends StatefulWidget {
+  final PlaceModel place;
+
+  const PlaceImageView({super.key, required this.place});
+
   @override
   State<PlaceImageView> createState() => _PlaceImageViewState();
 }
@@ -20,40 +25,30 @@ class _PlaceImageViewState extends State<PlaceImageView> {
 
   final PagingController<int, ImageModel> _pagingController =
       PagingController(firstPageKey: 1);
-  final ScrollController _scrollController = ScrollController();
+
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
-    _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(pageKey);
-    });
-    _scrollController.addListener(() {
-      bool canScrollUp = _scrollController.offset > 0;
-      context.read<BottomSheetState>().setCanViewScrollUp(canScrollUp);
-    });
-
     super.initState();
-  }
+    final viewModel = context.read<PlaceDetailViewModel>();
 
-  Future<void> _fetchPage(int pageKey) async {
-    try {
-      final PageModel<ImageModel> page =
-          await context.read<PlaceViewModel>().getImages(pageKey, _pageSize);
+    _pagingController.addPageRequestListener((pageKey) {
+      viewModel.onEvent(
+          PlaceDetailEvent.fetchImage(widget.place.id, pageKey, _pageSize));
+    });
+    _subscription = viewModel.stream.listen((event) => event.when(
+        addImages: (images, nextPageNumber) =>
+            _pagingController.appendPage(images, nextPageNumber),
+        addLastImages: (images) => _pagingController.appendLastPage(images)));
 
-      if (!page.hasNextPage) {
-        return _pagingController.appendLastPage(page.entities);
-      }
-
-      final int nextPageKey = pageKey + page.entities.length;
-      return _pagingController.appendPage(page.entities, nextPageKey);
-    } catch (error) {
-      _pagingController.error = error;
-    }
   }
 
   @override
   void dispose() {
     _pagingController.dispose();
+    _subscription?.cancel();
+
     super.dispose();
   }
 
@@ -61,7 +56,6 @@ class _PlaceImageViewState extends State<PlaceImageView> {
   Widget build(BuildContext context) {
     return PagedGridView<int, ImageModel>(
       pagingController: _pagingController,
-      scrollController: _scrollController,
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
       builderDelegate: PagedChildBuilderDelegate<ImageModel>(
           itemBuilder: (context, item, index) => InkWell(
@@ -74,10 +68,10 @@ class _PlaceImageViewState extends State<PlaceImageView> {
                     return showSnackbar(context, "이미지가 존재하지 않습니다.");
                   }
 
-                  showImageViewerPager(context,
+                  showImageViewerPager(
+                      context,
                       useSafeArea: true,
                       MultiImageProvider(images, initialIndex: index));
-
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),

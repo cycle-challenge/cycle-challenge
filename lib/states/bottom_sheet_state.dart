@@ -23,9 +23,6 @@ class BottomSheetState with ChangeNotifier {
 
   bool get isBusinessHourExpanded => _isBusinessHourExpanded;
 
-  late final TabController? _tabController;
-  TabController? get tabController => _tabController;
-
   set isBusinessHourExpanded(bool value) {
     _isBusinessHourExpanded = value;
     notifyListeners();
@@ -34,9 +31,6 @@ class BottomSheetState with ChangeNotifier {
   void setCanViewScrollUp(bool isSheetDragging) {
     _canViewScrollUp = isSheetDragging;
     notifyListeners();
-  }
-  void init(TabController controller) {
-    _tabController = controller;
   }
 
   void clear() {

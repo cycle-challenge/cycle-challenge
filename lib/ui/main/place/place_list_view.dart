@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
@@ -48,9 +51,13 @@ class PlaceListView extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
-                  pushNavigate(context);
-                  context.read<PlaceViewModel>().selectPlace(place.id);
-                  context.read<BottomSheetState>().expand();
+                  UseCases useCases = context.read<UseCases>();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => ChangeNotifierProvider(
+                            create: (_) => PlaceDetailViewModel(
+                                place.googlePlaceId, useCases),
+                            child: PlaceDetailScreen(place: place),
+                          )));
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 25),

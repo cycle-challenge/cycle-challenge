@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/google_map_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
@@ -15,7 +16,8 @@ void main() async {
       ChangeNotifierProvider<BottomSheetState>(
           create: (_) => BottomSheetState()),
       ChangeNotifierProvider<NavigationState>(
-          create: (_) => NavigationState())
+          create: (_) => NavigationState()),
+      ...globalProviders
     ],
     child: const MainApp(),
   ));

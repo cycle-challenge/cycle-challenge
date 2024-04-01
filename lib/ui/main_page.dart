@@ -28,10 +28,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     bool isPlaceSelected = context.watch<PlaceViewModel>().isSelected;
     bool isSheetShown = getIsSheetShown(context);
-
     bool isExpanded = context.watch<BottomSheetState>().isExpanded;
-
-    PlaceModel? selectedPlace = context.watch<PlaceViewModel>().selectedPlace;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -43,26 +40,14 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                     onPressed: () => popNavigate(context),
                   )
                 : null,
-        title: (isSheetShown && isExpanded && isPlaceSelected)
-            ? Text(selectedPlace?.name ?? "")
-            : const MapSearchBar(),
+        title: const MapSearchBar(),
         backgroundColor: (isSheetShown && isExpanded)
             ? Theme.of(context).colorScheme.surface
             : Theme.of(context).colorScheme.surface.withOpacity(0.0),
         scrolledUnderElevation: 0,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(51.0),
-          child: (isSheetShown && isExpanded && isPlaceSelected)
-              ? TabBar(
-                  controller: context.watch<BottomSheetState>().tabController,
-                  tabs: const [
-                    Tab(text: "메인"),
-                    Tab(text: "사진"),
-                    Tab(text: "리뷰"),
-                    Tab(text: "여행")
-                  ],
-                )
-              : const PlaceTypeFilterWidget(),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(51.0),
+          child: PlaceTypeFilterWidget(),
         ),
       ),
       body: LayoutBuilder(builder: (context, constraints) {
@@ -170,12 +155,5 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               ],
             ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    TabController tabController = TabController(length: 4, vsync: this);
-    context.read<BottomSheetState>().init(tabController);
   }
 }

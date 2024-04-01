@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
-import 'package:yeohaeng_ttukttak/ui/main/place/place_detail_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/place/place_list_view.dart';
 import 'package:yeohaeng_ttukttak/ui/main/place/place_simple_view.dart';
 
@@ -22,10 +24,14 @@ class BottomSheetWidget extends StatelessWidget {
     int navigationIndex = context.watch<NavigationState>().selectedIndex;
     List<TravelModel> travels = context.watch<PlaceViewModel>().travels;
 
+    PlaceViewModel viewModel = context.watch<PlaceViewModel>();
+    UseCases useCases = context.read<UseCases>();
 
     Widget view = isPlaceSelected
-        ? (isExpanded ? PlaceDetailView() : PlaceSimpleView())
-        : (navigationIndex == 1 ? PlaceListView() : TravelListView(travels: travels));
+        ? PlaceSimpleView()
+        : (navigationIndex == 1
+            ? PlaceListView()
+            : TravelListView(travels: travels));
 
     return Positioned(
       bottom: 0.0,
