@@ -19,6 +19,10 @@ mixin _$MapState {
   bool get isShownSearchButton => throw _privateConstructorUsedError;
   bool get isDetermining => throw _privateConstructorUsedError;
   int get navigationIndex => throw _privateConstructorUsedError;
+  Map<String, BitmapDescriptor> get markerIcon =>
+      throw _privateConstructorUsedError;
+  Map<String, BitmapDescriptor> get selectedMarkerIcon =>
+      throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
 
@@ -36,6 +40,8 @@ abstract class $MapStateCopyWith<$Res> {
       {bool isShownSearchButton,
       bool isDetermining,
       int navigationIndex,
+      Map<String, BitmapDescriptor> markerIcon,
+      Map<String, BitmapDescriptor> selectedMarkerIcon,
       double latitude,
       double longitude});
 }
@@ -56,6 +62,8 @@ class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
     Object? isShownSearchButton = null,
     Object? isDetermining = null,
     Object? navigationIndex = null,
+    Object? markerIcon = null,
+    Object? selectedMarkerIcon = null,
     Object? latitude = null,
     Object? longitude = null,
   }) {
@@ -72,6 +80,14 @@ class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
           ? _value.navigationIndex
           : navigationIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      markerIcon: null == markerIcon
+          ? _value.markerIcon
+          : markerIcon // ignore: cast_nullable_to_non_nullable
+              as Map<String, BitmapDescriptor>,
+      selectedMarkerIcon: null == selectedMarkerIcon
+          ? _value.selectedMarkerIcon
+          : selectedMarkerIcon // ignore: cast_nullable_to_non_nullable
+              as Map<String, BitmapDescriptor>,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -96,6 +112,8 @@ abstract class _$$MapStateImplCopyWith<$Res>
       {bool isShownSearchButton,
       bool isDetermining,
       int navigationIndex,
+      Map<String, BitmapDescriptor> markerIcon,
+      Map<String, BitmapDescriptor> selectedMarkerIcon,
       double latitude,
       double longitude});
 }
@@ -114,6 +132,8 @@ class __$$MapStateImplCopyWithImpl<$Res>
     Object? isShownSearchButton = null,
     Object? isDetermining = null,
     Object? navigationIndex = null,
+    Object? markerIcon = null,
+    Object? selectedMarkerIcon = null,
     Object? latitude = null,
     Object? longitude = null,
   }) {
@@ -130,6 +150,14 @@ class __$$MapStateImplCopyWithImpl<$Res>
           ? _value.navigationIndex
           : navigationIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      markerIcon: null == markerIcon
+          ? _value._markerIcon
+          : markerIcon // ignore: cast_nullable_to_non_nullable
+              as Map<String, BitmapDescriptor>,
+      selectedMarkerIcon: null == selectedMarkerIcon
+          ? _value._selectedMarkerIcon
+          : selectedMarkerIcon // ignore: cast_nullable_to_non_nullable
+              as Map<String, BitmapDescriptor>,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -149,8 +177,12 @@ class _$MapStateImpl implements _MapState {
       {this.isShownSearchButton = false,
       this.isDetermining = false,
       this.navigationIndex = 0,
+      final Map<String, BitmapDescriptor> markerIcon = const {},
+      final Map<String, BitmapDescriptor> selectedMarkerIcon = const {},
       this.latitude = 37.6272,
-      this.longitude = 127.4987});
+      this.longitude = 127.4987})
+      : _markerIcon = markerIcon,
+        _selectedMarkerIcon = selectedMarkerIcon;
 
   @override
   @JsonKey()
@@ -161,6 +193,25 @@ class _$MapStateImpl implements _MapState {
   @override
   @JsonKey()
   final int navigationIndex;
+  final Map<String, BitmapDescriptor> _markerIcon;
+  @override
+  @JsonKey()
+  Map<String, BitmapDescriptor> get markerIcon {
+    if (_markerIcon is EqualUnmodifiableMapView) return _markerIcon;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_markerIcon);
+  }
+
+  final Map<String, BitmapDescriptor> _selectedMarkerIcon;
+  @override
+  @JsonKey()
+  Map<String, BitmapDescriptor> get selectedMarkerIcon {
+    if (_selectedMarkerIcon is EqualUnmodifiableMapView)
+      return _selectedMarkerIcon;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_selectedMarkerIcon);
+  }
+
   @override
   @JsonKey()
   final double latitude;
@@ -170,7 +221,7 @@ class _$MapStateImpl implements _MapState {
 
   @override
   String toString() {
-    return 'MapState(isShownSearchButton: $isShownSearchButton, isDetermining: $isDetermining, navigationIndex: $navigationIndex, latitude: $latitude, longitude: $longitude)';
+    return 'MapState(isShownSearchButton: $isShownSearchButton, isDetermining: $isDetermining, navigationIndex: $navigationIndex, markerIcon: $markerIcon, selectedMarkerIcon: $selectedMarkerIcon, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -184,6 +235,10 @@ class _$MapStateImpl implements _MapState {
                 other.isDetermining == isDetermining) &&
             (identical(other.navigationIndex, navigationIndex) ||
                 other.navigationIndex == navigationIndex) &&
+            const DeepCollectionEquality()
+                .equals(other._markerIcon, _markerIcon) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedMarkerIcon, _selectedMarkerIcon) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -191,8 +246,15 @@ class _$MapStateImpl implements _MapState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isShownSearchButton,
-      isDetermining, navigationIndex, latitude, longitude);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isShownSearchButton,
+      isDetermining,
+      navigationIndex,
+      const DeepCollectionEquality().hash(_markerIcon),
+      const DeepCollectionEquality().hash(_selectedMarkerIcon),
+      latitude,
+      longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -206,6 +268,8 @@ abstract class _MapState implements MapState {
       {final bool isShownSearchButton,
       final bool isDetermining,
       final int navigationIndex,
+      final Map<String, BitmapDescriptor> markerIcon,
+      final Map<String, BitmapDescriptor> selectedMarkerIcon,
       final double latitude,
       final double longitude}) = _$MapStateImpl;
 
@@ -215,6 +279,10 @@ abstract class _MapState implements MapState {
   bool get isDetermining;
   @override
   int get navigationIndex;
+  @override
+  Map<String, BitmapDescriptor> get markerIcon;
+  @override
+  Map<String, BitmapDescriptor> get selectedMarkerIcon;
   @override
   double get latitude;
   @override

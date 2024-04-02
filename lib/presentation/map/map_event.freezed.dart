@@ -25,7 +25,6 @@ mixin _$MapEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -42,7 +41,6 @@ mixin _$MapEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -59,7 +57,6 @@ mixin _$MapEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -77,7 +74,6 @@ mixin _$MapEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -95,7 +91,6 @@ mixin _$MapEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -113,7 +108,6 @@ mixin _$MapEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -188,7 +182,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -208,7 +201,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -228,7 +220,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -252,7 +243,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -273,7 +263,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -294,7 +283,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -386,7 +374,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -406,7 +393,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -426,7 +412,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -450,7 +435,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -471,7 +455,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -492,7 +475,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -591,7 +573,6 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -611,7 +592,6 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -631,7 +611,6 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -655,7 +634,6 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -676,7 +654,6 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -697,7 +674,6 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -796,7 +772,6 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -816,7 +791,6 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -836,7 +810,6 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -860,7 +833,6 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -881,7 +853,6 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -902,7 +873,6 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1001,7 +971,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -1021,7 +990,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1041,7 +1009,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1065,7 +1032,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -1086,7 +1052,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1107,7 +1072,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1180,7 +1144,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -1200,7 +1163,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1220,7 +1182,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1244,7 +1205,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -1265,7 +1225,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1286,7 +1245,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1351,7 +1309,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -1371,7 +1328,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1391,7 +1347,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1415,7 +1370,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -1436,7 +1390,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1457,7 +1410,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1475,177 +1427,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
 
 abstract class ShowSearchButton implements MapEvent {
   const factory ShowSearchButton() = _$ShowSearchButtonImpl;
-}
-
-/// @nodoc
-abstract class _$$HideSearchButtonImplCopyWith<$Res> {
-  factory _$$HideSearchButtonImplCopyWith(_$HideSearchButtonImpl value,
-          $Res Function(_$HideSearchButtonImpl) then) =
-      __$$HideSearchButtonImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$HideSearchButtonImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$HideSearchButtonImpl>
-    implements _$$HideSearchButtonImplCopyWith<$Res> {
-  __$$HideSearchButtonImplCopyWithImpl(_$HideSearchButtonImpl _value,
-      $Res Function(_$HideSearchButtonImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$HideSearchButtonImpl implements HideSearchButton {
-  const _$HideSearchButtonImpl();
-
-  @override
-  String toString() {
-    return 'MapEvent.hideSearchButton()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HideSearchButtonImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return hideSearchButton();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return hideSearchButton?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (hideSearchButton != null) {
-      return hideSearchButton();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return hideSearchButton(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return hideSearchButton?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (hideSearchButton != null) {
-      return hideSearchButton(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class HideSearchButton implements MapEvent {
-  const factory HideSearchButton() = _$HideSearchButtonImpl;
 }
 
 /// @nodoc
@@ -1693,7 +1474,6 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -1713,7 +1493,6 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1733,7 +1512,6 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1757,7 +1535,6 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -1778,7 +1555,6 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1799,7 +1575,6 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1865,7 +1640,6 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -1885,7 +1659,6 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1905,7 +1678,6 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -1929,7 +1701,6 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -1950,7 +1721,6 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -1971,7 +1741,6 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -2065,7 +1834,6 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -2085,7 +1853,6 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -2105,7 +1872,6 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -2129,7 +1895,6 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -2150,7 +1915,6 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -2171,7 +1935,6 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -2246,7 +2009,6 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -2266,7 +2028,6 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -2286,7 +2047,6 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -2310,7 +2070,6 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -2331,7 +2090,6 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -2352,7 +2110,6 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -2445,7 +2202,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() hideSearchButton,
     required TResult Function() expandBottomSheet,
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
@@ -2465,7 +2221,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? hideSearchButton,
     TResult? Function()? expandBottomSheet,
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -2485,7 +2240,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? hideSearchButton,
     TResult Function()? expandBottomSheet,
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
@@ -2509,7 +2263,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(HideSearchButton value) hideSearchButton,
     required TResult Function(ExpandBottomSheet value) expandBottomSheet,
     required TResult Function(ContractBottomSheet value) contractBottomSheet,
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
@@ -2530,7 +2283,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(HideSearchButton value)? hideSearchButton,
     TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult? Function(ContractBottomSheet value)? contractBottomSheet,
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
@@ -2551,7 +2303,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(HideSearchButton value)? hideSearchButton,
     TResult Function(ExpandBottomSheet value)? expandBottomSheet,
     TResult Function(ContractBottomSheet value)? contractBottomSheet,
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,

@@ -14,7 +14,6 @@ abstract class MapEvent with _$MapEvent {
   const factory MapEvent.changePosition(CameraPosition position) = ChangePositionEvent;
   const factory MapEvent.changeToMyPosition() = MoveToMyPositionEvent;
   const factory MapEvent.showSearchButton() = ShowSearchButton;
-  const factory MapEvent.hideSearchButton() = HideSearchButton;
   const factory MapEvent.expandBottomSheet() = ExpandBottomSheet;
   const factory MapEvent.contractBottomSheet() = ContractBottomSheet;
   const factory MapEvent.setCanViewScrollUp(bool canViewScrollUp) = CanViewScrollUpEvent;

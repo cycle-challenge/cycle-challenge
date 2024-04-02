@@ -32,7 +32,17 @@ class MapViewModel with ChangeNotifier {
 
   final UseCases useCases;
 
-  MapViewModel(this.useCases);
+  MapViewModel(this.useCases) {
+    useCases.loadMarker().then((result) => result.when(
+        success: (data) {
+          final (makrerIcon, selectedMarkerIcon) = data;
+          _state = _state.copyWith(
+              markerIcon: makrerIcon, selectedMarkerIcon: selectedMarkerIcon);
+          notifyListeners();
+        },
+        error: (message) =>
+            _eventController.add(MapUIEvent.showSnackBar(message))));
+  }
 
   // getter
   MapState get state => _state;
@@ -47,7 +57,6 @@ class MapViewModel with ChangeNotifier {
         changeNavigation: _changeNavigation,
         changePosition: _changePosition,
         showSearchButton: _showSearchButton,
-        hideSearchButton: _hideSearchButton,
         expandBottomSheet: _expandBottomSheet,
         contractBottomSheet: _contractBottomSheet,
         setCanViewScrollUp: _setCanViewScrollUp,
@@ -59,8 +68,8 @@ class MapViewModel with ChangeNotifier {
   void _findNearbyPlace() async {
     _state = _state.copyWith(isShownSearchButton: false);
 
-    final result = await useCases.getNearbyPlaces(
-      _state.latitude, _state.longitude);
+    final result =
+        await useCases.getNearbyPlaces(_state.latitude, _state.longitude);
 
     result.when(success: (result) {
       final (places, travels) = result;
@@ -122,11 +131,6 @@ class MapViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void _hideSearchButton() {
-    _state = _state.copyWith(isShownSearchButton: false);
-    notifyListeners();
-  }
-
   void _expandBottomSheet() {
     _bottomSheetState = _bottomSheetState.copyWith(
         height: _bottomSheetState.maxHeight,
@@ -171,9 +175,7 @@ class MapViewModel with ChangeNotifier {
     } else if (filter is TravelFilter) {
       _filterDataState = _filterDataState.copyWith(travelFilter: filter);
     }
-
     _filter();
-
     notifyListeners();
   }
 }

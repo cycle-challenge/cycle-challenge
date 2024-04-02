@@ -19,7 +19,6 @@ class SearchButtonWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         viewModel.onEvent(const MapEvent.findNearbyPlace());
-        viewModel.onEvent(const MapEvent.hideSearchButton());
       },
       child: Container(
         width: 155,

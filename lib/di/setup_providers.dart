@@ -8,6 +8,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/get_nearby_places_use_case.dar
 import 'package:yeohaeng_ttukttak/domain/use_case/get_place_detail_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_place_image_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/launch_url_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/load_marker_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
@@ -23,6 +24,7 @@ List<SingleChildWidget> independentModules = [
   Provider<CopyTextUseCase>(create: (_) => CopyTextUseCase()),
   Provider<LaunchUrlUseCase>(create: (_) => LaunchUrlUseCase()),
   Provider<GetMyLocationUseCase>(create: (_) => GetMyLocationUseCase()),
+  Provider<LoadMarkerUseCase>(create: (_) => LoadMarkerUseCase()),
 ];
 
 List<SingleChildWidget> dependentModules = [
@@ -39,7 +41,8 @@ List<SingleChildWidget> dependentModules = [
       copyText: context.read<CopyTextUseCase>(),
       launchURL: context.read<LaunchUrlUseCase>(),
       getNearbyPlaces: context.read<GetNearbyPlacesUseCase>(),
-      getMyLocation: context.read<GetMyLocationUseCase>()))
+      getMyLocation: context.read<GetMyLocationUseCase>(),
+      loadMarker: context.read<LoadMarkerUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [
