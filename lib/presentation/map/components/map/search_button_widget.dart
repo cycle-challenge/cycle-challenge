@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
-class SearchNearbyButtonWidget extends StatelessWidget {
+class SearchButtonWidget extends StatelessWidget {
 
-  const SearchNearbyButtonWidget({
+  const SearchButtonWidget({
     super.key
   });
 

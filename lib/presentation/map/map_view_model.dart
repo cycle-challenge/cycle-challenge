@@ -107,6 +107,7 @@ class MapViewModel with ChangeNotifier {
 
   void _changeNavigation(int index) {
     _state = _state.copyWith(navigationIndex: index);
+    notifyListeners();
   }
 
   void _changePosition(CameraPosition position) {

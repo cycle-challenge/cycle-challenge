@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/ui/main/travel/travel_detail_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
 class TravelListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();

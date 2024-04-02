@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/ui/main/place/place_list_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/components/place_list_view.dart';
 
-import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/components/travel_list_view.dart';
 
-class BottomSheetWidget extends StatelessWidget {
-  const BottomSheetWidget({super.key});
+class BottomSheetView extends StatelessWidget {
+  const BottomSheetView({super.key});
 
   @override
   Widget build(BuildContext context) {

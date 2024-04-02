@@ -4,18 +4,18 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import '../../utils/marker.dart';
+import '../../../../utils/marker.dart';
 
-class CustomGoogleMap extends StatefulWidget {
-  const CustomGoogleMap({super.key, required this.onMapCreated});
+class MapView extends StatefulWidget {
+  const MapView({super.key, required this.onMapCreated});
 
   final void Function(GoogleMapController mapController) onMapCreated;
 
   @override
-  State<CustomGoogleMap> createState() => _CustomGoogleMapState();
+  State<MapView> createState() => _MapViewState();
 }
 
-class _CustomGoogleMapState extends State<CustomGoogleMap> {
+class _MapViewState extends State<MapView> {
   Future<Map<String, Map<String, BitmapDescriptor>>> _loadMarkers() async {
     final Map<String, BitmapDescriptor> markerIcon = {},
         selectedMarkerIcon = {};

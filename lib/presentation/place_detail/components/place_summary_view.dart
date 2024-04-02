@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
-import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/components/travel_list_view.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceSummaryView extends StatelessWidget {

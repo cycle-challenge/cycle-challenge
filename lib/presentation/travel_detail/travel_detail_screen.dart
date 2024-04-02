@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -10,16 +7,17 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
-import 'package:yeohaeng_ttukttak/states/travel_detail_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
-class TravelDetailView extends StatelessWidget {
+class TravelDetailScreen extends StatelessWidget {
   final TravelModel travel;
 
-  TravelDetailView({super.key, required this.travel});
-
   GoogleMapController? _controller;
+
+  TravelDetailScreen({super.key, required this.travel});
+
 
   @override
   Widget build(BuildContext context) {
@@ -327,6 +325,6 @@ class TravelDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TravelDetailViewModel>(
         create: (context) => TravelDetailViewModel(context, travel.id),
-        child: TravelDetailView(travel: travel));
+        child: TravelDetailScreen(travel: travel));
   }
 }

@@ -7,7 +7,7 @@ import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_sum
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_image_view.dart';
-import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/components/travel_list_view.dart';
 
 class PlaceDetailScreen extends StatefulWidget {
   final PlaceModel place;
