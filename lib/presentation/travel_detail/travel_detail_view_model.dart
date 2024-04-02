@@ -1,14 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:widget_to_marker/widget_to_marker.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
+import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_ui_event.dart';
 
 class TravelDetailViewModel with ChangeNotifier {
   late final TravelRepository _repository;
-
-  late final BuildContext _context;
 
   List<DailyVisitSummary> _dailySummaries = [];
 
@@ -18,12 +18,47 @@ class TravelDetailViewModel with ChangeNotifier {
 
   bool get hasPrev => _index - 1 >= 0;
 
+
+  final StreamController<TravelDetailUIEvent> _eventController =
+  StreamController.broadcast();
+  Stream<TravelDetailUIEvent> get stream => _eventController.stream;
+
+
+  void onEvent(TravelDetailEvent event) {
+    event.when(changeVisit: _changeVisit);
+  }
+
+  void _changeVisit(int index) {
+
+    final visits = _dailySummaries[_index].visits;
+    if (index >= visits.length || index < 0) return;
+
+    int prevIndex = _visitIndex;
+    _visitIndex = index;
+
+    if (prevIndex == _visitIndex) return;
+
+    Bound bound = _zoomLevel == 0 ? _dailySummaries[_index].bound.entire :
+    _dailySummaries[_index].bound.visits[_visitIndex];
+    _eventController.add(TravelDetailUIEvent.moveBound(bound, _zoomLevel));
+    notifyListeners();
+  }
+
   bool get hasNextVisit {
     if (_dailySummaries.isEmpty) return false;
     return _visitIndex + 1 < _dailySummaries[_index].visits.length;
   }
 
   bool get hasPrevVisit => _visitIndex - 1 >= 0;
+
+  set visitIndex(int value) {
+    int prevIndex = _visitIndex;
+    _visitIndex = value;
+
+    if (prevIndex != value) {
+      notifyListeners();
+    }
+  }
 
   bool _isExpanded = false;
 
@@ -32,13 +67,6 @@ class TravelDetailViewModel with ChangeNotifier {
     _isExpanded = !_isExpanded;
     notifyListeners();
   }
-
-  final List<Set<Marker>> _markers = [];
-  List<Set<Marker>> get markers => _markers;
-
-  Set<Polyline> _polylines = {};
-
-  Set<Polyline> get polylines => _polylines;
 
   int _index = 0;
 
@@ -58,12 +86,6 @@ class TravelDetailViewModel with ChangeNotifier {
 
   int get imageIndex => _imageIndex;
 
-  set imageIndex(int value) {
-    _imageIndex = value;
-    notifyListeners();
-  }
-
-
   set zoomLevel(int value) {
     _zoomLevel = value;
     notifyListeners();
@@ -75,30 +97,13 @@ class TravelDetailViewModel with ChangeNotifier {
   VisitModel? get visit =>
       summary != null ? summary?.visits[_visitIndex] : null;
 
-  void nextVisit() {
-    if (_dailySummaries.isEmpty) return;
-    if (!hasNextVisit) return;
-
-    _visitIndex++;
-    _imageIndex = 0;
-    initMarker();
-  }
-
-  void prevVisit() {
-    if (_dailySummaries.isEmpty) return;
-    if (!hasPrevVisit) return;
-
-    _visitIndex--;
-    _imageIndex = 0;
-    initMarker();
-  }
 
   void next() {
     if (!hasNext) return;
     _index++;
     _visitIndex = 0;
     _imageIndex = 0;
-    initMarker();
+    notifyListeners();
   }
 
   void prev() {
@@ -106,88 +111,18 @@ class TravelDetailViewModel with ChangeNotifier {
     _index--;
     _visitIndex = 0;
     _imageIndex = 0;
-    initMarker();
+    notifyListeners();
   }
 
-  TravelDetailViewModel(BuildContext context, int travelID) {
+  TravelDetailViewModel(int travelID) {
     _repository = TravelRepository();
-    _context = context;
     _loadItems(travelID).then((_) {
-      for (var _ in _dailySummaries) {
-        _markers.add({});
-      }
-      initMarker();
+      Bound bound = _zoomLevel == 0 ? _dailySummaries[_index].bound.entire :
+      _dailySummaries[_index].bound.visits[_visitIndex];
+      _eventController.add(TravelDetailUIEvent.moveBound(bound, _zoomLevel));
     });
   }
 
-  Future<void> initMarker() async {
-    List<Future<void>> list = [];
-
-    List<LatLng> locations = [];
-
-    _polylines.clear();
-
-    for (int i = 0; i < _dailySummaries[_index].visits.length; i++) {
-      VisitModel visit = _dailySummaries[_index].visits[i];
-      PlaceModel place = visit.place;
-
-      int selectedId = _dailySummaries[_index].visits[visitIndex].id;
-      TextStyle? titleLarge = Theme.of(_context)
-          .textTheme
-          .titleLarge
-          ?.copyWith(fontWeight: FontWeight.w600);
-
-      list.add(Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(0.3)),
-            shape: BoxShape.circle,
-            color: visit.id == selectedId ?  Colors.blue : Colors.white),
-        child: Center(
-          child: Text(
-            (i + 1).toString(),
-            style: titleLarge?.copyWith(
-                color: visit.id == selectedId ? Colors.white : Colors.black),
-          ),
-        ),
-      ).toBitmapDescriptor().then((widget) => _markers[_index].add(Marker(
-          markerId: MarkerId(place.id.toString()),
-          onTap: () {
-            _visitIndex = i;
-            notifyListeners();
-            initMarker();
-          },
-          consumeTapEvents: true,
-          anchor: const Offset(0.5, 0.5),
-          icon: widget,
-          zIndex: visit.id == selectedId ? 100 : 1,
-          position:
-              LatLng(place.location.latitude, place.location.longitude)))));
-
-      locations.add(LatLng(place.location.latitude, place.location.longitude));
-
-      if (i + 1 < _dailySummaries[_index].visits.length) {
-        VisitModel nextVisit = _dailySummaries[_index].visits[i + 1];
-
-        _polylines.add(Polyline(
-            polylineId: PolylineId("poly-$i"),
-            color: visit.id == selectedId || nextVisit.id == selectedId
-                ? Colors.blue
-                : Theme.of(_context).colorScheme.onSurface,
-            width: 2,
-            zIndex: 1,
-            points: [
-              LatLng(place.location.latitude, place.location.longitude),
-              LatLng(nextVisit.place.location.latitude,
-                  nextVisit.place.location.longitude)
-            ]));
-      }
-    }
-
-    await Future.wait(list);
-    notifyListeners();
-  }
 
   Future<void> _loadItems(int travelID) async {
     _dailySummaries = await _repository.findVisits(travelID);

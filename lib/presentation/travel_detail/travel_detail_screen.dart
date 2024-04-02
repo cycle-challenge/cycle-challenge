@@ -1,285 +1,311 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
-import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
-class TravelDetailScreen extends StatelessWidget {
+class TravelDetailScreen extends StatefulWidget {
   final TravelModel travel;
 
+  const TravelDetailScreen({super.key, required this.travel});
+
+  @override
+  State<TravelDetailScreen> createState() => _TravelDetailScreenState();
+}
+
+class _TravelDetailScreenState extends State<TravelDetailScreen> {
   GoogleMapController? _controller;
 
-  TravelDetailScreen({super.key, required this.travel});
+  final _scrollController = ScrollController();
 
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      TravelDetailViewModel viewModel = context.read<TravelDetailViewModel>();
+
+      _scrollController.addListener(() {
+        double offset = _scrollController.offset;
+        const double itemHeight = 236;
+
+        if (offset < itemHeight) {
+          viewModel.visitIndex = 0;
+          return;
+        }
+
+        int index = ((offset - itemHeight) / itemHeight).ceil();
+        viewModel.onEvent(TravelDetailEvent.changeVisit(index));
+      });
+
+      viewModel.stream.listen((event) =>
+          event.when(moveBound: (bound, zoomLevel) async {
+            LatLngBounds bounds = LatLngBounds(
+                southwest:
+                    LatLng(bound.southwest.latitude, bound.southwest.longitude),
+                northeast: LatLng(
+                    bound.northeast.latitude, bound.northeast.longitude));
+
+            _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 50));
+
+            if (zoomLevel == 1) {
+              final curtZoomLevel = await _controller?.getZoomLevel();
+              if (curtZoomLevel != null && curtZoomLevel > 14.0) {
+                _controller?.moveCamera(CameraUpdate.zoomTo(14.0));
+              }
+            }
+          }));
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     TravelDetailViewModel viewModel = context.watch<TravelDetailViewModel>();
 
-    int index = context.watch<TravelDetailViewModel>().index;
+    final state = context.read<MapViewModel>().state;
 
+    int index = context.watch<TravelDetailViewModel>().index;
     bool isDarkMode =
         MediaQuery.platformBrightnessOf(context) == Brightness.dark;
-
-    TextStyle? titleLarge =
-        Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white);
-
-    TextStyle? bodyMedium =
-        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
-
     DailyVisitSummary? summary = context.watch<TravelDetailViewModel>().summary;
 
-    VisitModel? visit = context.watch<TravelDetailViewModel>().visit;
-    var visitIndex = context.watch<TravelDetailViewModel>().visitIndex;
-
-    if (_controller != null && summary != null) {
-      if (viewModel.zoomLevel == 0) {
-        Bound entire = summary.bound.entire;
-
-        LatLngBounds bounds = LatLngBounds(
-            southwest:
-                LatLng(entire.southwest.latitude, entire.southwest.longitude),
-            northeast:
-                LatLng(entire.northeast.latitude, entire.northeast.longitude));
-
-        _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
-      } else if (viewModel.zoomLevel == 1) {
-        Bound bound = summary.bound.visits[visitIndex];
-
-        LatLngBounds bounds = LatLngBounds(
-            southwest:
-                LatLng(bound.southwest.latitude, bound.southwest.longitude),
-            northeast:
-                LatLng(bound.northeast.latitude, bound.northeast.longitude));
-
-        _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
-
-        _controller?.getZoomLevel().then((value) {
-          if (value > 14.0) {
-            _controller?.moveCamera(CameraUpdate.zoomTo(14.0));
-          }
-        });
-      } else if (viewModel.zoomLevel == 2) {
-        Bound bound = summary.bound.visits[visitIndex];
-
-        LatLngBounds bounds = LatLngBounds(
-            southwest:
-                LatLng(bound.southwest.latitude, bound.southwest.longitude),
-            northeast:
-                LatLng(bound.northeast.latitude, bound.northeast.longitude));
-
-        _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 100));
-      }
-    }
-
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(64),
-        child: AppBar(
-          centerTitle: false,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("${index + 1}일 차",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(fontWeight: FontWeight.w600)),
-              Text(
-                travel.name,
-                style: Theme.of(context).textTheme.titleMedium,
-              )
-            ],
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        centerTitle: false,
+        scrolledUnderElevation: 0,
+        backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Icon(Icons.copy),
+                )),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: IconButton(
-                  onPressed: () {},
-                  icon: const Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: Icon(Icons.copy),
-                  )),
-            ),
-          ],
-        ),
+        ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                GoogleMap(
-                  zoomGesturesEnabled: false,
-                  scrollGesturesEnabled: false,
-                  tiltGesturesEnabled: false,
-                  rotateGesturesEnabled: false,
-                  zoomControlsEnabled: false,
-                  myLocationButtonEnabled: false,
-                  initialCameraPosition: const CameraPosition(
-                    target: LatLng(36.6272, 127.4987),
-                    zoom: 13,
-                  ),
-                  onMapCreated: (GoogleMapController controller) async {
-                    String path = isDarkMode
-                        ? "assets/map/map_style_dark.json"
-                        : "assets/map/map_style.json";
-                    controller.setMapStyle(await getJsonFile(path));
-                    _controller = controller;
-                  },
-                  markers: context
-                          .watch<TravelDetailViewModel>()
-                          .markers
-                          .isNotEmpty
-                      ? context.watch<TravelDetailViewModel>().markers[index]
-                      : {},
-                  polylines: context.watch<TravelDetailViewModel>().polylines,
-                ),
-                Positioned(
-                    bottom: 20,
-                    right: 15,
-                    child: Wrap(
-                      direction: Axis.vertical,
-                      children: [
-                        IconButton(
-                          onPressed:
-                              context.watch<TravelDetailViewModel>().canZoomIn
-                                  ? () => {
-                                        if (viewModel.canZoomIn)
-                                          viewModel.zoomLevel++
-                                      }
-                                  : null,
-                          icon: const Icon(Icons.add),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Theme.of(context).colorScheme.surface)),
-                        ),
-                        IconButton(
-                          onPressed:
-                              context.watch<TravelDetailViewModel>().canZoomOut
-                                  ? () => {
-                                        if (viewModel.canZoomOut)
-                                          viewModel.zoomLevel--
-                                      }
-                                  : null,
-                          icon: const Icon(Icons.remove),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Theme.of(context).colorScheme.surface)),
-                        )
-                      ],
-                    ))
-              ],
+      body: LayoutBuilder(
+        builder: (context, constraints) => Column(
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  GoogleMap(
+                      padding: const EdgeInsets.only(top: 60),
+                      zoomGesturesEnabled: false,
+                      scrollGesturesEnabled: false,
+                      tiltGesturesEnabled: false,
+                      rotateGesturesEnabled: false,
+                      zoomControlsEnabled: false,
+                      myLocationButtonEnabled: false,
+                      initialCameraPosition: const CameraPosition(
+                        target: LatLng(36.6272, 127.4987),
+                        zoom: 13,
+                      ),
+                      onMapCreated: (GoogleMapController controller) async {
+                        String path = isDarkMode
+                            ? "assets/map/map_style_dark.json"
+                            : "assets/map/map_style.json";
+                        controller.setMapStyle(await getJsonFile(path));
+                        _controller = controller;
+                      },
+                      markers: Set.of(summary?.visits.map((visit) => Marker(
+                              markerId: MarkerId(visit.place.id.toString()),
+                              draggable: true,
+                              anchor: const Offset(0.5, 0.5),
+                              icon: summary.visits[viewModel.visitIndex].id ==
+                                      visit.id
+                                  ? state.selectedMarkerIcon[
+                                          visit.place.type.name] ??
+                                      BitmapDescriptor.defaultMarker
+                                  : state.markerIcon[visit.place.type.name] ??
+                                      BitmapDescriptor.defaultMarker,
+                              position: LatLng(visit.place.location.latitude,
+                                  visit.place.location.longitude))) ??
+                          [])),
+                  Positioned(
+                      bottom: 20,
+                      right: 15,
+                      child: Wrap(
+                        direction: Axis.vertical,
+                        children: [
+                          IconButton(
+                            onPressed:
+                                context.watch<TravelDetailViewModel>().canZoomIn
+                                    ? () => {
+                                          if (viewModel.canZoomIn)
+                                            viewModel.zoomLevel++
+                                        }
+                                    : null,
+                            icon: const Icon(Icons.add),
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).colorScheme.surface)),
+                          ),
+                          IconButton(
+                            onPressed: context
+                                    .watch<TravelDetailViewModel>()
+                                    .canZoomOut
+                                ? () => {
+                                      if (viewModel.canZoomOut)
+                                        viewModel.zoomLevel--
+                                    }
+                                : null,
+                            icon: const Icon(Icons.remove),
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).colorScheme.surface)),
+                          )
+                        ],
+                      ))
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 240,
-            child: Stack(
-              children: [
-                CarouselSlider.builder(
-                    itemCount: visit == null ? 0 : visit.images.length,
-                    itemBuilder: (context, index, realIndex) => InkWell(
-                          onTap: () {
-                            if (visit == null || visit.images.isEmpty) {
-                              return showSnackbar(context, "이미지가 존재하지 않습니다.");
-                            }
-
-                            List<NetworkImage>? images = visit.images
-                                .map((e) => NetworkImage(e.large))
-                                .toList();
-
-                            showImageViewerPager(
-                                context,
-                                useSafeArea: true,
-                                MultiImageProvider(images,
-                                    initialIndex: index));
-                          },
-                          child: Stack(
-                            children: [
-                              if (visit != null && visit.images.isNotEmpty)
-                                Image.network(
-                                  width: double.maxFinite,
-                                  height: double.maxFinite,
-                                  visit.images[index].medium ?? "",
-                                  fit: BoxFit.fitWidth,
-                                  errorBuilder: (context, exception, trace) =>
-                                      Image.asset("assets/image/default.png",
-                                          fit: BoxFit.cover),
-                                ),
-                              Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Colors.transparent,
-                                        Colors.black.withOpacity(0.1),
-                                        Colors.black.withOpacity(0.75),
-                                      ]),
-                                ),
-                              ),
-                              Container(
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  padding: const EdgeInsets.all(18),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        visit?.place.name ?? "",
-                                        style: titleLarge?.copyWith(
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                            text: visit?.place.type.label,
-                                            style: bodyMedium?.copyWith(
-                                                fontWeight: FontWeight.w600)),
-                                        TextSpan(
-                                            text:
-                                                " · 사진 ${visit?.images.length ?? 0}장")
-                                      ])),
-                                    ],
-                                  ))
-                            ],
+            Container(
+              width: double.maxFinite,
+              height: constraints.maxHeight * 0.6,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(20))),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: double.maxFinite,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 12),
+                            width: 25,
+                            height: 4,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.outline,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(8)),
+                            ),
                           ),
                         ),
-                    options: CarouselOptions(
-                        scrollDirection: Axis.horizontal,
-                        viewportFraction: 1,
-                        enlargeCenterPage: true,
-                        onPageChanged: (index, _) {
-                          viewModel.imageIndex = index;
-                        })),
-                Container(
-                  alignment: Alignment.bottomRight,
-                  padding: const EdgeInsets.only(right: 20.0, bottom: 20.0),
-                  child: AnimatedSmoothIndicator(
-                    activeIndex:
-                        context.watch<TravelDetailViewModel>().imageIndex,
-                    count: visit?.images.length ?? 0,
-                    effect: const ExpandingDotsEffect(
-                        dotHeight: 6,
-                        dotWidth: 6,
-                        activeDotColor: Colors.white),
+                        Text("${index + 1}일 차",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(fontWeight: FontWeight.w600)),
+                        Text(
+                          widget.travel.name,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Container(
+                            height: 1,
+                            margin: const EdgeInsets.only(top: 12),
+                            color:
+                                Theme.of(context).colorScheme.outlineVariant),
+                      ],
+                    ),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
+                  Expanded(
+                      child: ListView.separated(
+                          padding: const EdgeInsets.only(top: 24),
+                          controller: _scrollController,
+                          physics: const ClampingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            if (index == summary!.visits.length) {
+                              return SizedBox(
+                                height: 210,
+                                child: Center(
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        _scrollController.animateTo(
+                                      0,
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                      curve: Curves.bounceIn,
+                                    ),
+                                    icon: const Icon(Icons.arrow_upward),
+                                  ),
+                                ),
+                              );
+                            }
+
+                            VisitModel visit = summary.visits[index];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                    title: Text(visit.place.name),
+                                    contentPadding: EdgeInsets.zero,
+                                    subtitle: Text(visit.place.type.label),
+                                    titleTextStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(fontWeight: FontWeight.w600),
+                                    subtitleTextStyle:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                    leading: SvgPicture.asset(
+                                        width: 24,
+                                        height: 24,
+                                        "assets/markers/${visit.place.type.name}.svg"),
+                                    trailing: IconButton(
+                                      icon: const Icon(Icons.bookmark_outline),
+                                      onPressed: () {},
+                                    )),
+                                SizedBox(
+                                    height: 164,
+                                    child: InfiniteCarousel.builder(
+                                        itemCount: max(1, visit.images.length),
+                                        itemExtent: 167,
+                                        center: false,
+                                        itemBuilder: (context, index, _) {
+                                          final defaultImage = Image.asset(
+                                              "assets/image/default.png",
+                                              fit: BoxFit.cover);
+
+                                          return Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 3),
+                                              child: index < visit.images.length
+                                                  ? Image.network(
+                                                      visit
+                                                          .images[index].medium,
+                                                      fit: BoxFit.cover,
+                                                      errorBuilder: (context,
+                                                              exception,
+                                                              trace) =>
+                                                          defaultImage)
+                                                  : defaultImage);
+                                        })),
+                              ],
+                            );
+                          },
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(height: 16),
+                          itemCount:
+                              summary != null ? summary.visits.length + 1 : 0)),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         surfaceTintColor: Theme.of(context).colorScheme.surface,
@@ -292,18 +318,6 @@ class TravelDetailScreen extends StatelessWidget {
                       }
                     : null,
                 child: const Text("어제")),
-            TextButton(
-                onPressed: context.watch<TravelDetailViewModel>().hasPrevVisit
-                    ? () => viewModel.prevVisit()
-                    : null,
-                child: const Text("이전")),
-            TextButton(
-                onPressed: context.watch<TravelDetailViewModel>().hasNextVisit
-                    ? () async {
-                        viewModel.nextVisit();
-                      }
-                    : null,
-                child: const Text("다음")),
             TextButton(
                 onPressed: context.watch<TravelDetailViewModel>().hasNext
                     ? () => viewModel.next()
@@ -324,7 +338,7 @@ class TravelDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TravelDetailViewModel>(
-        create: (context) => TravelDetailViewModel(context, travel.id),
+        create: (context) => TravelDetailViewModel(travel.id),
         child: TravelDetailScreen(travel: travel));
   }
 }
