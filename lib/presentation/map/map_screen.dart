@@ -30,6 +30,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void dispose() {
     super.dispose();
+    _mapCompleter.future.then((value) => value.dispose());
     _subscription?.cancel();
   }
 
@@ -38,11 +39,6 @@ class _MapScreenState extends State<MapScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final viewModel = context.read<MapViewModel>();
-
-      viewModel.onEvent(MapEvent.initBottomSheet(
-          _key.currentContext!.size!.height -
-              MediaQuery.of(context).padding.top));
-
       _subscription = viewModel.stream.listen((event) =>
           event.when(showSnackBar: _onShowSnackBar, moveCamera: _onMoveCamera));
     });
@@ -76,15 +72,28 @@ class _MapScreenState extends State<MapScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const SearchBarWidget(),
-        backgroundColor: (isSheetShown && bottomSheetState.isExpanded)
-            ? Theme.of(context).colorScheme.surface
-            : Theme.of(context).colorScheme.surface.withOpacity(0.0),
-        scrolledUnderElevation: 0,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(51.0),
-          child: FilterView(),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(115),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 400),
+          decoration: BoxDecoration(
+            color: (isSheetShown && bottomSheetState.isExpanded)
+                ? Theme.of(context).colorScheme.surface
+                : Theme.of(context).colorScheme.surface.withOpacity(0.0),
+          ),
+          child: AppBar(
+            title: const SearchBarWidget(),
+            backgroundColor:
+                Theme.of(context).colorScheme.surface.withOpacity(0.0),
+            // (isSheetShown && bottomSheetState.isExpanded)
+            //     ? Theme.of(context).colorScheme.surface
+            //     : Theme.of(context).colorScheme.surface.withOpacity(0.0),
+            scrolledUnderElevation: 0,
+            bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(51.0),
+              child: FilterView(),
+            ),
+          ),
         ),
       ),
       body: LayoutBuilder(

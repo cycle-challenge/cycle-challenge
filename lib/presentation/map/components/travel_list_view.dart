@@ -16,7 +16,6 @@ class TravelListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MapViewModel>();
-    final filterState = viewModel.filterState;
     final bottomSheetState = viewModel.bottomSheetState;
 
     _controller.addListener(() {
@@ -39,11 +38,13 @@ class TravelListView extends StatelessWidget {
               ),
             ),
           ),
+        if (bottomSheetState.isExpanded)
+          const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
             controller: _controller,
             shrinkWrap: true,
-            padding: EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.only(top: 20.0),
             itemBuilder: (BuildContext context, int index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TravelWidget(

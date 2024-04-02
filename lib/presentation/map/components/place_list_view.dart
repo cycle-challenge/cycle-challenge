@@ -39,6 +39,8 @@ class PlaceListView extends StatelessWidget {
               ),
             ),
           ),
+        if (bottomSheetState.isExpanded)
+          const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
             controller: _controller,
