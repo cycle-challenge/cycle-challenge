@@ -29,7 +29,7 @@ class BottomSheetView extends StatelessWidget {
       onPointerMove: (event) {
         if (bottomSheetState.isAnimating) return;
 
-        bool isScrollingUp = event.delta.dy > 0;
+        bool isScrollingUp = event.delta.dy > 10;
 
         bool canViewScrollUp = bottomSheetState.canViewScrollUp;
         bool isExpanded = bottomSheetState.isExpanded;
