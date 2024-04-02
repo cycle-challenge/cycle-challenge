@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
 import 'package:yeohaeng_ttukttak/ui/main_page.dart';
 
 void main() async {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<PlaceViewModel>(create: (_) => PlaceViewModel()),
       ...globalProviders
     ],
     child: const MainApp(),

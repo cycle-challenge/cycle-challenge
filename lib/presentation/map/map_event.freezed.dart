@@ -30,6 +30,7 @@ mixin _$MapEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +47,7 @@ mixin _$MapEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +64,7 @@ mixin _$MapEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +83,7 @@ mixin _$MapEvent {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +101,7 @@ mixin _$MapEvent {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +119,7 @@ mixin _$MapEvent {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -187,6 +193,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return findNearbyPlace();
   }
@@ -206,6 +213,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return findNearbyPlace?.call();
   }
@@ -225,6 +233,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -249,6 +258,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return findNearbyPlace(this);
   }
@@ -269,6 +279,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return findNearbyPlace?.call(this);
   }
@@ -289,6 +300,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -379,6 +391,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return selectPlace(place);
   }
@@ -398,6 +411,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return selectPlace?.call(place);
   }
@@ -417,6 +431,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -441,6 +456,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return selectPlace(this);
   }
@@ -461,6 +477,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return selectPlace?.call(this);
   }
@@ -481,6 +498,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -578,6 +596,7 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return initBottomSheet(maxHeight);
   }
@@ -597,6 +616,7 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return initBottomSheet?.call(maxHeight);
   }
@@ -616,6 +636,7 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -640,6 +661,7 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return initBottomSheet(this);
   }
@@ -660,6 +682,7 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return initBottomSheet?.call(this);
   }
@@ -680,6 +703,7 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -777,6 +801,7 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return changeNavigation(index);
   }
@@ -796,6 +821,7 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return changeNavigation?.call(index);
   }
@@ -815,6 +841,7 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -839,6 +866,7 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return changeNavigation(this);
   }
@@ -859,6 +887,7 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return changeNavigation?.call(this);
   }
@@ -879,6 +908,7 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -976,6 +1006,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return changePosition(position);
   }
@@ -995,6 +1026,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return changePosition?.call(position);
   }
@@ -1014,6 +1046,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -1038,6 +1071,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return changePosition(this);
   }
@@ -1058,6 +1092,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return changePosition?.call(this);
   }
@@ -1078,6 +1113,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -1149,6 +1185,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return changeToMyPosition();
   }
@@ -1168,6 +1205,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return changeToMyPosition?.call();
   }
@@ -1187,6 +1225,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -1211,6 +1250,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return changeToMyPosition(this);
   }
@@ -1231,6 +1271,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return changeToMyPosition?.call(this);
   }
@@ -1251,6 +1292,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -1314,6 +1356,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return showSearchButton();
   }
@@ -1333,6 +1376,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return showSearchButton?.call();
   }
@@ -1352,6 +1396,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (showSearchButton != null) {
@@ -1376,6 +1421,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return showSearchButton(this);
   }
@@ -1396,6 +1442,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return showSearchButton?.call(this);
   }
@@ -1416,6 +1463,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (showSearchButton != null) {
@@ -1479,6 +1527,7 @@ class _$HideSearchButtonImpl implements HideSearchButton {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return hideSearchButton();
   }
@@ -1498,6 +1547,7 @@ class _$HideSearchButtonImpl implements HideSearchButton {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return hideSearchButton?.call();
   }
@@ -1517,6 +1567,7 @@ class _$HideSearchButtonImpl implements HideSearchButton {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (hideSearchButton != null) {
@@ -1541,6 +1592,7 @@ class _$HideSearchButtonImpl implements HideSearchButton {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return hideSearchButton(this);
   }
@@ -1561,6 +1613,7 @@ class _$HideSearchButtonImpl implements HideSearchButton {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return hideSearchButton?.call(this);
   }
@@ -1581,6 +1634,7 @@ class _$HideSearchButtonImpl implements HideSearchButton {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (hideSearchButton != null) {
@@ -1644,6 +1698,7 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return expandBottomSheet();
   }
@@ -1663,6 +1718,7 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return expandBottomSheet?.call();
   }
@@ -1682,6 +1738,7 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -1706,6 +1763,7 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return expandBottomSheet(this);
   }
@@ -1726,6 +1784,7 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return expandBottomSheet?.call(this);
   }
@@ -1746,6 +1805,7 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -1810,6 +1870,7 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return contractBottomSheet();
   }
@@ -1829,6 +1890,7 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return contractBottomSheet?.call();
   }
@@ -1848,6 +1910,7 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -1872,6 +1935,7 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return contractBottomSheet(this);
   }
@@ -1892,6 +1956,7 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return contractBottomSheet?.call(this);
   }
@@ -1912,6 +1977,7 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -2004,6 +2070,7 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return setCanViewScrollUp(canViewScrollUp);
   }
@@ -2023,6 +2090,7 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return setCanViewScrollUp?.call(canViewScrollUp);
   }
@@ -2042,6 +2110,7 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -2066,6 +2135,7 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return setCanViewScrollUp(this);
   }
@@ -2086,6 +2156,7 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return setCanViewScrollUp?.call(this);
   }
@@ -2106,6 +2177,7 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -2179,6 +2251,7 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return stopBottomSheetAnimation();
   }
@@ -2198,6 +2271,7 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return stopBottomSheetAnimation?.call();
   }
@@ -2217,6 +2291,7 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -2241,6 +2316,7 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return stopBottomSheetAnimation(this);
   }
@@ -2261,6 +2337,7 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return stopBottomSheetAnimation?.call(this);
   }
@@ -2281,6 +2358,7 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -2293,4 +2371,208 @@ class _$StopBottomSheetAnimationEventImpl
 abstract class StopBottomSheetAnimationEvent implements MapEvent {
   const factory StopBottomSheetAnimationEvent() =
       _$StopBottomSheetAnimationEventImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateFilterEventImplCopyWith<$Res> {
+  factory _$$UpdateFilterEventImplCopyWith(_$UpdateFilterEventImpl value,
+          $Res Function(_$UpdateFilterEventImpl) then) =
+      __$$UpdateFilterEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Filter<dynamic> filter});
+}
+
+/// @nodoc
+class __$$UpdateFilterEventImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$UpdateFilterEventImpl>
+    implements _$$UpdateFilterEventImplCopyWith<$Res> {
+  __$$UpdateFilterEventImplCopyWithImpl(_$UpdateFilterEventImpl _value,
+      $Res Function(_$UpdateFilterEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$UpdateFilterEventImpl(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as Filter<dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateFilterEventImpl implements UpdateFilterEvent {
+  const _$UpdateFilterEventImpl(this.filter);
+
+  @override
+  final Filter<dynamic> filter;
+
+  @override
+  String toString() {
+    return 'MapEvent.updateFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateFilterEventImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateFilterEventImplCopyWith<_$UpdateFilterEventImpl> get copyWith =>
+      __$$UpdateFilterEventImplCopyWithImpl<_$UpdateFilterEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() findNearbyPlace,
+    required TResult Function(PlaceModel? place) selectPlace,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(CameraPosition position) changePosition,
+    required TResult Function() changeToMyPosition,
+    required TResult Function() showSearchButton,
+    required TResult Function() hideSearchButton,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
+  }) {
+    return updateFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? findNearbyPlace,
+    TResult? Function(PlaceModel? place)? selectPlace,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(CameraPosition position)? changePosition,
+    TResult? Function()? changeToMyPosition,
+    TResult? Function()? showSearchButton,
+    TResult? Function()? hideSearchButton,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
+  }) {
+    return updateFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? findNearbyPlace,
+    TResult Function(PlaceModel? place)? selectPlace,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function(int index)? changeNavigation,
+    TResult Function(CameraPosition position)? changePosition,
+    TResult Function()? changeToMyPosition,
+    TResult Function()? showSearchButton,
+    TResult Function()? hideSearchButton,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
+    required TResult orElse(),
+  }) {
+    if (updateFilter != null) {
+      return updateFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(SelectPlaceEvent value) selectPlace,
+    required TResult Function(InitBottomSheet value) initBottomSheet,
+    required TResult Function(ChangeNavigationEvent value) changeNavigation,
+    required TResult Function(ChangePositionEvent value) changePosition,
+    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
+    required TResult Function(ShowSearchButton value) showSearchButton,
+    required TResult Function(HideSearchButton value) hideSearchButton,
+    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
+    required TResult Function(ContractBottomSheet value) contractBottomSheet,
+    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
+    required TResult Function(StopBottomSheetAnimationEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
+  }) {
+    return updateFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(SelectPlaceEvent value)? selectPlace,
+    TResult? Function(InitBottomSheet value)? initBottomSheet,
+    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(ChangePositionEvent value)? changePosition,
+    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult? Function(ShowSearchButton value)? showSearchButton,
+    TResult? Function(HideSearchButton value)? hideSearchButton,
+    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult? Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
+  }) {
+    return updateFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(SelectPlaceEvent value)? selectPlace,
+    TResult Function(InitBottomSheet value)? initBottomSheet,
+    TResult Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult Function(ChangePositionEvent value)? changePosition,
+    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult Function(ShowSearchButton value)? showSearchButton,
+    TResult Function(HideSearchButton value)? hideSearchButton,
+    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
+    required TResult orElse(),
+  }) {
+    if (updateFilter != null) {
+      return updateFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateFilterEvent implements MapEvent {
+  const factory UpdateFilterEvent(final Filter<dynamic> filter) =
+      _$UpdateFilterEventImpl;
+
+  Filter<dynamic> get filter;
+  @JsonKey(ignore: true)
+  _$$UpdateFilterEventImplCopyWith<_$UpdateFilterEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

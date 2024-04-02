@@ -7,8 +7,8 @@ import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_period.dar
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_age_group.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_motivation.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_transport.dart';
-
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
 class PlaceTypeFilterWidget extends StatelessWidget {
   const PlaceTypeFilterWidget({super.key});
@@ -18,13 +18,10 @@ class PlaceTypeFilterWidget extends StatelessWidget {
     double filterSheetHeight = MediaQuery.of(context).size.height -
         (Scaffold.of(context).appBarMaxHeight!);
 
-    bool hasAnyTravelFilter =
-        context.watch<PlaceViewModel>().travelFilter.hasAnyFilter;
+    final viewModel = context.watch<MapViewModel>();
 
-    var notify = context.read<PlaceViewModel>().notify;
-
-    Set<PlaceType> placeTypeFilter =
-        context.watch<PlaceViewModel>().placeFilter.type;
+    final placeFilter = viewModel.filterState.placeFilter;
+    final travelFilter = viewModel.filterState.travelFilter;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -38,7 +35,7 @@ class PlaceTypeFilterWidget extends StatelessWidget {
               label: Text(
                 "필터",
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: hasAnyTravelFilter
+                    color: travelFilter.hasAnyFilter
                         ? Theme.of(context).colorScheme.onPrimary
                         : Theme.of(context).colorScheme.onSurface),
               ),
@@ -46,36 +43,38 @@ class PlaceTypeFilterWidget extends StatelessWidget {
               avatar: Icon(
                 Icons.filter_alt,
                 size: 16,
-                color: hasAnyTravelFilter
+                color: travelFilter.hasAnyFilter
                     ? Theme.of(context).colorScheme.onPrimary
                     : null,
               ),
               shape: StadiumBorder(
                   side: BorderSide(
-                      color: hasAnyTravelFilter
+                      color: travelFilter.hasAnyFilter
                           ? Theme.of(context).colorScheme.primary
                           : Theme.of(context).colorScheme.outlineVariant)),
-              selected: hasAnyTravelFilter,
+              selected: travelFilter.hasAnyFilter,
               onSelected: (_) => showModalBottomSheet(
                   isScrollControlled: true,
                   context: context,
                   builder: (context) => Container(
                       height: filterSheetHeight,
                       constraints: const BoxConstraints(maxHeight: 772),
-                      child: TravelFilterBottomSheetWidget()))),
+                      child: const TravelFilterBottomSheetWidget()))),
           for (int index = 0; index < PlaceType.values.length; index++)
             Container(
               margin: const EdgeInsets.only(left: 8.0),
               child: FilterWidget(
                 label: PlaceType.values[index].label,
-                isSelected: placeTypeFilter.contains(PlaceType.values[index]),
+                isSelected: placeFilter.type.contains(PlaceType.values[index]),
                 iconData: PlaceType.values[index].iconData,
-                onSelected: (selected) {
-                  if (selected)
-                    notify(() => placeTypeFilter.add(PlaceType.values[index]));
-                  else
-                    notify(
-                        () => placeTypeFilter.remove(PlaceType.values[index]));
+                onSelected: (bool isSelected) {
+                  if (isSelected) {
+                    placeFilter.type.add(PlaceType.values[index]);
+                  } else {
+                    placeFilter.type.remove(PlaceType.values[index]);
+                  }
+
+                  viewModel.onEvent(MapEvent.updateFilter(placeFilter));
                 },
               ),
             )
@@ -86,8 +85,13 @@ class PlaceTypeFilterWidget extends StatelessWidget {
 }
 
 class TravelFilterBottomSheetWidget extends StatelessWidget {
+  const TravelFilterBottomSheetWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MapViewModel>();
+    final travelFilter = viewModel.filterState.travelFilter;
+
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: Column(
@@ -99,36 +103,23 @@ class TravelFilterBottomSheetWidget extends StatelessWidget {
                   FilterWidgetGroup(
                       label: "연령대",
                       target: TravelAgeGroup.values,
-                      filters: context
-                          .watch<PlaceViewModel>()
-                          .travelFilter
-                          .ageGroup),
+                      filters: travelFilter.ageGroup),
                   FilterWidgetGroup(
                       label: "시기",
                       target: TravelPeriod.values,
-                      filters:
-                          context.watch<PlaceViewModel>().travelFilter.period),
+                      filters: travelFilter.period),
                   FilterWidgetGroup(
                       label: "이동",
                       target: TravelTransport.values,
-                      filters: context
-                          .watch<PlaceViewModel>()
-                          .travelFilter
-                          .transport),
+                      filters: travelFilter.transport),
                   FilterWidgetGroup(
                       label: "목적",
                       target: TravelMotivation.values,
-                      filters: context
-                          .watch<PlaceViewModel>()
-                          .travelFilter
-                          .motivation),
+                      filters: travelFilter.motivation),
                   FilterWidgetGroup(
                       label: "동반",
                       target: TravelAccompany.values,
-                      filters: context
-                          .watch<PlaceViewModel>()
-                          .travelFilter
-                          .accompany),
+                      filters: travelFilter.accompany),
                 ],
               ),
             ),
@@ -139,10 +130,10 @@ class TravelFilterBottomSheetWidget extends StatelessWidget {
               Expanded(
                   child: OutlinedButton(
                       onPressed: () {
-                        context.read<PlaceViewModel>().notify(() =>
-                            context.read<PlaceViewModel>().travelFilter.init());
+                        travelFilter.init();
+                        viewModel.onEvent(MapEvent.updateFilter(travelFilter));
                       },
-                      child: Text("초기화"))),
+                      child: const Text("초기화"))),
               const SizedBox(width: 16),
               Expanded(
                   child: ElevatedButton(
@@ -166,11 +157,11 @@ class TravelFilterBottomSheetWidget extends StatelessWidget {
 }
 
 class FilterWidgetGroup extends StatelessWidget {
-  String label;
-  List target;
-  Set filters;
+  final String label;
+  final List target;
+  final Set filters;
 
-  FilterWidgetGroup(
+  const FilterWidgetGroup(
       {super.key,
       required this.label,
       required this.target,
@@ -180,8 +171,8 @@ class FilterWidgetGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     TextStyle? titleLarge = Theme.of(context).textTheme.titleLarge;
     TextStyle? bodyMedium = Theme.of(context).textTheme.bodyMedium;
-
-    var notify = context.read<PlaceViewModel>().notify;
+    final viewModel = context.watch<MapViewModel>();
+    final travelFilter = viewModel.filterState.travelFilter;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,10 +185,11 @@ class FilterWidgetGroup extends StatelessWidget {
             TextButton(
                 onPressed: () {
                   if (filters.isNotEmpty) {
-                    notify(() => filters.clear());
+                    filters.clear();
                   } else {
-                    notify(() => filters.addAll(target));
+                    filters.addAll(target);
                   }
+                  viewModel.onEvent(MapEvent.updateFilter(travelFilter));
                 },
                 child: Text(
                   filters.isNotEmpty ? "모두해제" : "모두선택",
@@ -212,11 +204,14 @@ class FilterWidgetGroup extends StatelessWidget {
                   isSelected: filters.contains(period),
                   iconData: period.iconData,
                   label: period.label,
-                  onSelected: (selected) {
-                    if (selected)
-                      notify(() => filters.add(period));
-                    else
-                      notify(() => filters.remove(period));
+                  onSelected: (bool isSelected) {
+                    if (isSelected) {
+                      filters.add(period);
+                    } else {
+                      filters.remove(period);
+                    }
+
+                    viewModel.onEvent(MapEvent.updateFilter(travelFilter));
                   }))
               .toList(),
         ),
@@ -230,17 +225,17 @@ class FilterWidgetGroup extends StatelessWidget {
 }
 
 class FilterWidget extends StatelessWidget {
-  bool _isSelected;
+  final bool _isSelected;
 
-  IconData? _iconData;
+  final IconData? _iconData;
 
-  String _label;
+  final String _label;
 
-  var _onSelected;
+  final void Function(bool) _onSelected;
 
-  bool _showCheckmark;
+  final bool _showCheckmark;
 
-  FilterWidget(
+  const FilterWidget(
       {super.key,
       required bool isSelected,
       required IconData? iconData,

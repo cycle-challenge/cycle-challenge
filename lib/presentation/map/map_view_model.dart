@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
@@ -51,7 +52,8 @@ class MapViewModel with ChangeNotifier {
         contractBottomSheet: _contractBottomSheet,
         setCanViewScrollUp: _setCanViewScrollUp,
         stopBottomSheetAnimation: _stopBottomSheetAnimation,
-        changeToMyPosition: _changeToMyPosition);
+        changeToMyPosition: _changeToMyPosition,
+        updateFilter: _updateFilter);
   }
 
   void _findNearbyPlace() async {
@@ -105,7 +107,6 @@ class MapViewModel with ChangeNotifier {
 
   void _changeNavigation(int index) {
     _state = _state.copyWith(navigationIndex: index);
-    notifyListeners();
   }
 
   void _changePosition(CameraPosition position) {
@@ -161,6 +162,17 @@ class MapViewModel with ChangeNotifier {
     }, error: (message) {
       _eventController.add(MapUIEvent.showSnackBar(message));
     });
+  }
 
+  void _updateFilter(Filter filter) {
+    if (filter is PlaceFilter) {
+      _filterDataState = _filterDataState.copyWith(placeFilter: filter);
+    } else if (filter is TravelFilter) {
+      _filterDataState = _filterDataState.copyWith(travelFilter: filter);
+    }
+
+    _filter();
+
+    notifyListeners();
   }
 }

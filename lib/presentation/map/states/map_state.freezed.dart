@@ -149,7 +149,7 @@ class _$MapStateImpl implements _MapState {
       {this.isShownSearchButton = false,
       this.isDetermining = false,
       this.navigationIndex = 0,
-      this.latitude = 36.6272,
+      this.latitude = 37.6272,
       this.longitude = 127.4987});
 
   @override

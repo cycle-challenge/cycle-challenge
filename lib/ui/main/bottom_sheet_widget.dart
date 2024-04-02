@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/place/place_list_view.dart';
 
 import 'package:yeohaeng_ttukttak/ui/main/travel/travel_list_view.dart';
@@ -18,7 +17,7 @@ class BottomSheetWidget extends StatelessWidget {
     final state = viewModel.state;
     final bottomSheetState = viewModel.bottomSheetState;
 
-    List<TravelModel> travels = context.watch<PlaceViewModel>().travels;
+    List<TravelModel> travels = viewModel.filterState.filteredTravels;
 
     Widget? view = state.navigationIndex == 1
         ? PlaceListView()

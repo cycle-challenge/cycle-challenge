@@ -1,14 +1,17 @@
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
 
-import '../../models/place_model.dart';
 
-class PlaceFilter {
+class PlaceFilter implements Filter<PlaceModel> {
   final Set<PlaceType> _type = <PlaceType>{};
 
   Set<PlaceType> get type => _type;
 
+  @override
   bool get hasAnyFilter => _type.isNotEmpty;
 
+  @override
   void init() {
     _type.clear();
   }
@@ -18,6 +21,7 @@ class PlaceFilter {
     return filters.contains(value);
   }
 
+  @override
   List<PlaceModel> apply(List<PlaceModel> places) {
     if (!hasAnyFilter) return places;
 
