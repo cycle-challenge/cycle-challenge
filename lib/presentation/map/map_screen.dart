@@ -85,9 +85,6 @@ class _MapScreenState extends State<MapScreen> {
             title: const SearchBarWidget(),
             backgroundColor:
                 Theme.of(context).colorScheme.surface.withOpacity(0.0),
-            // (isSheetShown && bottomSheetState.isExpanded)
-            //     ? Theme.of(context).colorScheme.surface
-            //     : Theme.of(context).colorScheme.surface.withOpacity(0.0),
             scrolledUnderElevation: 0,
             bottom: const PreferredSize(
               preferredSize: Size.fromHeight(51.0),
@@ -108,7 +105,9 @@ class _MapScreenState extends State<MapScreen> {
                   _mapCompleter.complete(controller);
 
                   viewModel.onEvent(const MapEvent.changeToMyPosition());
-                  viewModel.onEvent(const MapEvent.findNearbyPlace());
+                  Future.delayed(const Duration(seconds: 2), () {
+                    viewModel.onEvent(const MapEvent.findNearbyPlace());
+                  });
 
                   final Brightness brightness =
                       MediaQuery.platformBrightnessOf(context);
