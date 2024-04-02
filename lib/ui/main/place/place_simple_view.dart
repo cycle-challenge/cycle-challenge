@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
-import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
 
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 

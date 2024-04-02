@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
-import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
 
+  PlaceListView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    List<PlaceModel> places = context.watch<PlaceViewModel>().places;
+    final viewModel = context.watch<MapViewModel>();
+    final filterState = viewModel.filterState;
+    final bottomSheetState = viewModel.bottomSheetState;
 
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
-      context.read<BottomSheetState>().setCanViewScrollUp(canScrollUp);
+      viewModel.onEvent(MapEvent.setCanViewScrollUp(canScrollUp));
     });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (!context.watch<BottomSheetState>().isExpanded)
+        if (!bottomSheetState.isExpanded)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 24, bottom: 12),
@@ -42,7 +45,7 @@ class PlaceListView extends StatelessWidget {
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             itemBuilder: (BuildContext context, int index) {
-              PlaceModel place = places[index];
+              PlaceModel place = filterState.filteredPlaces[index];
 
               String distance =
                   place.location.distance?.toStringAsFixed(1).toString() ??
@@ -127,7 +130,7 @@ class PlaceListView extends StatelessWidget {
             },
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
-            itemCount: places.length,
+            itemCount: filterState.filteredPlaces.length,
           ),
         ),
       ],

@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
-import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/ui/main/travel/travel_detail_view.dart';
 
 class TravelListView extends StatelessWidget {
@@ -16,15 +15,19 @@ class TravelListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MapViewModel>();
+    final filterState = viewModel.filterState;
+    final bottomSheetState = viewModel.bottomSheetState;
+
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
-      context.read<BottomSheetState>().setCanViewScrollUp(canScrollUp);
+      viewModel.onEvent(MapEvent.setCanViewScrollUp(canScrollUp));
     });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (!context.watch<BottomSheetState>().isExpanded)
+        if (!bottomSheetState.isExpanded)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 24, bottom: 12),

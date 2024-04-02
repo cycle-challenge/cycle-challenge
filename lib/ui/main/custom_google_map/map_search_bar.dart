@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-
 
 class MapSearchBar extends StatelessWidget {
   const MapSearchBar({
@@ -25,10 +21,10 @@ class MapSearchBar extends StatelessWidget {
             filled: true,
             fillColor: Theme.of(context).colorScheme.surface,
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(100),
-              borderSide: BorderSide(
-                  color:Theme.of(context).colorScheme.outlineVariant, width: 1.0)
-            ),
+                borderRadius: BorderRadius.circular(100),
+                borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                    width: 1.0)),
           ),
           onChanged: (value) {},
         ),

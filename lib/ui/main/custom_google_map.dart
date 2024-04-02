@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
-import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-
-import '../../data/models/place_model.dart';
-import '../../states/bottom_sheet_state.dart';
-import '../../states/google_map_state.dart';
-import '../../states/place_view_model.dart';
-import '../../utils/json.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import '../../utils/marker.dart';
 
-class CustomGoogleMap extends StatelessWidget {
+class CustomGoogleMap extends StatefulWidget {
+  const CustomGoogleMap({super.key, required this.onMapCreated});
+
+  final void Function(GoogleMapController mapController) onMapCreated;
+
+  @override
+  State<CustomGoogleMap> createState() => _CustomGoogleMapState();
+}
+
+class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Future<Map<String, Map<String, BitmapDescriptor>>> _loadMarkers() async {
     final Map<String, BitmapDescriptor> markerIcon = {},
         selectedMarkerIcon = {};
@@ -28,10 +32,8 @@ class CustomGoogleMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<PlaceModel> places = context.watch<PlaceViewModel>().places;
-
-    final Brightness brightness = MediaQuery.platformBrightnessOf(context);
-    bool isDarkMode = brightness == Brightness.dark;
+    final viewModel = context.watch<MapViewModel>();
+    final filterState = viewModel.filterState;
 
     return FutureBuilder(
       future: _loadMarkers(),
@@ -52,35 +54,27 @@ class CustomGoogleMap extends StatelessWidget {
             target: LatLng(36.6272, 127.4987),
             zoom: 13,
           ),
-          onMapCreated: (GoogleMapController controller) async {
-            context.read<GoogleMapState>().init(controller);
-            context.read<PlaceViewModel>().search(36.6272, 127.4987);
-
-            String path = isDarkMode
-                ? "assets/map/map_style_dark.json"
-                : "assets/map/map_style.json";
-            controller.setMapStyle(await getJsonFile(path));
-          },
-          onCameraMoveStarted: () {
-            context.read<GoogleMapState>().setIsMoving(true);
-          },
+          onMapCreated: widget.onMapCreated,
+          onCameraMoveStarted: () =>
+              viewModel.onEvent(const MapEvent.showSearchButton()),
           onTap: (_) {
-            context.read<PlaceViewModel>().unSelectPlace();
+            viewModel.onEvent(const MapEvent.selectPlace(null));
+            viewModel.onEvent(const MapEvent.changeNavigation(0));
           },
-          markers: Set.of(places.map((e) => Marker(
+          markers: Set.of(filterState.filteredPlaces.map((e) => Marker(
               markerId: MarkerId(e.id.toString()),
               onTap: () {
-                context.read<PlaceViewModel>().selectPlace(e.id);
-                context.read<NavigationState>().setSelectedIndex(0);
+                viewModel.onEvent(MapEvent.selectPlace(e));
+                viewModel.onEvent(const MapEvent.changeNavigation(0));
               },
               draggable: true,
               anchor: const Offset(0.5, 0.5),
-              icon: context.read<PlaceViewModel>().selectedPlaceID == e.id
+              icon: filterState.selectedPlace?.id == e.id
                   ? selectedMarkerIcon[e.type.name]!
                   : markerIcon[e.type.name]!,
               position: LatLng(e.location.latitude, e.location.longitude)))),
           onCameraMove: (CameraPosition position) =>
-              context.read<GoogleMapState>().setPosition(position),
+              viewModel.onEvent(MapEvent.changePosition(position)),
           zoomControlsEnabled: false,
           mapToolbarEnabled: false,
           myLocationButtonEnabled: false,

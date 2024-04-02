@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
 
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_accompany.dart';
@@ -21,6 +20,7 @@ class PlaceTypeFilterWidget extends StatelessWidget {
 
     bool hasAnyTravelFilter =
         context.watch<PlaceViewModel>().travelFilter.hasAnyFilter;
+
     var notify = context.read<PlaceViewModel>().notify;
 
     Set<PlaceType> placeTypeFilter =

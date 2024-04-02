@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
-import 'navigation_state.dart';
 
 class PlaceViewModel with ChangeNotifier {
   final PlaceRepository _placeRepository = PlaceRepository();
@@ -66,9 +62,5 @@ class PlaceViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void update(Navigate navigate) {
-    _selectedPlaceID = navigate.selectedPlaceId ?? _selectedPlaceID;
-    notifyListeners();
-  }
 
 }
