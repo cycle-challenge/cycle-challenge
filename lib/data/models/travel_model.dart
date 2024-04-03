@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:yeohaeng_ttukttak/data/vo/image.dart';
+import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_accompany.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_age_group.dart';
@@ -18,7 +18,7 @@ class TravelModel extends Equatable {
 
   final TravelTransport _transport;
 
-  final Image _thumbnail;
+  final ImageModel _thumbnail;
 
   final String _nickname;
 
@@ -36,7 +36,7 @@ class TravelModel extends Equatable {
 
   TravelTransport get transport => _transport;
 
-  Image get thumbnail => _thumbnail;
+  ImageModel get thumbnail => _thumbnail;
 
   String get nickname => _nickname;
 
@@ -62,7 +62,7 @@ class TravelModel extends Equatable {
         TravelMotivation.of(json["motivation"]),
         TravelAccompany.of(json["accompanyType"]),
         TravelTransport.of(json["transportType"]),
-        Image.of(json["thumbnail"]),
+        ImageModel.of(json["thumbnail"]),
         json["member"]?["nickname"],
         TravelAgeGroup.of(json["member"]?["ageGroup"]),
         Set.from(json["seasons"]?.map((season) => TravelPeriod.of(season))));

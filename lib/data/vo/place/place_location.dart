@@ -6,13 +6,13 @@ class PlaceLocation {
 
   final double _longitude;
 
-  final double _distance;
+  final double? _distance;
 
   double get latitude => _latitude;
 
   double get longitude => _longitude;
 
-  double get distance => _distance;
+  double? get distance => _distance;
 
   const PlaceLocation({required latitude, required longitude, required distance})
       : _latitude = latitude,

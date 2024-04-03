@@ -1,3 +1,4 @@
+import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_accompany.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_age_group.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_motivation.dart';
@@ -6,7 +7,7 @@ import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_transport.
 
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 
-class TravelFilter {
+class TravelFilter implements Filter<TravelModel> {
   final Set<TravelAgeGroup> _ageGroup = <TravelAgeGroup>{};
 
   final Set<TravelPeriod> _period = <TravelPeriod>{};
@@ -27,6 +28,7 @@ class TravelFilter {
 
   Set<TravelAccompany> get accompany => _accompany;
 
+  @override
   bool get hasAnyFilter =>
       _ageGroup.isNotEmpty ||
       _period.isNotEmpty ||
@@ -34,6 +36,7 @@ class TravelFilter {
       _motivation.isNotEmpty ||
       _accompany.isNotEmpty;
 
+  @override
   void init() {
     _ageGroup.clear();
     _period.clear();
@@ -47,6 +50,7 @@ class TravelFilter {
     return filters.contains(value);
   }
 
+  @override
   List<TravelModel> apply(List<TravelModel> travels) {
     if (!hasAnyFilter) return travels;
 

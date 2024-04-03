@@ -1,5 +1,5 @@
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/image.dart';
+import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_location.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
@@ -13,7 +13,7 @@ class PlaceModel {
 
   final PlaceType _type;
 
-  final List<Image> _images;
+  final List<ImageModel> _images;
 
   final String _googlePlaceId;
 
@@ -29,7 +29,7 @@ class PlaceModel {
 
   PlaceType get type => _type;
 
-  List<Image> get images => _images;
+  List<ImageModel> get images => _images;
 
   String get googlePlaceId => _googlePlaceId;
 
@@ -63,8 +63,12 @@ class PlaceModel {
         name: json["name"],
         location: PlaceLocation.of(json["location"]),
         type: PlaceType.of(json["type"]),
-        images: List.of(json["images"]).map((e) => Image.of(e)).toList(),
-        travels: List.of(json["travels"]).map((e) => TravelModel.of(e)).toList(),
+        images: json["images"] != null
+            ? List.of(json["images"]).map((e) => ImageModel.of(e)).toList()
+            : <ImageModel>[],
+        travels: json["travels"] != null
+            ? List.of(json["travels"]).map((e) => TravelModel.of(e)).toList()
+            : <TravelModel>[],
         googlePlaceId: json["googlePlaceId"]);
   }
 }

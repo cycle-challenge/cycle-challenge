@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/states/bottom_sheet_state.dart';
-import 'package:yeohaeng_ttukttak/states/google_map_state.dart';
-import 'package:yeohaeng_ttukttak/states/navigation_state.dart';
-import 'package:yeohaeng_ttukttak/states/place_view_model.dart';
+import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
-import 'package:yeohaeng_ttukttak/ui/main_page.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 
 void main() async {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<PlaceViewModel>(create: (_) => PlaceViewModel()),
-      ChangeNotifierProvider<GoogleMapState>(create: (_) => GoogleMapState()),
-      ChangeNotifierProvider<BottomSheetState>(
-          create: (_) => BottomSheetState()),
-      ChangeNotifierProvider<NavigationState>(
-          create: (_) => NavigationState())
+      ...globalProviders
     ],
     child: const MainApp(),
   ));
@@ -34,7 +26,7 @@ class MainApp extends StatelessWidget {
       darkTheme: materialTheme.dark(),
       themeMode: ThemeMode.system,
       title: 'Flutter Maps Demo',
-      home: const MainPage(), // MapView 위젯 사용
+      home: const MapScreen(), // MapView 위젯 사용
     );
   }
 }
