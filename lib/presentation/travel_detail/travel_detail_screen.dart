@@ -198,8 +198,10 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                   _controller = controller;
                 },
                 onCameraMove: (_) {
-                  viewModel
-                      .onEvent(const TravelDetailEvent.showInitViewButton());
+                  if (!_panelController.isPanelAnimating && !viewModel.isShownInitViewButton && _isListenerEnabled) {
+                    viewModel
+                        .onEvent(const TravelDetailEvent.showInitViewButton());
+                  }
                 },
                 markers: Set.of(summary?.visits.mapWithIndex((visit, index) {
                       final place = visit.place;
