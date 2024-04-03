@@ -75,9 +75,11 @@ class _MapScreenState extends State<MapScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(115),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 150),
           decoration: BoxDecoration(
-            color: (isSheetShown && bottomSheetState.isExpanded)
+            color: (isSheetShown &&
+                    bottomSheetState.isExpanded &&
+                    !bottomSheetState.isAnimating)
                 ? Theme.of(context).colorScheme.surface
                 : Theme.of(context).colorScheme.surface.withOpacity(0.0),
           ),

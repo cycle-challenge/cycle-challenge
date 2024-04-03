@@ -14,58 +14,20 @@ class TravelDetailViewModel with ChangeNotifier {
 
   List<DailyVisitSummary> get dailySummaries => _dailySummaries;
 
-  bool get hasNext => _index + 1 < _dailySummaries.length;
-
-  bool get hasPrev => _index - 1 >= 0;
-
-
   final StreamController<TravelDetailUIEvent> _eventController =
-  StreamController.broadcast();
+      StreamController.broadcast();
   Stream<TravelDetailUIEvent> get stream => _eventController.stream;
 
-
   void onEvent(TravelDetailEvent event) {
-    event.when(changeVisit: _changeVisit);
-  }
-
-  void _changeVisit(int index) {
-
-    final visits = _dailySummaries[_index].visits;
-    if (index >= visits.length || index < 0) return;
-
-    int prevIndex = _visitIndex;
-    _visitIndex = index;
-
-    if (prevIndex == _visitIndex) return;
-
-    Bound bound = _zoomLevel == 0 ? _dailySummaries[_index].bound.entire :
-    _dailySummaries[_index].bound.visits[_visitIndex];
-    _eventController.add(TravelDetailUIEvent.moveBound(bound, _zoomLevel));
-    notifyListeners();
-  }
-
-  bool get hasNextVisit {
-    if (_dailySummaries.isEmpty) return false;
-    return _visitIndex + 1 < _dailySummaries[_index].visits.length;
-  }
-
-  bool get hasPrevVisit => _visitIndex - 1 >= 0;
-
-  set visitIndex(int value) {
-    int prevIndex = _visitIndex;
-    _visitIndex = value;
-
-    if (prevIndex != value) {
-      notifyListeners();
-    }
-  }
-
-  bool _isExpanded = false;
-
-  bool get isExpanded => _isExpanded;
-  void switchExpanded() {
-    _isExpanded = !_isExpanded;
-    notifyListeners();
+    event.when(
+        scrollVisit: _scrollVisit,
+        nextDayOfTravel: _nextDayOfTravel,
+        prevDayOfTravel: _prevDayOfTravel,
+        toggleMapView: _toggleMapView,
+        changeVisit: _changeVisit,
+        changePanelHeight: _changePanelHeight,
+        showInitViewButton: _showInitViewButton,
+        initView: _initView);
   }
 
   int _index = 0;
@@ -76,56 +38,115 @@ class TravelDetailViewModel with ChangeNotifier {
 
   int get visitIndex => _visitIndex;
 
-  int _zoomLevel = 2;
-  int get zoomLevel => _zoomLevel;
-
-  bool get canZoomIn => _zoomLevel + 1 < 3;
-  bool get canZoomOut => _zoomLevel - 1 >= 0;
-
-  int _imageIndex = 0;
-
-  int get imageIndex => _imageIndex;
-
-  set zoomLevel(int value) {
-    _zoomLevel = value;
-    notifyListeners();
-  }
+  bool _isEntireMapView = false;
+  bool get isEntireMapView => _isEntireMapView;
 
   DailyVisitSummary? get summary =>
       _dailySummaries.isNotEmpty ? _dailySummaries[_index] : null;
 
-  VisitModel? get visit =>
-      summary != null ? summary?.visits[_visitIndex] : null;
+  double _panelHeight = 0;
+  double get panelHeight => _panelHeight;
 
+  bool _isShownInitViewButton = false;
+  bool get isShownInitViewButton => _isShownInitViewButton;
 
-  void next() {
-    if (!hasNext) return;
-    _index++;
-    _visitIndex = 0;
-    _imageIndex = 0;
-    notifyListeners();
-  }
-
-  void prev() {
-    if (!hasPrev) return;
-    _index--;
-    _visitIndex = 0;
-    _imageIndex = 0;
-    notifyListeners();
-  }
+  bool _isPanelExpanded = false;
+  bool get isPanelExpanded => _isPanelExpanded;
 
   TravelDetailViewModel(int travelID) {
     _repository = TravelRepository();
-    _loadItems(travelID).then((_) {
-      Bound bound = _zoomLevel == 0 ? _dailySummaries[_index].bound.entire :
-      _dailySummaries[_index].bound.visits[_visitIndex];
-      _eventController.add(TravelDetailUIEvent.moveBound(bound, _zoomLevel));
-    });
+    _loadItems(travelID).then((_) => _moveBound());
   }
-
 
   Future<void> _loadItems(int travelID) async {
     _dailySummaries = await _repository.findVisits(travelID);
+    notifyListeners();
+  }
+
+  void _scrollVisit(int index) {
+    final visits = _dailySummaries[_index].visits;
+    if (index >= visits.length || index < 0) return;
+
+    int prevIndex = _visitIndex;
+    _visitIndex = index;
+
+    if (prevIndex == _visitIndex) return;
+
+    _moveBound();
+    notifyListeners();
+  }
+
+  void _changeVisit(int index) {
+    _visitIndex = index;
+    notifyListeners();
+    _eventController.add(TravelDetailUIEvent.moveScroll(index));
+  }
+
+  void _nextDayOfTravel() {
+    final bool hasNext = _index + 1 < _dailySummaries.length;
+
+    if (!hasNext) return;
+    _index++;
+
+    _initScreen();
+    _moveBound();
+    notifyListeners();
+  }
+
+  void _prevDayOfTravel() {
+    final bool hasPrev = _index - 1 >= 0;
+
+    if (!hasPrev) return;
+    _index--;
+
+    _initScreen();
+    _moveBound();
+    notifyListeners();
+  }
+
+  void _toggleMapView() {
+    _isEntireMapView = !_isEntireMapView;
+
+    if (_isEntireMapView) {
+      _eventController
+          .add(const TravelDetailUIEvent.showSnackBar("전체 보기 화면으로 전환합니다."));
+    } else {
+      _eventController
+          .add(const TravelDetailUIEvent.showSnackBar("자세히 보기 화면으로 전환합니다."));
+    }
+
+    _moveBound();
+    notifyListeners();
+  }
+
+  void _initScreen() {
+    _visitIndex = 0;
+    _eventController.add(const TravelDetailUIEvent.initScroll());
+  }
+
+  void _moveBound() {
+    Bound bound = _isEntireMapView
+        ? _dailySummaries[_index].bound.entire
+        : _dailySummaries[_index].bound.visits[_visitIndex];
+
+    _eventController.add(TravelDetailUIEvent.moveBound(bound));
+  }
+
+  void _changePanelHeight(double height) {
+    _panelHeight = height;
+    notifyListeners();
+  }
+
+  void _showInitViewButton() {
+    if (_isShownInitViewButton == true) return;
+
+    _isShownInitViewButton = true;
+    notifyListeners();
+  }
+
+  void _initView() {
+    _isShownInitViewButton = false;
+    _moveBound();
     notifyListeners();
   }
 }

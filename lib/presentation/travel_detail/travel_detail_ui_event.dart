@@ -5,5 +5,10 @@ part 'travel_detail_ui_event.freezed.dart';
 
 @freezed
 abstract class TravelDetailUIEvent with _$TravelDetailUIEvent {
-  const factory TravelDetailUIEvent.moveBound(Bound bound, int zoomLevel) = moveBoundEvent;
+  const factory TravelDetailUIEvent.moveBound(Bound bound) =
+      moveBoundEvent;
+  const factory TravelDetailUIEvent.moveScroll(int index) = MoveScrollEvent;
+  const factory TravelDetailUIEvent.initScroll() = InitScrollEvent;
+  const factory TravelDetailUIEvent.showSnackBar(String message) =
+  ShowSnackBarUIEvent;
 }
