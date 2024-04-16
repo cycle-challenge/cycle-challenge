@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_screen.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 
 void main() async {
   runApp(MultiProvider(
@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
       darkTheme: materialTheme.dark(),
       themeMode: ThemeMode.system,
       title: 'Flutter Maps Demo',
-      home: const MapScreen(), // MapView 위젯 사용
+      home: const AuthScreen(), // MapView 위젯 사용
     );
   }
 }
