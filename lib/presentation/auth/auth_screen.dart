@@ -99,6 +99,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 OutlinedButton(
                     onPressed: () => showModalBottomSheet(
                           isScrollControlled: true,
+                          useSafeArea: true,
                           context: context,
                           builder: (BuildContext context) =>
                               const LocalSignInSheet(),

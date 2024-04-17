@@ -189,6 +189,7 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
                     Navigator.pop(context);
                     showModalBottomSheet(
                         isScrollControlled: true,
+                        useSafeArea: true,
                         context: context,
                         builder: (context) => const LocalSignInSheet());
                   },
