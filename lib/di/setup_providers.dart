@@ -1,5 +1,6 @@
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/member_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
@@ -10,6 +11,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/get_place_image_use_case.dart'
 import 'package:yeohaeng_ttukttak/domain/use_case/launch_url_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/load_marker_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
 List<SingleChildWidget> globalProviders = [
@@ -25,6 +27,7 @@ List<SingleChildWidget> independentModules = [
   Provider<LaunchUrlUseCase>(create: (_) => LaunchUrlUseCase()),
   Provider<GetMyLocationUseCase>(create: (_) => GetMyLocationUseCase()),
   Provider<LoadMarkerUseCase>(create: (_) => LoadMarkerUseCase()),
+  Provider<MemberRepository>(create: (_) => MemberRepository())
 ];
 
 List<SingleChildWidget> dependentModules = [
@@ -47,5 +50,6 @@ List<SingleChildWidget> dependentModules = [
 
 List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<MapViewModel>(
-      create: (context) => MapViewModel(context.read<UseCases>()))
+      create: (context) => MapViewModel(context.read<UseCases>())),
+  ChangeNotifierProvider<AuthViewModel>(create: (context) => AuthViewModel(context.read<MemberRepository>()))
 ];

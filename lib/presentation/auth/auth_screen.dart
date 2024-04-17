@@ -1,8 +1,54 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/local_sign_in_sheet.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  StreamSubscription? _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<AuthViewModel>();
+      _subscription = viewModel.stream.listen((event) => event.when(
+          showSnackBar: (message) => _onShowSnackBar(message),
+          signUpSuccess: (String message) {
+            _onShowSnackBar(message, onPopInvoked: (_) {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const LocalSignInSheet());
+            });
+          }));
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
+  }
+
+  void _onShowSnackBar(String message, {void Function(bool)? onPopInvoked}) {
+    final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        content: PopScope(
+            onPopInvoked: onPopInvoked,
+            child:
+                Text(message, style: Theme.of(context).textTheme.bodyLarge)));
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +100,8 @@ class AuthScreen extends StatelessWidget {
                     onPressed: () => showModalBottomSheet(
                           isScrollControlled: true,
                           context: context,
-                          builder: (BuildContext context) => Padding(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: const LocalSignInSheet(),
-                          ),
+                          builder: (BuildContext context) =>
+                              const LocalSignInSheet(),
                         ),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.5,
