@@ -91,6 +91,7 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
       child: SingleChildScrollView(
         child: FormBuilder(
           key: _formKey,
+          onChanged: () => _formKey.currentState?.save(),
           child: Container(
             padding: const EdgeInsets.fromLTRB(36, 36, 36, 60),
             width: MediaQuery.of(context).size.width,

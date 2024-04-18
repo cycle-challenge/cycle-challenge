@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
-import 'package:yeohaeng_ttukttak/data/repositories/member_repository.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in_ui_event.dart';
@@ -13,9 +12,8 @@ import 'package:yeohaeng_ttukttak/presentation/auth/states/local_sign_up_state.d
 
 class AuthViewModel with ChangeNotifier {
   final AuthRepository authRepository;
-  final MemberRepository memberRepository;
 
-  AuthViewModel(this.authRepository, this.memberRepository) {
+  AuthViewModel(this.authRepository) {
     authRepository.findProfile().then((result) => result.when(
         success: (member) {
           _state = _state.copyWith(member: member);

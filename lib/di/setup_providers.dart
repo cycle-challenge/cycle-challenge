@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
-import 'package:yeohaeng_ttukttak/data/repositories/member_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
@@ -46,9 +45,6 @@ List<SingleChildWidget> dependentModules = [
       update: (context, repository, _) => GetPlaceImageUseCase(repository)),
   ProxyProvider<PlaceRepository, GetNearbyPlacesUseCase>(
       update: (_, repository, __) => GetNearbyPlacesUseCase(repository)),
-  Provider<MemberRepository>(
-      create: (context) => MemberRepository(
-          context.read<RemoteAPI>(), context.read<SecureStorage>())),
   Provider<UseCases>(
       create: (context) => UseCases(
           getPlaceDetail: context.read<GetPlaceDetailUseCase>(),
@@ -65,6 +61,5 @@ List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<MapViewModel>(
       create: (context) => MapViewModel(context.read<UseCases>())),
   ChangeNotifierProvider<AuthViewModel>(
-      create: (context) => AuthViewModel(
-          context.read<AuthRepository>(), context.read<MemberRepository>()))
+      create: (context) => AuthViewModel(context.read<AuthRepository>()))
 ];

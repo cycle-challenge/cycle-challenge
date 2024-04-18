@@ -129,7 +129,7 @@ class _LocalSignInSheetState extends State<LocalSignInSheet> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.email_outlined),
-                        Flexible(child: Center(child: Text("이메일로 회원가입"))),
+                        Flexible(child: Center(child: Text("이메일로 로그인"))),
                       ],
                     ),
                   )),
