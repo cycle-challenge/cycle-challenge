@@ -9,6 +9,7 @@ import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/form_errors.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/loading_dialog.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/local_sign_in_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/welcome/welcome_screen.dart';
 
 class LocalSignUpSheet extends StatefulWidget {
@@ -40,9 +41,23 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
     });
   }
 
-  void _onSuccess(nickname) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => WelcomeScreen(nickname: nickname)));
+  void _onSuccess(String nickname) {
+    while (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const MapScreen()));
+
+    _showSnackBar("$nickname님 가입을 축하합니다.");
+  }
+
+
+  void _showSnackBar(String message) {
+    final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        content: Text(message, style: Theme.of(context).textTheme.bodyLarge));
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _onShowInputError(target, message) {

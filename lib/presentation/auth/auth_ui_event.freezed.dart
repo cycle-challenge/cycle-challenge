@@ -16,23 +16,25 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthUIEvent {
-  String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showSnackBar,
     required TResult Function(String message) signUpSuccess,
+    required TResult Function(String nickname) autoSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? showSnackBar,
     TResult? Function(String message)? signUpSuccess,
+    TResult? Function(String nickname)? autoSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showSnackBar,
     TResult Function(String message)? signUpSuccess,
+    TResult Function(String nickname)? autoSignIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,24 +42,23 @@ mixin _$AuthUIEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthShowSnackBarUIEvent value) showSnackBar,
     required TResult Function(AuthSignUpSuccessUIEvent value) signUpSuccess,
+    required TResult Function(AuthAutoSignInUIEvent value) autoSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthShowSnackBarUIEvent value)? showSnackBar,
     TResult? Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult? Function(AuthAutoSignInUIEvent value)? autoSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthShowSnackBarUIEvent value)? showSnackBar,
     TResult Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult Function(AuthAutoSignInUIEvent value)? autoSignIn,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AuthUIEventCopyWith<AuthUIEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -66,8 +67,6 @@ abstract class $AuthUIEventCopyWith<$Res> {
   factory $AuthUIEventCopyWith(
           AuthUIEvent value, $Res Function(AuthUIEvent) then) =
       _$AuthUIEventCopyWithImpl<$Res, AuthUIEvent>;
-  @useResult
-  $Res call({String message});
 }
 
 /// @nodoc
@@ -79,29 +78,14 @@ class _$AuthUIEventCopyWithImpl<$Res, $Val extends AuthUIEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AuthShowSnackBarUIEventImplCopyWith<$Res>
-    implements $AuthUIEventCopyWith<$Res> {
+abstract class _$$AuthShowSnackBarUIEventImplCopyWith<$Res> {
   factory _$$AuthShowSnackBarUIEventImplCopyWith(
           _$AuthShowSnackBarUIEventImpl value,
           $Res Function(_$AuthShowSnackBarUIEventImpl) then) =
       __$$AuthShowSnackBarUIEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String message});
 }
@@ -165,6 +149,7 @@ class _$AuthShowSnackBarUIEventImpl implements AuthShowSnackBarUIEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showSnackBar,
     required TResult Function(String message) signUpSuccess,
+    required TResult Function(String nickname) autoSignIn,
   }) {
     return showSnackBar(message);
   }
@@ -174,6 +159,7 @@ class _$AuthShowSnackBarUIEventImpl implements AuthShowSnackBarUIEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? showSnackBar,
     TResult? Function(String message)? signUpSuccess,
+    TResult? Function(String nickname)? autoSignIn,
   }) {
     return showSnackBar?.call(message);
   }
@@ -183,6 +169,7 @@ class _$AuthShowSnackBarUIEventImpl implements AuthShowSnackBarUIEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showSnackBar,
     TResult Function(String message)? signUpSuccess,
+    TResult Function(String nickname)? autoSignIn,
     required TResult orElse(),
   }) {
     if (showSnackBar != null) {
@@ -196,6 +183,7 @@ class _$AuthShowSnackBarUIEventImpl implements AuthShowSnackBarUIEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthShowSnackBarUIEvent value) showSnackBar,
     required TResult Function(AuthSignUpSuccessUIEvent value) signUpSuccess,
+    required TResult Function(AuthAutoSignInUIEvent value) autoSignIn,
   }) {
     return showSnackBar(this);
   }
@@ -205,6 +193,7 @@ class _$AuthShowSnackBarUIEventImpl implements AuthShowSnackBarUIEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthShowSnackBarUIEvent value)? showSnackBar,
     TResult? Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult? Function(AuthAutoSignInUIEvent value)? autoSignIn,
   }) {
     return showSnackBar?.call(this);
   }
@@ -214,6 +203,7 @@ class _$AuthShowSnackBarUIEventImpl implements AuthShowSnackBarUIEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthShowSnackBarUIEvent value)? showSnackBar,
     TResult Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult Function(AuthAutoSignInUIEvent value)? autoSignIn,
     required TResult orElse(),
   }) {
     if (showSnackBar != null) {
@@ -227,22 +217,18 @@ abstract class AuthShowSnackBarUIEvent implements AuthUIEvent {
   const factory AuthShowSnackBarUIEvent(final String message) =
       _$AuthShowSnackBarUIEventImpl;
 
-  @override
   String get message;
-  @override
   @JsonKey(ignore: true)
   _$$AuthShowSnackBarUIEventImplCopyWith<_$AuthShowSnackBarUIEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthSignUpSuccessUIEventImplCopyWith<$Res>
-    implements $AuthUIEventCopyWith<$Res> {
+abstract class _$$AuthSignUpSuccessUIEventImplCopyWith<$Res> {
   factory _$$AuthSignUpSuccessUIEventImplCopyWith(
           _$AuthSignUpSuccessUIEventImpl value,
           $Res Function(_$AuthSignUpSuccessUIEventImpl) then) =
       __$$AuthSignUpSuccessUIEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String message});
 }
@@ -306,6 +292,7 @@ class _$AuthSignUpSuccessUIEventImpl implements AuthSignUpSuccessUIEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showSnackBar,
     required TResult Function(String message) signUpSuccess,
+    required TResult Function(String nickname) autoSignIn,
   }) {
     return signUpSuccess(message);
   }
@@ -315,6 +302,7 @@ class _$AuthSignUpSuccessUIEventImpl implements AuthSignUpSuccessUIEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? showSnackBar,
     TResult? Function(String message)? signUpSuccess,
+    TResult? Function(String nickname)? autoSignIn,
   }) {
     return signUpSuccess?.call(message);
   }
@@ -324,6 +312,7 @@ class _$AuthSignUpSuccessUIEventImpl implements AuthSignUpSuccessUIEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showSnackBar,
     TResult Function(String message)? signUpSuccess,
+    TResult Function(String nickname)? autoSignIn,
     required TResult orElse(),
   }) {
     if (signUpSuccess != null) {
@@ -337,6 +326,7 @@ class _$AuthSignUpSuccessUIEventImpl implements AuthSignUpSuccessUIEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthShowSnackBarUIEvent value) showSnackBar,
     required TResult Function(AuthSignUpSuccessUIEvent value) signUpSuccess,
+    required TResult Function(AuthAutoSignInUIEvent value) autoSignIn,
   }) {
     return signUpSuccess(this);
   }
@@ -346,6 +336,7 @@ class _$AuthSignUpSuccessUIEventImpl implements AuthSignUpSuccessUIEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthShowSnackBarUIEvent value)? showSnackBar,
     TResult? Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult? Function(AuthAutoSignInUIEvent value)? autoSignIn,
   }) {
     return signUpSuccess?.call(this);
   }
@@ -355,6 +346,7 @@ class _$AuthSignUpSuccessUIEventImpl implements AuthSignUpSuccessUIEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthShowSnackBarUIEvent value)? showSnackBar,
     TResult Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult Function(AuthAutoSignInUIEvent value)? autoSignIn,
     required TResult orElse(),
   }) {
     if (signUpSuccess != null) {
@@ -368,10 +360,151 @@ abstract class AuthSignUpSuccessUIEvent implements AuthUIEvent {
   const factory AuthSignUpSuccessUIEvent(final String message) =
       _$AuthSignUpSuccessUIEventImpl;
 
-  @override
   String get message;
-  @override
   @JsonKey(ignore: true)
   _$$AuthSignUpSuccessUIEventImplCopyWith<_$AuthSignUpSuccessUIEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthAutoSignInUIEventImplCopyWith<$Res> {
+  factory _$$AuthAutoSignInUIEventImplCopyWith(
+          _$AuthAutoSignInUIEventImpl value,
+          $Res Function(_$AuthAutoSignInUIEventImpl) then) =
+      __$$AuthAutoSignInUIEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String nickname});
+}
+
+/// @nodoc
+class __$$AuthAutoSignInUIEventImplCopyWithImpl<$Res>
+    extends _$AuthUIEventCopyWithImpl<$Res, _$AuthAutoSignInUIEventImpl>
+    implements _$$AuthAutoSignInUIEventImplCopyWith<$Res> {
+  __$$AuthAutoSignInUIEventImplCopyWithImpl(_$AuthAutoSignInUIEventImpl _value,
+      $Res Function(_$AuthAutoSignInUIEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? nickname = null,
+  }) {
+    return _then(_$AuthAutoSignInUIEventImpl(
+      null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthAutoSignInUIEventImpl implements AuthAutoSignInUIEvent {
+  const _$AuthAutoSignInUIEventImpl(this.nickname);
+
+  @override
+  final String nickname;
+
+  @override
+  String toString() {
+    return 'AuthUIEvent.autoSignIn(nickname: $nickname)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthAutoSignInUIEventImpl &&
+            (identical(other.nickname, nickname) ||
+                other.nickname == nickname));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, nickname);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthAutoSignInUIEventImplCopyWith<_$AuthAutoSignInUIEventImpl>
+      get copyWith => __$$AuthAutoSignInUIEventImplCopyWithImpl<
+          _$AuthAutoSignInUIEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) showSnackBar,
+    required TResult Function(String message) signUpSuccess,
+    required TResult Function(String nickname) autoSignIn,
+  }) {
+    return autoSignIn(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message)? showSnackBar,
+    TResult? Function(String message)? signUpSuccess,
+    TResult? Function(String nickname)? autoSignIn,
+  }) {
+    return autoSignIn?.call(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? showSnackBar,
+    TResult Function(String message)? signUpSuccess,
+    TResult Function(String nickname)? autoSignIn,
+    required TResult orElse(),
+  }) {
+    if (autoSignIn != null) {
+      return autoSignIn(nickname);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthShowSnackBarUIEvent value) showSnackBar,
+    required TResult Function(AuthSignUpSuccessUIEvent value) signUpSuccess,
+    required TResult Function(AuthAutoSignInUIEvent value) autoSignIn,
+  }) {
+    return autoSignIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthShowSnackBarUIEvent value)? showSnackBar,
+    TResult? Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult? Function(AuthAutoSignInUIEvent value)? autoSignIn,
+  }) {
+    return autoSignIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthShowSnackBarUIEvent value)? showSnackBar,
+    TResult Function(AuthSignUpSuccessUIEvent value)? signUpSuccess,
+    TResult Function(AuthAutoSignInUIEvent value)? autoSignIn,
+    required TResult orElse(),
+  }) {
+    if (autoSignIn != null) {
+      return autoSignIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthAutoSignInUIEvent implements AuthUIEvent {
+  const factory AuthAutoSignInUIEvent(final String nickname) =
+      _$AuthAutoSignInUIEventImpl;
+
+  String get nickname;
+  @JsonKey(ignore: true)
+  _$$AuthAutoSignInUIEventImplCopyWith<_$AuthAutoSignInUIEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

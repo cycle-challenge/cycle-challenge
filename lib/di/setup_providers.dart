@@ -1,5 +1,9 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/member_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
@@ -27,29 +31,40 @@ List<SingleChildWidget> independentModules = [
   Provider<LaunchUrlUseCase>(create: (_) => LaunchUrlUseCase()),
   Provider<GetMyLocationUseCase>(create: (_) => GetMyLocationUseCase()),
   Provider<LoadMarkerUseCase>(create: (_) => LoadMarkerUseCase()),
-  Provider<MemberRepository>(create: (_) => MemberRepository())
+  Provider<RemoteAPI>(create: (_) => RemoteAPI()),
+  Provider<SecureStorage>(
+      create: (_) => SecureStorage(const FlutterSecureStorage()))
 ];
 
 List<SingleChildWidget> dependentModules = [
+  Provider<AuthRepository>(
+      create: (context) => AuthRepository(
+          context.read<RemoteAPI>(), context.read<SecureStorage>())),
   ProxyProvider<PlaceRepository, GetPlaceDetailUseCase>(
       update: (context, repository, _) => GetPlaceDetailUseCase(repository)),
   ProxyProvider<PlaceRepository, GetPlaceImageUseCase>(
       update: (context, repository, _) => GetPlaceImageUseCase(repository)),
   ProxyProvider<PlaceRepository, GetNearbyPlacesUseCase>(
       update: (_, repository, __) => GetNearbyPlacesUseCase(repository)),
-  Provider<UseCases>(create: (context) => UseCases(
-      getPlaceDetail: context.read<GetPlaceDetailUseCase>(),
-      getPlaceImage: context.read<GetPlaceImageUseCase>(),
-      callPhone: context.read<CallPhoneUseCase>(),
-      copyText: context.read<CopyTextUseCase>(),
-      launchURL: context.read<LaunchUrlUseCase>(),
-      getNearbyPlaces: context.read<GetNearbyPlacesUseCase>(),
-      getMyLocation: context.read<GetMyLocationUseCase>(),
-      loadMarker: context.read<LoadMarkerUseCase>()))
+  Provider<MemberRepository>(
+      create: (context) => MemberRepository(
+          context.read<RemoteAPI>(), context.read<SecureStorage>())),
+  Provider<UseCases>(
+      create: (context) => UseCases(
+          getPlaceDetail: context.read<GetPlaceDetailUseCase>(),
+          getPlaceImage: context.read<GetPlaceImageUseCase>(),
+          callPhone: context.read<CallPhoneUseCase>(),
+          copyText: context.read<CopyTextUseCase>(),
+          launchURL: context.read<LaunchUrlUseCase>(),
+          getNearbyPlaces: context.read<GetNearbyPlacesUseCase>(),
+          getMyLocation: context.read<GetMyLocationUseCase>(),
+          loadMarker: context.read<LoadMarkerUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<MapViewModel>(
       create: (context) => MapViewModel(context.read<UseCases>())),
-  ChangeNotifierProvider<AuthViewModel>(create: (context) => AuthViewModel(context.read<MemberRepository>()))
+  ChangeNotifierProvider<AuthViewModel>(
+      create: (context) => AuthViewModel(
+          context.read<AuthRepository>(), context.read<MemberRepository>()))
 ];

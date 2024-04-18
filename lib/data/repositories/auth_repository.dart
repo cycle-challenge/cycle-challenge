@@ -1,61 +1,51 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:http/http.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
-import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 import 'package:yeohaeng_ttukttak/utils/api_result.dart';
 
-class MemberRepository {
-  final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
-
+class AuthRepository {
   final RemoteAPI api;
 
   final SecureStorage secureStorage;
 
-  MemberRepository(this.api, this.secureStorage);
+  AuthRepository(this.api, this.secureStorage);
 
-  Future<ApiResult<Auth>> signIn(String email, String password) async {
-    final uri = Uri.http(remoteUrl, '/api/v1/members/sign-in');
-    final headers = {
-      'Content-type': 'application/json; charset=UTF-8',
-      'Accept-Language': 'ko'
-    };
+  Future<ApiResult<Member>> signIn(String email, String password) async {
+    final result = await api.signIn(email, password);
 
-    final body = jsonEncode({'email': email, 'password': password});
-
-    final response = await post(uri, headers: headers, body: body);
-    Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
-
-    if (response.statusCode != HttpStatus.ok) {
-      return const ApiResult.unhandledError('서버와 통신 중 에러가 발생했습니다.');
-    }
-
-    return ApiResult.fromJson(json, Auth.fromJson);
+    return result.when(
+        success: (auth) {
+          secureStorage.saveAuth(auth);
+          return api.findProfile(auth);
+        },
+        error: (errors) => ApiResult.error(errors),
+        unhandledError: (message) => ApiResult.unhandledError(message));
   }
 
   Future<ApiResult<Member>> signUp(
       String email, String password, String nickname) async {
-    final uri = Uri.http(remoteUrl, '/api/v1/members/sign-up');
-    final headers = {
-      'Content-type': 'application/json; charset=UTF-8',
-      'Accept-Language': 'ko'
-    };
+    final result = await api.signUp(email, password, nickname);
 
-    final body = jsonEncode(
-        {'email': email, 'password': password, 'nickname': nickname});
+    return result.when(
+        success: (member) async {
+          final result = await api.signIn(email, password);
 
-    final response = await post(uri, headers: headers, body: body);
-    Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
+          return result.when(
+              success: (auth) {
+                secureStorage.saveAuth(auth);
+                return ApiResult.success(member);
+              },
+              error: (errors) => ApiResult.error(errors),
+              unhandledError: (message) => ApiResult.unhandledError(message));
+        },
+        error: (errors) => ApiResult.error(errors),
+        unhandledError: (message) => ApiResult.unhandledError(message));
+  }
 
-    if (response.statusCode != HttpStatus.created &&
-        response.statusCode != HttpStatus.ok) {
-      return const ApiResult.unhandledError('서버와 통신 중 에러가 발생했습니다.');
-    }
+  void signOut() {
 
-    return ApiResult.fromJson(json, Member.fromJson);
+    secureStorage.deleteAuth();
+
   }
 
   Future<ApiResult<Member>> findProfile() async {

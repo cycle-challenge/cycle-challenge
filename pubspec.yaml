@@ -58,6 +58,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_progress_hud: ^2.0.2
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   flutter_test:
