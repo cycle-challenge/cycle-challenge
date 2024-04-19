@@ -18,6 +18,8 @@ class LocalSignUpViewModel with ChangeNotifier {
   LocalSignUpState _state = LocalSignUpState(errorMessages: []);
   LocalSignUpState get state => _state;
 
+  Timer? _timer;
+
   void onEvent(LocalSignUpEvent event) {
     event.when(
         signUp: _onSignUp,
@@ -63,7 +65,18 @@ class LocalSignUpViewModel with ChangeNotifier {
 
     result.when(
         success: (_) {
-          _state = _state.copyWith(verifyStarted: true);
+          _timer?.cancel();
+          _state = _state.copyWith(seconds: 180);
+
+          _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+              _state = _state.copyWith(seconds: _state.seconds - 1);
+              notifyListeners();
+
+              if (_state.seconds == 0) {
+                _timer?.cancel();
+              }
+          });
+
           notifyListeners();
         },
         error: (errors) {
