@@ -10,7 +10,7 @@ import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 class PlaceRepository {
 
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
-  final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
+  final String remoteUrl = const String.fromEnvironment("REMOTE_HOST");
 
   Future<List<PlaceModel>> findNearby(
       double latitude, double longitude, int radius) async {
