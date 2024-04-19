@@ -8,7 +8,7 @@ part 'local_sign_in_state.g.dart';
 @freezed
 class LocalSignInState with _$LocalSignInState {
   factory LocalSignInState({
-    required List<String> errorMessages
+    @Default([]) List<String> errorMessages
   }) = _LocalSignInState;
 
   factory LocalSignInState.fromJson(Map<String, dynamic> json) => _$LocalSignInStateFromJson(json);
