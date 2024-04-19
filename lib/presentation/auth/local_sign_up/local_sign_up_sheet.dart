@@ -32,6 +32,12 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
   final _repeatPasswordFieldKey = GlobalKey<FormBuilderFieldState>();
   final _nicknameFieldKey = GlobalKey<FormBuilderFieldState>();
 
+  String formatSeconds(int seconds) {
+    Duration duration = Duration(seconds: seconds);
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    return "${twoDigits(duration.inMinutes.remainder(60))}:${twoDigits(duration.inSeconds.remainder(60))}";
+  }
+
   @override
   void initState() {
     super.initState();
@@ -127,9 +133,11 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
               FormBuilderTextField(
                   key: _verificationCodeFieldKey,
                   name: 'verificationCode',
-                  enabled: viewModel.state.verifyStarted,
-                  decoration: const InputDecoration(
-                      labelText: "이메일", hintText: "이메일(E-mail)을 입력하세요.")),
+                  enabled: viewModel.state.seconds > 0,
+                  decoration: InputDecoration(
+                      labelText: "인증번호",
+                      hintText: "비밀번호를 입력하세요.",
+                      suffixText: formatSeconds(viewModel.state.seconds))),
               const SizedBox(height: 28),
               FormBuilderTextField(
                   key: _passwordFieldKey,

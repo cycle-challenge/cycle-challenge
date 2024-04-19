@@ -6,6 +6,8 @@ part 'local_sign_up_ui_event.freezed.dart';
 abstract class LocalSignUpUIEvent<T> with _$LocalSignUpUIEvent<T> {
   const factory LocalSignUpUIEvent.showInputError(
       String target, String message) = LocalSignUphowInputErrorUIEvent;
-  const factory LocalSignUpUIEvent.success(String nickname) = LocalSignUpSuccessUIEvent;
-  const factory LocalSignUpUIEvent.loading(bool isSubmitting) = LocalSignUpLoadingUIEvent;
+  const factory LocalSignUpUIEvent.success(String nickname) =
+      LocalSignUpSuccessUIEvent;
+  const factory LocalSignUpUIEvent.loading(bool isSubmitting) =
+      LocalSignUpLoadingUIEvent;
 }
