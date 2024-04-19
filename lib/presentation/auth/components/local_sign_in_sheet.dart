@@ -1,10 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
@@ -13,7 +10,6 @@ import 'package:yeohaeng_ttukttak/presentation/auth/components/form_errors.dart'
 import 'package:yeohaeng_ttukttak/presentation/auth/components/loading_dialog.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/local_sign_up_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/welcome/welcome_screen.dart';
 
 class LocalSignInSheet extends StatefulWidget {
   const LocalSignInSheet({super.key});

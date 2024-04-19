@@ -12,10 +12,12 @@ _$LocalSignUpStateImpl _$$LocalSignUpStateImplFromJson(
       errorMessages: (json['errorMessages'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      verifyStarted: json['verifyStarted'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$LocalSignUpStateImplToJson(
         _$LocalSignUpStateImpl instance) =>
     <String, dynamic>{
       'errorMessages': instance.errorMessages,
+      'verifyStarted': instance.verifyStarted,
     };

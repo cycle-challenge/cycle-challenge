@@ -47,13 +47,17 @@ class AuthViewModel with ChangeNotifier {
   LocalSignUpState get signUpState => _signUpState;
 
   void onEvent(AuthEvent event) {
-    event.when(signUp: _onSignUp, signIn: _onSignIn, signOut: _onSignOut);
+    event.when(
+        signUp: _onSignUp,
+        signIn: _onSignIn,
+        signOut: _onSignOut,
+        verifyEmail: _onVerifyEmail);
   }
 
   void _onSignUp(String email, String password, String repeatPassword,
-      String nickname) async {
+      String nickname, String verificationCode) async {
     _signUpEventController.add(const LocalSignUpUIEvent.loading(true));
-    final result = await authRepository.signUp(email, password, nickname);
+    final result = await authRepository.signUp(email, password, nickname, verificationCode);
     _signUpEventController.add(const LocalSignUpUIEvent.loading(false));
 
     _signUpState = _signUpState.copyWith(errorMessages: []);
@@ -105,9 +109,38 @@ class AuthViewModel with ChangeNotifier {
   }
 
   void _onSignOut() async {
-
     authRepository.signOut();
     _state = _state.copyWith(member: null);
+  }
 
+  void _onVerifyEmail(String email) async {
+    final result = await authRepository.verifyEmail(email);
+
+    result.when(
+        success: (_) {
+          _signUpState = _signUpState.copyWith(verifyStarted: true);
+          notifyListeners();
+        },
+        error: (errors) {
+          final List<String> errorMessages = [];
+
+          errors.forEach((error) {
+            String? target = error.target;
+
+            if (target == null) {
+              errorMessages.add(error.message);
+              return;
+            }
+            _signUpEventController
+                .add(LocalSignUpUIEvent.showInputError(target, error.message));
+          });
+
+          if (errorMessages.isEmpty) return;
+          _signUpState = _signUpState.copyWith(errorMessages: errorMessages);
+          notifyListeners();
+        },
+        unhandledError: (message) => {
+              _signUpState = _signUpState.copyWith(errorMessages: [message])
+            });
   }
 }

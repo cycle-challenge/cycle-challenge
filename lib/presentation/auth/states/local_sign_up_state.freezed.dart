@@ -21,6 +21,7 @@ LocalSignUpState _$LocalSignUpStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LocalSignUpState {
   List<String> get errorMessages => throw _privateConstructorUsedError;
+  bool get verifyStarted => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $LocalSignUpStateCopyWith<$Res> {
           LocalSignUpState value, $Res Function(LocalSignUpState) then) =
       _$LocalSignUpStateCopyWithImpl<$Res, LocalSignUpState>;
   @useResult
-  $Res call({List<String> errorMessages});
+  $Res call({List<String> errorMessages, bool verifyStarted});
 }
 
 /// @nodoc
@@ -51,12 +52,17 @@ class _$LocalSignUpStateCopyWithImpl<$Res, $Val extends LocalSignUpState>
   @override
   $Res call({
     Object? errorMessages = null,
+    Object? verifyStarted = null,
   }) {
     return _then(_value.copyWith(
       errorMessages: null == errorMessages
           ? _value.errorMessages
           : errorMessages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      verifyStarted: null == verifyStarted
+          ? _value.verifyStarted
+          : verifyStarted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -69,7 +75,7 @@ abstract class _$$LocalSignUpStateImplCopyWith<$Res>
       __$$LocalSignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> errorMessages});
+  $Res call({List<String> errorMessages, bool verifyStarted});
 }
 
 /// @nodoc
@@ -84,12 +90,17 @@ class __$$LocalSignUpStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? errorMessages = null,
+    Object? verifyStarted = null,
   }) {
     return _then(_$LocalSignUpStateImpl(
       errorMessages: null == errorMessages
           ? _value._errorMessages
           : errorMessages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      verifyStarted: null == verifyStarted
+          ? _value.verifyStarted
+          : verifyStarted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -97,7 +108,8 @@ class __$$LocalSignUpStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LocalSignUpStateImpl implements _LocalSignUpState {
-  _$LocalSignUpStateImpl({required final List<String> errorMessages})
+  _$LocalSignUpStateImpl(
+      {required final List<String> errorMessages, this.verifyStarted = false})
       : _errorMessages = errorMessages;
 
   factory _$LocalSignUpStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -112,8 +124,12 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
   }
 
   @override
+  @JsonKey()
+  final bool verifyStarted;
+
+  @override
   String toString() {
-    return 'LocalSignUpState(errorMessages: $errorMessages)';
+    return 'LocalSignUpState(errorMessages: $errorMessages, verifyStarted: $verifyStarted)';
   }
 
   @override
@@ -122,13 +138,15 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
         (other.runtimeType == runtimeType &&
             other is _$LocalSignUpStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._errorMessages, _errorMessages));
+                .equals(other._errorMessages, _errorMessages) &&
+            (identical(other.verifyStarted, verifyStarted) ||
+                other.verifyStarted == verifyStarted));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_errorMessages));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_errorMessages), verifyStarted);
 
   @JsonKey(ignore: true)
   @override
@@ -146,14 +164,17 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
 }
 
 abstract class _LocalSignUpState implements LocalSignUpState {
-  factory _LocalSignUpState({required final List<String> errorMessages}) =
-      _$LocalSignUpStateImpl;
+  factory _LocalSignUpState(
+      {required final List<String> errorMessages,
+      final bool verifyStarted}) = _$LocalSignUpStateImpl;
 
   factory _LocalSignUpState.fromJson(Map<String, dynamic> json) =
       _$LocalSignUpStateImpl.fromJson;
 
   @override
   List<String> get errorMessages;
+  @override
+  bool get verifyStarted;
   @override
   @JsonKey(ignore: true)
   _$$LocalSignUpStateImplCopyWith<_$LocalSignUpStateImpl> get copyWith =>

@@ -27,6 +27,7 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
   final _passwordFieldKey = GlobalKey<FormBuilderFieldState>();
   final _repeatPasswordFieldKey = GlobalKey<FormBuilderFieldState>();
   final _nicknameFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _verificationCodeFieldKey = GlobalKey<FormBuilderFieldState>();
 
   @override
   void initState() {
@@ -51,7 +52,6 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
     _showSnackBar("$nickname님 가입을 축하합니다.");
   }
 
-
   void _showSnackBar(String message) {
     final snackBar = SnackBar(
         backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
@@ -67,10 +67,8 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
   void _onLoading(bool isSubmitting) {
     showDialog(context: context, builder: (context) => const LoadingDialog());
 
-    Future.delayed(
-        const Duration(seconds: 1), () => {
-      if (mounted) Navigator.of(context).pop()
-    });
+    Future.delayed(const Duration(seconds: 1),
+        () => {if (mounted) Navigator.of(context).pop()});
   }
 
   @override
@@ -111,8 +109,23 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
                     FormBuilderValidators.required(),
                     FormBuilderValidators.email()
                   ]),
+                  decoration: InputDecoration(
+                      labelText: "이메일",
+                      hintText: "이메일(E-mail)을 입력하세요.",
+                      suffixIcon: IconButton(
+                          onPressed: () => viewModel.onEvent(
+                              AuthEvent.verifyEmail(
+                                  _formKey.currentState?.value['email'])),
+                          icon: const Icon(Icons.send)))),
+              const SizedBox(height: 28),
+              FormBuilderTextField(
+                  key: _verificationCodeFieldKey,
+                  name: 'verificationCode',
+                  enabled: viewModel.signUpState.verifyStarted,
                   decoration: const InputDecoration(
-                      labelText: "이메일", hintText: "이메일(E-mail)을 입력하세요.")),
+                      labelText: "인증번호",
+                      hintText: "비밀번호를 입력하세요.",
+                      suffixText: '3:00')),
               const SizedBox(height: 28),
               FormBuilderTextField(
                   key: _passwordFieldKey,
@@ -185,7 +198,8 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
                         values?['email'],
                         values?['password'],
                         values?['repeatPassword'],
-                        values?['nickname']));
+                        values?['nickname'],
+                        values?['verificationCode']));
                   },
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,

@@ -18,8 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String email) verifyEmail,
     required TResult Function(String email, String password,
-            String repeatPassword, String nickname)
+            String repeatPassword, String nickname, String verificationCode)
         signUp,
     required TResult Function(String email, String password) signIn,
     required TResult Function() signOut,
@@ -27,8 +28,9 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? verifyEmail,
     TResult? Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult? Function(String email, String password)? signIn,
     TResult? Function()? signOut,
@@ -36,8 +38,9 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? verifyEmail,
     TResult Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult Function(String email, String password)? signIn,
     TResult Function()? signOut,
@@ -46,6 +49,7 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AuthVerifyEmailEvent value) verifyEmail,
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
@@ -53,6 +57,7 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult? Function(AuthSignUpEvent value)? signUp,
     TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
@@ -60,6 +65,7 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
@@ -86,13 +92,171 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
 }
 
 /// @nodoc
+abstract class _$$AuthVerifyEmailEventImplCopyWith<$Res> {
+  factory _$$AuthVerifyEmailEventImplCopyWith(_$AuthVerifyEmailEventImpl value,
+          $Res Function(_$AuthVerifyEmailEventImpl) then) =
+      __$$AuthVerifyEmailEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$$AuthVerifyEmailEventImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$AuthVerifyEmailEventImpl>
+    implements _$$AuthVerifyEmailEventImplCopyWith<$Res> {
+  __$$AuthVerifyEmailEventImplCopyWithImpl(_$AuthVerifyEmailEventImpl _value,
+      $Res Function(_$AuthVerifyEmailEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$AuthVerifyEmailEventImpl(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthVerifyEmailEventImpl implements AuthVerifyEmailEvent {
+  const _$AuthVerifyEmailEventImpl(this.email);
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'AuthEvent.verifyEmail(email: $email)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthVerifyEmailEventImpl &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthVerifyEmailEventImplCopyWith<_$AuthVerifyEmailEventImpl>
+      get copyWith =>
+          __$$AuthVerifyEmailEventImplCopyWithImpl<_$AuthVerifyEmailEventImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) verifyEmail,
+    required TResult Function(String email, String password,
+            String repeatPassword, String nickname, String verificationCode)
+        signUp,
+    required TResult Function(String email, String password) signIn,
+    required TResult Function() signOut,
+  }) {
+    return verifyEmail(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? verifyEmail,
+    TResult? Function(String email, String password, String repeatPassword,
+            String nickname, String verificationCode)?
+        signUp,
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function()? signOut,
+  }) {
+    return verifyEmail?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? verifyEmail,
+    TResult Function(String email, String password, String repeatPassword,
+            String nickname, String verificationCode)?
+        signUp,
+    TResult Function(String email, String password)? signIn,
+    TResult Function()? signOut,
+    required TResult orElse(),
+  }) {
+    if (verifyEmail != null) {
+      return verifyEmail(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthVerifyEmailEvent value) verifyEmail,
+    required TResult Function(AuthSignUpEvent value) signUp,
+    required TResult Function(AuthSignInEvent value) signIn,
+    required TResult Function(AuthSignOutEvent value) signOut,
+  }) {
+    return verifyEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthVerifyEmailEvent value)? verifyEmail,
+    TResult? Function(AuthSignUpEvent value)? signUp,
+    TResult? Function(AuthSignInEvent value)? signIn,
+    TResult? Function(AuthSignOutEvent value)? signOut,
+  }) {
+    return verifyEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthVerifyEmailEvent value)? verifyEmail,
+    TResult Function(AuthSignUpEvent value)? signUp,
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignOutEvent value)? signOut,
+    required TResult orElse(),
+  }) {
+    if (verifyEmail != null) {
+      return verifyEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthVerifyEmailEvent implements AuthEvent {
+  const factory AuthVerifyEmailEvent(final String email) =
+      _$AuthVerifyEmailEventImpl;
+
+  String get email;
+  @JsonKey(ignore: true)
+  _$$AuthVerifyEmailEventImplCopyWith<_$AuthVerifyEmailEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$AuthSignUpEventImplCopyWith<$Res> {
   factory _$$AuthSignUpEventImplCopyWith(_$AuthSignUpEventImpl value,
           $Res Function(_$AuthSignUpEventImpl) then) =
       __$$AuthSignUpEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String email, String password, String repeatPassword, String nickname});
+      {String email,
+      String password,
+      String repeatPassword,
+      String nickname,
+      String verificationCode});
 }
 
 /// @nodoc
@@ -110,6 +274,7 @@ class __$$AuthSignUpEventImplCopyWithImpl<$Res>
     Object? password = null,
     Object? repeatPassword = null,
     Object? nickname = null,
+    Object? verificationCode = null,
   }) {
     return _then(_$AuthSignUpEventImpl(
       null == email
@@ -128,6 +293,10 @@ class __$$AuthSignUpEventImplCopyWithImpl<$Res>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
+      null == verificationCode
+          ? _value.verificationCode
+          : verificationCode // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -135,8 +304,8 @@ class __$$AuthSignUpEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthSignUpEventImpl implements AuthSignUpEvent {
-  const _$AuthSignUpEventImpl(
-      this.email, this.password, this.repeatPassword, this.nickname);
+  const _$AuthSignUpEventImpl(this.email, this.password, this.repeatPassword,
+      this.nickname, this.verificationCode);
 
   @override
   final String email;
@@ -146,10 +315,12 @@ class _$AuthSignUpEventImpl implements AuthSignUpEvent {
   final String repeatPassword;
   @override
   final String nickname;
+  @override
+  final String verificationCode;
 
   @override
   String toString() {
-    return 'AuthEvent.signUp(email: $email, password: $password, repeatPassword: $repeatPassword, nickname: $nickname)';
+    return 'AuthEvent.signUp(email: $email, password: $password, repeatPassword: $repeatPassword, nickname: $nickname, verificationCode: $verificationCode)';
   }
 
   @override
@@ -163,12 +334,14 @@ class _$AuthSignUpEventImpl implements AuthSignUpEvent {
             (identical(other.repeatPassword, repeatPassword) ||
                 other.repeatPassword == repeatPassword) &&
             (identical(other.nickname, nickname) ||
-                other.nickname == nickname));
+                other.nickname == nickname) &&
+            (identical(other.verificationCode, verificationCode) ||
+                other.verificationCode == verificationCode));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, repeatPassword, nickname);
+  int get hashCode => Object.hash(
+      runtimeType, email, password, repeatPassword, nickname, verificationCode);
 
   @JsonKey(ignore: true)
   @override
@@ -180,39 +353,44 @@ class _$AuthSignUpEventImpl implements AuthSignUpEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String email) verifyEmail,
     required TResult Function(String email, String password,
-            String repeatPassword, String nickname)
+            String repeatPassword, String nickname, String verificationCode)
         signUp,
     required TResult Function(String email, String password) signIn,
     required TResult Function() signOut,
   }) {
-    return signUp(email, password, repeatPassword, nickname);
+    return signUp(email, password, repeatPassword, nickname, verificationCode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? verifyEmail,
     TResult? Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult? Function(String email, String password)? signIn,
     TResult? Function()? signOut,
   }) {
-    return signUp?.call(email, password, repeatPassword, nickname);
+    return signUp?.call(
+        email, password, repeatPassword, nickname, verificationCode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? verifyEmail,
     TResult Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult Function(String email, String password)? signIn,
     TResult Function()? signOut,
     required TResult orElse(),
   }) {
     if (signUp != null) {
-      return signUp(email, password, repeatPassword, nickname);
+      return signUp(
+          email, password, repeatPassword, nickname, verificationCode);
     }
     return orElse();
   }
@@ -220,6 +398,7 @@ class _$AuthSignUpEventImpl implements AuthSignUpEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AuthVerifyEmailEvent value) verifyEmail,
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
@@ -230,6 +409,7 @@ class _$AuthSignUpEventImpl implements AuthSignUpEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult? Function(AuthSignUpEvent value)? signUp,
     TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
@@ -240,6 +420,7 @@ class _$AuthSignUpEventImpl implements AuthSignUpEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
@@ -257,12 +438,14 @@ abstract class AuthSignUpEvent implements AuthEvent {
       final String email,
       final String password,
       final String repeatPassword,
-      final String nickname) = _$AuthSignUpEventImpl;
+      final String nickname,
+      final String verificationCode) = _$AuthSignUpEventImpl;
 
   String get email;
   String get password;
   String get repeatPassword;
   String get nickname;
+  String get verificationCode;
   @JsonKey(ignore: true)
   _$$AuthSignUpEventImplCopyWith<_$AuthSignUpEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -342,8 +525,9 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String email) verifyEmail,
     required TResult Function(String email, String password,
-            String repeatPassword, String nickname)
+            String repeatPassword, String nickname, String verificationCode)
         signUp,
     required TResult Function(String email, String password) signIn,
     required TResult Function() signOut,
@@ -354,8 +538,9 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? verifyEmail,
     TResult? Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult? Function(String email, String password)? signIn,
     TResult? Function()? signOut,
@@ -366,8 +551,9 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? verifyEmail,
     TResult Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult Function(String email, String password)? signIn,
     TResult Function()? signOut,
@@ -382,6 +568,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AuthVerifyEmailEvent value) verifyEmail,
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
@@ -392,6 +579,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult? Function(AuthSignUpEvent value)? signUp,
     TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
@@ -402,6 +590,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
@@ -463,8 +652,9 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String email) verifyEmail,
     required TResult Function(String email, String password,
-            String repeatPassword, String nickname)
+            String repeatPassword, String nickname, String verificationCode)
         signUp,
     required TResult Function(String email, String password) signIn,
     required TResult Function() signOut,
@@ -475,8 +665,9 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? verifyEmail,
     TResult? Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult? Function(String email, String password)? signIn,
     TResult? Function()? signOut,
@@ -487,8 +678,9 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? verifyEmail,
     TResult Function(String email, String password, String repeatPassword,
-            String nickname)?
+            String nickname, String verificationCode)?
         signUp,
     TResult Function(String email, String password)? signIn,
     TResult Function()? signOut,
@@ -503,6 +695,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AuthVerifyEmailEvent value) verifyEmail,
     required TResult Function(AuthSignUpEvent value) signUp,
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
@@ -513,6 +706,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult? Function(AuthSignUpEvent value)? signUp,
     TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
@@ -523,6 +717,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthVerifyEmailEvent value)? verifyEmail,
     TResult Function(AuthSignUpEvent value)? signUp,
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,

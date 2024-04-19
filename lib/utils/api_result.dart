@@ -18,6 +18,8 @@ abstract class ApiResult<T> with _$ApiResult<T> {
       return ApiResult.error(errors);
     }
 
-    return ApiResult<T>.success(mapperFn(json['data']));
+    if (!json.containsKey('data')) return ApiResult.success(mapperFn(json));
+
+    return ApiResult.success(mapperFn(json['data']));
   }
 }
