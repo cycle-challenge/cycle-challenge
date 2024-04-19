@@ -9,9 +9,10 @@ part of 'local_sign_in_state.dart';
 _$LocalSignInStateImpl _$$LocalSignInStateImplFromJson(
         Map<String, dynamic> json) =>
     _$LocalSignInStateImpl(
-      errorMessages: (json['errorMessages'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      errorMessages: (json['errorMessages'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$LocalSignInStateImplToJson(

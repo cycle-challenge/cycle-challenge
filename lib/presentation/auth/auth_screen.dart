@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/auth/components/local_sign_in_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -24,13 +26,7 @@ class _AuthScreenState extends State<AuthScreen> {
       final viewModel = context.read<AuthViewModel>();
       _subscription = viewModel.stream.listen((event) => event.when(
           showSnackBar: (message) => _onShowSnackBar(message),
-          signUpSuccess: (String message) {
-            _onShowSnackBar(message, onPopInvoked: (_) {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) => const LocalSignInSheet());
-            });
-          }, autoSignIn: _onAutoSignIn));
+          autoSignIn: _onAutoSignIn));
     });
   }
 
@@ -43,7 +39,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
     _onShowSnackBar("$nickname님 자동 로그인 되었습니다.");
   }
-
 
   @override
   void dispose() {
@@ -76,9 +71,10 @@ class _AuthScreenState extends State<AuthScreen> {
               children: [
                 Column(children: [
                   Text("여행뚝딱.",
-                      style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                            fontFamily: 'Jalnan_2',
-                          )),
+                      style:
+                          Theme.of(context).textTheme.displayMedium?.copyWith(
+                                fontFamily: 'Jalnan_2',
+                              )),
                   Text("1만 6천 데이터로 알아보는 여행 계획",
                       style: Theme.of(context)
                           .textTheme
@@ -115,7 +111,10 @@ class _AuthScreenState extends State<AuthScreen> {
                             useSafeArea: true,
                             context: context,
                             builder: (BuildContext context) =>
-                                const LocalSignInSheet(),
+                                ChangeNotifierProvider(
+                                    create: (context) => LocalSignInViewModel(
+                                        context.read<AuthRepository>()),
+                                    child: const LocalSignInSheet()),
                           ),
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.5,

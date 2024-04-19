@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/form_errors.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/loading_dialog.dart';
-import 'package:yeohaeng_ttukttak/presentation/auth/components/local_sign_in_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/welcome/welcome_screen.dart';
 
@@ -34,8 +38,8 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
     super.initState();
 
     Future.microtask(() {
-      final viewModel = context.read<AuthViewModel>();
-      _subscription = viewModel.signUpStream.listen((event) => event.when(
+      final viewModel = context.read<LocalSignUpViewModel>();
+      _subscription = viewModel.stream.listen((event) => event.when(
           showInputError: _onShowInputError,
           success: _onSuccess,
           loading: _onLoading));
@@ -80,8 +84,8 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<AuthViewModel>();
-    final state = viewModel.signUpState;
+    final viewModel = context.watch<LocalSignUpViewModel>();
+    final state = viewModel.state;
 
     return Padding(
       padding:
@@ -114,14 +118,14 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
                       hintText: "이메일(E-mail)을 입력하세요.",
                       suffixIcon: IconButton(
                           onPressed: () => viewModel.onEvent(
-                              AuthEvent.verifyEmail(
+                              LocalSignUpEvent.verifyEmail(
                                   _formKey.currentState?.value['email'])),
                           icon: const Icon(Icons.send)))),
               const SizedBox(height: 28),
               FormBuilderTextField(
                   key: _verificationCodeFieldKey,
                   name: 'verificationCode',
-                  enabled: viewModel.signUpState.verifyStarted,
+                  enabled: viewModel.state.verifyStarted,
                   decoration: const InputDecoration(
                       labelText: "인증번호",
                       hintText: "비밀번호를 입력하세요.",
@@ -194,7 +198,7 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
 
                     final values = _formKey.currentState?.value;
 
-                    viewModel.onEvent(AuthEvent.signUp(
+                    viewModel.onEvent(LocalSignUpEvent.signUp(
                         values?['email'],
                         values?['password'],
                         values?['repeatPassword'],
@@ -217,11 +221,16 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
                 child: InkWell(
                   onTap: () {
                     Navigator.pop(context);
+
                     showModalBottomSheet(
-                        isScrollControlled: true,
-                        useSafeArea: true,
-                        context: context,
-                        builder: (context) => const LocalSignInSheet());
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      context: context,
+                      builder: (BuildContext context) => ChangeNotifierProvider(
+                          create: (context) => LocalSignInViewModel(
+                              context.read<AuthRepository>()),
+                          child: const LocalSignInSheet()),
+                    );
                   },
                   child: RichText(
                       text: TextSpan(children: [

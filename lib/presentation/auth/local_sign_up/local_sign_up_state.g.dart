@@ -9,9 +9,10 @@ part of 'local_sign_up_state.dart';
 _$LocalSignUpStateImpl _$$LocalSignUpStateImplFromJson(
         Map<String, dynamic> json) =>
     _$LocalSignUpStateImpl(
-      errorMessages: (json['errorMessages'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      errorMessages: (json['errorMessages'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
       verifyStarted: json['verifyStarted'] as bool? ?? false,
     );
 

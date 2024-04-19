@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/form_errors.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/loading_dialog.dart';
-import 'package:yeohaeng_ttukttak/presentation/auth/components/local_sign_up_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 
 class LocalSignInSheet extends StatefulWidget {
@@ -36,8 +40,8 @@ class _LocalSignInSheetState extends State<LocalSignInSheet> {
     super.initState();
 
     Future.microtask(() {
-      final viewModel = context.read<AuthViewModel>();
-      _subscription = viewModel.signInStream.listen((event) => event.when(
+      final viewModel = context.read<LocalSignInViewModel>();
+      _subscription = viewModel.stream.listen((event) => event.when(
           showInputError: _onShowInputError,
           success: _onSuccess,
           loading: _onLoading));
@@ -65,8 +69,8 @@ class _LocalSignInSheetState extends State<LocalSignInSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<AuthViewModel>();
-    final state = viewModel.signInState;
+    final viewModel = context.watch<LocalSignInViewModel>();
+    final state = viewModel.state;
 
     return Padding(
       padding:
@@ -115,7 +119,7 @@ class _LocalSignInSheetState extends State<LocalSignInSheet> {
                     if (isValid == null || !isValid) return;
 
                     final values = _formKey.currentState?.value;
-                    viewModel.onEvent(AuthEvent.signIn(
+                    viewModel.onEvent(LocalSignInEvent.signIn(
                         values?['email'], values?['password']));
                   },
                   child: SizedBox(
@@ -138,7 +142,10 @@ class _LocalSignInSheetState extends State<LocalSignInSheet> {
                         isScrollControlled: true,
                         useSafeArea: true,
                         context: context,
-                        builder: (context) => const LocalSignUpSheet());
+                        builder: (context) => ChangeNotifierProvider(
+                            create: (context) => LocalSignUpViewModel(
+                                context.read<AuthRepository>()),
+                            child: const LocalSignUpSheet()));
                   },
                   child: RichText(
                       text: TextSpan(children: [

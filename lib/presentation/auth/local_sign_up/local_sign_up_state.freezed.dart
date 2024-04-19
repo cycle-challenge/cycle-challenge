@@ -109,7 +109,7 @@ class __$$LocalSignUpStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LocalSignUpStateImpl implements _LocalSignUpState {
   _$LocalSignUpStateImpl(
-      {required final List<String> errorMessages, this.verifyStarted = false})
+      {final List<String> errorMessages = const [], this.verifyStarted = false})
       : _errorMessages = errorMessages;
 
   factory _$LocalSignUpStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -117,6 +117,7 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
 
   final List<String> _errorMessages;
   @override
+  @JsonKey()
   List<String> get errorMessages {
     if (_errorMessages is EqualUnmodifiableListView) return _errorMessages;
     // ignore: implicit_dynamic_type
@@ -165,7 +166,7 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
 
 abstract class _LocalSignUpState implements LocalSignUpState {
   factory _LocalSignUpState(
-      {required final List<String> errorMessages,
+      {final List<String> errorMessages,
       final bool verifyStarted}) = _$LocalSignUpStateImpl;
 
   factory _LocalSignUpState.fromJson(Map<String, dynamic> json) =

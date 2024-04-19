@@ -8,7 +8,7 @@ part 'local_sign_up_state.g.dart';
 @freezed
 class LocalSignUpState with _$LocalSignUpState {
   factory LocalSignUpState({
-    required List<String> errorMessages,
+    @Default([]) List<String> errorMessages,
     @Default(false) bool verifyStarted
   }) = _LocalSignUpState;
 

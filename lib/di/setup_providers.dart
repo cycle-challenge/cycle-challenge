@@ -61,5 +61,5 @@ List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<MapViewModel>(
       create: (context) => MapViewModel(context.read<UseCases>())),
   ChangeNotifierProvider<AuthViewModel>(
-      create: (context) => AuthViewModel(context.read<AuthRepository>()))
+      create: (context) => AuthViewModel(context.read<AuthRepository>())),
 ];
