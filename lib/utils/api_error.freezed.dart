@@ -20,8 +20,6 @@ ApiError _$ApiErrorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ApiError {
-  int get status => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String? get target => throw _privateConstructorUsedError;
 
@@ -36,7 +34,7 @@ abstract class $ApiErrorCopyWith<$Res> {
   factory $ApiErrorCopyWith(ApiError value, $Res Function(ApiError) then) =
       _$ApiErrorCopyWithImpl<$Res, ApiError>;
   @useResult
-  $Res call({int status, String code, String message, String? target});
+  $Res call({String message, String? target});
 }
 
 /// @nodoc
@@ -52,20 +50,10 @@ class _$ApiErrorCopyWithImpl<$Res, $Val extends ApiError>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
-    Object? code = null,
     Object? message = null,
     Object? target = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -86,7 +74,7 @@ abstract class _$$ApiErrorImplCopyWith<$Res>
       __$$ApiErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int status, String code, String message, String? target});
+  $Res call({String message, String? target});
 }
 
 /// @nodoc
@@ -100,20 +88,10 @@ class __$$ApiErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
-    Object? code = null,
     Object? message = null,
     Object? target = freezed,
   }) {
     return _then(_$ApiErrorImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -129,19 +107,11 @@ class __$$ApiErrorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ApiErrorImpl implements _ApiError {
-  _$ApiErrorImpl(
-      {required this.status,
-      required this.code,
-      required this.message,
-      this.target});
+  _$ApiErrorImpl({required this.message, this.target});
 
   factory _$ApiErrorImpl.fromJson(Map<String, dynamic> json) =>
       _$$ApiErrorImplFromJson(json);
 
-  @override
-  final int status;
-  @override
-  final String code;
   @override
   final String message;
   @override
@@ -149,7 +119,7 @@ class _$ApiErrorImpl implements _ApiError {
 
   @override
   String toString() {
-    return 'ApiError(status: $status, code: $code, message: $message, target: $target)';
+    return 'ApiError(message: $message, target: $target)';
   }
 
   @override
@@ -157,15 +127,13 @@ class _$ApiErrorImpl implements _ApiError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ApiErrorImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.code, code) || other.code == code) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.target, target) || other.target == target));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, code, message, target);
+  int get hashCode => Object.hash(runtimeType, message, target);
 
   @JsonKey(ignore: true)
   @override
@@ -182,19 +150,12 @@ class _$ApiErrorImpl implements _ApiError {
 }
 
 abstract class _ApiError implements ApiError {
-  factory _ApiError(
-      {required final int status,
-      required final String code,
-      required final String message,
-      final String? target}) = _$ApiErrorImpl;
+  factory _ApiError({required final String message, final String? target}) =
+      _$ApiErrorImpl;
 
   factory _ApiError.fromJson(Map<String, dynamic> json) =
       _$ApiErrorImpl.fromJson;
 
-  @override
-  int get status;
-  @override
-  String get code;
   @override
   String get message;
   @override

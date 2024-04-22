@@ -1,20 +1,25 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
+import 'package:yeohaeng_ttukttak/utils/auth_interceptor_event.dart';
 
 class AuthInterceptor extends Interceptor {
-
   final SecureStorage secureStorage;
 
   final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
+
+  final StreamController<AuthInterceptorEvent> _eventController = StreamController.broadcast();
+  Stream<AuthInterceptorEvent> get steam => _eventController.stream;
 
   AuthInterceptor(this.secureStorage);
 
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
+
     final result = await secureStorage.findAuth();
 
     result.when(
@@ -26,15 +31,11 @@ class AuthInterceptor extends Interceptor {
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) async {
-    if (!response.data.containsKey('errors')) {
-      return super.onResponse(response, handler);
-    }
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
+    String? errorCode = err.response?.data['code'];
 
-    bool isValidAuth = _isValidResponse(response.data);
-
-    if (isValidAuth) {
-      return super.onResponse(response, handler);
+    if (errorCode == null || errorCode != 'INVALID_AUTHORIZATION') {
+      return handler.reject(err);
     }
 
     final result = await secureStorage.findAuth();
@@ -46,13 +47,20 @@ class AuthInterceptor extends Interceptor {
 
           try {
             final dio = Dio();
-            final retriedResponse = await dio.fetch(response.requestOptions);
+            final retriedResponse = await dio.fetch(err.requestOptions);
+
             return handler.resolve(retriedResponse);
           } on DioException catch (e) {
-            secureStorage.deleteAuth();
+            signOut();
           }
         },
-        error: (_) => secureStorage.deleteAuth());
+        error: (_) => signOut());
+  }
+
+  void signOut() {
+    secureStorage.deleteAuth();
+    // 서버 로그 아웃 API 호출 하기
+    _eventController.add(const AuthInterceptorEvent.authorizationExpired());
   }
 
   bool _isValidResponse(Map<String, dynamic> data) {

@@ -14,9 +14,10 @@ class AuthRepository {
     final result = await api.signIn(email, password);
 
     return result.when(
-        success: (auth) {
-          secureStorage.saveAuth(auth);
-          return api.findProfile();
+        success: (auth) async {
+          await secureStorage.saveAuth(auth);
+          final result = await api.findProfile();
+          return result;
         },
         error: (errors) => ApiResult.error(errors),
         unhandledError: (message) => ApiResult.unhandledError(message));

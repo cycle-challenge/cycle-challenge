@@ -34,12 +34,12 @@ class SecureStorage {
     return Result.success(Auth.fromJson(json));
   }
 
-  void saveAuth(Auth auth) {
-     storage.write(key: 'auth', value: jsonEncode(auth));
+  Future<void> saveAuth(Auth auth) async {
+     await storage.write(key: 'auth', value: jsonEncode(auth));
   }
 
-  void deleteAuth() {
-    storage.delete(key: 'auth');
+  Future<void> deleteAuth() async {
+    await storage.delete(key: 'auth');
   }
 
 }

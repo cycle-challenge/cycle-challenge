@@ -45,6 +45,16 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
 
+  void _onAuthorizationExpired() {
+    while (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const AuthScreen()));
+
+    _onShowSnackBar("");
+  }
+
   @override
   void dispose() {
     _subscription?.cancel();

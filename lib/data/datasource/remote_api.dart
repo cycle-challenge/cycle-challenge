@@ -8,6 +8,7 @@ import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
+import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/api_result.dart';
 
 class RemoteAPI {
@@ -23,15 +24,22 @@ class RemoteAPI {
   };
 
   Future<ApiResult<Auth>> signIn(String email, String password) async {
-    final response = await dio.post('$remoteUrl/api/v1/members/sign-in',
-        data: {'email': email, 'password': password},
-        options: Options(headers: headers));
 
-    if (response.statusCode != HttpStatus.ok) {
-      return const ApiResult.unhandledError('서버와 통신 중 에러가 발생했습니다.');
+    try {
+      final response = await dio.post('$remoteUrl/api/v1/members/sign-in',
+          data: {'email': email, 'password': password},
+          options: Options(headers: headers));
+
+      return ApiResult.success(Auth.fromJson(response.data['data']));
+    } on DioException catch (e) {
+
+      if (e.response?.statusCode == 500) {
+        return const ApiResult.unhandledError('서버와 통신 중 에러가 발생했습니다.');
+      }
+
+
+      return ApiResult.error([ApiError.fromJson(e.response?.data['data'])]);
     }
-
-    return ApiResult.fromJson(response.data, Auth.fromJson);
   }
 
   Future<ApiResult<Member>> signUp(
@@ -64,14 +72,26 @@ class RemoteAPI {
   }
 
   Future<ApiResult<Member>> findProfile() async {
-    final response = await dio.get('$remoteUrl/api/v1/members/profile',
-        options: Options(headers: headers));
 
-    if (response.statusCode != HttpStatus.ok) {
-      return const ApiResult.unhandledError('서버와 통신 중 에러가 발생했습니다.');
+    try {
+
+      final response = await dio.get('$remoteUrl/api/v1/members/profile',
+          options: Options(headers: headers));
+
+      if (response.statusCode != HttpStatus.ok) {
+        return const ApiResult.unhandledError('서버와 통신 중 에러가 발생했습니다.');
+      }
+
+      return ApiResult.success(Member.fromJson(response.data['data']));
+
+    } on DioException catch (e) {
+
+      if (e.response?.statusCode == 500) {
+        return const ApiResult.unhandledError('서버와 통신 중 에러가 발생했습니다.');
+      }
+
+      return ApiResult.error([ApiError.fromJson(e.response?.data['data'])]);
     }
-
-    return ApiResult.fromJson(response.data, Member.fromJson);
   }
 
   Future<ApiResult<List<PlaceModel>>> findNearby(
