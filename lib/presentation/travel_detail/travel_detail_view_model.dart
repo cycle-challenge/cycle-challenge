@@ -8,7 +8,7 @@ import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_event
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_ui_event.dart';
 
 class TravelDetailViewModel with ChangeNotifier {
-  late final TravelRepository _repository;
+  final TravelRepository _repository;
 
   List<DailyVisitSummary> _dailySummaries = [];
 
@@ -53,14 +53,20 @@ class TravelDetailViewModel with ChangeNotifier {
   bool _isPanelExpanded = false;
   bool get isPanelExpanded => _isPanelExpanded;
 
-  TravelDetailViewModel(int travelID) {
-    _repository = TravelRepository();
+  TravelDetailViewModel(int travelID, this._repository) {
     _loadItems(travelID).then((_) => _moveBound());
   }
 
   Future<void> _loadItems(int travelID) async {
-    _dailySummaries = await _repository.findVisits(travelID);
-    notifyListeners();
+    final result = await _repository.findVisits(travelID);
+
+    result.when(
+        success: (data) {
+          _dailySummaries = data;
+          notifyListeners();
+        },
+        error: (_) {},
+        unhandledError: (_) {});
   }
 
   void _scrollVisit(int index) {

@@ -31,6 +31,7 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
   final _passwordFieldKey = GlobalKey<FormBuilderFieldState>();
   final _repeatPasswordFieldKey = GlobalKey<FormBuilderFieldState>();
   final _nicknameFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _verificationCodeFieldKey = GlobalKey<FormBuilderFieldState>();
 
   String formatSeconds(int seconds) {
     Duration duration = Duration(seconds: seconds);
@@ -47,8 +48,12 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
       _subscription = viewModel.stream.listen((event) => event.when(
           showInputError: _onShowInputError,
           success: _onSuccess,
-          loading: _onLoading));
+          loading: _onLoading, verifyEmailSent: _onVerifyEmailSent));
     });
+  }
+
+  void _onVerifyEmailSent() {
+    Future.delayed(const Duration(seconds: 1), () => _formKey.currentState?.fields['verificationCode']?.focus());
   }
 
   void _onSuccess(String nickname) {
@@ -210,7 +215,8 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
                         values?['email'],
                         values?['password'],
                         values?['repeatPassword'],
-                        values?['nickname']));
+                        values?['nickname'],
+                        values?['verificationCode']));
                   },
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,

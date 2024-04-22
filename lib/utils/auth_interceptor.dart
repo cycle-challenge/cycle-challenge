@@ -12,7 +12,7 @@ class AuthInterceptor extends Interceptor {
   final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
 
   final StreamController<AuthInterceptorEvent> _eventController = StreamController.broadcast();
-  Stream<AuthInterceptorEvent> get steam => _eventController.stream;
+  Stream<AuthInterceptorEvent> get stream => _eventController.stream;
 
   AuthInterceptor(this.secureStorage);
 
@@ -21,7 +21,6 @@ class AuthInterceptor extends Interceptor {
       RequestOptions options, RequestInterceptorHandler handler) async {
 
     final result = await secureStorage.findAuth();
-
     result.when(
         success: (auth) => options.headers
             .addAll({'Authorization': 'Bearer ${auth.accessToken}'}),
@@ -52,9 +51,14 @@ class AuthInterceptor extends Interceptor {
             return handler.resolve(retriedResponse);
           } on DioException catch (e) {
             signOut();
+            return handler.reject(err);
           }
         },
-        error: (_) => signOut());
+        error: (_) {
+          signOut();
+          return handler.reject(err);
+        });
+
   }
 
   void signOut() {

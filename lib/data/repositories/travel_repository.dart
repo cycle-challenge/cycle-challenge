@@ -1,25 +1,15 @@
-import 'dart:convert';
-import 'dart:io';
 
-import 'package:http/http.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
+import 'package:yeohaeng_ttukttak/utils/api_result.dart';
 
 class TravelRepository {
-  final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
 
-  Future<List<DailyVisitSummary>> findVisits(int id) async {
-    Uri uri = Uri.http(remoteUrl, '/api/v1/travels/$id/visits');
+  RemoteAPI api;
 
-    Response response = await get(uri,
-        headers: {'Content-type': 'application/json; charset=UTF-8'});
+  TravelRepository(this.api);
 
-    if (response.statusCode == HttpStatus.ok) {
-      Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
-      return List.of(json["data"])
-          .map((e) => DailyVisitSummary.of(e))
-          .toList();
-    } else {
-      throw Exception(response.body);
-    }
+  Future<ApiResult<List<DailyVisitSummary>>> findVisits(int id) async {
+    return api.findVisits(id);
   }
 }

@@ -6,6 +6,7 @@ import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_location_use_case.dart';
@@ -26,7 +27,6 @@ List<SingleChildWidget> globalProviders = [
 ];
 
 List<SingleChildWidget> independentModules = [
-  Provider<PlaceRepository>(create: (_) => PlaceRepository()),
   Provider<CallPhoneUseCase>(create: (_) => CallPhoneUseCase()),
   Provider<CopyTextUseCase>(create: (_) => CopyTextUseCase()),
   Provider<LaunchUrlUseCase>(create: (_) => LaunchUrlUseCase()),
@@ -37,10 +37,14 @@ List<SingleChildWidget> independentModules = [
 ];
 
 List<SingleChildWidget> dependentModules = [
+  Provider<AuthInterceptor>(
+      create: (context) => AuthInterceptor(context.read<SecureStorage>())),
   Provider<Dio>(
-      create: (context) => Dio()
-        ..interceptors.add(AuthInterceptor(context.read<SecureStorage>()))),
+      create: (context) =>
+          Dio()..interceptors.add(context.read<AuthInterceptor>())),
   Provider<RemoteAPI>(create: (context) => RemoteAPI(context.read<Dio>())),
+  Provider<PlaceRepository>(create: (context) => PlaceRepository(context.read<RemoteAPI>())),
+  Provider<TravelRepository>(create: (context) => TravelRepository(context.read<RemoteAPI>())),
   Provider<AuthRepository>(
       create: (context) => AuthRepository(
           context.read<RemoteAPI>(), context.read<SecureStorage>())),

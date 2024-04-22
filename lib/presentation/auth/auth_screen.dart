@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
+import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -27,7 +29,16 @@ class _AuthScreenState extends State<AuthScreen> {
       _subscription = viewModel.stream.listen((event) => event.when(
           showSnackBar: (message) => _onShowSnackBar(message),
           autoSignIn: _onAutoSignIn));
+      context.read<AuthInterceptor>().stream.listen((event) => event.when(
+          authorizationExpired: () =>
+              viewModel.onEvent(const AuthEvent.signOut())));
     });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
   }
 
   void _onAutoSignIn(String nickname) {
@@ -38,12 +49,6 @@ class _AuthScreenState extends State<AuthScreen> {
         MaterialPageRoute(builder: (context) => const MapScreen()));
 
     _onShowSnackBar("$nickname님 자동 로그인 되었습니다.");
-  }
-
-  @override
-  void dispose() {
-    _subscription?.cancel();
-    super.dispose();
   }
 
   void _onShowSnackBar(String message, {void Function(bool)? onPopInvoked}) {

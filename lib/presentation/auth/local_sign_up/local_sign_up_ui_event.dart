@@ -10,4 +10,5 @@ abstract class LocalSignUpUIEvent<T> with _$LocalSignUpUIEvent<T> {
       LocalSignUpSuccessUIEvent;
   const factory LocalSignUpUIEvent.loading(bool isSubmitting) =
       LocalSignUpLoadingUIEvent;
+  const factory LocalSignUpUIEvent.verifyEmailSent() = LocalVerifyEmailSentEvent;
 }

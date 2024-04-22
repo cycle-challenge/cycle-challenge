@@ -24,8 +24,8 @@ class AuthRepository {
   }
 
   Future<ApiResult<Member>> signUp(
-      String email, String password, String nickname) async {
-    final result = await api.signUp(email, password, nickname);
+      String email, String password, String nickname, String verificationCode) async {
+    final result = await api.signUp(email, password, nickname, verificationCode);
 
     return result.when(
         success: (member) async {
@@ -51,5 +51,9 @@ class AuthRepository {
 
   Future<ApiResult<Member>> findProfile() async {
     return api.findProfile();
+  }
+
+  Future<ApiResult<void>> verifyEmail(String email) {
+    return api.verifyEmail(email);
   }
 }

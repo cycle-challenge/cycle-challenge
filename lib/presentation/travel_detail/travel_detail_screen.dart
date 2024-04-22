@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -413,7 +414,7 @@ class TravelDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TravelDetailViewModel>(
-        create: (context) => TravelDetailViewModel(travel.id),
+        create: (context) => TravelDetailViewModel(travel.id, context.read<TravelRepository>()),
         child: TravelDetailScreen(travel: travel));
   }
 }

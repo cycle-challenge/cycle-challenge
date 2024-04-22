@@ -21,6 +21,7 @@ mixin _$LocalSignUpUIEvent<T> {
     required TResult Function(String target, String message) showInputError,
     required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
+    required TResult Function() verifyEmailSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$LocalSignUpUIEvent<T> {
     TResult? Function(String target, String message)? showInputError,
     TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
+    TResult? Function()? verifyEmailSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$LocalSignUpUIEvent<T> {
     TResult Function(String target, String message)? showInputError,
     TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
+    TResult Function()? verifyEmailSent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +47,8 @@ mixin _$LocalSignUpUIEvent<T> {
         showInputError,
     required TResult Function(LocalSignUpSuccessUIEvent<T> value) success,
     required TResult Function(LocalSignUpLoadingUIEvent<T> value) loading,
+    required TResult Function(LocalVerifyEmailSentEvent<T> value)
+        verifyEmailSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +56,7 @@ mixin _$LocalSignUpUIEvent<T> {
     TResult? Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult? Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult? Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult? Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +64,7 @@ mixin _$LocalSignUpUIEvent<T> {
     TResult Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,6 +170,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
     required TResult Function(String target, String message) showInputError,
     required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
+    required TResult Function() verifyEmailSent,
   }) {
     return showInputError(target, message);
   }
@@ -173,6 +181,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
     TResult? Function(String target, String message)? showInputError,
     TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
+    TResult? Function()? verifyEmailSent,
   }) {
     return showInputError?.call(target, message);
   }
@@ -183,6 +192,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
     TResult Function(String target, String message)? showInputError,
     TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
+    TResult Function()? verifyEmailSent,
     required TResult orElse(),
   }) {
     if (showInputError != null) {
@@ -198,6 +208,8 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
         showInputError,
     required TResult Function(LocalSignUpSuccessUIEvent<T> value) success,
     required TResult Function(LocalSignUpLoadingUIEvent<T> value) loading,
+    required TResult Function(LocalVerifyEmailSentEvent<T> value)
+        verifyEmailSent,
   }) {
     return showInputError(this);
   }
@@ -208,6 +220,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
     TResult? Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult? Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult? Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult? Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
   }) {
     return showInputError?.call(this);
   }
@@ -218,6 +231,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
     TResult Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
     required TResult orElse(),
   }) {
     if (showInputError != null) {
@@ -315,6 +329,7 @@ class _$LocalSignUpSuccessUIEventImpl<T>
     required TResult Function(String target, String message) showInputError,
     required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
+    required TResult Function() verifyEmailSent,
   }) {
     return success(nickname);
   }
@@ -325,6 +340,7 @@ class _$LocalSignUpSuccessUIEventImpl<T>
     TResult? Function(String target, String message)? showInputError,
     TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
+    TResult? Function()? verifyEmailSent,
   }) {
     return success?.call(nickname);
   }
@@ -335,6 +351,7 @@ class _$LocalSignUpSuccessUIEventImpl<T>
     TResult Function(String target, String message)? showInputError,
     TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
+    TResult Function()? verifyEmailSent,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -350,6 +367,8 @@ class _$LocalSignUpSuccessUIEventImpl<T>
         showInputError,
     required TResult Function(LocalSignUpSuccessUIEvent<T> value) success,
     required TResult Function(LocalSignUpLoadingUIEvent<T> value) loading,
+    required TResult Function(LocalVerifyEmailSentEvent<T> value)
+        verifyEmailSent,
   }) {
     return success(this);
   }
@@ -360,6 +379,7 @@ class _$LocalSignUpSuccessUIEventImpl<T>
     TResult? Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult? Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult? Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult? Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
   }) {
     return success?.call(this);
   }
@@ -370,6 +390,7 @@ class _$LocalSignUpSuccessUIEventImpl<T>
     TResult Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -464,6 +485,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
     required TResult Function(String target, String message) showInputError,
     required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
+    required TResult Function() verifyEmailSent,
   }) {
     return loading(isSubmitting);
   }
@@ -474,6 +496,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
     TResult? Function(String target, String message)? showInputError,
     TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
+    TResult? Function()? verifyEmailSent,
   }) {
     return loading?.call(isSubmitting);
   }
@@ -484,6 +507,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
     TResult Function(String target, String message)? showInputError,
     TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
+    TResult Function()? verifyEmailSent,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -499,6 +523,8 @@ class _$LocalSignUpLoadingUIEventImpl<T>
         showInputError,
     required TResult Function(LocalSignUpSuccessUIEvent<T> value) success,
     required TResult Function(LocalSignUpLoadingUIEvent<T> value) loading,
+    required TResult Function(LocalVerifyEmailSentEvent<T> value)
+        verifyEmailSent,
   }) {
     return loading(this);
   }
@@ -509,6 +535,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
     TResult? Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult? Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult? Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult? Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
   }) {
     return loading?.call(this);
   }
@@ -519,6 +546,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
     TResult Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
     TResult Function(LocalSignUpSuccessUIEvent<T> value)? success,
     TResult Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -537,4 +565,126 @@ abstract class LocalSignUpLoadingUIEvent<T> implements LocalSignUpUIEvent<T> {
   _$$LocalSignUpLoadingUIEventImplCopyWith<T,
           _$LocalSignUpLoadingUIEventImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocalVerifyEmailSentEventImplCopyWith<T, $Res> {
+  factory _$$LocalVerifyEmailSentEventImplCopyWith(
+          _$LocalVerifyEmailSentEventImpl<T> value,
+          $Res Function(_$LocalVerifyEmailSentEventImpl<T>) then) =
+      __$$LocalVerifyEmailSentEventImplCopyWithImpl<T, $Res>;
+}
+
+/// @nodoc
+class __$$LocalVerifyEmailSentEventImplCopyWithImpl<T, $Res>
+    extends _$LocalSignUpUIEventCopyWithImpl<T, $Res,
+        _$LocalVerifyEmailSentEventImpl<T>>
+    implements _$$LocalVerifyEmailSentEventImplCopyWith<T, $Res> {
+  __$$LocalVerifyEmailSentEventImplCopyWithImpl(
+      _$LocalVerifyEmailSentEventImpl<T> _value,
+      $Res Function(_$LocalVerifyEmailSentEventImpl<T>) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LocalVerifyEmailSentEventImpl<T>
+    implements LocalVerifyEmailSentEvent<T> {
+  const _$LocalVerifyEmailSentEventImpl();
+
+  @override
+  String toString() {
+    return 'LocalSignUpUIEvent<$T>.verifyEmailSent()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocalVerifyEmailSentEventImpl<T>);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String target, String message) showInputError,
+    required TResult Function(String nickname) success,
+    required TResult Function(bool isSubmitting) loading,
+    required TResult Function() verifyEmailSent,
+  }) {
+    return verifyEmailSent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String target, String message)? showInputError,
+    TResult? Function(String nickname)? success,
+    TResult? Function(bool isSubmitting)? loading,
+    TResult? Function()? verifyEmailSent,
+  }) {
+    return verifyEmailSent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String target, String message)? showInputError,
+    TResult Function(String nickname)? success,
+    TResult Function(bool isSubmitting)? loading,
+    TResult Function()? verifyEmailSent,
+    required TResult orElse(),
+  }) {
+    if (verifyEmailSent != null) {
+      return verifyEmailSent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LocalSignUphowInputErrorUIEvent<T> value)
+        showInputError,
+    required TResult Function(LocalSignUpSuccessUIEvent<T> value) success,
+    required TResult Function(LocalSignUpLoadingUIEvent<T> value) loading,
+    required TResult Function(LocalVerifyEmailSentEvent<T> value)
+        verifyEmailSent,
+  }) {
+    return verifyEmailSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
+    TResult? Function(LocalSignUpSuccessUIEvent<T> value)? success,
+    TResult? Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult? Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
+  }) {
+    return verifyEmailSent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LocalSignUphowInputErrorUIEvent<T> value)? showInputError,
+    TResult Function(LocalSignUpSuccessUIEvent<T> value)? success,
+    TResult Function(LocalSignUpLoadingUIEvent<T> value)? loading,
+    TResult Function(LocalVerifyEmailSentEvent<T> value)? verifyEmailSent,
+    required TResult orElse(),
+  }) {
+    if (verifyEmailSent != null) {
+      return verifyEmailSent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocalVerifyEmailSentEvent<T> implements LocalSignUpUIEvent<T> {
+  const factory LocalVerifyEmailSentEvent() =
+      _$LocalVerifyEmailSentEventImpl<T>;
 }

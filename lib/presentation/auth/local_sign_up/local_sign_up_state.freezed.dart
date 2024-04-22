@@ -14,15 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-LocalSignUpState _$LocalSignUpStateFromJson(Map<String, dynamic> json) {
-  return _LocalSignUpState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$LocalSignUpState {
   List<String> get errorMessages => throw _privateConstructorUsedError;
+  int get seconds => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LocalSignUpStateCopyWith<LocalSignUpState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -34,7 +30,7 @@ abstract class $LocalSignUpStateCopyWith<$Res> {
           LocalSignUpState value, $Res Function(LocalSignUpState) then) =
       _$LocalSignUpStateCopyWithImpl<$Res, LocalSignUpState>;
   @useResult
-  $Res call({List<String> errorMessages});
+  $Res call({List<String> errorMessages, int seconds});
 }
 
 /// @nodoc
@@ -51,12 +47,17 @@ class _$LocalSignUpStateCopyWithImpl<$Res, $Val extends LocalSignUpState>
   @override
   $Res call({
     Object? errorMessages = null,
+    Object? seconds = null,
   }) {
     return _then(_value.copyWith(
       errorMessages: null == errorMessages
           ? _value.errorMessages
           : errorMessages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      seconds: null == seconds
+          ? _value.seconds
+          : seconds // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -69,7 +70,7 @@ abstract class _$$LocalSignUpStateImplCopyWith<$Res>
       __$$LocalSignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> errorMessages});
+  $Res call({List<String> errorMessages, int seconds});
 }
 
 /// @nodoc
@@ -84,25 +85,27 @@ class __$$LocalSignUpStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? errorMessages = null,
+    Object? seconds = null,
   }) {
     return _then(_$LocalSignUpStateImpl(
       errorMessages: null == errorMessages
           ? _value._errorMessages
           : errorMessages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      seconds: null == seconds
+          ? _value.seconds
+          : seconds // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LocalSignUpStateImpl implements _LocalSignUpState {
   _$LocalSignUpStateImpl(
-      {final List<String> errorMessages = const [], this.verifyStarted = false})
+      {final List<String> errorMessages = const [], this.seconds = 0})
       : _errorMessages = errorMessages;
-
-  factory _$LocalSignUpStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LocalSignUpStateImplFromJson(json);
 
   final List<String> _errorMessages;
   @override
@@ -114,8 +117,12 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
   }
 
   @override
+  @JsonKey()
+  final int seconds;
+
+  @override
   String toString() {
-    return 'LocalSignUpState(errorMessages: $errorMessages)';
+    return 'LocalSignUpState(errorMessages: $errorMessages, seconds: $seconds)';
   }
 
   @override
@@ -124,13 +131,13 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
         (other.runtimeType == runtimeType &&
             other is _$LocalSignUpStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._errorMessages, _errorMessages));
+                .equals(other._errorMessages, _errorMessages) &&
+            (identical(other.seconds, seconds) || other.seconds == seconds));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_errorMessages));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_errorMessages), seconds);
 
   @JsonKey(ignore: true)
   @override
@@ -138,25 +145,17 @@ class _$LocalSignUpStateImpl implements _LocalSignUpState {
   _$$LocalSignUpStateImplCopyWith<_$LocalSignUpStateImpl> get copyWith =>
       __$$LocalSignUpStateImplCopyWithImpl<_$LocalSignUpStateImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LocalSignUpStateImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _LocalSignUpState implements LocalSignUpState {
   factory _LocalSignUpState(
       {final List<String> errorMessages,
-      final bool verifyStarted}) = _$LocalSignUpStateImpl;
-
-  factory _LocalSignUpState.fromJson(Map<String, dynamic> json) =
-      _$LocalSignUpStateImpl.fromJson;
+      final int seconds}) = _$LocalSignUpStateImpl;
 
   @override
   List<String> get errorMessages;
+  @override
+  int get seconds;
   @override
   @JsonKey(ignore: true)
   _$$LocalSignUpStateImplCopyWith<_$LocalSignUpStateImpl> get copyWith =>

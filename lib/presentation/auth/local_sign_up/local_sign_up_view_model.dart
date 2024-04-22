@@ -77,7 +77,7 @@ class LocalSignUpViewModel with ChangeNotifier {
               }
           });
 
-          notifyListeners();
+          _eventController.add(const LocalSignUpUIEvent.verifyEmailSent());
         },
         error: (errors) {
           final List<String> errorMessages = [];
