@@ -27,7 +27,6 @@ class GetNearbyPlacesUseCase {
         },
         error: (error) => Result.error(error.when(
             targetError: (_, __) => '',
-            codeError: (_, message) => message,
-            error: (message) => message)));
+            error: (_, message) => message)));
   }
 }

@@ -16,9 +16,7 @@ class AuthViewModel with ChangeNotifier {
           },
           error: (errors) => errors.when(
               targetError: (_, __) {},
-              codeError: (_, message) =>
-                  _eventController.add(AuthUIEvent.showSnackBar(message)),
-              error: (message) =>
+              error: (_, message) =>
                   _eventController.add(AuthUIEvent.showSnackBar(message))));
     });
   }

@@ -7,18 +7,17 @@ part 'api_error.freezed.dart';
 abstract class ApiError with _$ApiError {
   const factory ApiError.targetError(String code, Map<String, String> errors) =
       ApiTargetError;
-  const factory ApiError.codeError(String code, String message) = ApiCodeError;
-  const factory ApiError.error(String message) = ApiErrorError;
+  const factory ApiError.error(String? code, String message) = ApiCodeError;
 
   factory ApiError.fromResponse(Response<dynamic>? response) {
     if (response == null || response.statusCode.toString().startsWith("5")) {
-      return const ApiError.error("서버와 통신 중 에러가 발생했습니다.");
+      return const ApiError.error(null, "서버와 통신 중 에러가 발생했습니다.");
     }
 
     final Map<String, dynamic> body = response.data;
 
     if (!body.containsKey('code')) {
-      return const ApiError.error("서버와 통신 중 에러가 발생했습니다.");
+      return const ApiError.error(null, "서버와 통신 중 에러가 발생했습니다.");
     }
 
     if (body['code'] == 'INVALID_ARGUMENT') {
@@ -35,6 +34,6 @@ abstract class ApiError with _$ApiError {
           body['code'], {body['data']['target']: body['data']['message']});
     }
 
-    return ApiError.codeError(body['code'], body['data']['message']);
+    return ApiError.error(body['code'], body['data']['message']);
   }
 }
