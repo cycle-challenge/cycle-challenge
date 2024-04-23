@@ -29,9 +29,12 @@ class _AuthScreenState extends State<AuthScreen> {
       _subscription = viewModel.stream.listen((event) => event.when(
           showSnackBar: (message) => _onShowSnackBar(message),
           autoSignIn: _onAutoSignIn));
-      context.read<AuthInterceptor>().stream.listen((event) => event.when(
-          authorizationExpired: () =>
-              viewModel.onEvent(const AuthEvent.signOut())));
+      context
+          .read<AuthInterceptor>()
+          .stream
+          .listen((event) => event.when(authorizationExpired: () {
+                viewModel.onEvent(const AuthEvent.signOut());
+              }));
     });
   }
 

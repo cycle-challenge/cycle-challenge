@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
-import 'package:yeohaeng_ttukttak/utils/api_result.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class SecureStorage {
@@ -12,22 +11,10 @@ class SecureStorage {
 
   SecureStorage(this.storage);
 
-  Future<Result<String>> findRefreshToken() async {
-    final String? json = await storage.read(key: 'RT');
-
-    if (json == null) return const Result.error('');
-
-    return Result.success(json);
-  }
-
-  Future<void> saveRefreshToken(String refreshToken) async {
-    await storage.write(key: 'RT', value: refreshToken);
-  }
-
-  Future<Result<Auth>> findAuth() async {
+  Future<Result<Auth, void>> findAuth() async {
     final value = await storage.read(key: 'auth');
 
-    if (value == null) return const Result.error('');
+    if (value == null) return const Result.error(null);
 
     final json = jsonDecode(value);
 

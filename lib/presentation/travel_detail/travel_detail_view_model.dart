@@ -65,8 +65,7 @@ class TravelDetailViewModel with ChangeNotifier {
           _dailySummaries = data;
           notifyListeners();
         },
-        error: (_) {},
-        unhandledError: (_) {});
+        error: (_) {});
   }
 
   void _scrollVisit(int index) {

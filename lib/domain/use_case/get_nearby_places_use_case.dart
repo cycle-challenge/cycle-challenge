@@ -1,6 +1,7 @@
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
+import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class GetNearbyPlacesUseCase {
@@ -8,7 +9,7 @@ class GetNearbyPlacesUseCase {
 
   GetNearbyPlacesUseCase(this.repository);
 
-  Future<Result<(List<PlaceModel>, List<TravelModel>)>> call(
+  Future<Result<(List<PlaceModel>, List<TravelModel>), String>> call(
       double latitude, double longitude) async {
     final result = await repository.findNearby(latitude, longitude, 5000);
 
@@ -24,11 +25,9 @@ class GetNearbyPlacesUseCase {
 
           return Result.success((places, travels));
         },
-        error: _onError,
-        unhandledError: (_) => const Result.error("검색 중 오류가 발생했습니다."));
-  }
-
-  Result<(List<PlaceModel>, List<TravelModel>)> _onError(error) {
-    return Result.error(error[0].message);
+        error: (error) => Result.error(error.when(
+            targetError: (_, __) => '',
+            codeError: (_, message) => message,
+            error: (message) => message)));
   }
 }

@@ -11,12 +11,10 @@ class LocalSignInViewModel with ChangeNotifier {
 
   LocalSignInViewModel(this.authRepository);
 
+  final StreamController<LocalSignInUIEvent> _eventController =
+      StreamController.broadcast();
 
-  final StreamController<LocalSignInUIEvent> _signInEventController =
-  StreamController.broadcast();
-
-  Stream<LocalSignInUIEvent> get stream => _signInEventController.stream;
-
+  Stream<LocalSignInUIEvent> get stream => _eventController.stream;
 
   LocalSignInState _state = LocalSignInState();
   LocalSignInState get state => _state;
@@ -26,22 +24,32 @@ class LocalSignInViewModel with ChangeNotifier {
   }
 
   void _onSignIn(String email, String password) async {
-    _signInEventController.add(const LocalSignInUIEvent.loading(true));
+    _eventController.add(const LocalSignInUIEvent.loading(true));
     final result = await authRepository.signIn(email, password);
-    _signInEventController.add(const LocalSignInUIEvent.loading(false));
+    _eventController.add(const LocalSignInUIEvent.loading(false));
 
     _state = _state.copyWith(errorMessages: []);
 
-    result.when(success: (member) {
-      _signInEventController.add(const LocalSignInUIEvent.success());
-    }, error: (errors) {
-      final errorMessages = errors.map((e) => e.message).toList();
-      _state = _state.copyWith(errorMessages: errorMessages);
+    result.when(
+        success: (member) {
+          _eventController.add(const LocalSignInUIEvent.success());
+        },
+        error: _onError);
+  }
+
+  void _onError(error) {
+    error.when(targetError: (_, Map<String, String> errors) {
+      errors.values.toList();
+      _state = _state.copyWith(errorMessages: errors.values.toList());
       notifyListeners();
-    }, unhandledError: (message) {
+    }, codeError: (_, message) {
+      _state = _state.copyWith(errorMessages: [message]);
+      notifyListeners();
+    }, error: (message) {
       _state = _state.copyWith(errorMessages: [message]);
       notifyListeners();
     });
-  }
 
+    notifyListeners();
+  }
 }

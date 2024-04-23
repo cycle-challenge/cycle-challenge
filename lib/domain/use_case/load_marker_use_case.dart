@@ -9,7 +9,7 @@ import 'package:yeohaeng_ttukttak/utils/result.dart';
 typedef MarkerMap = Map<String, BitmapDescriptor>;
 
 class LoadMarkerUseCase {
-  Future<Result<(MarkerMap markerIcon, MarkerMap selectedMarkerIcon)>>
+  Future<Result<(MarkerMap markerIcon, MarkerMap selectedMarkerIcon), String>>
       call() async {
     final Map<String, BitmapDescriptor> markerIcon = {},
         selectedMarkerIcon = {};

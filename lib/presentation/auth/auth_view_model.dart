@@ -9,14 +9,17 @@ class AuthViewModel with ChangeNotifier {
   final AuthRepository authRepository;
 
   AuthViewModel(this.authRepository) {
-    authRepository.findProfile().then((result)  {
+    authRepository.findProfile().then((result) {
       result.when(
           success: (member) {
             _eventController.add(AuthUIEvent.autoSignIn(member.nickname));
           },
-          error: (errors) => _eventController.add(AuthUIEvent.showSnackBar(errors[0].message)),
-          unhandledError: (message) =>
-              _eventController.add(AuthUIEvent.showSnackBar(message)));
+          error: (errors) => errors.when(
+              targetError: (_, __) {},
+              codeError: (_, message) =>
+                  _eventController.add(AuthUIEvent.showSnackBar(message)),
+              error: (message) =>
+                  _eventController.add(AuthUIEvent.showSnackBar(message))));
     });
   }
 
@@ -31,7 +34,6 @@ class AuthViewModel with ChangeNotifier {
   }
 
   void _onSignOut() async {
-
     authRepository.signOut();
   }
 }

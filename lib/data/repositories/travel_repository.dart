@@ -1,7 +1,8 @@
 
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
-import 'package:yeohaeng_ttukttak/utils/api_result.dart';
+import 'package:yeohaeng_ttukttak/utils/api_error.dart';
+import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class TravelRepository {
 
@@ -9,7 +10,7 @@ class TravelRepository {
 
   TravelRepository(this.api);
 
-  Future<ApiResult<List<DailyVisitSummary>>> findVisits(int id) async {
+  Future<Result<List<DailyVisitSummary>, ApiError>> findVisits(int id) async {
     return api.findVisits(id);
   }
 }

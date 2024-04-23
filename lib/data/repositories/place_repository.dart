@@ -7,7 +7,8 @@ import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
-import 'package:yeohaeng_ttukttak/utils/api_result.dart';
+import 'package:yeohaeng_ttukttak/utils/api_error.dart';
+import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class PlaceRepository {
 
@@ -18,7 +19,7 @@ class PlaceRepository {
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
   final String remoteUrl = const String.fromEnvironment("REMOTE_HOST");
 
-  Future<ApiResult<List<PlaceModel>>> findNearby(
+  Future<Result<List<PlaceModel>, ApiError>> findNearby(
       double latitude, double longitude, int radius) {
     return api.findNearby(latitude, longitude, radius);
   }

@@ -11,7 +11,8 @@ class AuthInterceptor extends Interceptor {
 
   final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
 
-  final StreamController<AuthInterceptorEvent> _eventController = StreamController.broadcast();
+  final StreamController<AuthInterceptorEvent> _eventController =
+      StreamController.broadcast();
   Stream<AuthInterceptorEvent> get stream => _eventController.stream;
 
   AuthInterceptor(this.secureStorage);
@@ -19,7 +20,6 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-
     final result = await secureStorage.findAuth();
     result.when(
         success: (auth) => options.headers
@@ -39,26 +39,28 @@ class AuthInterceptor extends Interceptor {
 
     final result = await secureStorage.findAuth();
 
-    result.when(
-        success: (auth) async {
-          final result = await _renewAuth(auth.refreshToken);
-          if (result == null) return secureStorage.deleteAuth();
+    result.when(success: (auth) async {
+      try {
+        final renewedAuth = await _renewAuth(auth.refreshToken);
 
-          try {
-            final dio = Dio();
-            final retriedResponse = await dio.fetch(err.requestOptions);
+        err.requestOptions.headers
+            .addAll({'Authorization': 'Bearer ${renewedAuth.refreshToken}'});
 
-            return handler.resolve(retriedResponse);
-          } on DioException catch (e) {
-            signOut();
-            return handler.reject(err);
-          }
-        },
-        error: (_) {
-          signOut();
-          return handler.reject(err);
-        });
+        await secureStorage.saveAuth(renewedAuth);
 
+        final dio = Dio();
+        final retriedResponse = await dio.fetch(err.requestOptions);
+
+        return handler.resolve(retriedResponse);
+
+      } on DioException catch (e) {
+        signOut();
+        return handler.reject(err);
+      }
+    }, error: (_) {
+      signOut();
+      return handler.reject(err);
+    });
   }
 
   void signOut() {
@@ -67,25 +69,11 @@ class AuthInterceptor extends Interceptor {
     _eventController.add(const AuthInterceptorEvent.authorizationExpired());
   }
 
-  bool _isValidResponse(Map<String, dynamic> data) {
-    for (var error in List.of(data['errors'])) {
-      final status = error['status'];
-      if (status == HttpStatus.unauthorized || status == HttpStatus.forbidden) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  Future<Auth?> _renewAuth(String refreshToken) async {
+  Future<Auth> _renewAuth(String refreshToken) async {
     final dio = Dio();
 
     final response = await dio.post('$remoteUrl/api/v1/members/auth/renew',
         data: {'refreshToken': refreshToken});
-
-    if (response.statusCode == 200) return null;
-
-    if (!_isValidResponse(response.data)) return null;
 
     return Auth.fromJson(response.data);
   }

@@ -1,7 +1,8 @@
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
-import 'package:yeohaeng_ttukttak/utils/api_result.dart';
+import 'package:yeohaeng_ttukttak/utils/api_error.dart';
+import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class AuthRepository {
   final RemoteAPI api;
@@ -10,7 +11,7 @@ class AuthRepository {
 
   AuthRepository(this.api, this.secureStorage);
 
-  Future<ApiResult<Member>> signIn(String email, String password) async {
+  Future<Result<Member, ApiError>> signIn(String email, String password) async {
     final result = await api.signIn(email, password);
 
     return result.when(
@@ -19,13 +20,13 @@ class AuthRepository {
           final result = await api.findProfile();
           return result;
         },
-        error: (errors) => ApiResult.error(errors),
-        unhandledError: (message) => ApiResult.unhandledError(message));
+        error: (error) => Result.error(error));
   }
 
-  Future<ApiResult<Member>> signUp(
-      String email, String password, String nickname, String verificationCode) async {
-    final result = await api.signUp(email, password, nickname, verificationCode);
+  Future<Result<Member, ApiError>> signUp(String email, String password,
+      String nickname, String verificationCode) async {
+    final result =
+        await api.signUp(email, password, nickname, verificationCode);
 
     return result.when(
         success: (member) async {
@@ -34,26 +35,22 @@ class AuthRepository {
           return result.when(
               success: (auth) {
                 secureStorage.saveAuth(auth);
-                return ApiResult.success(member);
+                return Result.success(member);
               },
-              error: (errors) => ApiResult.error(errors),
-              unhandledError: (message) => ApiResult.unhandledError(message));
+              error: (error) => Result.error(error));
         },
-        error: (errors) => ApiResult.error(errors),
-        unhandledError: (message) => ApiResult.unhandledError(message));
+        error: (error) => Result.error(error));
   }
 
   void signOut() {
-
     secureStorage.deleteAuth();
-
   }
 
-  Future<ApiResult<Member>> findProfile() async {
+  Future<Result<Member, ApiError>> findProfile() async {
     return api.findProfile();
   }
 
-  Future<ApiResult<void>> verifyEmail(String email) {
+  Future<Result<void, ApiError>> verifyEmail(String email) {
     return api.verifyEmail(email);
   }
 }
