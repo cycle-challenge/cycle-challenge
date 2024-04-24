@@ -8,10 +8,14 @@ import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_place_bookmark_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/add_travel_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/find_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_bookmarks.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/find_travel_bookmarks.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_location_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_nearby_places_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_place_detail_use_case.dart';
@@ -56,9 +60,15 @@ List<SingleChildWidget> dependentModules = [
   Provider<DeletePlaceBookmarkUseCase>(
       create: (context) =>
           DeletePlaceBookmarkUseCase(context.read<PlaceRepository>())),
-  Provider<FindPlaceBookmarksUseCase>(
+  Provider<AddTravelBookmarkUseCase>(
       create: (context) =>
-          FindPlaceBookmarksUseCase(context.read<PlaceRepository>())),
+          AddTravelBookmarkUseCase(context.read<TravelRepository>())),
+  Provider<DeleteTravelBookmarkUseCase>(
+      create: (context) =>
+          DeleteTravelBookmarkUseCase(context.read<TravelRepository>())),
+  Provider<FindBookmarksUseCase>(
+      create: (context) => FindBookmarksUseCase(
+          context.read<PlaceRepository>(), context.read<TravelRepository>())),
   Provider<AuthRepository>(
       create: (context) => AuthRepository(
           context.read<RemoteAPI>(), context.read<SecureStorage>())),
@@ -79,9 +89,12 @@ List<SingleChildWidget> dependentModules = [
           getMyLocation: context.read<GetMyLocationUseCase>(),
           loadMarker: context.read<LoadMarkerUseCase>(),
           addPlaceBookmarkUseCase: context.read<AddPlaceBookmarkUseCase>(),
-          findPlaceBookmarksUseCase: context.read<FindPlaceBookmarksUseCase>(),
           deletePlaceBookmarkUseCase:
-              context.read<DeletePlaceBookmarkUseCase>()))
+              context.read<DeletePlaceBookmarkUseCase>(),
+          addTravelBookmarkUseCase: context.read<AddTravelBookmarkUseCase>(),
+          deleteTravelBookmarkUseCase:
+              context.read<DeleteTravelBookmarkUseCase>(),
+          findBookmarksUseCase: context.read<FindBookmarksUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [

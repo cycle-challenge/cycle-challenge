@@ -21,4 +21,6 @@ abstract class MapEvent with _$MapEvent {
   const factory MapEvent.updateFilter(Filter filter) = UpdateFilterEvent;
   const factory MapEvent.addPlaceBookmark(int id) = AddPlaceBookmarkEvent;
   const factory MapEvent.deletePlaceBookmark(int id) = DeletePlaceBookmarkEvent;
+  const factory MapEvent.addTravelBookmark(int id) = AddTravelBookmarkEvent;
+  const factory MapEvent.deleteTravelBookmark(int id) = DeleteTravelBookmarkEvent;
 }

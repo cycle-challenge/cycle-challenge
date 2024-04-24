@@ -25,7 +25,7 @@ class PlaceSimpleView extends StatelessWidget {
         place!.location.distance?.toStringAsFixed(1).toString() ?? "0.0";
     String type = place!.type.label;
 
-    bool isBookmarked = dataState.bookmarks
+    bool isBookmarked = dataState.placeBookmarks
         .where((elm) => elm.targetId == place?.id)
         .isNotEmpty;
 

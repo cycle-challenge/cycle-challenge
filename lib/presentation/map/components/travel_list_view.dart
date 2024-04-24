@@ -77,6 +77,16 @@ class TravelWidget extends StatelessWidget {
     TextStyle? bodyMedium =
         Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
+
+    final viewModel = context.watch<MapViewModel>();
+
+    final dataState = viewModel.dataState;
+
+    bool isBookmarked = dataState.travelBookmarks
+        .where((elm) => elm.targetId == _travel.id)
+        .isNotEmpty;
+
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -139,11 +149,17 @@ class TravelWidget extends StatelessWidget {
                           ])),
                         ),
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.bookmark_outline,
-                              color: Colors.white,
-                            ))
+                          onPressed: isBookmarked
+                              ? () => viewModel.onEvent(
+                              MapEvent.deleteTravelBookmark(_travel.id))
+                              : () => viewModel.onEvent(
+                              MapEvent.addTravelBookmark(_travel.id)),
+                          icon: Icon(
+                              isBookmarked
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_outline,
+                              color: Colors.white),
+                        ),
                       ],
                     )
                   ],

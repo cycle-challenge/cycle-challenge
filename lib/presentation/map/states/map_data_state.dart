@@ -11,7 +11,8 @@ class MapDataState with _$MapDataState {
   factory MapDataState({
     @Default([]) List<PlaceModel> places,
     @Default([]) List<TravelModel> travels,
-    @Default([]) List<Bookmark> bookmarks
+    @Default([]) List<Bookmark> placeBookmarks,
+    @Default([]) List<Bookmark> travelBookmarks
   }) = _MapDataState;
 
 }

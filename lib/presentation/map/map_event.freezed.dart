@@ -32,6 +32,8 @@ mixin _$MapEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +52,8 @@ mixin _$MapEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +72,8 @@ mixin _$MapEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,6 +95,9 @@ mixin _$MapEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -108,6 +117,8 @@ mixin _$MapEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -127,6 +138,8 @@ mixin _$MapEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -202,6 +215,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return findNearbyPlace();
   }
@@ -223,6 +238,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return findNearbyPlace?.call();
   }
@@ -244,6 +261,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -271,6 +290,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return findNearbyPlace(this);
   }
@@ -293,6 +315,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return findNearbyPlace?.call(this);
   }
@@ -315,6 +339,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -407,6 +433,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return selectPlace(place);
   }
@@ -428,6 +456,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return selectPlace?.call(place);
   }
@@ -449,6 +479,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -476,6 +508,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return selectPlace(this);
   }
@@ -498,6 +533,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return selectPlace?.call(this);
   }
@@ -520,6 +557,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -619,6 +658,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return initBottomSheet(maxHeight);
   }
@@ -640,6 +681,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return initBottomSheet?.call(maxHeight);
   }
@@ -661,6 +704,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -688,6 +733,9 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return initBottomSheet(this);
   }
@@ -710,6 +758,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return initBottomSheet?.call(this);
   }
@@ -732,6 +782,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -831,6 +883,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return changeNavigation(index);
   }
@@ -852,6 +906,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return changeNavigation?.call(index);
   }
@@ -873,6 +929,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -900,6 +958,9 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return changeNavigation(this);
   }
@@ -922,6 +983,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return changeNavigation?.call(this);
   }
@@ -944,6 +1007,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -1043,6 +1108,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return changePosition(position);
   }
@@ -1064,6 +1131,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return changePosition?.call(position);
   }
@@ -1085,6 +1154,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -1112,6 +1183,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return changePosition(this);
   }
@@ -1134,6 +1208,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return changePosition?.call(this);
   }
@@ -1156,6 +1232,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -1229,6 +1307,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return changeToMyPosition();
   }
@@ -1250,6 +1330,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return changeToMyPosition?.call();
   }
@@ -1271,6 +1353,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -1298,6 +1382,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return changeToMyPosition(this);
   }
@@ -1320,6 +1407,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return changeToMyPosition?.call(this);
   }
@@ -1342,6 +1431,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -1407,6 +1498,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return showSearchButton();
   }
@@ -1428,6 +1521,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return showSearchButton?.call();
   }
@@ -1449,6 +1544,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (showSearchButton != null) {
@@ -1476,6 +1573,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return showSearchButton(this);
   }
@@ -1498,6 +1598,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return showSearchButton?.call(this);
   }
@@ -1520,6 +1622,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (showSearchButton != null) {
@@ -1585,6 +1689,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return expandBottomSheet();
   }
@@ -1606,6 +1712,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return expandBottomSheet?.call();
   }
@@ -1627,6 +1735,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -1654,6 +1764,9 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return expandBottomSheet(this);
   }
@@ -1676,6 +1789,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return expandBottomSheet?.call(this);
   }
@@ -1698,6 +1813,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -1764,6 +1881,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return contractBottomSheet();
   }
@@ -1785,6 +1904,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return contractBottomSheet?.call();
   }
@@ -1806,6 +1927,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -1833,6 +1956,9 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return contractBottomSheet(this);
   }
@@ -1855,6 +1981,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return contractBottomSheet?.call(this);
   }
@@ -1877,6 +2005,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -1971,6 +2101,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return setCanViewScrollUp(canViewScrollUp);
   }
@@ -1992,6 +2124,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return setCanViewScrollUp?.call(canViewScrollUp);
   }
@@ -2013,6 +2147,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -2040,6 +2176,9 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return setCanViewScrollUp(this);
   }
@@ -2062,6 +2201,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return setCanViewScrollUp?.call(this);
   }
@@ -2084,6 +2225,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -2159,6 +2302,8 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return stopBottomSheetAnimation();
   }
@@ -2180,6 +2325,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return stopBottomSheetAnimation?.call();
   }
@@ -2201,6 +2348,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -2228,6 +2377,9 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return stopBottomSheetAnimation(this);
   }
@@ -2250,6 +2402,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return stopBottomSheetAnimation?.call(this);
   }
@@ -2272,6 +2426,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -2365,6 +2521,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return updateFilter(filter);
   }
@@ -2386,6 +2544,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return updateFilter?.call(filter);
   }
@@ -2407,6 +2567,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (updateFilter != null) {
@@ -2434,6 +2596,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return updateFilter(this);
   }
@@ -2456,6 +2621,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return updateFilter?.call(this);
   }
@@ -2478,6 +2645,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (updateFilter != null) {
@@ -2577,6 +2746,8 @@ class _$AddPlaceBookmarkEventImpl implements AddPlaceBookmarkEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return addPlaceBookmark(id);
   }
@@ -2598,6 +2769,8 @@ class _$AddPlaceBookmarkEventImpl implements AddPlaceBookmarkEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return addPlaceBookmark?.call(id);
   }
@@ -2619,6 +2792,8 @@ class _$AddPlaceBookmarkEventImpl implements AddPlaceBookmarkEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (addPlaceBookmark != null) {
@@ -2646,6 +2821,9 @@ class _$AddPlaceBookmarkEventImpl implements AddPlaceBookmarkEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return addPlaceBookmark(this);
   }
@@ -2668,6 +2846,8 @@ class _$AddPlaceBookmarkEventImpl implements AddPlaceBookmarkEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return addPlaceBookmark?.call(this);
   }
@@ -2690,6 +2870,8 @@ class _$AddPlaceBookmarkEventImpl implements AddPlaceBookmarkEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (addPlaceBookmark != null) {
@@ -2790,6 +2972,8 @@ class _$DeletePlaceBookmarkEventImpl implements DeletePlaceBookmarkEvent {
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(int id) addPlaceBookmark,
     required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
   }) {
     return deletePlaceBookmark(id);
   }
@@ -2811,6 +2995,8 @@ class _$DeletePlaceBookmarkEventImpl implements DeletePlaceBookmarkEvent {
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(int id)? addPlaceBookmark,
     TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
   }) {
     return deletePlaceBookmark?.call(id);
   }
@@ -2832,6 +3018,8 @@ class _$DeletePlaceBookmarkEventImpl implements DeletePlaceBookmarkEvent {
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(int id)? addPlaceBookmark,
     TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (deletePlaceBookmark != null) {
@@ -2859,6 +3047,9 @@ class _$DeletePlaceBookmarkEventImpl implements DeletePlaceBookmarkEvent {
     required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
     required TResult Function(DeletePlaceBookmarkEvent value)
         deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
   }) {
     return deletePlaceBookmark(this);
   }
@@ -2881,6 +3072,8 @@ class _$DeletePlaceBookmarkEventImpl implements DeletePlaceBookmarkEvent {
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
   }) {
     return deletePlaceBookmark?.call(this);
   }
@@ -2903,6 +3096,8 @@ class _$DeletePlaceBookmarkEventImpl implements DeletePlaceBookmarkEvent {
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
     TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
     required TResult orElse(),
   }) {
     if (deletePlaceBookmark != null) {
@@ -2919,5 +3114,457 @@ abstract class DeletePlaceBookmarkEvent implements MapEvent {
   int get id;
   @JsonKey(ignore: true)
   _$$DeletePlaceBookmarkEventImplCopyWith<_$DeletePlaceBookmarkEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddTravelBookmarkEventImplCopyWith<$Res> {
+  factory _$$AddTravelBookmarkEventImplCopyWith(
+          _$AddTravelBookmarkEventImpl value,
+          $Res Function(_$AddTravelBookmarkEventImpl) then) =
+      __$$AddTravelBookmarkEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$AddTravelBookmarkEventImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$AddTravelBookmarkEventImpl>
+    implements _$$AddTravelBookmarkEventImplCopyWith<$Res> {
+  __$$AddTravelBookmarkEventImplCopyWithImpl(
+      _$AddTravelBookmarkEventImpl _value,
+      $Res Function(_$AddTravelBookmarkEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$AddTravelBookmarkEventImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddTravelBookmarkEventImpl implements AddTravelBookmarkEvent {
+  const _$AddTravelBookmarkEventImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'MapEvent.addTravelBookmark(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddTravelBookmarkEventImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddTravelBookmarkEventImplCopyWith<_$AddTravelBookmarkEventImpl>
+      get copyWith => __$$AddTravelBookmarkEventImplCopyWithImpl<
+          _$AddTravelBookmarkEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() findNearbyPlace,
+    required TResult Function(PlaceModel? place) selectPlace,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(CameraPosition position) changePosition,
+    required TResult Function() changeToMyPosition,
+    required TResult Function() showSearchButton,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
+  }) {
+    return addTravelBookmark(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? findNearbyPlace,
+    TResult? Function(PlaceModel? place)? selectPlace,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(CameraPosition position)? changePosition,
+    TResult? Function()? changeToMyPosition,
+    TResult? Function()? showSearchButton,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
+  }) {
+    return addTravelBookmark?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? findNearbyPlace,
+    TResult Function(PlaceModel? place)? selectPlace,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function(int index)? changeNavigation,
+    TResult Function(CameraPosition position)? changePosition,
+    TResult Function()? changeToMyPosition,
+    TResult Function()? showSearchButton,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
+    required TResult orElse(),
+  }) {
+    if (addTravelBookmark != null) {
+      return addTravelBookmark(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(SelectPlaceEvent value) selectPlace,
+    required TResult Function(InitBottomSheet value) initBottomSheet,
+    required TResult Function(ChangeNavigationEvent value) changeNavigation,
+    required TResult Function(ChangePositionEvent value) changePosition,
+    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
+    required TResult Function(ShowSearchButton value) showSearchButton,
+    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
+    required TResult Function(ContractBottomSheet value) contractBottomSheet,
+    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
+    required TResult Function(StopBottomSheetAnimationEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
+  }) {
+    return addTravelBookmark(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(SelectPlaceEvent value)? selectPlace,
+    TResult? Function(InitBottomSheet value)? initBottomSheet,
+    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(ChangePositionEvent value)? changePosition,
+    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult? Function(ShowSearchButton value)? showSearchButton,
+    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult? Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
+  }) {
+    return addTravelBookmark?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(SelectPlaceEvent value)? selectPlace,
+    TResult Function(InitBottomSheet value)? initBottomSheet,
+    TResult Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult Function(ChangePositionEvent value)? changePosition,
+    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult Function(ShowSearchButton value)? showSearchButton,
+    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
+    required TResult orElse(),
+  }) {
+    if (addTravelBookmark != null) {
+      return addTravelBookmark(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddTravelBookmarkEvent implements MapEvent {
+  const factory AddTravelBookmarkEvent(final int id) =
+      _$AddTravelBookmarkEventImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$AddTravelBookmarkEventImplCopyWith<_$AddTravelBookmarkEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteTravelBookmarkEventImplCopyWith<$Res> {
+  factory _$$DeleteTravelBookmarkEventImplCopyWith(
+          _$DeleteTravelBookmarkEventImpl value,
+          $Res Function(_$DeleteTravelBookmarkEventImpl) then) =
+      __$$DeleteTravelBookmarkEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$DeleteTravelBookmarkEventImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$DeleteTravelBookmarkEventImpl>
+    implements _$$DeleteTravelBookmarkEventImplCopyWith<$Res> {
+  __$$DeleteTravelBookmarkEventImplCopyWithImpl(
+      _$DeleteTravelBookmarkEventImpl _value,
+      $Res Function(_$DeleteTravelBookmarkEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteTravelBookmarkEventImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteTravelBookmarkEventImpl implements DeleteTravelBookmarkEvent {
+  const _$DeleteTravelBookmarkEventImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'MapEvent.deleteTravelBookmark(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteTravelBookmarkEventImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteTravelBookmarkEventImplCopyWith<_$DeleteTravelBookmarkEventImpl>
+      get copyWith => __$$DeleteTravelBookmarkEventImplCopyWithImpl<
+          _$DeleteTravelBookmarkEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() findNearbyPlace,
+    required TResult Function(PlaceModel? place) selectPlace,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(CameraPosition position) changePosition,
+    required TResult Function() changeToMyPosition,
+    required TResult Function() showSearchButton,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
+    required TResult Function(int id) addTravelBookmark,
+    required TResult Function(int id) deleteTravelBookmark,
+  }) {
+    return deleteTravelBookmark(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? findNearbyPlace,
+    TResult? Function(PlaceModel? place)? selectPlace,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(CameraPosition position)? changePosition,
+    TResult? Function()? changeToMyPosition,
+    TResult? Function()? showSearchButton,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
+    TResult? Function(int id)? addTravelBookmark,
+    TResult? Function(int id)? deleteTravelBookmark,
+  }) {
+    return deleteTravelBookmark?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? findNearbyPlace,
+    TResult Function(PlaceModel? place)? selectPlace,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function(int index)? changeNavigation,
+    TResult Function(CameraPosition position)? changePosition,
+    TResult Function()? changeToMyPosition,
+    TResult Function()? showSearchButton,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
+    TResult Function(int id)? addTravelBookmark,
+    TResult Function(int id)? deleteTravelBookmark,
+    required TResult orElse(),
+  }) {
+    if (deleteTravelBookmark != null) {
+      return deleteTravelBookmark(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(SelectPlaceEvent value) selectPlace,
+    required TResult Function(InitBottomSheet value) initBottomSheet,
+    required TResult Function(ChangeNavigationEvent value) changeNavigation,
+    required TResult Function(ChangePositionEvent value) changePosition,
+    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
+    required TResult Function(ShowSearchButton value) showSearchButton,
+    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
+    required TResult Function(ContractBottomSheet value) contractBottomSheet,
+    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
+    required TResult Function(StopBottomSheetAnimationEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
+    required TResult Function(AddTravelBookmarkEvent value) addTravelBookmark,
+    required TResult Function(DeleteTravelBookmarkEvent value)
+        deleteTravelBookmark,
+  }) {
+    return deleteTravelBookmark(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(SelectPlaceEvent value)? selectPlace,
+    TResult? Function(InitBottomSheet value)? initBottomSheet,
+    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(ChangePositionEvent value)? changePosition,
+    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult? Function(ShowSearchButton value)? showSearchButton,
+    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult? Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult? Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult? Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
+  }) {
+    return deleteTravelBookmark?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(SelectPlaceEvent value)? selectPlace,
+    TResult Function(InitBottomSheet value)? initBottomSheet,
+    TResult Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult Function(ChangePositionEvent value)? changePosition,
+    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult Function(ShowSearchButton value)? showSearchButton,
+    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    TResult Function(AddTravelBookmarkEvent value)? addTravelBookmark,
+    TResult Function(DeleteTravelBookmarkEvent value)? deleteTravelBookmark,
+    required TResult orElse(),
+  }) {
+    if (deleteTravelBookmark != null) {
+      return deleteTravelBookmark(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteTravelBookmarkEvent implements MapEvent {
+  const factory DeleteTravelBookmarkEvent(final int id) =
+      _$DeleteTravelBookmarkEventImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$DeleteTravelBookmarkEventImplCopyWith<_$DeleteTravelBookmarkEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

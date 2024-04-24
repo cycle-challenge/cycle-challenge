@@ -10,35 +10,22 @@ class GetNearbyPlacesUseCase {
 
   GetNearbyPlacesUseCase(this.repository);
 
-  Future<Result<(List<PlaceModel>, List<TravelModel>, List<Bookmark>), String>> call(
+  Future<Result<(List<PlaceModel>, List<TravelModel>), String>> call(
       double latitude, double longitude) async {
-
-    final [result, bookmarkResult] = await Future.wait([
-      repository.findNearby(latitude, longitude, 5000),
-      repository.findPlaceBookmarks()
-    ]);
+    final result = await repository.findNearby(latitude, longitude, 5000);
 
     return result.when(
         success: (data) {
-          return bookmarkResult.when(success: (bookmarks) {
+          if (data.isEmpty) return const Result.error("검색된 장소가 없습니다.");
 
-            if (data.isEmpty) return const Result.error("검색된 장소가 없습니다.");
+          final places = data.where((elm) => elm.travels.isNotEmpty).toList();
+          final travels =
+              Set.of(places.map((e) => e.travels).expand((e) => e).toList())
+                  .toList();
 
-            final places =
-            data.where((elm) => (elm as PlaceModel).travels.isNotEmpty).toList() as List<PlaceModel>;
-            final travels =
-            Set.of(places.map((e) => e.travels).expand((e) => e).toList())
-                .toList();
-
-            return Result.success((places, travels, bookmarks as List<Bookmark>));
-
-          }, error: (error) => Result.error(error.when(
-              targetError: (_, __) => '',
-              error: (_, message) => message)));
-
+          return Result.success((places, travels));
         },
         error: (error) => Result.error(error.when(
-            targetError: (_, __) => '',
-            error: (_, message) => message)));
+            targetError: (_, __) => '', error: (_, message) => message)));
   }
 }

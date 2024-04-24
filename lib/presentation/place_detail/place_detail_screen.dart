@@ -63,7 +63,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
     final mapViewModel = context.watch<MapViewModel>();
     final dataState = mapViewModel.dataState;
 
-    bool isBookmarked = dataState.bookmarks
+    bool isBookmarked = dataState.placeBookmarks
         .where((elm) => elm.targetId == widget.place.id)
         .isNotEmpty;
 

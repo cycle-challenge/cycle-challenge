@@ -43,6 +43,8 @@ class MapViewModel with ChangeNotifier {
         },
         error: (message) =>
             _eventController.add(MapUIEvent.showSnackBar(message))));
+
+    _onFindBookmarks();
   }
 
   // getter
@@ -65,7 +67,9 @@ class MapViewModel with ChangeNotifier {
         changeToMyPosition: _changeToMyPosition,
         updateFilter: _updateFilter,
         addPlaceBookmark: _onAddPlaceBookmark,
-        deletePlaceBookmark: _onDeletePlaceBookmark);
+        deletePlaceBookmark: _onDeletePlaceBookmark,
+        addTravelBookmark: _onAddTravelBookmark,
+        deleteTravelBookmark: _onDeleteTravelBookmark);
   }
 
   void _onDeletePlaceBookmark(int id) async {
@@ -73,7 +77,7 @@ class MapViewModel with ChangeNotifier {
 
     result.when(
         success: (bookmarks) {
-          _dataState = _dataState.copyWith(bookmarks: bookmarks);
+          _dataState = _dataState.copyWith(placeBookmarks: bookmarks);
           notifyListeners();
 
           final bookmarkedPlace =
@@ -95,7 +99,7 @@ class MapViewModel with ChangeNotifier {
 
     result.when(
         success: (bookmarks) {
-          _dataState = _dataState.copyWith(bookmarks: bookmarks);
+          _dataState = _dataState.copyWith(placeBookmarks: bookmarks);
           notifyListeners();
 
           final bookmarkedPlace =
@@ -112,6 +116,65 @@ class MapViewModel with ChangeNotifier {
                 _eventController.add(MapUIEvent.showSnackBar(message))));
   }
 
+  void _onDeleteTravelBookmark(int id) async {
+    final result = await useCases.deleteTravelBookmarkUseCase(id);
+
+    result.when(
+        success: (bookmarks) {
+          _dataState = _dataState.copyWith(travelBookmarks: bookmarks);
+          notifyListeners();
+
+          final bookmarkedTravel =
+              _dataState.travels.where((elm) => elm.id == id).firstOrNull;
+
+          if (bookmarkedTravel == null) return;
+
+          _eventController.add(MapUIEvent.showSnackBar(
+              '${bookmarkedTravel.name}이(가) 북마크에서 제거 되었습니다.'));
+        },
+        error: (error) => error.when(
+            targetError: (_, __) {},
+            error: (_, message) =>
+                _eventController.add(MapUIEvent.showSnackBar(message))));
+  }
+
+  void _onAddTravelBookmark(int id) async {
+    final result = await useCases.addTravelBookmarkUseCase(id);
+
+    result.when(
+        success: (bookmarks) {
+          _dataState = _dataState.copyWith(travelBookmarks: bookmarks);
+          notifyListeners();
+
+          final bookmarkedTravel =
+              _dataState.travels.where((elm) => elm.id == id).firstOrNull;
+
+          if (bookmarkedTravel == null) return;
+
+          _eventController.add(MapUIEvent.showSnackBar(
+              '${bookmarkedTravel.name}이(가) 북마크에서 추가 되었습니다.'));
+        },
+        error: (error) => error.when(
+            targetError: (_, __) {},
+            error: (_, message) =>
+                _eventController.add(MapUIEvent.showSnackBar(message))));
+  }
+
+  void _onFindBookmarks() async {
+    final result = await useCases.findBookmarksUseCase();
+
+    result.when(
+        success: (bookmarks) {
+          final (placeBookmarks, travelBookmarks) = bookmarks;
+          _dataState = _dataState.copyWith(placeBookmarks: placeBookmarks, travelBookmarks: travelBookmarks);
+          notifyListeners();
+        },
+        error: (error) => error.when(
+            targetError: (_, __) {},
+            error: (_, message) =>
+                _eventController.add(MapUIEvent.showSnackBar(message))));
+  }
+
   void _findNearbyPlace() async {
     _state = _state.copyWith(isShownSearchButton: false);
 
@@ -119,9 +182,8 @@ class MapViewModel with ChangeNotifier {
         await useCases.getNearbyPlaces(_state.latitude, _state.longitude);
 
     result.when(success: (result) {
-      final (places, travels, bookmarks) = result;
-      _dataState = _dataState.copyWith(
-          places: places, travels: travels, bookmarks: bookmarks);
+      final (places, travels) = result;
+      _dataState = _dataState.copyWith(places: places, travels: travels);
       _filter();
     }, error: (message) {
       _eventController.add(MapUIEvent.showSnackBar(message));

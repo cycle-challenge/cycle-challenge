@@ -169,4 +169,39 @@ class RemoteAPI {
     }
   }
 
+  Future<Result<List<Bookmark>, ApiError>> findTravelBookmarks() async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/bookmarks/travels',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data'])
+          .map((e) => Bookmark.fromJson(e))
+          .toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+
+  }
+
+  Future<Result<Bookmark, ApiError>> addTravelBookmark(int id) async {
+    try {
+      final response = await dio.post('$remoteUrl/api/v1/bookmarks/travels/$id',
+          options: Options(headers: headers));
+
+      return Result.success(Bookmark.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<Bookmark, ApiError>> deleteTravelBookmark(int id) async {
+    try {
+      final response = await dio.delete('$remoteUrl/api/v1/bookmarks/travels/$id',
+          options: Options(headers: headers));
+
+      return Result.success(Bookmark.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
 }

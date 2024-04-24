@@ -139,6 +139,12 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
     final mapViewModel = context.watch<MapViewModel>();
     final dataState = mapViewModel.dataState;
 
+
+    bool isBookmarked = dataState.travelBookmarks
+        .where((elm) => elm.targetId == widget.travel.id)
+        .isNotEmpty;
+
+
     return Scaffold(
       extendBodyBehindAppBar: true,
 
@@ -276,7 +282,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
 
                           VisitModel visit = summary.visits[index];
 
-                          bool isBookmarked = dataState.bookmarks
+                          bool isBookmarked = dataState.placeBookmarks
                               .where((elm) => elm.targetId == visit.place.id)
                               .isNotEmpty;
 
@@ -404,6 +410,18 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
           )
         ]);
       }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      floatingActionButton: FloatingActionButton(
+        onPressed: isBookmarked
+            ? () => mapViewModel
+            .onEvent(MapEvent.deleteTravelBookmark(widget.travel.id))
+            : () => mapViewModel
+            .onEvent(MapEvent.addTravelBookmark(widget.travel.id)),
+        elevation: 0,
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+            color: Theme.of(context).colorScheme.onSurface),
+      ),
       bottomNavigationBar: BottomAppBar(
         height: 139,
         surfaceTintColor: Theme.of(context).colorScheme.surface,
