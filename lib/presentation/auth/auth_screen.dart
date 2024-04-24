@@ -33,8 +33,16 @@ class _AuthScreenState extends State<AuthScreen> {
           .read<AuthInterceptor>()
           .stream
           .listen((event) => event.when(authorizationExpired: () {
+
                 viewModel.onEvent(const AuthEvent.signOut());
-              }));
+
+                while (Navigator.of(context).canPop()) {
+                  Navigator.of(context).pop();
+                }
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const AuthScreen()));
+
+      }));
     });
   }
 

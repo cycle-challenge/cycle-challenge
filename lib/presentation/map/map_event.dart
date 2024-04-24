@@ -19,4 +19,6 @@ abstract class MapEvent with _$MapEvent {
   const factory MapEvent.setCanViewScrollUp(bool canViewScrollUp) = CanViewScrollUpEvent;
   const factory MapEvent.stopBottomSheetAnimation() = StopBottomSheetAnimationEvent;
   const factory MapEvent.updateFilter(Filter filter) = UpdateFilterEvent;
+  const factory MapEvent.addPlaceBookmark(int id) = AddPlaceBookmarkEvent;
+  const factory MapEvent.deletePlaceBookmark(int id) = DeletePlaceBookmarkEvent;
 }

@@ -20,6 +20,7 @@ class MapViewModel with ChangeNotifier {
   MapState _state = MapState();
 
   MapDataState _dataState = MapDataState();
+  MapDataState get dataState => _dataState;
 
   MapFilterDataState _filterDataState = MapFilterDataState(
       placeFilter: PlaceFilter(), travelFilter: TravelFilter());
@@ -62,7 +63,53 @@ class MapViewModel with ChangeNotifier {
         setCanViewScrollUp: _setCanViewScrollUp,
         stopBottomSheetAnimation: _stopBottomSheetAnimation,
         changeToMyPosition: _changeToMyPosition,
-        updateFilter: _updateFilter);
+        updateFilter: _updateFilter,
+        addPlaceBookmark: _onAddPlaceBookmark,
+        deletePlaceBookmark: _onDeletePlaceBookmark);
+  }
+
+  void _onDeletePlaceBookmark(int id) async {
+    final result = await useCases.deletePlaceBookmarkUseCase(id);
+
+    result.when(
+        success: (bookmarks) {
+          _dataState = _dataState.copyWith(bookmarks: bookmarks);
+          notifyListeners();
+
+          final bookmarkedPlace =
+              _dataState.places.where((elm) => elm.id == id).firstOrNull;
+
+          if (bookmarkedPlace == null) return;
+
+          _eventController.add(MapUIEvent.showSnackBar(
+              '${bookmarkedPlace.name}이(가) 북마크에서 제거 되었습니다.'));
+        },
+        error: (error) => error.when(
+            targetError: (_, __) {},
+            error: (_, message) =>
+                _eventController.add(MapUIEvent.showSnackBar(message))));
+  }
+
+  void _onAddPlaceBookmark(int id) async {
+    final result = await useCases.addPlaceBookmarkUseCase(id);
+
+    result.when(
+        success: (bookmarks) {
+          _dataState = _dataState.copyWith(bookmarks: bookmarks);
+          notifyListeners();
+
+          final bookmarkedPlace =
+              _dataState.places.where((elm) => elm.id == id).firstOrNull;
+
+          if (bookmarkedPlace == null) return;
+
+          _eventController.add(MapUIEvent.showSnackBar(
+              '${bookmarkedPlace.name}이(가) 북마크에 추가 되었습니다.'));
+        },
+        error: (error) => error.when(
+            targetError: (_, __) {},
+            error: (_, message) =>
+                _eventController.add(MapUIEvent.showSnackBar(message))));
   }
 
   void _findNearbyPlace() async {
@@ -72,8 +119,9 @@ class MapViewModel with ChangeNotifier {
         await useCases.getNearbyPlaces(_state.latitude, _state.longitude);
 
     result.when(success: (result) {
-      final (places, travels) = result;
-      _dataState = _dataState.copyWith(places: places, travels: travels);
+      final (places, travels, bookmarks) = result;
+      _dataState = _dataState.copyWith(
+          places: places, travels: travels, bookmarks: bookmarks);
       _filter();
     }, error: (message) {
       _eventController.add(MapUIEvent.showSnackBar(message));

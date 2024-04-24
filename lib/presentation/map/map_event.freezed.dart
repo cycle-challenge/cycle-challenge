@@ -30,6 +30,8 @@ mixin _$MapEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +48,8 @@ mixin _$MapEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +66,8 @@ mixin _$MapEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +86,9 @@ mixin _$MapEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +106,8 @@ mixin _$MapEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +125,8 @@ mixin _$MapEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -187,6 +200,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return findNearbyPlace();
   }
@@ -206,6 +221,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return findNearbyPlace?.call();
   }
@@ -225,6 +242,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -249,6 +268,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return findNearbyPlace(this);
   }
@@ -269,6 +291,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return findNearbyPlace?.call(this);
   }
@@ -289,6 +313,8 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -379,6 +405,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return selectPlace(place);
   }
@@ -398,6 +426,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return selectPlace?.call(place);
   }
@@ -417,6 +447,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -441,6 +473,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return selectPlace(this);
   }
@@ -461,6 +496,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return selectPlace?.call(this);
   }
@@ -481,6 +518,8 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -578,6 +617,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return initBottomSheet(maxHeight);
   }
@@ -597,6 +638,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return initBottomSheet?.call(maxHeight);
   }
@@ -616,6 +659,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -640,6 +685,9 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return initBottomSheet(this);
   }
@@ -660,6 +708,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return initBottomSheet?.call(this);
   }
@@ -680,6 +730,8 @@ class _$InitBottomSheetImpl implements InitBottomSheet {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -777,6 +829,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return changeNavigation(index);
   }
@@ -796,6 +850,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return changeNavigation?.call(index);
   }
@@ -815,6 +871,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -839,6 +897,9 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return changeNavigation(this);
   }
@@ -859,6 +920,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return changeNavigation?.call(this);
   }
@@ -879,6 +942,8 @@ class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -976,6 +1041,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return changePosition(position);
   }
@@ -995,6 +1062,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return changePosition?.call(position);
   }
@@ -1014,6 +1083,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -1038,6 +1109,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return changePosition(this);
   }
@@ -1058,6 +1132,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return changePosition?.call(this);
   }
@@ -1078,6 +1154,8 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -1149,6 +1227,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return changeToMyPosition();
   }
@@ -1168,6 +1248,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return changeToMyPosition?.call();
   }
@@ -1187,6 +1269,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -1211,6 +1295,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return changeToMyPosition(this);
   }
@@ -1231,6 +1318,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return changeToMyPosition?.call(this);
   }
@@ -1251,6 +1340,8 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -1314,6 +1405,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return showSearchButton();
   }
@@ -1333,6 +1426,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return showSearchButton?.call();
   }
@@ -1352,6 +1447,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (showSearchButton != null) {
@@ -1376,6 +1473,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return showSearchButton(this);
   }
@@ -1396,6 +1496,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return showSearchButton?.call(this);
   }
@@ -1416,6 +1518,8 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (showSearchButton != null) {
@@ -1479,6 +1583,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return expandBottomSheet();
   }
@@ -1498,6 +1604,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return expandBottomSheet?.call();
   }
@@ -1517,6 +1625,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -1541,6 +1651,9 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return expandBottomSheet(this);
   }
@@ -1561,6 +1674,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return expandBottomSheet?.call(this);
   }
@@ -1581,6 +1696,8 @@ class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -1645,6 +1762,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return contractBottomSheet();
   }
@@ -1664,6 +1783,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return contractBottomSheet?.call();
   }
@@ -1683,6 +1804,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -1707,6 +1830,9 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return contractBottomSheet(this);
   }
@@ -1727,6 +1853,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return contractBottomSheet?.call(this);
   }
@@ -1747,6 +1875,8 @@ class _$ContractBottomSheetImpl implements ContractBottomSheet {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -1839,6 +1969,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return setCanViewScrollUp(canViewScrollUp);
   }
@@ -1858,6 +1990,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return setCanViewScrollUp?.call(canViewScrollUp);
   }
@@ -1877,6 +2011,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -1901,6 +2037,9 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return setCanViewScrollUp(this);
   }
@@ -1921,6 +2060,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return setCanViewScrollUp?.call(this);
   }
@@ -1941,6 +2082,8 @@ class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -2014,6 +2157,8 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return stopBottomSheetAnimation();
   }
@@ -2033,6 +2178,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return stopBottomSheetAnimation?.call();
   }
@@ -2052,6 +2199,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -2076,6 +2225,9 @@ class _$StopBottomSheetAnimationEventImpl
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return stopBottomSheetAnimation(this);
   }
@@ -2096,6 +2248,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return stopBottomSheetAnimation?.call(this);
   }
@@ -2116,6 +2270,8 @@ class _$StopBottomSheetAnimationEventImpl
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -2207,6 +2363,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
   }) {
     return updateFilter(filter);
   }
@@ -2226,6 +2384,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
   }) {
     return updateFilter?.call(filter);
   }
@@ -2245,6 +2405,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (updateFilter != null) {
@@ -2269,6 +2431,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(StopBottomSheetAnimationEvent value)
         stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
   }) {
     return updateFilter(this);
   }
@@ -2289,6 +2454,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
   }) {
     return updateFilter?.call(this);
   }
@@ -2309,6 +2476,8 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(StopBottomSheetAnimationEvent value)?
         stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
     required TResult orElse(),
   }) {
     if (updateFilter != null) {
@@ -2326,4 +2495,429 @@ abstract class UpdateFilterEvent implements MapEvent {
   @JsonKey(ignore: true)
   _$$UpdateFilterEventImplCopyWith<_$UpdateFilterEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddPlaceBookmarkEventImplCopyWith<$Res> {
+  factory _$$AddPlaceBookmarkEventImplCopyWith(
+          _$AddPlaceBookmarkEventImpl value,
+          $Res Function(_$AddPlaceBookmarkEventImpl) then) =
+      __$$AddPlaceBookmarkEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$AddPlaceBookmarkEventImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$AddPlaceBookmarkEventImpl>
+    implements _$$AddPlaceBookmarkEventImplCopyWith<$Res> {
+  __$$AddPlaceBookmarkEventImplCopyWithImpl(_$AddPlaceBookmarkEventImpl _value,
+      $Res Function(_$AddPlaceBookmarkEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$AddPlaceBookmarkEventImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddPlaceBookmarkEventImpl implements AddPlaceBookmarkEvent {
+  const _$AddPlaceBookmarkEventImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'MapEvent.addPlaceBookmark(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddPlaceBookmarkEventImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddPlaceBookmarkEventImplCopyWith<_$AddPlaceBookmarkEventImpl>
+      get copyWith => __$$AddPlaceBookmarkEventImplCopyWithImpl<
+          _$AddPlaceBookmarkEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() findNearbyPlace,
+    required TResult Function(PlaceModel? place) selectPlace,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(CameraPosition position) changePosition,
+    required TResult Function() changeToMyPosition,
+    required TResult Function() showSearchButton,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
+  }) {
+    return addPlaceBookmark(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? findNearbyPlace,
+    TResult? Function(PlaceModel? place)? selectPlace,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(CameraPosition position)? changePosition,
+    TResult? Function()? changeToMyPosition,
+    TResult? Function()? showSearchButton,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
+  }) {
+    return addPlaceBookmark?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? findNearbyPlace,
+    TResult Function(PlaceModel? place)? selectPlace,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function(int index)? changeNavigation,
+    TResult Function(CameraPosition position)? changePosition,
+    TResult Function()? changeToMyPosition,
+    TResult Function()? showSearchButton,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
+    required TResult orElse(),
+  }) {
+    if (addPlaceBookmark != null) {
+      return addPlaceBookmark(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(SelectPlaceEvent value) selectPlace,
+    required TResult Function(InitBottomSheet value) initBottomSheet,
+    required TResult Function(ChangeNavigationEvent value) changeNavigation,
+    required TResult Function(ChangePositionEvent value) changePosition,
+    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
+    required TResult Function(ShowSearchButton value) showSearchButton,
+    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
+    required TResult Function(ContractBottomSheet value) contractBottomSheet,
+    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
+    required TResult Function(StopBottomSheetAnimationEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
+  }) {
+    return addPlaceBookmark(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(SelectPlaceEvent value)? selectPlace,
+    TResult? Function(InitBottomSheet value)? initBottomSheet,
+    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(ChangePositionEvent value)? changePosition,
+    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult? Function(ShowSearchButton value)? showSearchButton,
+    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult? Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+  }) {
+    return addPlaceBookmark?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(SelectPlaceEvent value)? selectPlace,
+    TResult Function(InitBottomSheet value)? initBottomSheet,
+    TResult Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult Function(ChangePositionEvent value)? changePosition,
+    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult Function(ShowSearchButton value)? showSearchButton,
+    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    required TResult orElse(),
+  }) {
+    if (addPlaceBookmark != null) {
+      return addPlaceBookmark(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddPlaceBookmarkEvent implements MapEvent {
+  const factory AddPlaceBookmarkEvent(final int id) =
+      _$AddPlaceBookmarkEventImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$AddPlaceBookmarkEventImplCopyWith<_$AddPlaceBookmarkEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeletePlaceBookmarkEventImplCopyWith<$Res> {
+  factory _$$DeletePlaceBookmarkEventImplCopyWith(
+          _$DeletePlaceBookmarkEventImpl value,
+          $Res Function(_$DeletePlaceBookmarkEventImpl) then) =
+      __$$DeletePlaceBookmarkEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$DeletePlaceBookmarkEventImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$DeletePlaceBookmarkEventImpl>
+    implements _$$DeletePlaceBookmarkEventImplCopyWith<$Res> {
+  __$$DeletePlaceBookmarkEventImplCopyWithImpl(
+      _$DeletePlaceBookmarkEventImpl _value,
+      $Res Function(_$DeletePlaceBookmarkEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeletePlaceBookmarkEventImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeletePlaceBookmarkEventImpl implements DeletePlaceBookmarkEvent {
+  const _$DeletePlaceBookmarkEventImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'MapEvent.deletePlaceBookmark(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeletePlaceBookmarkEventImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeletePlaceBookmarkEventImplCopyWith<_$DeletePlaceBookmarkEventImpl>
+      get copyWith => __$$DeletePlaceBookmarkEventImplCopyWithImpl<
+          _$DeletePlaceBookmarkEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() findNearbyPlace,
+    required TResult Function(PlaceModel? place) selectPlace,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(CameraPosition position) changePosition,
+    required TResult Function() changeToMyPosition,
+    required TResult Function() showSearchButton,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(int id) addPlaceBookmark,
+    required TResult Function(int id) deletePlaceBookmark,
+  }) {
+    return deletePlaceBookmark(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? findNearbyPlace,
+    TResult? Function(PlaceModel? place)? selectPlace,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(CameraPosition position)? changePosition,
+    TResult? Function()? changeToMyPosition,
+    TResult? Function()? showSearchButton,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(int id)? addPlaceBookmark,
+    TResult? Function(int id)? deletePlaceBookmark,
+  }) {
+    return deletePlaceBookmark?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? findNearbyPlace,
+    TResult Function(PlaceModel? place)? selectPlace,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function(int index)? changeNavigation,
+    TResult Function(CameraPosition position)? changePosition,
+    TResult Function()? changeToMyPosition,
+    TResult Function()? showSearchButton,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(int id)? addPlaceBookmark,
+    TResult Function(int id)? deletePlaceBookmark,
+    required TResult orElse(),
+  }) {
+    if (deletePlaceBookmark != null) {
+      return deletePlaceBookmark(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(SelectPlaceEvent value) selectPlace,
+    required TResult Function(InitBottomSheet value) initBottomSheet,
+    required TResult Function(ChangeNavigationEvent value) changeNavigation,
+    required TResult Function(ChangePositionEvent value) changePosition,
+    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
+    required TResult Function(ShowSearchButton value) showSearchButton,
+    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
+    required TResult Function(ContractBottomSheet value) contractBottomSheet,
+    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
+    required TResult Function(StopBottomSheetAnimationEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(AddPlaceBookmarkEvent value) addPlaceBookmark,
+    required TResult Function(DeletePlaceBookmarkEvent value)
+        deletePlaceBookmark,
+  }) {
+    return deletePlaceBookmark(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(SelectPlaceEvent value)? selectPlace,
+    TResult? Function(InitBottomSheet value)? initBottomSheet,
+    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(ChangePositionEvent value)? changePosition,
+    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult? Function(ShowSearchButton value)? showSearchButton,
+    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult? Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult? Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+  }) {
+    return deletePlaceBookmark?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(SelectPlaceEvent value)? selectPlace,
+    TResult Function(InitBottomSheet value)? initBottomSheet,
+    TResult Function(ChangeNavigationEvent value)? changeNavigation,
+    TResult Function(ChangePositionEvent value)? changePosition,
+    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult Function(ShowSearchButton value)? showSearchButton,
+    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
+    TResult Function(ContractBottomSheet value)? contractBottomSheet,
+    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
+    TResult Function(StopBottomSheetAnimationEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(AddPlaceBookmarkEvent value)? addPlaceBookmark,
+    TResult Function(DeletePlaceBookmarkEvent value)? deletePlaceBookmark,
+    required TResult orElse(),
+  }) {
+    if (deletePlaceBookmark != null) {
+      return deletePlaceBookmark(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeletePlaceBookmarkEvent implements MapEvent {
+  const factory DeletePlaceBookmarkEvent(final int id) =
+      _$DeletePlaceBookmarkEventImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$DeletePlaceBookmarkEventImplCopyWith<_$DeletePlaceBookmarkEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

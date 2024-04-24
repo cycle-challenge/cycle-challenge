@@ -43,10 +43,9 @@ class AuthInterceptor extends Interceptor {
       try {
         final renewedAuth = await _renewAuth(auth.refreshToken);
 
+        await secureStorage.saveAuth(renewedAuth);
         err.requestOptions.headers
             .addAll({'Authorization': 'Bearer ${renewedAuth.refreshToken}'});
-
-        await secureStorage.saveAuth(renewedAuth);
 
         final dio = Dio();
         final retriedResponse = await dio.fetch(err.requestOptions);

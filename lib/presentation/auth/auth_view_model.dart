@@ -27,7 +27,6 @@ class AuthViewModel with ChangeNotifier {
   Stream<AuthUIEvent> get stream => _eventController.stream;
 
   void onEvent(AuthEvent event) {
-    print(11);
     event.when(signOut: _onSignOut);
   }
 

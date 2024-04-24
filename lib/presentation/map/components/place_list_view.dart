@@ -17,6 +17,7 @@ class PlaceListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.watch<MapViewModel>();
     final filterState = viewModel.filterState;
+    final dataState = viewModel.dataState;
     final bottomSheetState = viewModel.bottomSheetState;
 
     _controller.addListener(() {
@@ -39,8 +40,7 @@ class PlaceListView extends StatelessWidget {
               ),
             ),
           ),
-        if (bottomSheetState.isExpanded)
-          const SizedBox(height: 12),
+        if (bottomSheetState.isExpanded) const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
             controller: _controller,
@@ -53,6 +53,10 @@ class PlaceListView extends StatelessWidget {
                   place.location.distance?.toStringAsFixed(1).toString() ??
                       "0.0";
               String type = place.type.label;
+
+              bool isBookmarked = dataState.bookmarks
+                  .where((elm) => elm.targetId == place.id)
+                  .isNotEmpty;
 
               return GestureDetector(
                 onTap: () {
@@ -87,8 +91,16 @@ class PlaceListView extends StatelessWidget {
                             ],
                           ),
                           IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.bookmark_outline, size: 20),
+                            onPressed: isBookmarked
+                                ? () => viewModel.onEvent(
+                                MapEvent.deletePlaceBookmark(place.id))
+                                : () => viewModel.onEvent(
+                                    MapEvent.addPlaceBookmark(place.id)),
+                            icon: Icon(
+                                isBookmarked
+                                    ? Icons.bookmark
+                                    : Icons.bookmark_outline,
+                                size: 20),
                           ),
                         ],
                       ),

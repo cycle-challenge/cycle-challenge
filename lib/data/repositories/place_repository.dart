@@ -7,6 +7,7 @@ import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
@@ -65,4 +66,17 @@ class PlaceRepository {
       throw Exception(response.body);
     }
   }
+
+  Future<Result<Bookmark, ApiError>> addPlaceBookmark(int id) async {
+    return api.addPlaceBookmark(id);
+  }
+
+  Future<Result<Bookmark, ApiError>> deletePlaceBookmark(int id) async {
+    return api.deletePlaceBookmark(id);
+  }
+
+  Future<Result<List<Bookmark>, ApiError>> findPlaceBookmarks() async {
+    return api.findPlaceBookmarks();
+  }
+
 }
