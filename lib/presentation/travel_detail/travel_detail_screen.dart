@@ -178,7 +178,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
 
               viewModel.onEvent(TravelDetailEvent.changePanelHeight(height));
 
-              if (!_panelController.isPanelAnimating) {
+              if (!_panelController.isPanelAnimating && viewModel.dailySummaries.isNotEmpty) {
                 viewModel.onEvent(const TravelDetailEvent.initView());
               }
             },
