@@ -141,6 +141,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
+
       appBar: AppBar(
         centerTitle: false,
         scrolledUnderElevation: 0,
@@ -253,21 +254,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                                     const BorderRadius.all(Radius.circular(8)),
                               ),
                             ),
-                          ),
-                          Text("${index + 1}일 차",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(fontWeight: FontWeight.w600)),
-                          Text(
-                            widget.travel.name,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Container(
-                              height: 1,
-                              margin: const EdgeInsets.only(top: 12),
-                              color:
-                                  Theme.of(context).colorScheme.outlineVariant)
+                          )
                         ])),
                 Expanded(
                     child: ListView.builder(
@@ -300,12 +287,19 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 GestureDetector(
-                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => ChangeNotifierProvider(
-                                        create: (context) => PlaceDetailViewModel(
-                                            visit.place.googlePlaceId, context.read<UseCases>()),
-                                        child: PlaceDetailScreen(place: visit.place),
-                                      ))),
+                                  onTap: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              ChangeNotifierProvider(
+                                                create: (context) =>
+                                                    PlaceDetailViewModel(
+                                                        visit.place
+                                                            .googlePlaceId,
+                                                        context
+                                                            .read<UseCases>()),
+                                                child: PlaceDetailScreen(
+                                                    place: visit.place),
+                                              ))),
                                   child: ListTile(
                                       title: Text(visit.place.name),
                                       contentPadding: EdgeInsets.zero,
@@ -313,9 +307,11 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                                       titleTextStyle: Theme.of(context)
                                           .textTheme
                                           .bodyLarge
-                                          ?.copyWith(fontWeight: FontWeight.w600),
-                                      subtitleTextStyle:
-                                          Theme.of(context).textTheme.bodyMedium,
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w600),
+                                      subtitleTextStyle: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
                                       leading: SvgPicture.asset(
                                           width: 24,
                                           height: 24,
@@ -409,21 +405,44 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
         ]);
       }),
       bottomNavigationBar: BottomAppBar(
+        height: 139,
         surfaceTintColor: Theme.of(context).colorScheme.surface,
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextButton(
-                onPressed: hasPrev
-                    ? () => viewModel
-                        .onEvent(const TravelDetailEvent.prevDayOfTravel())
-                    : null,
-                child: const Text("어제")),
-            TextButton(
-                onPressed: hasNext
-                    ? () => viewModel
-                        .onEvent(const TravelDetailEvent.nextDayOfTravel())
-                    : null,
-                child: const Text("내일")),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("${index + 1}일 차",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.copyWith(fontWeight: FontWeight.w600)),
+                  Text(
+                    widget.travel.name,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                TextButton(
+                    onPressed: hasPrev
+                        ? () => viewModel
+                            .onEvent(const TravelDetailEvent.prevDayOfTravel())
+                        : null,
+                    child: const Text("어제")),
+                TextButton(
+                    onPressed: hasNext
+                        ? () => viewModel
+                            .onEvent(const TravelDetailEvent.nextDayOfTravel())
+                        : null,
+                    child: const Text("내일")),
+              ],
+            ),
           ],
         ),
       ),
