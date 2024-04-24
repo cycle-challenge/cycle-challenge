@@ -64,15 +64,12 @@ class LocalSignUpViewModel with ChangeNotifier {
   void _onError(error) {
     error.when(
         targetError: (_, errors) => {
-              errors.forEach((key, value) => _eventController
-                  .add(LocalSignUpUIEvent.showInputError(key, value)))
-            },
-        codeError: (_, message) => {
-              _state = _state.copyWith(errorMessages: [message])
-            },
-        error: (message) => {
-              _state = _state.copyWith(errorMessages: [message])
-            });
+          errors.forEach((key, value) => _eventController
+              .add(LocalSignUpUIEvent.showInputError(key, value)))
+        },
+        error: (_, message) => {
+          _state = _state.copyWith(errorMessages: [message])
+        });
 
     notifyListeners();
   }

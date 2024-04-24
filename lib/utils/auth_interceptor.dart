@@ -75,6 +75,6 @@ class AuthInterceptor extends Interceptor {
     final response = await dio.post('$remoteUrl/api/v1/members/auth/renew',
         data: {'refreshToken': refreshToken});
 
-    return Auth.fromJson(response.data);
+    return Auth.fromJson(response.data['data']);
   }
 }
