@@ -61,7 +61,7 @@ class PlaceDetailViewModel with ChangeNotifier {
   }
 
   void _callPhone(String? phoneNumber) async {
-    Result<void> result = await useCases.callPhone(phoneNumber);
+    final result = await useCases.callPhone(phoneNumber);
 
     result.when(
         success: (_) {},

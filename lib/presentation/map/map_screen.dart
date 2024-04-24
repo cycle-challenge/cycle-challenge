@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -151,6 +154,16 @@ class _MapScreenState extends State<MapScreen> {
           }),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (index) {
+
+          if (index == 4) {
+            final authViewModel = context.read<AuthViewModel>();
+            authViewModel.onEvent(const AuthEvent.signOut());
+
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const AuthScreen()));
+
+            return;
+          }
+
           viewModel.onEvent(const MapEvent.initBottomSheet(null));
           viewModel.onEvent(MapEvent.changeNavigation(index));
         },

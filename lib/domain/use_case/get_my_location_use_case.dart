@@ -2,7 +2,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class GetMyLocationUseCase {
-  Future<Result<(double latitude, double longitude)>> call() async {
+  Future<Result<(double latitude, double longitude), String>> call() async {
     bool serviceEnabled;
     LocationPermission permission;
 

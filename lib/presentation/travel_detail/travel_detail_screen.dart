@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -198,8 +199,10 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                   _controller = controller;
                 },
                 onCameraMove: (_) {
-                  viewModel
-                      .onEvent(const TravelDetailEvent.showInitViewButton());
+                  if (!_panelController.isPanelAnimating && !viewModel.isShownInitViewButton && _isListenerEnabled) {
+                    viewModel
+                        .onEvent(const TravelDetailEvent.showInitViewButton());
+                  }
                 },
                 markers: Set.of(summary?.visits.mapWithIndex((visit, index) {
                       final place = visit.place;
@@ -411,7 +414,7 @@ class TravelDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TravelDetailViewModel>(
-        create: (context) => TravelDetailViewModel(travel.id),
+        create: (context) => TravelDetailViewModel(travel.id, context.read<TravelRepository>()),
         child: TravelDetailScreen(travel: travel));
   }
 }
