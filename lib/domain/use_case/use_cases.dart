@@ -4,7 +4,6 @@ import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
-import 'package:yeohaeng_ttukttak/domain/use_case/find_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_place_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_location_use_case.dart';
@@ -26,7 +25,6 @@ class UseCases {
   final AddPlaceBookmarkUseCase addPlaceBookmarkUseCase;
   final DeletePlaceBookmarkUseCase deletePlaceBookmarkUseCase;
   final AddTravelBookmarkUseCase addTravelBookmarkUseCase;
-  final FindBookmarksUseCase findBookmarksUseCase;
   final DeleteTravelBookmarkUseCase deleteTravelBookmarkUseCase;
   final GetBookmarkedPlaceUseCase getBookmarkedPlaceUseCase;
   final GetBookmarkedTravelUseCase getBookmarkedTravelUseCase;
@@ -44,7 +42,6 @@ class UseCases {
     required this.deletePlaceBookmarkUseCase,
     required this.addTravelBookmarkUseCase,
     required this.deleteTravelBookmarkUseCase,
-    required this.findBookmarksUseCase,
     required this.getBookmarkedPlaceUseCase,
     required this.getBookmarkedTravelUseCase,
   });
