@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final String nickname;
@@ -22,7 +22,7 @@ class WelcomeScreen extends StatelessWidget {
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const MapScreen()));
+                    MaterialPageRoute(builder: (context) => const MainScreen()));
               },
               child: const Text('확인'))
         ],

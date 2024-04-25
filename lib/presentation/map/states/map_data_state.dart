@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 
 part 'map_data_state.freezed.dart';
 

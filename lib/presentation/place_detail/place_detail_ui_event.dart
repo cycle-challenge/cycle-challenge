@@ -9,6 +9,4 @@ abstract class PlaceDetailUIEvent with _$PlaceDetailUIEvent {
       AddPlaceImageUIEvent;
   const factory PlaceDetailUIEvent.addLastImages(List<ImageModel> images) =
       AddPlaceLastImageUIEvent;
-  const factory PlaceDetailUIEvent.showSnackBar(String message) =
-      ShowSnackBarUIEvent;
 }

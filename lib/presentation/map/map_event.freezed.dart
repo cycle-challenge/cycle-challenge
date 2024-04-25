@@ -20,15 +20,9 @@ mixin _$MapEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
     required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,15 +30,9 @@ mixin _$MapEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
     TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) =>
       throw _privateConstructorUsedError;
@@ -52,15 +40,9 @@ mixin _$MapEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
     TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) =>
@@ -69,16 +51,9 @@ mixin _$MapEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
   }) =>
       throw _privateConstructorUsedError;
@@ -86,16 +61,9 @@ mixin _$MapEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) =>
       throw _privateConstructorUsedError;
@@ -103,16 +71,9 @@ mixin _$MapEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) =>
@@ -177,15 +138,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
     required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return findNearbyPlace();
@@ -196,15 +151,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
     TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return findNearbyPlace?.call();
@@ -215,15 +164,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
     TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
@@ -238,16 +181,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return findNearbyPlace(this);
@@ -258,16 +194,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return findNearbyPlace?.call(this);
@@ -278,16 +207,9 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
@@ -369,15 +291,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
     required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return selectPlace(place);
@@ -388,15 +304,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
     TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return selectPlace?.call(place);
@@ -407,15 +317,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
     TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
@@ -430,16 +334,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return selectPlace(this);
@@ -450,16 +347,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return selectPlace?.call(this);
@@ -470,16 +360,9 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
@@ -498,404 +381,6 @@ abstract class SelectPlaceEvent implements MapEvent {
   @JsonKey(ignore: true)
   _$$SelectPlaceEventImplCopyWith<_$SelectPlaceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$InitBottomSheetImplCopyWith<$Res> {
-  factory _$$InitBottomSheetImplCopyWith(_$InitBottomSheetImpl value,
-          $Res Function(_$InitBottomSheetImpl) then) =
-      __$$InitBottomSheetImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({double? maxHeight});
-}
-
-/// @nodoc
-class __$$InitBottomSheetImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$InitBottomSheetImpl>
-    implements _$$InitBottomSheetImplCopyWith<$Res> {
-  __$$InitBottomSheetImplCopyWithImpl(
-      _$InitBottomSheetImpl _value, $Res Function(_$InitBottomSheetImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? maxHeight = freezed,
-  }) {
-    return _then(_$InitBottomSheetImpl(
-      freezed == maxHeight
-          ? _value.maxHeight
-          : maxHeight // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$InitBottomSheetImpl implements InitBottomSheet {
-  const _$InitBottomSheetImpl(this.maxHeight);
-
-  @override
-  final double? maxHeight;
-
-  @override
-  String toString() {
-    return 'MapEvent.initBottomSheet(maxHeight: $maxHeight)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitBottomSheetImpl &&
-            (identical(other.maxHeight, maxHeight) ||
-                other.maxHeight == maxHeight));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, maxHeight);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitBottomSheetImplCopyWith<_$InitBottomSheetImpl> get copyWith =>
-      __$$InitBottomSheetImplCopyWithImpl<_$InitBottomSheetImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return initBottomSheet(maxHeight);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return initBottomSheet?.call(maxHeight);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (initBottomSheet != null) {
-      return initBottomSheet(maxHeight);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return initBottomSheet(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return initBottomSheet?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (initBottomSheet != null) {
-      return initBottomSheet(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class InitBottomSheet implements MapEvent {
-  const factory InitBottomSheet(final double? maxHeight) =
-      _$InitBottomSheetImpl;
-
-  double? get maxHeight;
-  @JsonKey(ignore: true)
-  _$$InitBottomSheetImplCopyWith<_$InitBottomSheetImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ChangeNavigationEventImplCopyWith<$Res> {
-  factory _$$ChangeNavigationEventImplCopyWith(
-          _$ChangeNavigationEventImpl value,
-          $Res Function(_$ChangeNavigationEventImpl) then) =
-      __$$ChangeNavigationEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int index});
-}
-
-/// @nodoc
-class __$$ChangeNavigationEventImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$ChangeNavigationEventImpl>
-    implements _$$ChangeNavigationEventImplCopyWith<$Res> {
-  __$$ChangeNavigationEventImplCopyWithImpl(_$ChangeNavigationEventImpl _value,
-      $Res Function(_$ChangeNavigationEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? index = null,
-  }) {
-    return _then(_$ChangeNavigationEventImpl(
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ChangeNavigationEventImpl implements ChangeNavigationEvent {
-  const _$ChangeNavigationEventImpl(this.index);
-
-  @override
-  final int index;
-
-  @override
-  String toString() {
-    return 'MapEvent.changeNavigation(index: $index)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangeNavigationEventImpl &&
-            (identical(other.index, index) || other.index == index));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, index);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChangeNavigationEventImplCopyWith<_$ChangeNavigationEventImpl>
-      get copyWith => __$$ChangeNavigationEventImplCopyWithImpl<
-          _$ChangeNavigationEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return changeNavigation(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return changeNavigation?.call(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (changeNavigation != null) {
-      return changeNavigation(index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return changeNavigation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return changeNavigation?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (changeNavigation != null) {
-      return changeNavigation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ChangeNavigationEvent implements MapEvent {
-  const factory ChangeNavigationEvent(final int index) =
-      _$ChangeNavigationEventImpl;
-
-  int get index;
-  @JsonKey(ignore: true)
-  _$$ChangeNavigationEventImplCopyWith<_$ChangeNavigationEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -966,15 +451,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
     required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return changePosition(position);
@@ -985,15 +464,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
     TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return changePosition?.call(position);
@@ -1004,15 +477,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
     TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
@@ -1027,16 +494,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return changePosition(this);
@@ -1047,16 +507,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return changePosition?.call(this);
@@ -1067,16 +520,9 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
@@ -1139,15 +585,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
     required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return changeToMyPosition();
@@ -1158,15 +598,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
     TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return changeToMyPosition?.call();
@@ -1177,15 +611,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
     TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
@@ -1200,16 +628,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return changeToMyPosition(this);
@@ -1220,16 +641,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return changeToMyPosition?.call(this);
@@ -1240,16 +654,9 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
@@ -1304,15 +711,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
     required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return showSearchButton();
@@ -1323,15 +724,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
     TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return showSearchButton?.call();
@@ -1342,15 +737,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
     TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
@@ -1365,16 +754,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return showSearchButton(this);
@@ -1385,16 +767,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return showSearchButton?.call(this);
@@ -1405,16 +780,9 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {
@@ -1427,707 +795,6 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
 
 abstract class ShowSearchButton implements MapEvent {
   const factory ShowSearchButton() = _$ShowSearchButtonImpl;
-}
-
-/// @nodoc
-abstract class _$$ExpandBottomSheetImplCopyWith<$Res> {
-  factory _$$ExpandBottomSheetImplCopyWith(_$ExpandBottomSheetImpl value,
-          $Res Function(_$ExpandBottomSheetImpl) then) =
-      __$$ExpandBottomSheetImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ExpandBottomSheetImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$ExpandBottomSheetImpl>
-    implements _$$ExpandBottomSheetImplCopyWith<$Res> {
-  __$$ExpandBottomSheetImplCopyWithImpl(_$ExpandBottomSheetImpl _value,
-      $Res Function(_$ExpandBottomSheetImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ExpandBottomSheetImpl implements ExpandBottomSheet {
-  const _$ExpandBottomSheetImpl();
-
-  @override
-  String toString() {
-    return 'MapEvent.expandBottomSheet()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ExpandBottomSheetImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return expandBottomSheet();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return expandBottomSheet?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (expandBottomSheet != null) {
-      return expandBottomSheet();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return expandBottomSheet(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return expandBottomSheet?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (expandBottomSheet != null) {
-      return expandBottomSheet(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ExpandBottomSheet implements MapEvent {
-  const factory ExpandBottomSheet() = _$ExpandBottomSheetImpl;
-}
-
-/// @nodoc
-abstract class _$$ContractBottomSheetImplCopyWith<$Res> {
-  factory _$$ContractBottomSheetImplCopyWith(_$ContractBottomSheetImpl value,
-          $Res Function(_$ContractBottomSheetImpl) then) =
-      __$$ContractBottomSheetImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ContractBottomSheetImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$ContractBottomSheetImpl>
-    implements _$$ContractBottomSheetImplCopyWith<$Res> {
-  __$$ContractBottomSheetImplCopyWithImpl(_$ContractBottomSheetImpl _value,
-      $Res Function(_$ContractBottomSheetImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ContractBottomSheetImpl implements ContractBottomSheet {
-  const _$ContractBottomSheetImpl();
-
-  @override
-  String toString() {
-    return 'MapEvent.contractBottomSheet()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ContractBottomSheetImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return contractBottomSheet();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return contractBottomSheet?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (contractBottomSheet != null) {
-      return contractBottomSheet();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return contractBottomSheet(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return contractBottomSheet?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (contractBottomSheet != null) {
-      return contractBottomSheet(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ContractBottomSheet implements MapEvent {
-  const factory ContractBottomSheet() = _$ContractBottomSheetImpl;
-}
-
-/// @nodoc
-abstract class _$$CanViewScrollUpEventImplCopyWith<$Res> {
-  factory _$$CanViewScrollUpEventImplCopyWith(_$CanViewScrollUpEventImpl value,
-          $Res Function(_$CanViewScrollUpEventImpl) then) =
-      __$$CanViewScrollUpEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool canViewScrollUp});
-}
-
-/// @nodoc
-class __$$CanViewScrollUpEventImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$CanViewScrollUpEventImpl>
-    implements _$$CanViewScrollUpEventImplCopyWith<$Res> {
-  __$$CanViewScrollUpEventImplCopyWithImpl(_$CanViewScrollUpEventImpl _value,
-      $Res Function(_$CanViewScrollUpEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? canViewScrollUp = null,
-  }) {
-    return _then(_$CanViewScrollUpEventImpl(
-      null == canViewScrollUp
-          ? _value.canViewScrollUp
-          : canViewScrollUp // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CanViewScrollUpEventImpl implements CanViewScrollUpEvent {
-  const _$CanViewScrollUpEventImpl(this.canViewScrollUp);
-
-  @override
-  final bool canViewScrollUp;
-
-  @override
-  String toString() {
-    return 'MapEvent.setCanViewScrollUp(canViewScrollUp: $canViewScrollUp)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CanViewScrollUpEventImpl &&
-            (identical(other.canViewScrollUp, canViewScrollUp) ||
-                other.canViewScrollUp == canViewScrollUp));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, canViewScrollUp);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CanViewScrollUpEventImplCopyWith<_$CanViewScrollUpEventImpl>
-      get copyWith =>
-          __$$CanViewScrollUpEventImplCopyWithImpl<_$CanViewScrollUpEventImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return setCanViewScrollUp(canViewScrollUp);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return setCanViewScrollUp?.call(canViewScrollUp);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (setCanViewScrollUp != null) {
-      return setCanViewScrollUp(canViewScrollUp);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return setCanViewScrollUp(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return setCanViewScrollUp?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (setCanViewScrollUp != null) {
-      return setCanViewScrollUp(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CanViewScrollUpEvent implements MapEvent {
-  const factory CanViewScrollUpEvent(final bool canViewScrollUp) =
-      _$CanViewScrollUpEventImpl;
-
-  bool get canViewScrollUp;
-  @JsonKey(ignore: true)
-  _$$CanViewScrollUpEventImplCopyWith<_$CanViewScrollUpEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$StopBottomSheetAnimationEventImplCopyWith<$Res> {
-  factory _$$StopBottomSheetAnimationEventImplCopyWith(
-          _$StopBottomSheetAnimationEventImpl value,
-          $Res Function(_$StopBottomSheetAnimationEventImpl) then) =
-      __$$StopBottomSheetAnimationEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StopBottomSheetAnimationEventImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$StopBottomSheetAnimationEventImpl>
-    implements _$$StopBottomSheetAnimationEventImplCopyWith<$Res> {
-  __$$StopBottomSheetAnimationEventImplCopyWithImpl(
-      _$StopBottomSheetAnimationEventImpl _value,
-      $Res Function(_$StopBottomSheetAnimationEventImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StopBottomSheetAnimationEventImpl
-    implements StopBottomSheetAnimationEvent {
-  const _$StopBottomSheetAnimationEventImpl();
-
-  @override
-  String toString() {
-    return 'MapEvent.stopBottomSheetAnimation()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StopBottomSheetAnimationEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return stopBottomSheetAnimation();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return stopBottomSheetAnimation?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (stopBottomSheetAnimation != null) {
-      return stopBottomSheetAnimation();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return stopBottomSheetAnimation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return stopBottomSheetAnimation?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (stopBottomSheetAnimation != null) {
-      return stopBottomSheetAnimation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class StopBottomSheetAnimationEvent implements MapEvent {
-  const factory StopBottomSheetAnimationEvent() =
-      _$StopBottomSheetAnimationEventImpl;
 }
 
 /// @nodoc
@@ -2197,15 +864,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
     required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(double? maxHeight) initBottomSheet,
-    required TResult Function(int index) changeNavigation,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
-    required TResult Function() expandBottomSheet,
-    required TResult Function() contractBottomSheet,
-    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
-    required TResult Function() stopBottomSheetAnimation,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
     return updateFilter(filter);
@@ -2216,15 +877,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
     TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(double? maxHeight)? initBottomSheet,
-    TResult? Function(int index)? changeNavigation,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
-    TResult? Function()? expandBottomSheet,
-    TResult? Function()? contractBottomSheet,
-    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult? Function()? stopBottomSheetAnimation,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
     return updateFilter?.call(filter);
@@ -2235,15 +890,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
     TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(double? maxHeight)? initBottomSheet,
-    TResult Function(int index)? changeNavigation,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
-    TResult Function()? expandBottomSheet,
-    TResult Function()? contractBottomSheet,
-    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
-    TResult Function()? stopBottomSheetAnimation,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     required TResult orElse(),
   }) {
@@ -2258,16 +907,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(InitBottomSheet value) initBottomSheet,
-    required TResult Function(ChangeNavigationEvent value) changeNavigation,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(ExpandBottomSheet value) expandBottomSheet,
-    required TResult Function(ContractBottomSheet value) contractBottomSheet,
-    required TResult Function(CanViewScrollUpEvent value) setCanViewScrollUp,
-    required TResult Function(StopBottomSheetAnimationEvent value)
-        stopBottomSheetAnimation,
     required TResult Function(UpdateFilterEvent value) updateFilter,
   }) {
     return updateFilter(this);
@@ -2278,16 +920,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(InitBottomSheet value)? initBottomSheet,
-    TResult? Function(ChangeNavigationEvent value)? changeNavigation,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult? Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult? Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult? Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
   }) {
     return updateFilter?.call(this);
@@ -2298,16 +933,9 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(InitBottomSheet value)? initBottomSheet,
-    TResult Function(ChangeNavigationEvent value)? changeNavigation,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(ExpandBottomSheet value)? expandBottomSheet,
-    TResult Function(ContractBottomSheet value)? contractBottomSheet,
-    TResult Function(CanViewScrollUpEvent value)? setCanViewScrollUp,
-    TResult Function(StopBottomSheetAnimationEvent value)?
-        stopBottomSheetAnimation,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     required TResult orElse(),
   }) {

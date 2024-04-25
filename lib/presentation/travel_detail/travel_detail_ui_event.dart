@@ -9,6 +9,4 @@ abstract class TravelDetailUIEvent with _$TravelDetailUIEvent {
       moveBoundEvent;
   const factory TravelDetailUIEvent.moveScroll(int index) = MoveScrollEvent;
   const factory TravelDetailUIEvent.initScroll() = InitScrollEvent;
-  const factory TravelDetailUIEvent.showSnackBar(String message) =
-  ShowSnackBarUIEvent;
 }

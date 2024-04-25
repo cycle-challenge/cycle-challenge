@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_ui_event.dart';
 
@@ -12,6 +13,7 @@ class TravelDetailViewModel with ChangeNotifier {
 
   List<DailyVisitSummary> _dailySummaries = [];
 
+  final StreamController<MainUiEvent> _mainEventController;
   List<DailyVisitSummary> get dailySummaries => _dailySummaries;
 
   final StreamController<TravelDetailUIEvent> _eventController =
@@ -50,10 +52,7 @@ class TravelDetailViewModel with ChangeNotifier {
   bool _isShownInitViewButton = false;
   bool get isShownInitViewButton => _isShownInitViewButton;
 
-  bool _isPanelExpanded = false;
-  bool get isPanelExpanded => _isPanelExpanded;
-
-  TravelDetailViewModel(int travelID, this._repository) {
+  TravelDetailViewModel(int travelID, this._repository, this._mainEventController) {
     _loadItems(travelID).then((_) => _moveBound());
   }
 
@@ -113,11 +112,9 @@ class TravelDetailViewModel with ChangeNotifier {
     _isEntireMapView = !_isEntireMapView;
 
     if (_isEntireMapView) {
-      _eventController
-          .add(const TravelDetailUIEvent.showSnackBar("전체 보기 화면으로 전환합니다."));
+      _mainEventController.add(const MainUiEvent.showSnackbar("전체 보기 화면으로 전환합니다."));
     } else {
-      _eventController
-          .add(const TravelDetailUIEvent.showSnackBar("자세히 보기 화면으로 전환합니다."));
+      _mainEventController.add(const MainUiEvent.showSnackbar("자세히 보기 화면으로 전환합니다."));
     }
 
     _moveBound();

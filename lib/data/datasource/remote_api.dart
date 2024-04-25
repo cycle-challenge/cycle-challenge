@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
+import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
@@ -131,4 +133,100 @@ class RemoteAPI {
       return Result.error(ApiError.fromResponse(e.response));
     }
   }
+
+  Future<Result<List<Bookmark>, ApiError>> findPlaceBookmarks() async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/bookmarks/places',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data'])
+          .map((e) => Bookmark.fromJson(e))
+          .toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+
+  }
+
+  Future<Result<Bookmark, ApiError>> addPlaceBookmark(int id) async {
+    try {
+      final response = await dio.post('$remoteUrl/api/v1/bookmarks/places/$id',
+          options: Options(headers: headers));
+
+      return Result.success(Bookmark.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<Bookmark, ApiError>> deletePlaceBookmark(int id) async {
+    try {
+      final response = await dio.delete('$remoteUrl/api/v1/bookmarks/places/$id',
+          options: Options(headers: headers));
+
+      return Result.success(Bookmark.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<List<Bookmark>, ApiError>> findTravelBookmarks() async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/bookmarks/travels',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data'])
+          .map((e) => Bookmark.fromJson(e))
+          .toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+
+  }
+
+  Future<Result<Bookmark, ApiError>> addTravelBookmark(int id) async {
+    try {
+      final response = await dio.post('$remoteUrl/api/v1/bookmarks/travels/$id',
+          options: Options(headers: headers));
+
+      return Result.success(Bookmark.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<Bookmark, ApiError>> deleteTravelBookmark(int id) async {
+    try {
+      final response = await dio.delete('$remoteUrl/api/v1/bookmarks/travels/$id',
+          options: Options(headers: headers));
+
+      return Result.success(Bookmark.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<List<PlaceModel>, ApiError>> getBookmarkedPlace() async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/places/bookmarked',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data']).map((e) => PlaceModel.of(e)).toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<List<TravelModel>, ApiError>> getBookmarkedTravel() async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/travels/bookmarked',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data']).map((e) => TravelModel.of(e)).toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+
 }

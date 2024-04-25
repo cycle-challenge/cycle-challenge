@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'map_bottom_sheet_state.dart';
+part of 'main_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+MainState _$MainStateFromJson(Map<String, dynamic> json) {
+  return _MainState.fromJson(json);
+}
+
 /// @nodoc
-mixin _$MapBottomSheetState {
+mixin _$MainState {
+  int get navigationIndex => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
   double get minHeight => throw _privateConstructorUsedError;
   double get maxHeight => throw _privateConstructorUsedError;
@@ -23,19 +28,20 @@ mixin _$MapBottomSheetState {
   bool get isAnimating => throw _privateConstructorUsedError;
   bool get canViewScrollUp => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MapBottomSheetStateCopyWith<MapBottomSheetState> get copyWith =>
+  $MainStateCopyWith<MainState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MapBottomSheetStateCopyWith<$Res> {
-  factory $MapBottomSheetStateCopyWith(
-          MapBottomSheetState value, $Res Function(MapBottomSheetState) then) =
-      _$MapBottomSheetStateCopyWithImpl<$Res, MapBottomSheetState>;
+abstract class $MainStateCopyWith<$Res> {
+  factory $MainStateCopyWith(MainState value, $Res Function(MainState) then) =
+      _$MainStateCopyWithImpl<$Res, MainState>;
   @useResult
   $Res call(
-      {double height,
+      {int navigationIndex,
+      double height,
       double minHeight,
       double maxHeight,
       bool isExpanded,
@@ -44,9 +50,9 @@ abstract class $MapBottomSheetStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MapBottomSheetStateCopyWithImpl<$Res, $Val extends MapBottomSheetState>
-    implements $MapBottomSheetStateCopyWith<$Res> {
-  _$MapBottomSheetStateCopyWithImpl(this._value, this._then);
+class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
+    implements $MainStateCopyWith<$Res> {
+  _$MainStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -56,6 +62,7 @@ class _$MapBottomSheetStateCopyWithImpl<$Res, $Val extends MapBottomSheetState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? navigationIndex = null,
     Object? height = null,
     Object? minHeight = null,
     Object? maxHeight = null,
@@ -64,6 +71,10 @@ class _$MapBottomSheetStateCopyWithImpl<$Res, $Val extends MapBottomSheetState>
     Object? canViewScrollUp = null,
   }) {
     return _then(_value.copyWith(
+      navigationIndex: null == navigationIndex
+          ? _value.navigationIndex
+          : navigationIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -93,15 +104,16 @@ class _$MapBottomSheetStateCopyWithImpl<$Res, $Val extends MapBottomSheetState>
 }
 
 /// @nodoc
-abstract class _$$MapBottomSheetStateImplCopyWith<$Res>
-    implements $MapBottomSheetStateCopyWith<$Res> {
-  factory _$$MapBottomSheetStateImplCopyWith(_$MapBottomSheetStateImpl value,
-          $Res Function(_$MapBottomSheetStateImpl) then) =
-      __$$MapBottomSheetStateImplCopyWithImpl<$Res>;
+abstract class _$$MainStateImplCopyWith<$Res>
+    implements $MainStateCopyWith<$Res> {
+  factory _$$MainStateImplCopyWith(
+          _$MainStateImpl value, $Res Function(_$MainStateImpl) then) =
+      __$$MainStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {double height,
+      {int navigationIndex,
+      double height,
       double minHeight,
       double maxHeight,
       bool isExpanded,
@@ -110,16 +122,17 @@ abstract class _$$MapBottomSheetStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$MapBottomSheetStateImplCopyWithImpl<$Res>
-    extends _$MapBottomSheetStateCopyWithImpl<$Res, _$MapBottomSheetStateImpl>
-    implements _$$MapBottomSheetStateImplCopyWith<$Res> {
-  __$$MapBottomSheetStateImplCopyWithImpl(_$MapBottomSheetStateImpl _value,
-      $Res Function(_$MapBottomSheetStateImpl) _then)
+class __$$MainStateImplCopyWithImpl<$Res>
+    extends _$MainStateCopyWithImpl<$Res, _$MainStateImpl>
+    implements _$$MainStateImplCopyWith<$Res> {
+  __$$MainStateImplCopyWithImpl(
+      _$MainStateImpl _value, $Res Function(_$MainStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? navigationIndex = null,
     Object? height = null,
     Object? minHeight = null,
     Object? maxHeight = null,
@@ -127,7 +140,11 @@ class __$$MapBottomSheetStateImplCopyWithImpl<$Res>
     Object? isAnimating = null,
     Object? canViewScrollUp = null,
   }) {
-    return _then(_$MapBottomSheetStateImpl(
+    return _then(_$MainStateImpl(
+      navigationIndex: null == navigationIndex
+          ? _value.navigationIndex
+          : navigationIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -157,16 +174,23 @@ class __$$MapBottomSheetStateImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$MapBottomSheetStateImpl implements _MapBottomSheetState {
-  _$MapBottomSheetStateImpl(
-      {this.height = 244.0,
+@JsonSerializable()
+class _$MainStateImpl implements _MainState {
+  _$MainStateImpl(
+      {this.navigationIndex = 0,
+      this.height = 244.0,
       this.minHeight = 244.0,
       this.maxHeight = 0.0,
       this.isExpanded = false,
       this.isAnimating = false,
       this.canViewScrollUp = false});
 
+  factory _$MainStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MainStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int navigationIndex;
   @override
   @JsonKey()
   final double height;
@@ -188,14 +212,16 @@ class _$MapBottomSheetStateImpl implements _MapBottomSheetState {
 
   @override
   String toString() {
-    return 'MapBottomSheetState(height: $height, minHeight: $minHeight, maxHeight: $maxHeight, isExpanded: $isExpanded, isAnimating: $isAnimating, canViewScrollUp: $canViewScrollUp)';
+    return 'MainState(navigationIndex: $navigationIndex, height: $height, minHeight: $minHeight, maxHeight: $maxHeight, isExpanded: $isExpanded, isAnimating: $isAnimating, canViewScrollUp: $canViewScrollUp)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MapBottomSheetStateImpl &&
+            other is _$MainStateImpl &&
+            (identical(other.navigationIndex, navigationIndex) ||
+                other.navigationIndex == navigationIndex) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.minHeight, minHeight) ||
                 other.minHeight == minHeight) &&
@@ -209,27 +235,40 @@ class _$MapBottomSheetStateImpl implements _MapBottomSheetState {
                 other.canViewScrollUp == canViewScrollUp));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, height, minHeight, maxHeight,
-      isExpanded, isAnimating, canViewScrollUp);
+  int get hashCode => Object.hash(runtimeType, navigationIndex, height,
+      minHeight, maxHeight, isExpanded, isAnimating, canViewScrollUp);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MapBottomSheetStateImplCopyWith<_$MapBottomSheetStateImpl> get copyWith =>
-      __$$MapBottomSheetStateImplCopyWithImpl<_$MapBottomSheetStateImpl>(
-          this, _$identity);
+  _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>
+      __$$MainStateImplCopyWithImpl<_$MainStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MainStateImplToJson(
+      this,
+    );
+  }
 }
 
-abstract class _MapBottomSheetState implements MapBottomSheetState {
-  factory _MapBottomSheetState(
-      {final double height,
+abstract class _MainState implements MainState {
+  factory _MainState(
+      {final int navigationIndex,
+      final double height,
       final double minHeight,
       final double maxHeight,
       final bool isExpanded,
       final bool isAnimating,
-      final bool canViewScrollUp}) = _$MapBottomSheetStateImpl;
+      final bool canViewScrollUp}) = _$MainStateImpl;
 
+  factory _MainState.fromJson(Map<String, dynamic> json) =
+      _$MainStateImpl.fromJson;
+
+  @override
+  int get navigationIndex;
   @override
   double get height;
   @override
@@ -244,6 +283,6 @@ abstract class _MapBottomSheetState implements MapBottomSheetState {
   bool get canViewScrollUp;
   @override
   @JsonKey(ignore: true)
-  _$$MapBottomSheetStateImplCopyWith<_$MapBottomSheetStateImpl> get copyWith =>
+  _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
+import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/form_errors.dart';
@@ -13,8 +14,7 @@ import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/welcome/welcome_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 
 class LocalSignUpSheet extends StatefulWidget {
   const LocalSignUpSheet({super.key});
@@ -56,23 +56,13 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
     Future.delayed(const Duration(seconds: 1), () => _formKey.currentState?.fields['verificationCode']?.focus());
   }
 
-  void _onSuccess(String nickname) {
+  void _onSuccess(Member member) {
     while (Navigator.of(context).canPop()) {
       Navigator.of(context).pop();
     }
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const MapScreen()));
 
-    _showSnackBar("$nickname님 가입을 축하합니다.");
-  }
-
-
-  void _showSnackBar(String message) {
-    final snackBar = SnackBar(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        content: Text(message, style: Theme.of(context).textTheme.bodyLarge));
-
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    final authViewModel = context.read<AuthViewModel>();
+    authViewModel.onEvent(AuthEvent.signIn(member));
   }
 
   void _onShowInputError(target, message) {

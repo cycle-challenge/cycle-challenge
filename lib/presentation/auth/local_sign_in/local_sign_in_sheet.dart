@@ -1,13 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
+import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/components/form_errors.dart';
@@ -16,8 +14,7 @@ import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/welcome/welcome_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 
 class LocalSignInSheet extends StatefulWidget {
   const LocalSignInSheet({super.key});
@@ -52,12 +49,13 @@ class _LocalSignInSheetState extends State<LocalSignInSheet> {
     });
   }
 
-  void _onSuccess() {
+  void _onSuccess(Member member) {
     while (Navigator.of(context).canPop()) {
       Navigator.of(context).pop();
     }
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const MapScreen()));
+
+    final authViewModel = context.read<AuthViewModel>();
+    authViewModel.onEvent(AuthEvent.signIn(member));
   }
 
   void _onShowInputError(target, message) {
