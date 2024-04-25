@@ -1,14 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
@@ -61,15 +65,8 @@ class PlaceListView extends StatelessWidget {
                   bookmarkViewModel.state.placeIdSet.contains(place.id);
 
               return GestureDetector(
-                onTap: () {
-                  UseCases useCases = context.read<UseCases>();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => ChangeNotifierProvider(
-                            create: (_) => PlaceDetailViewModel(
-                                place.googlePlaceId, useCases),
-                            child: PlaceDetailScreen(place: place),
-                          )));
-                },
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => PlaceDetailPage(place: place))),
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
@@ -94,10 +91,10 @@ class PlaceListView extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: isBookmarked
-                                ? () => bookmarkViewModel.onEvent(
-                                    BookmarkEvent.deletePlace(place))
-                                : () => bookmarkViewModel.onEvent(
-                                BookmarkEvent.addPlace(place)),
+                                ? () => bookmarkViewModel
+                                    .onEvent(BookmarkEvent.deletePlace(place))
+                                : () => bookmarkViewModel
+                                    .onEvent(BookmarkEvent.addPlace(place)),
                             icon: Icon(
                                 isBookmarked
                                     ? Icons.bookmark

@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
@@ -19,8 +23,6 @@ class PlaceSimpleView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (place == null) return const SizedBox();
 
-    final viewModel = context.watch<MapViewModel>();
-
     String distance =
         place!.location.distance?.toStringAsFixed(1).toString() ?? "0.0";
     String type = place!.type.label;
@@ -29,15 +31,8 @@ class PlaceSimpleView extends StatelessWidget {
     bool isBookmarked = bookmarkViewModel.state.placeIdSet.contains(place?.id);
 
     return GestureDetector(
-      onTap: () {
-        UseCases useCases = context.read<UseCases>();
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider(
-                  create: (_) =>
-                      PlaceDetailViewModel(place!.googlePlaceId, useCases),
-                  child: PlaceDetailScreen(place: place!),
-                )));
-      },
+      onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place!))),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
@@ -68,7 +63,7 @@ class PlaceSimpleView extends StatelessWidget {
                       ? () => bookmarkViewModel
                           .onEvent(BookmarkEvent.deletePlace(place!))
                       : () => bookmarkViewModel
-                      .onEvent(BookmarkEvent.addPlace(place!)),
+                          .onEvent(BookmarkEvent.addPlace(place!)),
                   icon: Icon(
                       isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
                       size: 20),

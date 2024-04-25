@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
 
 class PlaceBookmarkItem extends StatelessWidget {
   final PlaceModel place;
@@ -17,12 +14,8 @@ class PlaceBookmarkItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider(
-                  create: (_) => PlaceDetailViewModel(
-                      place.googlePlaceId, context.read<UseCases>()),
-                  child: PlaceDetailScreen(place: place),
-                )));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place)));
       },
       child: Container(
         color: Colors.white,

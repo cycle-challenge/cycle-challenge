@@ -16,42 +16,51 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainUiEvent {
-  String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() authorizationExpired,
+    required TResult Function(String nickname) autoSignIn,
     required TResult Function(String message) showSnackbar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authorizationExpired,
+    TResult? Function(String nickname)? autoSignIn,
     TResult? Function(String message)? showSnackbar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authorizationExpired,
+    TResult Function(String nickname)? autoSignIn,
     TResult Function(String message)? showSnackbar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(MainAuthorizationExpiredEvent value)
+        authorizationExpired,
+    required TResult Function(MainAutoSignInEvent value) autoSignIn,
     required TResult Function(MainShowSnackbarEvent value) showSnackbar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainAuthorizationExpiredEvent value)?
+        authorizationExpired,
+    TResult? Function(MainAutoSignInEvent value)? autoSignIn,
     TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
+    TResult Function(MainAutoSignInEvent value)? autoSignIn,
     TResult Function(MainShowSnackbarEvent value)? showSnackbar,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $MainUiEventCopyWith<MainUiEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +69,6 @@ abstract class $MainUiEventCopyWith<$Res> {
   factory $MainUiEventCopyWith(
           MainUiEvent value, $Res Function(MainUiEvent) then) =
       _$MainUiEventCopyWithImpl<$Res, MainUiEvent>;
-  @useResult
-  $Res call({String message});
 }
 
 /// @nodoc
@@ -73,29 +80,273 @@ class _$MainUiEventCopyWithImpl<$Res, $Val extends MainUiEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$MainAuthorizationExpiredEventImplCopyWith<$Res> {
+  factory _$$MainAuthorizationExpiredEventImplCopyWith(
+          _$MainAuthorizationExpiredEventImpl value,
+          $Res Function(_$MainAuthorizationExpiredEventImpl) then) =
+      __$$MainAuthorizationExpiredEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MainAuthorizationExpiredEventImplCopyWithImpl<$Res>
+    extends _$MainUiEventCopyWithImpl<$Res, _$MainAuthorizationExpiredEventImpl>
+    implements _$$MainAuthorizationExpiredEventImplCopyWith<$Res> {
+  __$$MainAuthorizationExpiredEventImplCopyWithImpl(
+      _$MainAuthorizationExpiredEventImpl _value,
+      $Res Function(_$MainAuthorizationExpiredEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MainAuthorizationExpiredEventImpl
+    implements MainAuthorizationExpiredEvent {
+  const _$MainAuthorizationExpiredEventImpl();
+
+  @override
+  String toString() {
+    return 'MainUiEvent.authorizationExpired()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MainAuthorizationExpiredEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authorizationExpired,
+    required TResult Function(String nickname) autoSignIn,
+    required TResult Function(String message) showSnackbar,
+  }) {
+    return authorizationExpired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authorizationExpired,
+    TResult? Function(String nickname)? autoSignIn,
+    TResult? Function(String message)? showSnackbar,
+  }) {
+    return authorizationExpired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authorizationExpired,
+    TResult Function(String nickname)? autoSignIn,
+    TResult Function(String message)? showSnackbar,
+    required TResult orElse(),
+  }) {
+    if (authorizationExpired != null) {
+      return authorizationExpired();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainAuthorizationExpiredEvent value)
+        authorizationExpired,
+    required TResult Function(MainAutoSignInEvent value) autoSignIn,
+    required TResult Function(MainShowSnackbarEvent value) showSnackbar,
+  }) {
+    return authorizationExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainAuthorizationExpiredEvent value)?
+        authorizationExpired,
+    TResult? Function(MainAutoSignInEvent value)? autoSignIn,
+    TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
+  }) {
+    return authorizationExpired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
+    TResult Function(MainAutoSignInEvent value)? autoSignIn,
+    TResult Function(MainShowSnackbarEvent value)? showSnackbar,
+    required TResult orElse(),
+  }) {
+    if (authorizationExpired != null) {
+      return authorizationExpired(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MainAuthorizationExpiredEvent implements MainUiEvent {
+  const factory MainAuthorizationExpiredEvent() =
+      _$MainAuthorizationExpiredEventImpl;
+}
+
+/// @nodoc
+abstract class _$$MainAutoSignInEventImplCopyWith<$Res> {
+  factory _$$MainAutoSignInEventImplCopyWith(_$MainAutoSignInEventImpl value,
+          $Res Function(_$MainAutoSignInEventImpl) then) =
+      __$$MainAutoSignInEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String nickname});
+}
+
+/// @nodoc
+class __$$MainAutoSignInEventImplCopyWithImpl<$Res>
+    extends _$MainUiEventCopyWithImpl<$Res, _$MainAutoSignInEventImpl>
+    implements _$$MainAutoSignInEventImplCopyWith<$Res> {
+  __$$MainAutoSignInEventImplCopyWithImpl(_$MainAutoSignInEventImpl _value,
+      $Res Function(_$MainAutoSignInEventImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? nickname = null,
   }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+    return _then(_$MainAutoSignInEventImpl(
+      null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$MainShowSnackbarEventImplCopyWith<$Res>
-    implements $MainUiEventCopyWith<$Res> {
+
+class _$MainAutoSignInEventImpl implements MainAutoSignInEvent {
+  const _$MainAutoSignInEventImpl(this.nickname);
+
+  @override
+  final String nickname;
+
+  @override
+  String toString() {
+    return 'MainUiEvent.autoSignIn(nickname: $nickname)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MainAutoSignInEventImpl &&
+            (identical(other.nickname, nickname) ||
+                other.nickname == nickname));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, nickname);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MainAutoSignInEventImplCopyWith<_$MainAutoSignInEventImpl> get copyWith =>
+      __$$MainAutoSignInEventImplCopyWithImpl<_$MainAutoSignInEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authorizationExpired,
+    required TResult Function(String nickname) autoSignIn,
+    required TResult Function(String message) showSnackbar,
+  }) {
+    return autoSignIn(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authorizationExpired,
+    TResult? Function(String nickname)? autoSignIn,
+    TResult? Function(String message)? showSnackbar,
+  }) {
+    return autoSignIn?.call(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authorizationExpired,
+    TResult Function(String nickname)? autoSignIn,
+    TResult Function(String message)? showSnackbar,
+    required TResult orElse(),
+  }) {
+    if (autoSignIn != null) {
+      return autoSignIn(nickname);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainAuthorizationExpiredEvent value)
+        authorizationExpired,
+    required TResult Function(MainAutoSignInEvent value) autoSignIn,
+    required TResult Function(MainShowSnackbarEvent value) showSnackbar,
+  }) {
+    return autoSignIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainAuthorizationExpiredEvent value)?
+        authorizationExpired,
+    TResult? Function(MainAutoSignInEvent value)? autoSignIn,
+    TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
+  }) {
+    return autoSignIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
+    TResult Function(MainAutoSignInEvent value)? autoSignIn,
+    TResult Function(MainShowSnackbarEvent value)? showSnackbar,
+    required TResult orElse(),
+  }) {
+    if (autoSignIn != null) {
+      return autoSignIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MainAutoSignInEvent implements MainUiEvent {
+  const factory MainAutoSignInEvent(final String nickname) =
+      _$MainAutoSignInEventImpl;
+
+  String get nickname;
+  @JsonKey(ignore: true)
+  _$$MainAutoSignInEventImplCopyWith<_$MainAutoSignInEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MainShowSnackbarEventImplCopyWith<$Res> {
   factory _$$MainShowSnackbarEventImplCopyWith(
           _$MainShowSnackbarEventImpl value,
           $Res Function(_$MainShowSnackbarEventImpl) then) =
       __$$MainShowSnackbarEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String message});
 }
@@ -156,6 +407,8 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() authorizationExpired,
+    required TResult Function(String nickname) autoSignIn,
     required TResult Function(String message) showSnackbar,
   }) {
     return showSnackbar(message);
@@ -164,6 +417,8 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authorizationExpired,
+    TResult? Function(String nickname)? autoSignIn,
     TResult? Function(String message)? showSnackbar,
   }) {
     return showSnackbar?.call(message);
@@ -172,6 +427,8 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authorizationExpired,
+    TResult Function(String nickname)? autoSignIn,
     TResult Function(String message)? showSnackbar,
     required TResult orElse(),
   }) {
@@ -184,6 +441,9 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(MainAuthorizationExpiredEvent value)
+        authorizationExpired,
+    required TResult Function(MainAutoSignInEvent value) autoSignIn,
     required TResult Function(MainShowSnackbarEvent value) showSnackbar,
   }) {
     return showSnackbar(this);
@@ -192,6 +452,9 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainAuthorizationExpiredEvent value)?
+        authorizationExpired,
+    TResult? Function(MainAutoSignInEvent value)? autoSignIn,
     TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
   }) {
     return showSnackbar?.call(this);
@@ -200,6 +463,8 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
+    TResult Function(MainAutoSignInEvent value)? autoSignIn,
     TResult Function(MainShowSnackbarEvent value)? showSnackbar,
     required TResult orElse(),
   }) {
@@ -214,9 +479,7 @@ abstract class MainShowSnackbarEvent implements MainUiEvent {
   const factory MainShowSnackbarEvent(final String message) =
       _$MainShowSnackbarEventImpl;
 
-  @override
   String get message;
-  @override
   @JsonKey(ignore: true)
   _$$MainShowSnackbarEventImplCopyWith<_$MainShowSnackbarEventImpl>
       get copyWith => throw _privateConstructorUsedError;

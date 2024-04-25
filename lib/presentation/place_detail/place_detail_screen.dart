@@ -25,31 +25,15 @@ class PlaceDetailScreen extends StatefulWidget {
 class _PlaceDetailScreenState extends State<PlaceDetailScreen>
     with TickerProviderStateMixin {
   late final TabController _tabController;
-  StreamSubscription? _subscription;
-
   @override
   void initState() {
     super.initState();
-
-    final viewModel = context.read<PlaceDetailViewModel>();
     _tabController = TabController(length: 4, vsync: this);
-
-    _subscription = viewModel.stream.listen((event) => event.when(
-        addImages: (_, __) {},
-        addLastImages: (_) {},
-        showSnackBar: (message) {
-          final snackBar = SnackBar(
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              content:
-                  Text(message, style: Theme.of(context).textTheme.bodyLarge));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }));
   }
 
   @override
   void dispose() {
     super.dispose();
-    _subscription?.cancel();
     _tabController.dispose();
   }
 

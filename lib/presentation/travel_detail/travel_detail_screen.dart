@@ -19,6 +19,7 @@ import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
@@ -63,7 +64,6 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
       _subscription = viewModel.stream.listen((event) => event.when(
           moveBound: _moveBound,
           initScroll: _initScroll,
-          showSnackBar: _showSnackBar,
           moveScroll: _moveScroll));
     });
 
@@ -114,14 +114,6 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
               duration: const Duration(milliseconds: 300),
               curve: Curves.bounceIn,
             ));
-  }
-
-  void _showSnackBar(message) {
-    final snackBar = SnackBar(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        content: Text(message, style: Theme.of(context).textTheme.bodyLarge),
-        duration: const Duration(seconds: 1));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -297,7 +289,10 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                                                         visit.place
                                                             .googlePlaceId,
                                                         context
-                                                            .read<UseCases>()),
+                                                            .read<UseCases>(),
+                                                        context.read<
+                                                            StreamController<
+                                                                MainUiEvent>>()),
                                                 child: PlaceDetailScreen(
                                                     place: visit.place),
                                               ))),
@@ -463,24 +458,10 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
   }
 }
 
-class TravelDetailPage extends StatelessWidget {
-  final TravelModel travel;
-
-  const TravelDetailPage({super.key, required this.travel});
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider<TravelDetailViewModel>(
-        create: (context) =>
-            TravelDetailViewModel(travel.id, context.read<TravelRepository>()),
-        child: TravelDetailScreen(travel: travel));
-  }
-}
-
 extension MapWithIndex<T> on List<T> {
   List<R> mapWithIndex<R>(R Function(T, int i) callback) {
     List<R> result = [];
-    for (int i = 0; i < this.length; i++) {
+    for (int i = 0; i < length; i++) {
       R item = callback(this[i], i);
       result.add(item);
     }

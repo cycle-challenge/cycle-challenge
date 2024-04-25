@@ -40,8 +40,8 @@ class _MapScreenState extends State<MapScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final viewModel = context.read<MapViewModel>();
 
-      _subscription = viewModel.stream.listen((event) =>
-          event.when(moveCamera: _onMoveCamera));
+      _subscription = viewModel.stream
+          .listen((event) => event.when(moveCamera: _onMoveCamera));
     });
   }
 
@@ -68,19 +68,15 @@ class _MapScreenState extends State<MapScreen> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
           decoration: BoxDecoration(
-            color: (isSheetShown &&
-                mainState.isExpanded &&
-                !mainState.isAnimating)
-                ? Theme.of(context).colorScheme.surface
-                : Theme.of(context)
-                .colorScheme
-                .surface
-                .withOpacity(0.0),
+            color:
+                (isSheetShown && mainState.isExpanded && !mainState.isAnimating)
+                    ? Theme.of(context).colorScheme.surface
+                    : Theme.of(context).colorScheme.surface.withOpacity(0.0),
           ),
           child: AppBar(
             title: const SearchBarWidget(),
             backgroundColor:
-            Theme.of(context).colorScheme.surface.withOpacity(0.0),
+                Theme.of(context).colorScheme.surface.withOpacity(0.0),
             scrolledUnderElevation: 0,
             bottom: const PreferredSize(
               preferredSize: Size.fromHeight(51.0),
@@ -93,22 +89,20 @@ class _MapScreenState extends State<MapScreen> {
           key: _key,
           builder: (context, constraints) {
             mainViewModel.onEvent(MainEvent.initBottomSheet(
-                constraints.maxHeight -
-                    MediaQuery.of(context).padding.top));
+                constraints.maxHeight - MediaQuery.of(context).padding.top));
 
             return Stack(children: [
               MapView(
                 onMapCreated: (controller) async {
                   _mapCompleter = controller;
 
-                  viewModel
-                      .onEvent(const MapEvent.changeToMyPosition());
+                  viewModel.onEvent(const MapEvent.changeToMyPosition());
                   Future.delayed(const Duration(seconds: 2), () {
                     viewModel.onEvent(const MapEvent.findNearbyPlace());
                   });
 
                   final Brightness brightness =
-                  MediaQuery.platformBrightnessOf(context);
+                      MediaQuery.platformBrightnessOf(context);
 
                   String path = brightness == Brightness.dark
                       ? "assets/map/map_style_dark.json"
@@ -118,14 +112,13 @@ class _MapScreenState extends State<MapScreen> {
               ),
               const SafeArea(
                   child: SizedBox(
-                    width: double.maxFinite,
-                    child: Column(
-                      children: [
-                        SearchButtonWidget(),
-                      ],
-                    ),
-                  )),
-
+                width: double.maxFinite,
+                child: Column(
+                  children: [
+                    SearchButtonWidget(),
+                  ],
+                ),
+              )),
               SizedBox(
                 width: double.maxFinite,
                 child: Column(
@@ -133,13 +126,13 @@ class _MapScreenState extends State<MapScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     MyLocationButtonWidget(
-                        onTap: () => viewModel.onEvent(
-                            const MapEvent.changeToMyPosition())),
+                        onTap: () => viewModel
+                            .onEvent(const MapEvent.changeToMyPosition())),
                     const SizedBox(
                       height: 20,
                     ),
                     if (isSheetShown) const BottomSheetView(),
-                    if (filterState.selectedPlace != null)
+                    if (!isSheetShown && filterState.selectedPlace != null)
                       PlaceSimpleView(place: filterState.selectedPlace)
                   ],
                 ),

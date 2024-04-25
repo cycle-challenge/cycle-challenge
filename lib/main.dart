@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
-import 'package:yeohaeng_ttukttak/presentation/auth/auth_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
 
 void main() async {
@@ -26,56 +26,20 @@ class _MainAppState extends State<MainApp> {
     const materialTheme = MaterialTheme(TextTheme());
 
     return MaterialApp(
-      supportedLocales: const [Locale("ko"), Locale("en")],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        FormBuilderLocalizations.delegate,
-      ],
-      debugShowCheckedModeBanner: false,
-      theme: materialTheme.light(),
-      darkTheme: materialTheme.dark(),
-      themeMode: ThemeMode.system,
-      title: 'Flutter Maps Demo',
-      home: const AuthScreen(), // MapView 위젯 사용
-    );
+        supportedLocales: const [
+          Locale("ko"),
+          Locale("en")
+        ],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          FormBuilderLocalizations.delegate,
+        ],
+        debugShowCheckedModeBanner: false,
+        theme: materialTheme.light(),
+        darkTheme: materialTheme.dark(),
+        themeMode: ThemeMode.system,
+        title: 'Flutter Maps Demo',
+        home: const MainScreen());
   }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //
-  //   Future.microtask(() {
-  //     final authViewModel = context.read<AuthViewModel>();
-  //
-  //     context.read<AuthInterceptor>().stream.listen((event) => event.when(
-  //         authorizationExpired: () =>
-  //             authViewModel.onEvent(const AuthEvent.signOut())));
-  //
-  //     authViewModel.stream.listen((event) =>
-  //         event.when(showSnackBar: _onShowSnackBar, autoSignIn: _onAutoSignIn));
-  //   });
-  // }
-  //
-  //
-  // void _onAutoSignIn(String nickname) {
-  //   while (Navigator.of(context).canPop()) {
-  //     Navigator.of(context).pop();
-  //   }
-  //   Navigator.of(context).pushReplacement(
-  //       MaterialPageRoute(builder: (context) => const MapScreen()));
-  //
-  //   _onShowSnackBar("$nickname님 자동 로그인 되었습니다.");
-  // }
-  //
-  // void _onShowSnackBar(String message, {void Function(bool)? onPopInvoked}) {
-  //   final snackBar = SnackBar(
-  //       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-  //       content: PopScope(
-  //           onPopInvoked: onPopInvoked,
-  //           child:
-  //           Text(message, style: Theme.of(context).textTheme.bodyLarge)));
-  //
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
 }

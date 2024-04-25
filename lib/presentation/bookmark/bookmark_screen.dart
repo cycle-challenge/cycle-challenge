@@ -6,6 +6,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart
 import 'package:yeohaeng_ttukttak/presentation/bookmark/components/place_bookmark_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/components/place_bookmark_list_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/components/travel_bookmark_list_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
 class BookmarkScreen extends StatefulWidget {
@@ -16,7 +17,6 @@ class BookmarkScreen extends StatefulWidget {
 }
 
 class _BookmarkScreenState extends State<BookmarkScreen> {
-
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<BookmarkViewModel>();

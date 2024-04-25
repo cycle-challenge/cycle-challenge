@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 
 part 'main_state.freezed.dart';
 

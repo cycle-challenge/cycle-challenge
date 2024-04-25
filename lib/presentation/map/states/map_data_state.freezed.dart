@@ -18,8 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MapDataState {
   List<PlaceModel> get places => throw _privateConstructorUsedError;
   List<TravelModel> get travels => throw _privateConstructorUsedError;
-  List<Bookmark> get placeBookmarks => throw _privateConstructorUsedError;
-  List<Bookmark> get travelBookmarks => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MapDataStateCopyWith<MapDataState> get copyWith =>
@@ -32,11 +30,7 @@ abstract class $MapDataStateCopyWith<$Res> {
           MapDataState value, $Res Function(MapDataState) then) =
       _$MapDataStateCopyWithImpl<$Res, MapDataState>;
   @useResult
-  $Res call(
-      {List<PlaceModel> places,
-      List<TravelModel> travels,
-      List<Bookmark> placeBookmarks,
-      List<Bookmark> travelBookmarks});
+  $Res call({List<PlaceModel> places, List<TravelModel> travels});
 }
 
 /// @nodoc
@@ -54,8 +48,6 @@ class _$MapDataStateCopyWithImpl<$Res, $Val extends MapDataState>
   $Res call({
     Object? places = null,
     Object? travels = null,
-    Object? placeBookmarks = null,
-    Object? travelBookmarks = null,
   }) {
     return _then(_value.copyWith(
       places: null == places
@@ -66,14 +58,6 @@ class _$MapDataStateCopyWithImpl<$Res, $Val extends MapDataState>
           ? _value.travels
           : travels // ignore: cast_nullable_to_non_nullable
               as List<TravelModel>,
-      placeBookmarks: null == placeBookmarks
-          ? _value.placeBookmarks
-          : placeBookmarks // ignore: cast_nullable_to_non_nullable
-              as List<Bookmark>,
-      travelBookmarks: null == travelBookmarks
-          ? _value.travelBookmarks
-          : travelBookmarks // ignore: cast_nullable_to_non_nullable
-              as List<Bookmark>,
     ) as $Val);
   }
 }
@@ -86,11 +70,7 @@ abstract class _$$MapDataStateImplCopyWith<$Res>
       __$$MapDataStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<PlaceModel> places,
-      List<TravelModel> travels,
-      List<Bookmark> placeBookmarks,
-      List<Bookmark> travelBookmarks});
+  $Res call({List<PlaceModel> places, List<TravelModel> travels});
 }
 
 /// @nodoc
@@ -106,8 +86,6 @@ class __$$MapDataStateImplCopyWithImpl<$Res>
   $Res call({
     Object? places = null,
     Object? travels = null,
-    Object? placeBookmarks = null,
-    Object? travelBookmarks = null,
   }) {
     return _then(_$MapDataStateImpl(
       places: null == places
@@ -118,14 +96,6 @@ class __$$MapDataStateImplCopyWithImpl<$Res>
           ? _value._travels
           : travels // ignore: cast_nullable_to_non_nullable
               as List<TravelModel>,
-      placeBookmarks: null == placeBookmarks
-          ? _value._placeBookmarks
-          : placeBookmarks // ignore: cast_nullable_to_non_nullable
-              as List<Bookmark>,
-      travelBookmarks: null == travelBookmarks
-          ? _value._travelBookmarks
-          : travelBookmarks // ignore: cast_nullable_to_non_nullable
-              as List<Bookmark>,
     ));
   }
 }
@@ -135,13 +105,9 @@ class __$$MapDataStateImplCopyWithImpl<$Res>
 class _$MapDataStateImpl implements _MapDataState {
   _$MapDataStateImpl(
       {final List<PlaceModel> places = const [],
-      final List<TravelModel> travels = const [],
-      final List<Bookmark> placeBookmarks = const [],
-      final List<Bookmark> travelBookmarks = const []})
+      final List<TravelModel> travels = const []})
       : _places = places,
-        _travels = travels,
-        _placeBookmarks = placeBookmarks,
-        _travelBookmarks = travelBookmarks;
+        _travels = travels;
 
   final List<PlaceModel> _places;
   @override
@@ -161,27 +127,9 @@ class _$MapDataStateImpl implements _MapDataState {
     return EqualUnmodifiableListView(_travels);
   }
 
-  final List<Bookmark> _placeBookmarks;
-  @override
-  @JsonKey()
-  List<Bookmark> get placeBookmarks {
-    if (_placeBookmarks is EqualUnmodifiableListView) return _placeBookmarks;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_placeBookmarks);
-  }
-
-  final List<Bookmark> _travelBookmarks;
-  @override
-  @JsonKey()
-  List<Bookmark> get travelBookmarks {
-    if (_travelBookmarks is EqualUnmodifiableListView) return _travelBookmarks;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_travelBookmarks);
-  }
-
   @override
   String toString() {
-    return 'MapDataState(places: $places, travels: $travels, placeBookmarks: $placeBookmarks, travelBookmarks: $travelBookmarks)';
+    return 'MapDataState(places: $places, travels: $travels)';
   }
 
   @override
@@ -190,20 +138,14 @@ class _$MapDataStateImpl implements _MapDataState {
         (other.runtimeType == runtimeType &&
             other is _$MapDataStateImpl &&
             const DeepCollectionEquality().equals(other._places, _places) &&
-            const DeepCollectionEquality().equals(other._travels, _travels) &&
-            const DeepCollectionEquality()
-                .equals(other._placeBookmarks, _placeBookmarks) &&
-            const DeepCollectionEquality()
-                .equals(other._travelBookmarks, _travelBookmarks));
+            const DeepCollectionEquality().equals(other._travels, _travels));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_places),
-      const DeepCollectionEquality().hash(_travels),
-      const DeepCollectionEquality().hash(_placeBookmarks),
-      const DeepCollectionEquality().hash(_travelBookmarks));
+      const DeepCollectionEquality().hash(_travels));
 
   @JsonKey(ignore: true)
   @override
@@ -215,18 +157,12 @@ class _$MapDataStateImpl implements _MapDataState {
 abstract class _MapDataState implements MapDataState {
   factory _MapDataState(
       {final List<PlaceModel> places,
-      final List<TravelModel> travels,
-      final List<Bookmark> placeBookmarks,
-      final List<Bookmark> travelBookmarks}) = _$MapDataStateImpl;
+      final List<TravelModel> travels}) = _$MapDataStateImpl;
 
   @override
   List<PlaceModel> get places;
   @override
   List<TravelModel> get travels;
-  @override
-  List<Bookmark> get placeBookmarks;
-  @override
-  List<Bookmark> get travelBookmarks;
   @override
   @JsonKey(ignore: true)
   _$$MapDataStateImplCopyWith<_$MapDataStateImpl> get copyWith =>

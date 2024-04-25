@@ -51,11 +51,10 @@ List<SingleChildWidget> independentModules = [
 ];
 
 List<SingleChildWidget> dependentModules = [
-  Provider<AuthInterceptor>(
-      create: (context) => AuthInterceptor(context.read<SecureStorage>())),
   Provider<Dio>(
-      create: (context) =>
-          Dio()..interceptors.add(context.read<AuthInterceptor>())),
+      create: (context) => Dio()
+        ..interceptors.add(AuthInterceptor(context.read<SecureStorage>(),
+            context.read<StreamController<MainUiEvent>>()))),
   Provider<RemoteAPI>(create: (context) => RemoteAPI(context.read<Dio>())),
   Provider<PlaceRepository>(
       create: (context) => PlaceRepository(context.read<RemoteAPI>())),
@@ -118,7 +117,8 @@ List<SingleChildWidget> viewModels = [
       create: (context) => MapViewModel(context.read<UseCases>(),
           context.read<StreamController<MainUiEvent>>())),
   ChangeNotifierProvider<AuthViewModel>(
-      create: (context) => AuthViewModel(context.read<AuthRepository>())),
+      create: (context) => AuthViewModel(context.read<AuthRepository>(),
+          context.read<StreamController<MainUiEvent>>())),
   ChangeNotifierProvider<BookmarkViewModel>(
       create: (context) => BookmarkViewModel(context.read<UseCases>(),
           context.read<StreamController<MainUiEvent>>())),

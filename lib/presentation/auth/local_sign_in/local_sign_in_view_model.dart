@@ -31,7 +31,7 @@ class LocalSignInViewModel with ChangeNotifier {
     _state = _state.copyWith(errorMessages: []);
 
     result.when(success: (member) {
-      _eventController.add(const LocalSignInUIEvent.success());
+      _eventController.add(LocalSignInUIEvent.success(member));
     }, error: (error) {
       error.when(targetError: (_, Map<String, String> errors) {
         errors.values.toList();

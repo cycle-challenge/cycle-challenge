@@ -29,12 +29,24 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    Future.microtask(() {
       final viewModel = context.read<MainViewModel>();
 
-      _subscription = viewModel.stream.listen((event) =>
-          event.when(showSnackbar: _onShowSnackBar));
+      _subscription = viewModel.stream.listen((event) => event.when(
+          showSnackbar: _onShowSnackBar,
+          autoSignIn: _onAutoSignIn,
+          authorizationExpired: _onAuthorizationExpired));
     });
+  }
+
+  void _onAuthorizationExpired() {
+    final authViewModel = context.read<AuthViewModel>();
+    authViewModel.onEvent(const AuthEvent.signOut());
+    _onShowSnackBar("인증 정보가 만료되었습니다. 다시 로그인 해주세요.");
+  }
+
+  void _onAutoSignIn(String nickname) {
+    _onShowSnackBar("$nickname님 자동 로그인 되었습니다.");
   }
 
   void _onShowSnackBar(String message) {
@@ -47,16 +59,21 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
+    final authViewModel = context.watch<AuthViewModel>();
 
+    print(authViewModel.state.member);
+
+    if (authViewModel.state.member == null) {
+      return const AuthScreen();
+    }
+
+    final viewModel = context.watch<MainViewModel>();
     final state = viewModel.state;
 
     return Scaffold(
-
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
-        transitionBuilder:
-            (Widget child, Animation<double> animation) {
+        transitionBuilder: (Widget child, Animation<double> animation) {
           return FadeTransition(opacity: animation, child: child);
         },
         child: viewModel.state.navigationIndex == 3
@@ -68,11 +85,6 @@ class _MainScreenState extends State<MainScreen> {
           if (index == 4) {
             final authViewModel = context.read<AuthViewModel>();
             authViewModel.onEvent(const AuthEvent.signOut());
-
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const AuthScreen()));
-
-            return;
           }
 
           viewModel.onEvent(const MainEvent.initBottomSheet(null));

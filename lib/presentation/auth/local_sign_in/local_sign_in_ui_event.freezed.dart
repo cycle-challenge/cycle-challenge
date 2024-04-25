@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LocalSignInUIEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(Member member) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function(String target, String message) showInputError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
+    TResult? Function(Member member)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function(String target, String message)? showInputError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(Member member)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function(String target, String message)? showInputError,
     required TResult orElse(),
@@ -87,6 +87,10 @@ abstract class _$$LocalSignInSuccessUIEventImplCopyWith<$Res> {
           _$LocalSignInSuccessUIEventImpl value,
           $Res Function(_$LocalSignInSuccessUIEventImpl) then) =
       __$$LocalSignInSuccessUIEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Member member});
+
+  $MemberCopyWith<$Res> get member;
 }
 
 /// @nodoc
@@ -98,58 +102,90 @@ class __$$LocalSignInSuccessUIEventImplCopyWithImpl<$Res>
       _$LocalSignInSuccessUIEventImpl _value,
       $Res Function(_$LocalSignInSuccessUIEventImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? member = null,
+  }) {
+    return _then(_$LocalSignInSuccessUIEventImpl(
+      null == member
+          ? _value.member
+          : member // ignore: cast_nullable_to_non_nullable
+              as Member,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MemberCopyWith<$Res> get member {
+    return $MemberCopyWith<$Res>(_value.member, (value) {
+      return _then(_value.copyWith(member: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$LocalSignInSuccessUIEventImpl implements LocalSignInSuccessUIEvent {
-  const _$LocalSignInSuccessUIEventImpl();
+  const _$LocalSignInSuccessUIEventImpl(this.member);
+
+  @override
+  final Member member;
 
   @override
   String toString() {
-    return 'LocalSignInUIEvent.success()';
+    return 'LocalSignInUIEvent.success(member: $member)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalSignInSuccessUIEventImpl);
+            other is _$LocalSignInSuccessUIEventImpl &&
+            (identical(other.member, member) || other.member == member));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, member);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocalSignInSuccessUIEventImplCopyWith<_$LocalSignInSuccessUIEventImpl>
+      get copyWith => __$$LocalSignInSuccessUIEventImplCopyWithImpl<
+          _$LocalSignInSuccessUIEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(Member member) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function(String target, String message) showInputError,
   }) {
-    return success();
+    return success(member);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
+    TResult? Function(Member member)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function(String target, String message)? showInputError,
   }) {
-    return success?.call();
+    return success?.call(member);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(Member member)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function(String target, String message)? showInputError,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(member);
     }
     return orElse();
   }
@@ -191,7 +227,13 @@ class _$LocalSignInSuccessUIEventImpl implements LocalSignInSuccessUIEvent {
 }
 
 abstract class LocalSignInSuccessUIEvent implements LocalSignInUIEvent {
-  const factory LocalSignInSuccessUIEvent() = _$LocalSignInSuccessUIEventImpl;
+  const factory LocalSignInSuccessUIEvent(final Member member) =
+      _$LocalSignInSuccessUIEventImpl;
+
+  Member get member;
+  @JsonKey(ignore: true)
+  _$$LocalSignInSuccessUIEventImplCopyWith<_$LocalSignInSuccessUIEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -263,7 +305,7 @@ class _$LocalSignInLoadingUIEventImpl implements LocalSignInLoadingUIEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(Member member) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function(String target, String message) showInputError,
   }) {
@@ -273,7 +315,7 @@ class _$LocalSignInLoadingUIEventImpl implements LocalSignInLoadingUIEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
+    TResult? Function(Member member)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function(String target, String message)? showInputError,
   }) {
@@ -283,7 +325,7 @@ class _$LocalSignInLoadingUIEventImpl implements LocalSignInLoadingUIEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(Member member)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function(String target, String message)? showInputError,
     required TResult orElse(),
@@ -418,7 +460,7 @@ class _$LocalSignInShowInputErrorUIEventImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(Member member) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function(String target, String message) showInputError,
   }) {
@@ -428,7 +470,7 @@ class _$LocalSignInShowInputErrorUIEventImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
+    TResult? Function(Member member)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function(String target, String message)? showInputError,
   }) {
@@ -438,7 +480,7 @@ class _$LocalSignInShowInputErrorUIEventImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(Member member)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function(String target, String message)? showInputError,
     required TResult orElse(),

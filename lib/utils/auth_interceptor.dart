@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/utils/auth_interceptor_event.dart';
 
 class AuthInterceptor extends Interceptor {
@@ -11,11 +12,9 @@ class AuthInterceptor extends Interceptor {
 
   final String remoteUrl = const String.fromEnvironment("REMOTE_URL");
 
-  final StreamController<AuthInterceptorEvent> _eventController =
-      StreamController.broadcast();
-  Stream<AuthInterceptorEvent> get stream => _eventController.stream;
+  final StreamController<MainUiEvent> _eventController;
 
-  AuthInterceptor(this.secureStorage);
+  AuthInterceptor(this.secureStorage, this._eventController);
 
   @override
   void onRequest(
@@ -65,7 +64,7 @@ class AuthInterceptor extends Interceptor {
   void signOut() {
     secureStorage.deleteAuth();
     // 서버 로그 아웃 API 호출 하기
-    _eventController.add(const AuthInterceptorEvent.authorizationExpired());
+    _eventController.add(const MainUiEvent.authorizationExpired());
   }
 
   Future<Auth> _renewAuth(String refreshToken) async {

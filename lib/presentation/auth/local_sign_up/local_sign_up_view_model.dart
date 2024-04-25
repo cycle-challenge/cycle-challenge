@@ -35,7 +35,7 @@ class LocalSignUpViewModel with ChangeNotifier {
 
     result.when(
         success: (member) =>
-            _eventController.add(LocalSignUpUIEvent.success(member.nickname)),
+            _eventController.add(LocalSignUpUIEvent.success(member)),
         error: _onError);
   }
 
