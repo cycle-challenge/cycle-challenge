@@ -115,25 +115,21 @@ class PlaceListView extends StatelessWidget {
                             separatorBuilder: (context, index) =>
                                 const SizedBox(width: 8),
                             itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                onTap: () {},
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: index < place.images.length
-                                      ? Image.network(
-                                          place.images[index].small,
-                                          width: 144,
-                                          height: 144,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : Container(
-                                          width: 144,
-                                          height: 144,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondaryContainer,
-                                        ),
-                                ),
+                              return ClipRRect(
+                                child: index < place.images.length
+                                    ? Image.network(
+                                        place.images[index].small,
+                                        width: 144,
+                                        height: 144,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Container(
+                                        width: 144,
+                                        height: 144,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondaryContainer,
+                                      ),
                               );
                             },
                           )),
@@ -143,7 +139,7 @@ class PlaceListView extends StatelessWidget {
               );
             },
             separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(height: 20),
+                const SizedBox(height: 32),
             itemCount: filterState.filteredPlaces.length,
           ),
         ),

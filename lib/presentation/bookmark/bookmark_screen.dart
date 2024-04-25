@@ -76,9 +76,13 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
           onPressed: state.isEditing
               ? () => viewModel.onEvent(const BookmarkEvent.endEdit())
               : () => viewModel.onEvent(const BookmarkEvent.startEdit()),
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          backgroundColor: state.isEditing
+              ? Theme.of(context).colorScheme.secondary
+              : Theme.of(context).colorScheme.secondaryContainer,
           child: Icon(state.isEditing ? Icons.check : Icons.edit,
-              color: Theme.of(context).colorScheme.onSecondaryContainer),
+              color: state.isEditing
+                  ? Theme.of(context).colorScheme.onSecondary
+                  : Theme.of(context).colorScheme.onSecondaryContainer),
         ),
         body: Column(
           children: [
@@ -122,4 +126,3 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
     );
   }
 }
-
