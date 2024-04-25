@@ -204,4 +204,16 @@ class RemoteAPI {
       return Result.error(ApiError.fromResponse(e.response));
     }
   }
+
+  Future<Result<List<PlaceModel>, ApiError>> getBookmarkedPlace() async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/places/bookmarked',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data']).map((e) => PlaceModel.of(e)).toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
 }

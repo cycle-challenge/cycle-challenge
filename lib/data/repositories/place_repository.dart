@@ -79,4 +79,8 @@ class PlaceRepository {
     return api.findPlaceBookmarks();
   }
 
+  Future<Result<List<PlaceModel>, ApiError>> getBookmarkedPlace() async {
+    return api.getBookmarkedPlace();
+  }
+
 }

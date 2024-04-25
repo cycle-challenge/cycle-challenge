@@ -24,6 +24,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/launch_url_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/load_marker_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
@@ -102,4 +103,6 @@ List<SingleChildWidget> viewModels = [
       create: (context) => MapViewModel(context.read<UseCases>())),
   ChangeNotifierProvider<AuthViewModel>(
       create: (context) => AuthViewModel(context.read<AuthRepository>())),
+  ChangeNotifierProvider<BookmarkViewModel>(
+      create: (context) => BookmarkViewModel(context.read<PlaceRepository>(), context.read<UseCases>()))
 ];

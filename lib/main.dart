@@ -1,15 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
-import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
-import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
 void main() async {
   runApp(MultiProvider(

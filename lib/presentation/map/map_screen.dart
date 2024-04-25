@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -27,13 +28,12 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final GlobalKey _key = GlobalKey();
 
-  final Completer<GoogleMapController> _mapCompleter = Completer();
+  GoogleMapController? _mapCompleter;
   StreamSubscription? _subscription;
 
   @override
   void dispose() {
     super.dispose();
-    _mapCompleter.future.then((value) => value.dispose());
     _subscription?.cancel();
   }
 
@@ -56,9 +56,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void _onMoveCamera(double latitude, double longitude) async {
-    final controller = await _mapCompleter.future;
-
-    controller.moveCamera(CameraUpdate.newCameraPosition(
+    _mapCompleter?.moveCamera(CameraUpdate.newCameraPosition(
         CameraPosition(target: LatLng(latitude, longitude), zoom: 13)));
   }
 
@@ -74,84 +72,86 @@ class _MapScreenState extends State<MapScreen> {
         state.navigationIndex == 1 || state.navigationIndex == 2;
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(115),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          decoration: BoxDecoration(
-            color: (isSheetShown &&
-                    bottomSheetState.isExpanded &&
-                    !bottomSheetState.isAnimating)
-                ? Theme.of(context).colorScheme.surface
-                : Theme.of(context).colorScheme.surface.withOpacity(0.0),
-          ),
-          child: AppBar(
-            title: const SearchBarWidget(),
-            backgroundColor:
-                Theme.of(context).colorScheme.surface.withOpacity(0.0),
-            scrolledUnderElevation: 0,
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(51.0),
-              child: FilterView(),
+      body: viewModel.state.navigationIndex == 3 ? const BookmarkScreen() : Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(115),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            decoration: BoxDecoration(
+              color: (isSheetShown &&
+                      bottomSheetState.isExpanded &&
+                      !bottomSheetState.isAnimating)
+                  ? Theme.of(context).colorScheme.surface
+                  : Theme.of(context).colorScheme.surface.withOpacity(0.0),
+            ),
+            child: AppBar(
+              title: const SearchBarWidget(),
+              backgroundColor:
+                  Theme.of(context).colorScheme.surface.withOpacity(0.0),
+              scrolledUnderElevation: 0,
+              bottom: const PreferredSize(
+                preferredSize: Size.fromHeight(51.0),
+                child: FilterView(),
+              ),
             ),
           ),
         ),
+        body: LayoutBuilder(
+            key: _key,
+            builder: (context, constraints) {
+              viewModel.onEvent(MapEvent.initBottomSheet(
+                  constraints.maxHeight - MediaQuery.of(context).padding.top));
+
+              return Stack(children: [
+                MapView(
+                  onMapCreated: (controller) async {
+                    _mapCompleter = controller;
+
+                    viewModel.onEvent(const MapEvent.changeToMyPosition());
+                    Future.delayed(const Duration(seconds: 2), () {
+                      viewModel.onEvent(const MapEvent.findNearbyPlace());
+                    });
+
+                    final Brightness brightness =
+                        MediaQuery.platformBrightnessOf(context);
+
+                    String path = brightness == Brightness.dark
+                        ? "assets/map/map_style_dark.json"
+                        : "assets/map/map_style.json";
+                    controller.setMapStyle(await getJsonFile(path));
+                  },
+                ),
+                const SafeArea(
+                    child: SizedBox(
+                  width: double.maxFinite,
+                  child: Column(
+                    children: [
+                      SearchButtonWidget(),
+                    ],
+                  ),
+                )),
+                SizedBox(
+                  width: double.maxFinite,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      MyLocationButtonWidget(
+                          onTap: () => viewModel
+                              .onEvent(const MapEvent.changeToMyPosition())),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (isSheetShown) const BottomSheetView(),
+                      if (filterState.selectedPlace != null)
+                        PlaceSimpleView(place: filterState.selectedPlace)
+                    ],
+                  ),
+                )
+              ]);
+            }),
       ),
-      body: LayoutBuilder(
-          key: _key,
-          builder: (context, constraints) {
-            viewModel.onEvent(MapEvent.initBottomSheet(
-                constraints.maxHeight - MediaQuery.of(context).padding.top));
-
-            return Stack(children: [
-              MapView(
-                onMapCreated: (controller) async {
-                  _mapCompleter.complete(controller);
-
-                  viewModel.onEvent(const MapEvent.changeToMyPosition());
-                  Future.delayed(const Duration(seconds: 2), () {
-                    viewModel.onEvent(const MapEvent.findNearbyPlace());
-                  });
-
-                  final Brightness brightness =
-                      MediaQuery.platformBrightnessOf(context);
-
-                  String path = brightness == Brightness.dark
-                      ? "assets/map/map_style_dark.json"
-                      : "assets/map/map_style.json";
-                  controller.setMapStyle(await getJsonFile(path));
-                },
-              ),
-              const SafeArea(
-                  child: SizedBox(
-                width: double.maxFinite,
-                child: Column(
-                  children: [
-                    SearchButtonWidget(),
-                  ],
-                ),
-              )),
-              SizedBox(
-                width: double.maxFinite,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    MyLocationButtonWidget(
-                        onTap: () => viewModel
-                            .onEvent(const MapEvent.changeToMyPosition())),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    if (isSheetShown) const BottomSheetView(),
-                    if (filterState.selectedPlace != null)
-                      PlaceSimpleView(place: filterState.selectedPlace)
-                  ],
-                ),
-              )
-            ]);
-          }),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (index) {
 
