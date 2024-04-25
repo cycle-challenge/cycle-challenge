@@ -2,55 +2,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
-class TravelListView extends StatefulWidget {
-  final List<TravelModel> _travels;
-
-  const TravelListView({super.key, required travels}) : _travels = travels;
-
-  @override
-  State<TravelListView> createState() => _TravelListViewState();
-}
-
-class _TravelListViewState extends State<TravelListView> {
+class TravelListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
 
+  final List<TravelModel> _travels;
 
-  @override
-  void initState() {
-
-    Future.microtask(() {
-      final viewModel = context.read<MainViewModel>();
-
-      _controller.addListener(() {
-        bool canScrollUp = _controller.offset > 0;
-        viewModel.onEvent(MainEvent.setCanViewScrollUp(canScrollUp));
-      });
-
-    });
-
-
-    super.initState();
-  }
+  TravelListView({super.key, required travels}) : _travels = travels;
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
-    final state = viewModel.state;
+    final viewModel = context.watch<MapViewModel>();
+    final bottomSheetState = viewModel.bottomSheetState;
 
+    _controller.addListener(() {
+      bool canScrollUp = _controller.offset > 0;
+      viewModel.onEvent(MapEvent.setCanViewScrollUp(canScrollUp));
+    });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (!state.isExpanded)
+        if (!bottomSheetState.isExpanded)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 24, bottom: 12),
@@ -62,7 +38,7 @@ class _TravelListViewState extends State<TravelListView> {
               ),
             ),
           ),
-        if (state.isExpanded)
+        if (bottomSheetState.isExpanded)
           const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
@@ -72,11 +48,11 @@ class _TravelListViewState extends State<TravelListView> {
             itemBuilder: (BuildContext context, int index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TravelWidget(
-                  travel: widget._travels[index], width: double.maxFinite),
+                  travel: _travels[index], width: double.maxFinite),
             ),
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
-            itemCount: widget._travels.length,
+            itemCount: _travels.length,
           ),
         ),
       ],
@@ -100,10 +76,6 @@ class TravelWidget extends StatelessWidget {
         ?.copyWith(color: Colors.white, fontSize: 20);
     TextStyle? bodyMedium =
         Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
-
-
-    final bookmarkViewModel = context.watch<BookmarkViewModel>();
-    bool isBookmarked = bookmarkViewModel.state.travelIdSet.contains(_travel.id);
 
     return GestureDetector(
       onTap: () {
@@ -167,17 +139,11 @@ class TravelWidget extends StatelessWidget {
                           ])),
                         ),
                         IconButton(
-                          onPressed: isBookmarked
-                              ? () => bookmarkViewModel
-                              .onEvent(BookmarkEvent.deleteTravel(_travel))
-                              : () => bookmarkViewModel
-                              .onEvent(BookmarkEvent.addTravel(_travel)),
-                          icon: Icon(
-                              isBookmarked
-                                  ? Icons.bookmark
-                                  : Icons.bookmark_outline,
-                              color: Colors.white),
-                        ),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.bookmark_outline,
+                              color: Colors.white,
+                            ))
                       ],
                     )
                   ],

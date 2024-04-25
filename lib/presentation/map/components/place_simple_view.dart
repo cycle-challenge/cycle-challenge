@@ -1,23 +1,16 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 
 class PlaceSimpleView extends StatelessWidget {
-  final PlaceModel? place;
 
-  const PlaceSimpleView({super.key, required this.place});
+   final PlaceModel? place;
+
+  const PlaceSimpleView({super.key, required this.place });
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +20,17 @@ class PlaceSimpleView extends StatelessWidget {
         place!.location.distance?.toStringAsFixed(1).toString() ?? "0.0";
     String type = place!.type.label;
 
-    final bookmarkViewModel = context.watch<BookmarkViewModel>();
-    bool isBookmarked = bookmarkViewModel.state.placeIdSet.contains(place?.id);
-
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place!))),
+      onTap: () {
+
+        UseCases useCases = context.read<UseCases>();
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => ChangeNotifierProvider(
+              create: (_) => PlaceDetailViewModel(
+                  place!.googlePlaceId, useCases),
+              child: PlaceDetailScreen(place: place!),
+            )));
+      },
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
@@ -43,31 +41,16 @@ class PlaceSimpleView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      place!.name,
-                      style: Theme.of(context).textTheme.titleLarge,
-                      softWrap: false,
-                    ),
-                    Text('$distance km · $type',
-                        style: Theme.of(context).textTheme.labelLarge)
-                  ],
+                Text(
+                  place!.name,
+                  style: Theme.of(context).textTheme.titleLarge,
+                  softWrap: false,
                 ),
-                IconButton(
-                  onPressed: isBookmarked
-                      ? () => bookmarkViewModel
-                          .onEvent(BookmarkEvent.deletePlace(place!))
-                      : () => bookmarkViewModel
-                          .onEvent(BookmarkEvent.addPlace(place!)),
-                  icon: Icon(
-                      isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
-                      size: 20),
-                ),
+                Text('$distance km · $type',
+                    style: Theme.of(context).textTheme.labelLarge)
               ],
             ),
             Container(

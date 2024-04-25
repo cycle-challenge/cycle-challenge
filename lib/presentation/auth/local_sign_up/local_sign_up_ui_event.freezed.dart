@@ -19,7 +19,7 @@ mixin _$LocalSignUpUIEvent<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String target, String message) showInputError,
-    required TResult Function(Member member) success,
+    required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function() verifyEmailSent,
   }) =>
@@ -27,7 +27,7 @@ mixin _$LocalSignUpUIEvent<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String target, String message)? showInputError,
-    TResult? Function(Member member)? success,
+    TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function()? verifyEmailSent,
   }) =>
@@ -35,7 +35,7 @@ mixin _$LocalSignUpUIEvent<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String target, String message)? showInputError,
-    TResult Function(Member member)? success,
+    TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function()? verifyEmailSent,
     required TResult orElse(),
@@ -168,7 +168,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String target, String message) showInputError,
-    required TResult Function(Member member) success,
+    required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function() verifyEmailSent,
   }) {
@@ -179,7 +179,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String target, String message)? showInputError,
-    TResult? Function(Member member)? success,
+    TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function()? verifyEmailSent,
   }) {
@@ -190,7 +190,7 @@ class _$LocalSignUphowInputErrorUIEventImpl<T>
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String target, String message)? showInputError,
-    TResult Function(Member member)? success,
+    TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function()? verifyEmailSent,
     required TResult orElse(),
@@ -262,9 +262,7 @@ abstract class _$$LocalSignUpSuccessUIEventImplCopyWith<T, $Res> {
           $Res Function(_$LocalSignUpSuccessUIEventImpl<T>) then) =
       __$$LocalSignUpSuccessUIEventImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({Member member});
-
-  $MemberCopyWith<$Res> get member;
+  $Res call({String nickname});
 }
 
 /// @nodoc
@@ -280,22 +278,14 @@ class __$$LocalSignUpSuccessUIEventImplCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? member = null,
+    Object? nickname = null,
   }) {
     return _then(_$LocalSignUpSuccessUIEventImpl<T>(
-      null == member
-          ? _value.member
-          : member // ignore: cast_nullable_to_non_nullable
-              as Member,
+      null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MemberCopyWith<$Res> get member {
-    return $MemberCopyWith<$Res>(_value.member, (value) {
-      return _then(_value.copyWith(member: value));
-    });
   }
 }
 
@@ -303,14 +293,14 @@ class __$$LocalSignUpSuccessUIEventImplCopyWithImpl<T, $Res>
 
 class _$LocalSignUpSuccessUIEventImpl<T>
     implements LocalSignUpSuccessUIEvent<T> {
-  const _$LocalSignUpSuccessUIEventImpl(this.member);
+  const _$LocalSignUpSuccessUIEventImpl(this.nickname);
 
   @override
-  final Member member;
+  final String nickname;
 
   @override
   String toString() {
-    return 'LocalSignUpUIEvent<$T>.success(member: $member)';
+    return 'LocalSignUpUIEvent<$T>.success(nickname: $nickname)';
   }
 
   @override
@@ -318,11 +308,12 @@ class _$LocalSignUpSuccessUIEventImpl<T>
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocalSignUpSuccessUIEventImpl<T> &&
-            (identical(other.member, member) || other.member == member));
+            (identical(other.nickname, nickname) ||
+                other.nickname == nickname));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, member);
+  int get hashCode => Object.hash(runtimeType, nickname);
 
   @JsonKey(ignore: true)
   @override
@@ -336,35 +327,35 @@ class _$LocalSignUpSuccessUIEventImpl<T>
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String target, String message) showInputError,
-    required TResult Function(Member member) success,
+    required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function() verifyEmailSent,
   }) {
-    return success(member);
+    return success(nickname);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String target, String message)? showInputError,
-    TResult? Function(Member member)? success,
+    TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function()? verifyEmailSent,
   }) {
-    return success?.call(member);
+    return success?.call(nickname);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String target, String message)? showInputError,
-    TResult Function(Member member)? success,
+    TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function()? verifyEmailSent,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(member);
+      return success(nickname);
     }
     return orElse();
   }
@@ -410,10 +401,10 @@ class _$LocalSignUpSuccessUIEventImpl<T>
 }
 
 abstract class LocalSignUpSuccessUIEvent<T> implements LocalSignUpUIEvent<T> {
-  const factory LocalSignUpSuccessUIEvent(final Member member) =
+  const factory LocalSignUpSuccessUIEvent(final String nickname) =
       _$LocalSignUpSuccessUIEventImpl<T>;
 
-  Member get member;
+  String get nickname;
   @JsonKey(ignore: true)
   _$$LocalSignUpSuccessUIEventImplCopyWith<T,
           _$LocalSignUpSuccessUIEventImpl<T>>
@@ -492,7 +483,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String target, String message) showInputError,
-    required TResult Function(Member member) success,
+    required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function() verifyEmailSent,
   }) {
@@ -503,7 +494,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String target, String message)? showInputError,
-    TResult? Function(Member member)? success,
+    TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function()? verifyEmailSent,
   }) {
@@ -514,7 +505,7 @@ class _$LocalSignUpLoadingUIEventImpl<T>
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String target, String message)? showInputError,
-    TResult Function(Member member)? success,
+    TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function()? verifyEmailSent,
     required TResult orElse(),
@@ -620,7 +611,7 @@ class _$LocalVerifyEmailSentEventImpl<T>
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String target, String message) showInputError,
-    required TResult Function(Member member) success,
+    required TResult Function(String nickname) success,
     required TResult Function(bool isSubmitting) loading,
     required TResult Function() verifyEmailSent,
   }) {
@@ -631,7 +622,7 @@ class _$LocalVerifyEmailSentEventImpl<T>
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String target, String message)? showInputError,
-    TResult? Function(Member member)? success,
+    TResult? Function(String nickname)? success,
     TResult? Function(bool isSubmitting)? loading,
     TResult? Function()? verifyEmailSent,
   }) {
@@ -642,7 +633,7 @@ class _$LocalVerifyEmailSentEventImpl<T>
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String target, String message)? showInputError,
-    TResult Function(Member member)? success,
+    TResult Function(String nickname)? success,
     TResult Function(bool isSubmitting)? loading,
     TResult Function()? verifyEmailSent,
     required TResult orElse(),

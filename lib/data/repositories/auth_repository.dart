@@ -42,7 +42,7 @@ class AuthRepository {
         error: (error) => Result.error(error));
   }
 
-  Future<void> signOut() async {
+  void signOut() {
     secureStorage.deleteAuth();
   }
 

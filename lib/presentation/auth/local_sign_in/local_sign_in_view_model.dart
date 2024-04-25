@@ -30,19 +30,26 @@ class LocalSignInViewModel with ChangeNotifier {
 
     _state = _state.copyWith(errorMessages: []);
 
-    result.when(success: (member) {
-      _eventController.add(LocalSignInUIEvent.success(member));
-    }, error: (error) {
-      error.when(targetError: (_, Map<String, String> errors) {
-        errors.values.toList();
-        _state = _state.copyWith(errorMessages: errors.values.toList());
-        notifyListeners();
-      }, error: (_, message) {
-        _state = _state.copyWith(errorMessages: [message]);
-        notifyListeners();
-      });
+    result.when(
+        success: (member) {
+          _eventController.add(const LocalSignInUIEvent.success());
+        },
+        error: _onError);
+  }
 
+  void _onError(error) {
+    error.when(targetError: (_, Map<String, String> errors) {
+      errors.values.toList();
+      _state = _state.copyWith(errorMessages: errors.values.toList());
+      notifyListeners();
+    }, codeError: (_, message) {
+      _state = _state.copyWith(errorMessages: [message]);
+      notifyListeners();
+    }, error: (message) {
+      _state = _state.copyWith(errorMessages: [message]);
       notifyListeners();
     });
+
+    notifyListeners();
   }
 }

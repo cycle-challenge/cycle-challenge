@@ -5,7 +5,6 @@ import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_state.dart';
@@ -13,8 +12,6 @@ import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class PlaceDetailViewModel with ChangeNotifier {
   final UseCases useCases;
-
-  final StreamController<MainUiEvent> _mainEventController;
 
   PlaceDetailState _state = PlaceDetailState(
       isBusinessHourExpanded: false, placeDetail: null, placeImages: []);
@@ -24,8 +21,7 @@ class PlaceDetailViewModel with ChangeNotifier {
       StreamController.broadcast();
   Stream<PlaceDetailUIEvent> get stream => _eventController.stream;
 
-  PlaceDetailViewModel(
-      String googlePlaceID, this.useCases, this._mainEventController) {
+  PlaceDetailViewModel(String googlePlaceID, this.useCases) {
     _load(googlePlaceID);
   }
 
@@ -70,17 +66,17 @@ class PlaceDetailViewModel with ChangeNotifier {
     result.when(
         success: (_) {},
         error: (message) =>
-            _mainEventController.add(MainUiEvent.showSnackbar(message)));
+            _eventController.add(PlaceDetailUIEvent.showSnackBar(message)));
   }
 
   void _copyText(String? text) async {
     Result result = await useCases.copyText(text);
 
     result.when(
-        success: (_) => _mainEventController
-            .add(const MainUiEvent.showSnackbar("성공적으로 복사되었습니다.")),
+        success: (_) => _eventController
+            .add(const PlaceDetailUIEvent.showSnackBar("성공적으로 복사되었습니다.")),
         error: (message) =>
-            _mainEventController.add(MainUiEvent.showSnackbar(message)));
+            _eventController.add(PlaceDetailUIEvent.showSnackBar(message)));
   }
 
   void _launchURL(String? url) async {
@@ -89,6 +85,6 @@ class PlaceDetailViewModel with ChangeNotifier {
     result.when(
         success: (_) {},
         error: (message) =>
-            _mainEventController.add(MainUiEvent.showSnackbar(message)));
+            _eventController.add(PlaceDetailUIEvent.showSnackBar(message)));
   }
 }

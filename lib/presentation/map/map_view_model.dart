@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
@@ -8,8 +9,8 @@ import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_ui_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/states/map_bottom_sheet_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/states/map_data_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/states/map_filter_data_state.dart';
@@ -18,12 +19,12 @@ import 'package:yeohaeng_ttukttak/presentation/map/states/map_state.dart';
 class MapViewModel with ChangeNotifier {
   MapState _state = MapState();
 
-  final StreamController<MainUiEvent> _mainEventController;
-
   MapDataState _dataState = MapDataState();
 
   MapFilterDataState _filterDataState = MapFilterDataState(
       placeFilter: PlaceFilter(), travelFilter: TravelFilter());
+
+  MapBottomSheetState _bottomSheetState = MapBottomSheetState();
 
   final StreamController<MapUIEvent> _eventController =
       StreamController.broadcast();
@@ -31,7 +32,7 @@ class MapViewModel with ChangeNotifier {
 
   final UseCases useCases;
 
-  MapViewModel(this.useCases, this._mainEventController) {
+  MapViewModel(this.useCases) {
     useCases.loadMarker().then((result) => result.when(
         success: (data) {
           final (makrerIcon, selectedMarkerIcon) = data;
@@ -40,19 +41,26 @@ class MapViewModel with ChangeNotifier {
           notifyListeners();
         },
         error: (message) =>
-            _mainEventController.add(MainUiEvent.showSnackbar(message))));
+            _eventController.add(MapUIEvent.showSnackBar(message))));
   }
 
   // getter
   MapState get state => _state;
   MapFilterDataState get filterState => _filterDataState;
+  MapBottomSheetState get bottomSheetState => _bottomSheetState;
 
   void onEvent(MapEvent event) {
     event.when(
         findNearbyPlace: _findNearbyPlace,
         selectPlace: _selectPlace,
+        initBottomSheet: _initBottomSheet,
+        changeNavigation: _changeNavigation,
         changePosition: _changePosition,
         showSearchButton: _showSearchButton,
+        expandBottomSheet: _expandBottomSheet,
+        contractBottomSheet: _contractBottomSheet,
+        setCanViewScrollUp: _setCanViewScrollUp,
+        stopBottomSheetAnimation: _stopBottomSheetAnimation,
         changeToMyPosition: _changeToMyPosition,
         updateFilter: _updateFilter);
   }
@@ -68,7 +76,7 @@ class MapViewModel with ChangeNotifier {
       _dataState = _dataState.copyWith(places: places, travels: travels);
       _filter();
     }, error: (message) {
-      _mainEventController.add(MainUiEvent.showSnackbar(message));
+      _eventController.add(MapUIEvent.showSnackBar(message));
     });
   }
 
@@ -97,6 +105,19 @@ class MapViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void _initBottomSheet(double? maxHeight) {
+    if (maxHeight == null) {
+      _bottomSheetState =
+          MapBottomSheetState(maxHeight: _bottomSheetState.maxHeight);
+      return;
+    }
+    _bottomSheetState = _bottomSheetState.copyWith(maxHeight: maxHeight);
+  }
+
+  void _changeNavigation(int index) {
+    _state = _state.copyWith(navigationIndex: index);
+    notifyListeners();
+  }
 
   void _changePosition(CameraPosition position) {
     double latitude = position.target.latitude;
@@ -110,6 +131,32 @@ class MapViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void _expandBottomSheet() {
+    _bottomSheetState = _bottomSheetState.copyWith(
+        height: _bottomSheetState.maxHeight,
+        isAnimating: true,
+        isExpanded: true);
+    notifyListeners();
+  }
+
+  void _contractBottomSheet() {
+    _bottomSheetState = _bottomSheetState.copyWith(
+        height: _bottomSheetState.minHeight,
+        isAnimating: true,
+        isExpanded: false);
+    notifyListeners();
+  }
+
+  void _setCanViewScrollUp(bool value) {
+    _bottomSheetState = _bottomSheetState.copyWith(canViewScrollUp: value);
+    notifyListeners();
+  }
+
+  void _stopBottomSheetAnimation() {
+    _bottomSheetState = _bottomSheetState.copyWith(isAnimating: false);
+    notifyListeners();
+  }
+
   void _changeToMyPosition() async {
     final result = await useCases.getMyLocation();
 
@@ -118,7 +165,7 @@ class MapViewModel with ChangeNotifier {
       _state = _state.copyWith(latitude: latitude, longitude: longitude);
       _eventController.add(MapUIEvent.moveCamera(latitude, longitude));
     }, error: (message) {
-      _mainEventController.add(MainUiEvent.showSnackbar(message));
+      _eventController.add(MapUIEvent.showSnackBar(message));
     });
   }
 

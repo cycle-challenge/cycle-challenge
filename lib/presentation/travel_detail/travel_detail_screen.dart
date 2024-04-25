@@ -16,14 +16,7 @@ import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
-import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/components/init_view_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_view_model.dart';
@@ -64,11 +57,14 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
       _subscription = viewModel.stream.listen((event) => event.when(
           moveBound: _moveBound,
           initScroll: _initScroll,
+          showSnackBar: _showSnackBar,
           moveScroll: _moveScroll));
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+
       _panelController.animatePanelToPosition(0.65);
+
     });
   }
 
@@ -116,6 +112,14 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
             ));
   }
 
+  void _showSnackBar(message) {
+    final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        content: Text(message, style: Theme.of(context).textTheme.bodyLarge),
+        duration: const Duration(seconds: 1));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     TravelDetailViewModel viewModel = context.watch<TravelDetailViewModel>();
@@ -129,10 +133,6 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
 
     final hasNext = viewModel.index + 1 < viewModel.dailySummaries.length;
     final hasPrev = viewModel.index - 1 >= 0;
-
-    final bookmarkViewModel = context.watch<BookmarkViewModel>();
-    bool isBookmarked =
-        bookmarkViewModel.state.travelIdSet.contains(widget.travel.id);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -178,15 +178,14 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
 
               viewModel.onEvent(TravelDetailEvent.changePanelHeight(height));
 
-              if (!_panelController.isPanelAnimating &&
-                  viewModel.dailySummaries.isNotEmpty) {
+              if (!_panelController.isPanelAnimating) {
                 viewModel.onEvent(const TravelDetailEvent.initView());
               }
             },
             body: GoogleMap(
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).padding.top,
-                    bottom: viewModel.panelHeight + 310),
+                    bottom: viewModel.panelHeight + 250),
                 myLocationButtonEnabled: false,
                 initialCameraPosition: const CameraPosition(
                   target: LatLng(36.6272, 127.4987),
@@ -200,9 +199,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                   _controller = controller;
                 },
                 onCameraMove: (_) {
-                  if (!_panelController.isPanelAnimating &&
-                      !viewModel.isShownInitViewButton &&
-                      _isListenerEnabled) {
+                  if (!_panelController.isPanelAnimating && !viewModel.isShownInitViewButton && _isListenerEnabled) {
                     viewModel
                         .onEvent(const TravelDetailEvent.showInitViewButton());
                   }
@@ -239,16 +236,32 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                         children: [
                           Center(
                             child: Container(
-                              margin: const EdgeInsets.symmetric(vertical: 12),
+                              margin:
+                                  const EdgeInsets.symmetric(vertical: 12),
                               width: 25,
                               height: 4,
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.outline,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(8)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(8)),
                               ),
                             ),
-                          )
+                          ),
+                          Text("${index + 1}일 차",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(fontWeight: FontWeight.w600)),
+                          Text(
+                            widget.travel.name,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Container(
+                              height: 1,
+                              margin: const EdgeInsets.only(top: 12),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .outlineVariant)
                         ])),
                 Expanded(
                     child: ListView.builder(
@@ -269,69 +282,42 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                           }
 
                           VisitModel visit = summary.visits[index];
-
-                          bool isBookmarked = bookmarkViewModel.state.placeIdSet
-                              .contains(visit.place.id);
-
                           return Container(
                             height: 252,
                             padding: const EdgeInsets.only(bottom: 16),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                GestureDetector(
-                                  onTap: () => Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (_) =>
-                                              ChangeNotifierProvider(
-                                                create: (context) =>
-                                                    PlaceDetailViewModel(
-                                                        visit.place
-                                                            .googlePlaceId,
-                                                        context
-                                                            .read<UseCases>(),
-                                                        context.read<
-                                                            StreamController<
-                                                                MainUiEvent>>()),
-                                                child: PlaceDetailScreen(
-                                                    place: visit.place),
-                                              ))),
-                                  child: ListTile(
-                                      title: Text(visit.place.name),
-                                      contentPadding: EdgeInsets.zero,
-                                      subtitle: Text(visit.place.type.label),
-                                      titleTextStyle: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge
-                                          ?.copyWith(
-                                              fontWeight: FontWeight.w600),
-                                      subtitleTextStyle: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
-                                      leading: SvgPicture.asset(
-                                          width: 24,
-                                          height: 24,
-                                          "assets/markers/${visit.place.type.name}.svg"),
-                                      trailing: IconButton(
-                                        icon: Icon(isBookmarked
-                                            ? Icons.bookmark
-                                            : Icons.bookmark_outline),
-                                        onPressed: isBookmarked
-                                            ? () => bookmarkViewModel.onEvent(
-                                                BookmarkEvent.deletePlace(
-                                                    visit.place))
-                                            : () => bookmarkViewModel.onEvent(
-                                                BookmarkEvent.addPlace(
-                                                    visit.place)),
-                                      )),
-                                ),
+                                ListTile(
+                                    title: Text(visit.place.name),
+                                    contentPadding: EdgeInsets.zero,
+                                    subtitle: Text(visit.place.type.label),
+                                    titleTextStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w600),
+                                    subtitleTextStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium,
+                                    leading: SvgPicture.asset(
+                                        width: 24,
+                                        height: 24,
+                                        "assets/markers/${visit.place.type.name}.svg"),
+                                    trailing: IconButton(
+                                      icon:
+                                          const Icon(Icons.bookmark_outline),
+                                      onPressed: () {},
+                                    )),
                                 SizedBox(
                                     height: 164,
                                     child: InfiniteCarousel.builder(
-                                        itemCount: max(1, visit.images.length),
+                                        itemCount:
+                                            max(1, visit.images.length),
                                         itemExtent: 167,
                                         center: false,
                                         itemBuilder: (context, index, _) {
+
                                           final defaultImage = Image.asset(
                                               "assets/image/default.png",
                                               fit: BoxFit.cover);
@@ -340,10 +326,11 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                                               margin:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 3),
-                                              child: index < visit.images.length
+                                              child: index <
+                                                      visit.images.length
                                                   ? Image.network(
-                                                      visit
-                                                          .images[index].medium,
+                                                      visit.images[index]
+                                                          .medium,
                                                       fit: BoxFit.cover,
                                                       errorBuilder: (context,
                                                               exception,
@@ -357,11 +344,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                         },
                         itemCount:
                             summary != null ? summary.visits.length + 1 : 0)),
-                Container(
-                    height: max(
-                        (panelMaxHeight - panelMinHeight) -
-                            viewModel.panelHeight,
-                        0))
+                Container(height: max((panelMaxHeight - panelMinHeight) - viewModel.panelHeight, 0))
               ],
             ),
           ),
@@ -400,57 +383,22 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
           )
         ]);
       }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      floatingActionButton: FloatingActionButton(
-        onPressed: isBookmarked
-            ? () => bookmarkViewModel
-                .onEvent(BookmarkEvent.deleteTravel(widget.travel))
-            : () => bookmarkViewModel
-                .onEvent(BookmarkEvent.addTravel(widget.travel)),
-        elevation: 0,
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
-            color: Theme.of(context).colorScheme.onSurface),
-      ),
       bottomNavigationBar: BottomAppBar(
-        height: 139,
         surfaceTintColor: Theme.of(context).colorScheme.surface,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("${index + 1}일 차",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(fontWeight: FontWeight.w600)),
-                  Text(
-                    widget.travel.name,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              children: [
-                TextButton(
-                    onPressed: hasPrev
-                        ? () => viewModel
-                            .onEvent(const TravelDetailEvent.prevDayOfTravel())
-                        : null,
-                    child: const Text("어제")),
-                TextButton(
-                    onPressed: hasNext
-                        ? () => viewModel
-                            .onEvent(const TravelDetailEvent.nextDayOfTravel())
-                        : null,
-                    child: const Text("내일")),
-              ],
-            ),
+            TextButton(
+                onPressed: hasPrev
+                    ? () => viewModel
+                        .onEvent(const TravelDetailEvent.prevDayOfTravel())
+                    : null,
+                child: const Text("어제")),
+            TextButton(
+                onPressed: hasNext
+                    ? () => viewModel
+                        .onEvent(const TravelDetailEvent.nextDayOfTravel())
+                    : null,
+                child: const Text("내일")),
           ],
         ),
       ),
@@ -458,10 +406,23 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
   }
 }
 
+class TravelDetailPage extends StatelessWidget {
+  final TravelModel travel;
+
+  const TravelDetailPage({super.key, required this.travel});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<TravelDetailViewModel>(
+        create: (context) => TravelDetailViewModel(travel.id, context.read<TravelRepository>()),
+        child: TravelDetailScreen(travel: travel));
+  }
+}
+
 extension MapWithIndex<T> on List<T> {
   List<R> mapWithIndex<R>(R Function(T, int i) callback) {
     List<R> result = [];
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < this.length; i++) {
       R item = callback(this[i], i);
       result.add(item);
     }

@@ -21,6 +21,7 @@ mixin _$TravelDetailUIEvent {
     required TResult Function(Bound bound) moveBound,
     required TResult Function(int index) moveScroll,
     required TResult Function() initScroll,
+    required TResult Function(String message) showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$TravelDetailUIEvent {
     TResult? Function(Bound bound)? moveBound,
     TResult? Function(int index)? moveScroll,
     TResult? Function()? initScroll,
+    TResult? Function(String message)? showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$TravelDetailUIEvent {
     TResult Function(Bound bound)? moveBound,
     TResult Function(int index)? moveScroll,
     TResult Function()? initScroll,
+    TResult Function(String message)? showSnackBar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$TravelDetailUIEvent {
     required TResult Function(moveBoundEvent value) moveBound,
     required TResult Function(MoveScrollEvent value) moveScroll,
     required TResult Function(InitScrollEvent value) initScroll,
+    required TResult Function(ShowSnackBarUIEvent value) showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$TravelDetailUIEvent {
     TResult? Function(moveBoundEvent value)? moveBound,
     TResult? Function(MoveScrollEvent value)? moveScroll,
     TResult? Function(InitScrollEvent value)? initScroll,
+    TResult? Function(ShowSnackBarUIEvent value)? showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$TravelDetailUIEvent {
     TResult Function(moveBoundEvent value)? moveBound,
     TResult Function(MoveScrollEvent value)? moveScroll,
     TResult Function(InitScrollEvent value)? initScroll,
+    TResult Function(ShowSnackBarUIEvent value)? showSnackBar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,6 +154,7 @@ class _$moveBoundEventImpl implements moveBoundEvent {
     required TResult Function(Bound bound) moveBound,
     required TResult Function(int index) moveScroll,
     required TResult Function() initScroll,
+    required TResult Function(String message) showSnackBar,
   }) {
     return moveBound(bound);
   }
@@ -158,6 +165,7 @@ class _$moveBoundEventImpl implements moveBoundEvent {
     TResult? Function(Bound bound)? moveBound,
     TResult? Function(int index)? moveScroll,
     TResult? Function()? initScroll,
+    TResult? Function(String message)? showSnackBar,
   }) {
     return moveBound?.call(bound);
   }
@@ -168,6 +176,7 @@ class _$moveBoundEventImpl implements moveBoundEvent {
     TResult Function(Bound bound)? moveBound,
     TResult Function(int index)? moveScroll,
     TResult Function()? initScroll,
+    TResult Function(String message)? showSnackBar,
     required TResult orElse(),
   }) {
     if (moveBound != null) {
@@ -182,6 +191,7 @@ class _$moveBoundEventImpl implements moveBoundEvent {
     required TResult Function(moveBoundEvent value) moveBound,
     required TResult Function(MoveScrollEvent value) moveScroll,
     required TResult Function(InitScrollEvent value) initScroll,
+    required TResult Function(ShowSnackBarUIEvent value) showSnackBar,
   }) {
     return moveBound(this);
   }
@@ -192,6 +202,7 @@ class _$moveBoundEventImpl implements moveBoundEvent {
     TResult? Function(moveBoundEvent value)? moveBound,
     TResult? Function(MoveScrollEvent value)? moveScroll,
     TResult? Function(InitScrollEvent value)? initScroll,
+    TResult? Function(ShowSnackBarUIEvent value)? showSnackBar,
   }) {
     return moveBound?.call(this);
   }
@@ -202,6 +213,7 @@ class _$moveBoundEventImpl implements moveBoundEvent {
     TResult Function(moveBoundEvent value)? moveBound,
     TResult Function(MoveScrollEvent value)? moveScroll,
     TResult Function(InitScrollEvent value)? initScroll,
+    TResult Function(ShowSnackBarUIEvent value)? showSnackBar,
     required TResult orElse(),
   }) {
     if (moveBound != null) {
@@ -288,6 +300,7 @@ class _$MoveScrollEventImpl implements MoveScrollEvent {
     required TResult Function(Bound bound) moveBound,
     required TResult Function(int index) moveScroll,
     required TResult Function() initScroll,
+    required TResult Function(String message) showSnackBar,
   }) {
     return moveScroll(index);
   }
@@ -298,6 +311,7 @@ class _$MoveScrollEventImpl implements MoveScrollEvent {
     TResult? Function(Bound bound)? moveBound,
     TResult? Function(int index)? moveScroll,
     TResult? Function()? initScroll,
+    TResult? Function(String message)? showSnackBar,
   }) {
     return moveScroll?.call(index);
   }
@@ -308,6 +322,7 @@ class _$MoveScrollEventImpl implements MoveScrollEvent {
     TResult Function(Bound bound)? moveBound,
     TResult Function(int index)? moveScroll,
     TResult Function()? initScroll,
+    TResult Function(String message)? showSnackBar,
     required TResult orElse(),
   }) {
     if (moveScroll != null) {
@@ -322,6 +337,7 @@ class _$MoveScrollEventImpl implements MoveScrollEvent {
     required TResult Function(moveBoundEvent value) moveBound,
     required TResult Function(MoveScrollEvent value) moveScroll,
     required TResult Function(InitScrollEvent value) initScroll,
+    required TResult Function(ShowSnackBarUIEvent value) showSnackBar,
   }) {
     return moveScroll(this);
   }
@@ -332,6 +348,7 @@ class _$MoveScrollEventImpl implements MoveScrollEvent {
     TResult? Function(moveBoundEvent value)? moveBound,
     TResult? Function(MoveScrollEvent value)? moveScroll,
     TResult? Function(InitScrollEvent value)? initScroll,
+    TResult? Function(ShowSnackBarUIEvent value)? showSnackBar,
   }) {
     return moveScroll?.call(this);
   }
@@ -342,6 +359,7 @@ class _$MoveScrollEventImpl implements MoveScrollEvent {
     TResult Function(moveBoundEvent value)? moveBound,
     TResult Function(MoveScrollEvent value)? moveScroll,
     TResult Function(InitScrollEvent value)? initScroll,
+    TResult Function(ShowSnackBarUIEvent value)? showSnackBar,
     required TResult orElse(),
   }) {
     if (moveScroll != null) {
@@ -401,6 +419,7 @@ class _$InitScrollEventImpl implements InitScrollEvent {
     required TResult Function(Bound bound) moveBound,
     required TResult Function(int index) moveScroll,
     required TResult Function() initScroll,
+    required TResult Function(String message) showSnackBar,
   }) {
     return initScroll();
   }
@@ -411,6 +430,7 @@ class _$InitScrollEventImpl implements InitScrollEvent {
     TResult? Function(Bound bound)? moveBound,
     TResult? Function(int index)? moveScroll,
     TResult? Function()? initScroll,
+    TResult? Function(String message)? showSnackBar,
   }) {
     return initScroll?.call();
   }
@@ -421,6 +441,7 @@ class _$InitScrollEventImpl implements InitScrollEvent {
     TResult Function(Bound bound)? moveBound,
     TResult Function(int index)? moveScroll,
     TResult Function()? initScroll,
+    TResult Function(String message)? showSnackBar,
     required TResult orElse(),
   }) {
     if (initScroll != null) {
@@ -435,6 +456,7 @@ class _$InitScrollEventImpl implements InitScrollEvent {
     required TResult Function(moveBoundEvent value) moveBound,
     required TResult Function(MoveScrollEvent value) moveScroll,
     required TResult Function(InitScrollEvent value) initScroll,
+    required TResult Function(ShowSnackBarUIEvent value) showSnackBar,
   }) {
     return initScroll(this);
   }
@@ -445,6 +467,7 @@ class _$InitScrollEventImpl implements InitScrollEvent {
     TResult? Function(moveBoundEvent value)? moveBound,
     TResult? Function(MoveScrollEvent value)? moveScroll,
     TResult? Function(InitScrollEvent value)? initScroll,
+    TResult? Function(ShowSnackBarUIEvent value)? showSnackBar,
   }) {
     return initScroll?.call(this);
   }
@@ -455,6 +478,7 @@ class _$InitScrollEventImpl implements InitScrollEvent {
     TResult Function(moveBoundEvent value)? moveBound,
     TResult Function(MoveScrollEvent value)? moveScroll,
     TResult Function(InitScrollEvent value)? initScroll,
+    TResult Function(ShowSnackBarUIEvent value)? showSnackBar,
     required TResult orElse(),
   }) {
     if (initScroll != null) {
@@ -466,4 +490,151 @@ class _$InitScrollEventImpl implements InitScrollEvent {
 
 abstract class InitScrollEvent implements TravelDetailUIEvent {
   const factory InitScrollEvent() = _$InitScrollEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ShowSnackBarUIEventImplCopyWith<$Res> {
+  factory _$$ShowSnackBarUIEventImplCopyWith(_$ShowSnackBarUIEventImpl value,
+          $Res Function(_$ShowSnackBarUIEventImpl) then) =
+      __$$ShowSnackBarUIEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$ShowSnackBarUIEventImplCopyWithImpl<$Res>
+    extends _$TravelDetailUIEventCopyWithImpl<$Res, _$ShowSnackBarUIEventImpl>
+    implements _$$ShowSnackBarUIEventImplCopyWith<$Res> {
+  __$$ShowSnackBarUIEventImplCopyWithImpl(_$ShowSnackBarUIEventImpl _value,
+      $Res Function(_$ShowSnackBarUIEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ShowSnackBarUIEventImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ShowSnackBarUIEventImpl implements ShowSnackBarUIEvent {
+  const _$ShowSnackBarUIEventImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'TravelDetailUIEvent.showSnackBar(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ShowSnackBarUIEventImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShowSnackBarUIEventImplCopyWith<_$ShowSnackBarUIEventImpl> get copyWith =>
+      __$$ShowSnackBarUIEventImplCopyWithImpl<_$ShowSnackBarUIEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Bound bound) moveBound,
+    required TResult Function(int index) moveScroll,
+    required TResult Function() initScroll,
+    required TResult Function(String message) showSnackBar,
+  }) {
+    return showSnackBar(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Bound bound)? moveBound,
+    TResult? Function(int index)? moveScroll,
+    TResult? Function()? initScroll,
+    TResult? Function(String message)? showSnackBar,
+  }) {
+    return showSnackBar?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Bound bound)? moveBound,
+    TResult Function(int index)? moveScroll,
+    TResult Function()? initScroll,
+    TResult Function(String message)? showSnackBar,
+    required TResult orElse(),
+  }) {
+    if (showSnackBar != null) {
+      return showSnackBar(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(moveBoundEvent value) moveBound,
+    required TResult Function(MoveScrollEvent value) moveScroll,
+    required TResult Function(InitScrollEvent value) initScroll,
+    required TResult Function(ShowSnackBarUIEvent value) showSnackBar,
+  }) {
+    return showSnackBar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(moveBoundEvent value)? moveBound,
+    TResult? Function(MoveScrollEvent value)? moveScroll,
+    TResult? Function(InitScrollEvent value)? initScroll,
+    TResult? Function(ShowSnackBarUIEvent value)? showSnackBar,
+  }) {
+    return showSnackBar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(moveBoundEvent value)? moveBound,
+    TResult Function(MoveScrollEvent value)? moveScroll,
+    TResult Function(InitScrollEvent value)? initScroll,
+    TResult Function(ShowSnackBarUIEvent value)? showSnackBar,
+    required TResult orElse(),
+  }) {
+    if (showSnackBar != null) {
+      return showSnackBar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ShowSnackBarUIEvent implements TravelDetailUIEvent {
+  const factory ShowSnackBarUIEvent(final String message) =
+      _$ShowSnackBarUIEventImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$ShowSnackBarUIEventImplCopyWith<_$ShowSnackBarUIEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

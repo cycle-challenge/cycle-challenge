@@ -7,11 +7,63 @@ import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  StreamSubscription? _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<AuthViewModel>();
+      _subscription = viewModel.stream.listen((event) => event.when(
+          showSnackBar: (message) => _onShowSnackBar(message),
+          autoSignIn: _onAutoSignIn));
+      context
+          .read<AuthInterceptor>()
+          .stream
+          .listen((event) => event.when(authorizationExpired: () {
+                viewModel.onEvent(const AuthEvent.signOut());
+              }));
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
+  }
+
+  void _onAutoSignIn(String nickname) {
+    while (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const MapScreen()));
+
+    _onShowSnackBar("$nickname님 자동 로그인 되었습니다.");
+  }
+
+  void _onShowSnackBar(String message, {void Function(bool)? onPopInvoked}) {
+    final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        content: PopScope(
+            onPopInvoked: onPopInvoked,
+            child:
+                Text(message, style: Theme.of(context).textTheme.bodyLarge)));
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
