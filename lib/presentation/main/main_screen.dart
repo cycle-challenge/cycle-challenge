@@ -60,9 +60,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final authViewModel = context.watch<AuthViewModel>();
-
-    print(authViewModel.state.member);
-
+    
     if (authViewModel.state.member == null) {
       return const AuthScreen();
     }
