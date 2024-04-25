@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
@@ -9,36 +11,32 @@ import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_mo
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 
 class PlaceSimpleView extends StatelessWidget {
+  final PlaceModel? place;
 
-   final PlaceModel? place;
-
-  const PlaceSimpleView({super.key, required this.place });
+  const PlaceSimpleView({super.key, required this.place});
 
   @override
   Widget build(BuildContext context) {
     if (place == null) return const SizedBox();
 
     final viewModel = context.watch<MapViewModel>();
-    final dataState = viewModel.dataState;
 
     String distance =
         place!.location.distance?.toStringAsFixed(1).toString() ?? "0.0";
     String type = place!.type.label;
 
-    bool isBookmarked = dataState.placeBookmarks
-        .where((elm) => elm.targetId == place?.id)
-        .isNotEmpty;
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+    bool isBookmarked = bookmarkViewModel.state.placeIdSet.contains(place?.id);
 
     return GestureDetector(
       onTap: () {
-
         UseCases useCases = context.read<UseCases>();
         Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => ChangeNotifierProvider(
-              create: (_) => PlaceDetailViewModel(
-                  place!.googlePlaceId, useCases),
-              child: PlaceDetailScreen(place: place!),
-            )));
+                  create: (_) =>
+                      PlaceDetailViewModel(place!.googlePlaceId, useCases),
+                  child: PlaceDetailScreen(place: place!),
+                )));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -67,14 +65,12 @@ class PlaceSimpleView extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: isBookmarked
-                      ? () => viewModel.onEvent(
-                      MapEvent.deletePlaceBookmark(place!.id))
-                      : () => viewModel.onEvent(
-                      MapEvent.addPlaceBookmark(place!.id)),
+                      ? () => bookmarkViewModel
+                          .onEvent(BookmarkEvent.deletePlace(place!))
+                      : () => bookmarkViewModel
+                      .onEvent(BookmarkEvent.addPlace(place!)),
                   icon: Icon(
-                      isBookmarked
-                          ? Icons.bookmark
-                          : Icons.bookmark_outline,
+                      isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
                       size: 20),
                 ),
               ],
@@ -90,7 +86,6 @@ class PlaceSimpleView extends StatelessWidget {
                   separatorBuilder: (context, index) =>
                       const SizedBox(width: 8),
                   itemBuilder: (BuildContext context, int index) {
-
                     return GestureDetector(
                       onTap: () {},
                       child: ClipRRect(

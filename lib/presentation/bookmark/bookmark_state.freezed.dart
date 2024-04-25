@@ -17,6 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BookmarkState {
   List<PlaceModel> get places => throw _privateConstructorUsedError;
+  List<TravelModel> get travels => throw _privateConstructorUsedError;
+  Set<int> get placeIdSet => throw _privateConstructorUsedError;
+  Set<int> get travelIdSet => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +33,12 @@ abstract class $BookmarkStateCopyWith<$Res> {
           BookmarkState value, $Res Function(BookmarkState) then) =
       _$BookmarkStateCopyWithImpl<$Res, BookmarkState>;
   @useResult
-  $Res call({List<PlaceModel> places, bool isEditing});
+  $Res call(
+      {List<PlaceModel> places,
+      List<TravelModel> travels,
+      Set<int> placeIdSet,
+      Set<int> travelIdSet,
+      bool isEditing});
 }
 
 /// @nodoc
@@ -47,6 +55,9 @@ class _$BookmarkStateCopyWithImpl<$Res, $Val extends BookmarkState>
   @override
   $Res call({
     Object? places = null,
+    Object? travels = null,
+    Object? placeIdSet = null,
+    Object? travelIdSet = null,
     Object? isEditing = null,
   }) {
     return _then(_value.copyWith(
@@ -54,6 +65,18 @@ class _$BookmarkStateCopyWithImpl<$Res, $Val extends BookmarkState>
           ? _value.places
           : places // ignore: cast_nullable_to_non_nullable
               as List<PlaceModel>,
+      travels: null == travels
+          ? _value.travels
+          : travels // ignore: cast_nullable_to_non_nullable
+              as List<TravelModel>,
+      placeIdSet: null == placeIdSet
+          ? _value.placeIdSet
+          : placeIdSet // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
+      travelIdSet: null == travelIdSet
+          ? _value.travelIdSet
+          : travelIdSet // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -70,7 +93,12 @@ abstract class _$$BookmarkStateImplCopyWith<$Res>
       __$$BookmarkStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<PlaceModel> places, bool isEditing});
+  $Res call(
+      {List<PlaceModel> places,
+      List<TravelModel> travels,
+      Set<int> placeIdSet,
+      Set<int> travelIdSet,
+      bool isEditing});
 }
 
 /// @nodoc
@@ -85,6 +113,9 @@ class __$$BookmarkStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? places = null,
+    Object? travels = null,
+    Object? placeIdSet = null,
+    Object? travelIdSet = null,
     Object? isEditing = null,
   }) {
     return _then(_$BookmarkStateImpl(
@@ -92,6 +123,18 @@ class __$$BookmarkStateImplCopyWithImpl<$Res>
           ? _value._places
           : places // ignore: cast_nullable_to_non_nullable
               as List<PlaceModel>,
+      travels: null == travels
+          ? _value._travels
+          : travels // ignore: cast_nullable_to_non_nullable
+              as List<TravelModel>,
+      placeIdSet: null == placeIdSet
+          ? _value._placeIdSet
+          : placeIdSet // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
+      travelIdSet: null == travelIdSet
+          ? _value._travelIdSet
+          : travelIdSet // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -104,8 +147,15 @@ class __$$BookmarkStateImplCopyWithImpl<$Res>
 
 class _$BookmarkStateImpl implements _BookmarkState {
   _$BookmarkStateImpl(
-      {final List<PlaceModel> places = const [], this.isEditing = false})
-      : _places = places;
+      {final List<PlaceModel> places = const [],
+      final List<TravelModel> travels = const [],
+      final Set<int> placeIdSet = const {},
+      final Set<int> travelIdSet = const {},
+      this.isEditing = false})
+      : _places = places,
+        _travels = travels,
+        _placeIdSet = placeIdSet,
+        _travelIdSet = travelIdSet;
 
   final List<PlaceModel> _places;
   @override
@@ -116,13 +166,40 @@ class _$BookmarkStateImpl implements _BookmarkState {
     return EqualUnmodifiableListView(_places);
   }
 
+  final List<TravelModel> _travels;
+  @override
+  @JsonKey()
+  List<TravelModel> get travels {
+    if (_travels is EqualUnmodifiableListView) return _travels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_travels);
+  }
+
+  final Set<int> _placeIdSet;
+  @override
+  @JsonKey()
+  Set<int> get placeIdSet {
+    if (_placeIdSet is EqualUnmodifiableSetView) return _placeIdSet;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_placeIdSet);
+  }
+
+  final Set<int> _travelIdSet;
+  @override
+  @JsonKey()
+  Set<int> get travelIdSet {
+    if (_travelIdSet is EqualUnmodifiableSetView) return _travelIdSet;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_travelIdSet);
+  }
+
   @override
   @JsonKey()
   final bool isEditing;
 
   @override
   String toString() {
-    return 'BookmarkState(places: $places, isEditing: $isEditing)';
+    return 'BookmarkState(places: $places, travels: $travels, placeIdSet: $placeIdSet, travelIdSet: $travelIdSet, isEditing: $isEditing)';
   }
 
   @override
@@ -131,13 +208,23 @@ class _$BookmarkStateImpl implements _BookmarkState {
         (other.runtimeType == runtimeType &&
             other is _$BookmarkStateImpl &&
             const DeepCollectionEquality().equals(other._places, _places) &&
+            const DeepCollectionEquality().equals(other._travels, _travels) &&
+            const DeepCollectionEquality()
+                .equals(other._placeIdSet, _placeIdSet) &&
+            const DeepCollectionEquality()
+                .equals(other._travelIdSet, _travelIdSet) &&
             (identical(other.isEditing, isEditing) ||
                 other.isEditing == isEditing));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_places), isEditing);
+      runtimeType,
+      const DeepCollectionEquality().hash(_places),
+      const DeepCollectionEquality().hash(_travels),
+      const DeepCollectionEquality().hash(_placeIdSet),
+      const DeepCollectionEquality().hash(_travelIdSet),
+      isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -149,10 +236,19 @@ class _$BookmarkStateImpl implements _BookmarkState {
 abstract class _BookmarkState implements BookmarkState {
   factory _BookmarkState(
       {final List<PlaceModel> places,
+      final List<TravelModel> travels,
+      final Set<int> placeIdSet,
+      final Set<int> travelIdSet,
       final bool isEditing}) = _$BookmarkStateImpl;
 
   @override
   List<PlaceModel> get places;
+  @override
+  List<TravelModel> get travels;
+  @override
+  Set<int> get placeIdSet;
+  @override
+  Set<int> get travelIdSet;
   @override
   bool get isEditing;
   @override

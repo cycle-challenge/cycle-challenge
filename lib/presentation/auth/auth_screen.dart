@@ -7,7 +7,7 @@ import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -57,7 +57,7 @@ class _AuthScreenState extends State<AuthScreen> {
       Navigator.of(context).pop();
     }
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const MapScreen()));
+        MaterialPageRoute(builder: (context) => const MainScreen()));
 
     _onShowSnackBar("$nickname님 자동 로그인 되었습니다.");
   }

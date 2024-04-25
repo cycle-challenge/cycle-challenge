@@ -13,7 +13,7 @@ import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/welcome/welcome_screen.dart';
 
 class LocalSignUpSheet extends StatefulWidget {
@@ -61,7 +61,7 @@ class _LocalSignUpSheetState extends State<LocalSignUpSheet> {
       Navigator.of(context).pop();
     }
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const MapScreen()));
+        MaterialPageRoute(builder: (context) => const MainScreen()));
 
     _showSnackBar("$nickname님 가입을 축하합니다.");
   }

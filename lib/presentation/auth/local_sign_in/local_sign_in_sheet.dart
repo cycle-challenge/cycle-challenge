@@ -16,7 +16,7 @@ import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/welcome/welcome_screen.dart';
 
 class LocalSignInSheet extends StatefulWidget {
@@ -57,7 +57,7 @@ class _LocalSignInSheetState extends State<LocalSignInSheet> {
       Navigator.of(context).pop();
     }
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const MapScreen()));
+        MaterialPageRoute(builder: (context) => const MainScreen()));
   }
 
   void _onShowInputError(target, message) {

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_summary_view.dart';
@@ -60,12 +62,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
       return const Center(child: CircularProgressIndicator());
     }
 
-    final mapViewModel = context.watch<MapViewModel>();
-    final dataState = mapViewModel.dataState;
-
-    bool isBookmarked = dataState.placeBookmarks
-        .where((elm) => elm.targetId == widget.place.id)
-        .isNotEmpty;
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+    bool isBookmarked = bookmarkViewModel.state.placeIdSet.contains(widget.place.id);
 
     return Scaffold(
       appBar: AppBar(
@@ -97,10 +95,10 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: isBookmarked
-            ? () => mapViewModel
-                .onEvent(MapEvent.deletePlaceBookmark(widget.place.id))
-            : () => mapViewModel
-                .onEvent(MapEvent.addPlaceBookmark(widget.place.id)),
+            ? () => bookmarkViewModel.onEvent(
+            BookmarkEvent.deletePlace(widget.place))
+            : () => bookmarkViewModel.onEvent(
+            BookmarkEvent.addPlace(widget.place)),
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,

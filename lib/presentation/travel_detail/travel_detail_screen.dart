@@ -17,6 +17,8 @@ import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
@@ -136,18 +138,12 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
     final hasNext = viewModel.index + 1 < viewModel.dailySummaries.length;
     final hasPrev = viewModel.index - 1 >= 0;
 
-    final mapViewModel = context.watch<MapViewModel>();
-    final dataState = mapViewModel.dataState;
-
-
-    bool isBookmarked = dataState.travelBookmarks
-        .where((elm) => elm.targetId == widget.travel.id)
-        .isNotEmpty;
-
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+    bool isBookmarked =
+        bookmarkViewModel.state.travelIdSet.contains(widget.travel.id);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-
       appBar: AppBar(
         centerTitle: false,
         scrolledUnderElevation: 0,
@@ -282,9 +278,8 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
 
                           VisitModel visit = summary.visits[index];
 
-                          bool isBookmarked = dataState.placeBookmarks
-                              .where((elm) => elm.targetId == visit.place.id)
-                              .isNotEmpty;
+                          bool isBookmarked = bookmarkViewModel.state.placeIdSet
+                              .contains(visit.place.id);
 
                           return Container(
                             height: 252,
@@ -327,12 +322,12 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                                             ? Icons.bookmark
                                             : Icons.bookmark_outline),
                                         onPressed: isBookmarked
-                                            ? () => mapViewModel.onEvent(
-                                                MapEvent.deletePlaceBookmark(
-                                                    visit.place.id))
-                                            : () => mapViewModel.onEvent(
-                                                MapEvent.addPlaceBookmark(
-                                                    visit.place.id)),
+                                            ? () => bookmarkViewModel.onEvent(
+                                                BookmarkEvent.deletePlace(
+                                                    visit.place))
+                                            : () => bookmarkViewModel.onEvent(
+                                                BookmarkEvent.addPlace(
+                                                    visit.place)),
                                       )),
                                 ),
                                 SizedBox(
@@ -413,10 +408,10 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       floatingActionButton: FloatingActionButton(
         onPressed: isBookmarked
-            ? () => mapViewModel
-            .onEvent(MapEvent.deleteTravelBookmark(widget.travel.id))
-            : () => mapViewModel
-            .onEvent(MapEvent.addTravelBookmark(widget.travel.id)),
+            ? () => bookmarkViewModel
+                .onEvent(BookmarkEvent.deleteTravel(widget.travel))
+            : () => bookmarkViewModel
+                .onEvent(BookmarkEvent.addTravel(widget.travel)),
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,

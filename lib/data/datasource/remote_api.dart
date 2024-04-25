@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
@@ -215,5 +216,17 @@ class RemoteAPI {
       return Result.error(ApiError.fromResponse(e.response));
     }
   }
+
+  Future<Result<List<TravelModel>, ApiError>> getBookmarkedTravel() async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/travels/bookmarked',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data']).map((e) => TravelModel.of(e)).toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
 
 }

@@ -1,5 +1,6 @@
 
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
@@ -27,4 +28,7 @@ class TravelRepository {
     return api.findTravelBookmarks();
   }
 
+  Future<Result<List<TravelModel>, ApiError>> getBookmarkedTravel() async {
+    return api.getBookmarkedTravel();
+  }
 }

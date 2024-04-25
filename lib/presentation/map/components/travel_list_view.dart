@@ -2,31 +2,54 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
-class TravelListView extends StatelessWidget {
-  final ScrollController _controller = ScrollController();
-
+class TravelListView extends StatefulWidget {
   final List<TravelModel> _travels;
 
-  TravelListView({super.key, required travels}) : _travels = travels;
+  const TravelListView({super.key, required travels}) : _travels = travels;
+
+  @override
+  State<TravelListView> createState() => _TravelListViewState();
+}
+
+class _TravelListViewState extends State<TravelListView> {
+  final ScrollController _controller = ScrollController();
+
+
+  @override
+  void initState() {
+
+    Future.microtask(() {
+      final viewModel = context.read<MainViewModel>();
+
+      _controller.addListener(() {
+        bool canScrollUp = _controller.offset > 0;
+        viewModel.onEvent(MainEvent.setCanViewScrollUp(canScrollUp));
+      });
+
+    });
+
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MapViewModel>();
-    final bottomSheetState = viewModel.bottomSheetState;
+    final viewModel = context.watch<MainViewModel>();
+    final state = viewModel.state;
 
-    _controller.addListener(() {
-      bool canScrollUp = _controller.offset > 0;
-      viewModel.onEvent(MapEvent.setCanViewScrollUp(canScrollUp));
-    });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (!bottomSheetState.isExpanded)
+        if (!state.isExpanded)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 24, bottom: 12),
@@ -38,7 +61,7 @@ class TravelListView extends StatelessWidget {
               ),
             ),
           ),
-        if (bottomSheetState.isExpanded)
+        if (state.isExpanded)
           const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
@@ -48,11 +71,11 @@ class TravelListView extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TravelWidget(
-                  travel: _travels[index], width: double.maxFinite),
+                  travel: widget._travels[index], width: double.maxFinite),
             ),
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
-            itemCount: _travels.length,
+            itemCount: widget._travels.length,
           ),
         ),
       ],
@@ -78,14 +101,8 @@ class TravelWidget extends StatelessWidget {
         Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
 
-    final viewModel = context.watch<MapViewModel>();
-
-    final dataState = viewModel.dataState;
-
-    bool isBookmarked = dataState.travelBookmarks
-        .where((elm) => elm.targetId == _travel.id)
-        .isNotEmpty;
-
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+    bool isBookmarked = bookmarkViewModel.state.travelIdSet.contains(_travel.id);
 
     return GestureDetector(
       onTap: () {
@@ -150,10 +167,10 @@ class TravelWidget extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: isBookmarked
-                              ? () => viewModel.onEvent(
-                              MapEvent.deleteTravelBookmark(_travel.id))
-                              : () => viewModel.onEvent(
-                              MapEvent.addTravelBookmark(_travel.id)),
+                              ? () => bookmarkViewModel
+                              .onEvent(BookmarkEvent.deleteTravel(_travel))
+                              : () => bookmarkViewModel
+                              .onEvent(BookmarkEvent.addTravel(_travel)),
                           icon: Icon(
                               isBookmarked
                                   ? Icons.bookmark

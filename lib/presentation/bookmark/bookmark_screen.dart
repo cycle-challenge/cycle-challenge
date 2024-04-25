@@ -1,13 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/components/place_bookmark_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/components/place_bookmark_list_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/components/travel_bookmark_list_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
 class BookmarkScreen extends StatefulWidget {
   const BookmarkScreen({super.key});
@@ -17,32 +16,6 @@ class BookmarkScreen extends StatefulWidget {
 }
 
 class _BookmarkScreenState extends State<BookmarkScreen> {
-  StreamSubscription? _subscription;
-
-  @override
-  void initState() {
-    super.initState();
-
-    Future.microtask(() {
-      final viewModel = context.read<BookmarkViewModel>();
-      _subscription = viewModel.stream
-          .listen((event) => event.when(showSnackbar: _onShowSnackbar));
-    });
-  }
-
-  void _onShowSnackbar(String message) {
-    final snackBar = SnackBar(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        content: Text(message, style: Theme.of(context).textTheme.bodyLarge));
-
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  @override
-  void dispose() {
-    _subscription?.cancel();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +90,117 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                           itemBuilder: (context, index) =>
                               PlaceBookmarkItem(place: state.places[index])),
                 ),
-                Container(child: Text('여행')),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 200),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return FadeTransition(opacity: animation, child: child);
+                  },
+                  child: state.isEditing
+                      ? ListView.separated(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 24.0, horizontal: 16.0),
+                          itemCount: state.travels.length,
+                          itemBuilder: (context, index) =>
+                              TravelBookmarkListItem(
+                                  travel: state.travels[index]),
+                          separatorBuilder: (_, index) =>
+                              const SizedBox(height: 16))
+                      : SizedBox(
+                          child: ListView.separated(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 24.0, horizontal: 16.0),
+                              itemCount: state.travels.length,
+                              itemBuilder: (context, index) =>
+                                  TravelBookmarkItem(
+                                      travel: state.travels[index]),
+                              separatorBuilder: (_, index) =>
+                                  const SizedBox(height: 16)),
+                        ),
+                ),
               ]),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TravelBookmarkItem extends StatelessWidget {
+  final TravelModel travel;
+
+  const TravelBookmarkItem({super.key, required this.travel});
+
+  @override
+  Widget build(BuildContext context) {
+    TextStyle? titleLarge = Theme.of(context)
+        .textTheme
+        .titleLarge
+        ?.copyWith(color: Colors.white, fontSize: 20);
+    TextStyle? bodyMedium =
+        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => TravelDetailPage(
+                  travel: travel,
+                )));
+      },
+      child: Container(
+        width: double.infinity,
+        height: 240,
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(travel.thumbnail.medium),
+                          fit: BoxFit.cover))),
+            ),
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(0.1),
+                        Colors.black.withOpacity(0.3),
+                        Colors.black.withOpacity(0.75),
+                      ]),
+                ),
+              ),
+            ),
+            Positioned.fill(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16, bottom: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      travel.name,
+                      style: titleLarge?.copyWith(fontWeight: FontWeight.w600),
+                    ),
+                    RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: travel.nickname,
+                          style: bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600)),
+                      TextSpan(
+                          text:
+                              " · ${travel.ageGroup.label} · ${travel.transport.label}")
+                    ]))
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

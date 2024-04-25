@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
@@ -10,25 +14,25 @@ import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_mo
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
+  final List<PlaceModel> places;
 
-  PlaceListView({super.key});
+  PlaceListView({super.key, required this.places});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MapViewModel>();
-    final filterState = viewModel.filterState;
-    final dataState = viewModel.dataState;
-    final bottomSheetState = viewModel.bottomSheetState;
+    final viewModel = context.watch<MainViewModel>();
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+    final state = viewModel.state;
 
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
-      viewModel.onEvent(MapEvent.setCanViewScrollUp(canScrollUp));
+      viewModel.onEvent(MainEvent.setCanViewScrollUp(canScrollUp));
     });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (!bottomSheetState.isExpanded)
+        if (!state.isExpanded)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 24, bottom: 12),
@@ -40,23 +44,21 @@ class PlaceListView extends StatelessWidget {
               ),
             ),
           ),
-        if (bottomSheetState.isExpanded) const SizedBox(height: 12),
+        if (state.isExpanded) const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
             controller: _controller,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             itemBuilder: (BuildContext context, int index) {
-              PlaceModel place = filterState.filteredPlaces[index];
-
+              PlaceModel place = places[index];
               String distance =
                   place.location.distance?.toStringAsFixed(1).toString() ??
                       "0.0";
               String type = place.type.label;
 
-              bool isBookmarked = dataState.placeBookmarks
-                  .where((elm) => elm.targetId == place.id)
-                  .isNotEmpty;
+              bool isBookmarked =
+                  bookmarkViewModel.state.placeIdSet.contains(place.id);
 
               return GestureDetector(
                 onTap: () {
@@ -92,10 +94,10 @@ class PlaceListView extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: isBookmarked
-                                ? () => viewModel.onEvent(
-                                MapEvent.deletePlaceBookmark(place.id))
-                                : () => viewModel.onEvent(
-                                    MapEvent.addPlaceBookmark(place.id)),
+                                ? () => bookmarkViewModel.onEvent(
+                                    BookmarkEvent.deletePlace(place))
+                                : () => bookmarkViewModel.onEvent(
+                                BookmarkEvent.addPlace(place)),
                             icon: Icon(
                                 isBookmarked
                                     ? Icons.bookmark
@@ -140,7 +142,7 @@ class PlaceListView extends StatelessWidget {
             },
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 32),
-            itemCount: filterState.filteredPlaces.length,
+            itemCount: places.length,
           ),
         ),
       ],
