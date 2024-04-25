@@ -75,10 +75,6 @@ class PlaceRepository {
     return api.deletePlaceBookmark(id);
   }
 
-  Future<Result<List<Bookmark>, ApiError>> findPlaceBookmarks() async {
-    return api.findPlaceBookmarks();
-  }
-
   Future<Result<List<PlaceModel>, ApiError>> getBookmarkedPlace() async {
     return api.getBookmarkedPlace();
   }

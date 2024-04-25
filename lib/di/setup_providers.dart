@@ -15,7 +15,6 @@ import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
-import 'package:yeohaeng_ttukttak/domain/use_case/find_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_place_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_location_use_case.dart';
@@ -72,9 +71,6 @@ List<SingleChildWidget> dependentModules = [
   Provider<DeleteTravelBookmarkUseCase>(
       create: (context) =>
           DeleteTravelBookmarkUseCase(context.read<TravelRepository>())),
-  Provider<FindBookmarksUseCase>(
-      create: (context) => FindBookmarksUseCase(
-          context.read<PlaceRepository>(), context.read<TravelRepository>())),
   Provider<GetBookmarkedPlaceUseCase>(
       create: (context) =>
           GetBookmarkedPlaceUseCase(context.read<PlaceRepository>())),
@@ -106,7 +102,6 @@ List<SingleChildWidget> dependentModules = [
           addTravelBookmarkUseCase: context.read<AddTravelBookmarkUseCase>(),
           deleteTravelBookmarkUseCase:
               context.read<DeleteTravelBookmarkUseCase>(),
-          findBookmarksUseCase: context.read<FindBookmarksUseCase>(),
           getBookmarkedPlaceUseCase: context.read<GetBookmarkedPlaceUseCase>(),
           getBookmarkedTravelUseCase:
               context.read<GetBookmarkedTravelUseCase>()))

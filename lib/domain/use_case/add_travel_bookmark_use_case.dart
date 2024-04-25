@@ -10,18 +10,10 @@ class AddTravelBookmarkUseCase {
 
   AddTravelBookmarkUseCase(this.travelRepository);
 
-  Future<Result<List<Bookmark>, ApiError>> call(int id) async {
+  Future<Result<Bookmark, ApiError>> call(int id) async {
 
     final result = await travelRepository.addTravelBookmark(id);
-
-    return result.when(success: (_) async {
-      final result = await travelRepository.findTravelBookmarks();
-
-      return result.when(success: (bookmarks) => Result.success(bookmarks),
-          error: (error) => Result.error(error));
-
-    }, error: (error) => Result.error(error));
-
+    return result;
   }
 
 }
