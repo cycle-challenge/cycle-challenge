@@ -194,7 +194,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
             body: GoogleMap(
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).padding.top,
-                    bottom: viewModel.panelHeight + 250),
+                    bottom: viewModel.panelHeight + 310),
                 myLocationButtonEnabled: false,
                 initialCameraPosition: const CameraPosition(
                   target: LatLng(36.6272, 127.4987),
