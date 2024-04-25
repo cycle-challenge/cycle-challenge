@@ -52,9 +52,17 @@ class _MainScreenState extends State<MainScreen> {
     final state = viewModel.state;
 
     return Scaffold(
-      body: viewModel.state.navigationIndex == 3
-          ? const BookmarkScreen()
-          : const MapScreen(),
+
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 200),
+        transitionBuilder:
+            (Widget child, Animation<double> animation) {
+          return FadeTransition(opacity: animation, child: child);
+        },
+        child: viewModel.state.navigationIndex == 3
+            ? const BookmarkScreen()
+            : const MapScreen(),
+      ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (index) {
           if (index == 4) {
