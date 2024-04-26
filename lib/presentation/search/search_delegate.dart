@@ -85,8 +85,9 @@ class Search extends SearchDelegate<Place?> {
         return ListTile(
           title: Text(places[index].name),
           subtitle: Text(address),
-          leading:
-              query.isEmpty ? const Icon(Icons.access_time) : const SizedBox(),
+          leading: query.isEmpty
+              ? const Icon(Icons.access_time)
+              : const Icon(Icons.place_outlined),
           trailing: query.isEmpty
               ? IconButton(
                   onPressed: () => viewModel
