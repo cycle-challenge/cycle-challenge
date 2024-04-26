@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 
 part 'map_event.freezed.dart';
 
@@ -13,4 +14,5 @@ abstract class MapEvent with _$MapEvent {
   const factory MapEvent.changeToMyPosition() = MoveToMyPositionEvent;
   const factory MapEvent.showSearchButton() = ShowSearchButton;
   const factory MapEvent.updateFilter(Filter filter) = UpdateFilterEvent;
+  const factory MapEvent.selectPlaceResult(Place place) = SelectPlaceResultEvent;
 }

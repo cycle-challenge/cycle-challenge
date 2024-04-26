@@ -74,7 +74,7 @@ class _MapScreenState extends State<MapScreen> {
                     : Theme.of(context).colorScheme.surface.withOpacity(0.0),
           ),
           child: AppBar(
-            title: const SearchBarWidget(),
+            title: SearchBarWidget(),
             backgroundColor:
                 Theme.of(context).colorScheme.surface.withOpacity(0.0),
             scrolledUnderElevation: 0,

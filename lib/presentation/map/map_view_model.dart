@@ -7,6 +7,7 @@ import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_ui_event.dart';
@@ -54,7 +55,13 @@ class MapViewModel with ChangeNotifier {
         changePosition: _changePosition,
         showSearchButton: _showSearchButton,
         changeToMyPosition: _changeToMyPosition,
-        updateFilter: _updateFilter);
+        updateFilter: _updateFilter,
+        selectPlaceResult: _onSelectPlaceResult);
+  }
+
+  void _onSelectPlaceResult(Place place) {
+    _eventController
+        .add(MapUIEvent.moveCamera(place.latitude, place.longitude));
   }
 
   void _findNearbyPlace() async {
@@ -96,7 +103,6 @@ class MapViewModel with ChangeNotifier {
 
     notifyListeners();
   }
-
 
   void _changePosition(CameraPosition position) {
     double latitude = position.target.latitude;
