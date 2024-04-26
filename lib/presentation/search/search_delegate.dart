@@ -51,8 +51,12 @@ class Search extends SearchDelegate<Place?> {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
+    if (query.isEmpty) {
+      return <Widget>[const SizedBox(width: 48)];
+    }
+
     final viewModel = context.read<SearchViewModel>();
-    
+
     return <Widget>[
       IconButton(
           onPressed: () {
