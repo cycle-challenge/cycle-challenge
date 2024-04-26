@@ -29,6 +29,7 @@ class Search extends SearchDelegate<Place?> {
 
     return theme.copyWith(
       hintColor: Colors.red,
+      navigationBarTheme: theme.navigationBarTheme.copyWith(),
       textTheme: theme.textTheme
           .copyWith(titleLarge: theme.textTheme.bodyLarge // query Color
               ),
@@ -50,10 +51,13 @@ class Search extends SearchDelegate<Place?> {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
+    final viewModel = context.read<SearchViewModel>();
+    
     return <Widget>[
       IconButton(
           onPressed: () {
-            close(context, null);
+            query = '';
+            viewModel.onEvent(const SearchEvent.initState());
           },
           icon: const Icon(Icons.close))
     ];
@@ -61,7 +65,11 @@ class Search extends SearchDelegate<Place?> {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return const Icon(Icons.search);
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: const Icon(Icons.arrow_back));
   }
 
   @override

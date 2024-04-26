@@ -15,7 +15,7 @@ class SearchBarWidget extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () {
-          showSearch(context: context, delegate: Search());
+          showSearch(context: context, delegate: Search(), useRootNavigator: true);
         },
         child: Container(
           height: 50,
