@@ -5,6 +5,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
@@ -65,9 +67,16 @@ class _MapScreenState extends State<MapScreen> {
     final mainState = mainViewModel.state;
     final filterState = viewModel.filterState;
 
+    final isPlaceSelected = viewModel.filterState.selectedPlace != null;
+
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+
+    bool isBookmarked =
+    bookmarkViewModel.state.placeIdSet.contains(filterState.selectedPlace?.id);
+
     bool isSheetShown =
         (mainState.navigationIndex == 1 || mainState.navigationIndex == 2) &&
-            filterState.selectedPlace == null;
+           !isPlaceSelected;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -139,7 +148,7 @@ class _MapScreenState extends State<MapScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    if (filterState.selectedPlace != null)
+                    if (isPlaceSelected)
                       PlaceSimpleView(place: filterState.selectedPlace),
                     if (isSheetShown) const BottomSheetView(),
                   ],

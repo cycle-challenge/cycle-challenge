@@ -5,10 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -60,12 +63,21 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final authViewModel = context.watch<AuthViewModel>();
-    
+
     if (authViewModel.state.member == null) {
       return const AuthScreen();
     }
 
     final viewModel = context.watch<MainViewModel>();
+    final mapViewModel = context.watch<MapViewModel>();
+
+    final isPlaceSelected = mapViewModel.filterState.selectedPlace != null;
+
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+
+    bool isBookmarked = bookmarkViewModel.state.placeIdSet
+        .contains(mapViewModel.filterState.selectedPlace?.id);
+
     final state = viewModel.state;
 
     return Scaffold(
@@ -78,42 +90,67 @@ class _MainScreenState extends State<MainScreen> {
             ? const BookmarkScreen()
             : const MapScreen(),
       ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (index) {
-          if (index == 4) {
-            final authViewModel = context.read<AuthViewModel>();
-            authViewModel.onEvent(const AuthEvent.signOut());
-          }
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      floatingActionButton: isPlaceSelected
+          ? FloatingActionButton(
+              onPressed: isBookmarked
+                  ? () => bookmarkViewModel.onEvent(BookmarkEvent.deletePlace(
+                      mapViewModel.filterState.selectedPlace!))
+                  : () => bookmarkViewModel.onEvent(BookmarkEvent.addPlace(
+                      mapViewModel.filterState.selectedPlace!)),
+              elevation: 0,
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              child: Icon(
+                  isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+                  color: Theme.of(context).colorScheme.onSurface),
+            )
+          : null,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                    width: 1))),
+        child: isPlaceSelected
+            ? BottomAppBar(
+                surfaceTintColor: Theme.of(context).colorScheme.surface)
+            : NavigationBar(
+                onDestinationSelected: (index) {
+                  if (index == 4) {
+                    final authViewModel = context.read<AuthViewModel>();
+                    authViewModel.onEvent(const AuthEvent.signOut());
+                  }
 
-          viewModel.onEvent(const MainEvent.initBottomSheet(null));
-          viewModel.onEvent(MainEvent.changeNavigation(index));
-        },
-        selectedIndex: state.navigationIndex,
-        surfaceTintColor: Theme.of(context).colorScheme.surface,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.map),
-            label: '주변',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.place),
-            label: '관광지',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.flight),
-            label: '여행',
-          ),
-          NavigationDestination(
-            icon: Icon(
-              Icons.bookmark,
-            ),
-            label: '저장',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.account_circle),
-            label: '프로필',
-          ),
-        ],
+                  viewModel.onEvent(const MainEvent.initBottomSheet(null));
+                  viewModel.onEvent(MainEvent.changeNavigation(index));
+                },
+                selectedIndex: state.navigationIndex,
+                surfaceTintColor: Theme.of(context).colorScheme.surface,
+                destinations: const [
+                  NavigationDestination(
+                    icon: Icon(Icons.map),
+                    label: '주변',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.place),
+                    label: '관광지',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.flight),
+                    label: '여행',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(
+                      Icons.bookmark,
+                    ),
+                    label: '저장',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.account_circle),
+                    label: '프로필',
+                  ),
+                ],
+              ),
       ),
     );
   }
