@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/datasource/kakao_api.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/google_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/local_stoarge.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
@@ -31,7 +31,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/search/serch_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
 List<SingleChildWidget> globalProviders = [
@@ -50,7 +50,7 @@ List<SingleChildWidget> independentModules = [
       create: (_) => SecureStorage(const FlutterSecureStorage())),
   Provider<StreamController<MainUiEvent>>(
       create: (_) => StreamController.broadcast()),
-  Provider<KakaoApi>(create: (_) => KakaoApi()),
+  Provider<GoogleApi>(create: (_) => GoogleApi()),
   Provider<LocalStorage>(create: (_) => LocalStorage())
 ];
 
@@ -62,7 +62,7 @@ List<SingleChildWidget> dependentModules = [
   Provider<RemoteAPI>(create: (context) => RemoteAPI(context.read<Dio>())),
   Provider<PlaceRepository>(
       create: (context) =>
-          PlaceRepository(context.read<RemoteAPI>(), context.read<KakaoApi>(), context.read<LocalStorage>())),
+          PlaceRepository(context.read<RemoteAPI>(), context.read<LocalStorage>(), context.read<GoogleApi>())),
   Provider<TravelRepository>(
       create: (context) => TravelRepository(context.read<RemoteAPI>())),
   Provider<AddPlaceBookmarkUseCase>(

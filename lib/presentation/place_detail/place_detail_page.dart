@@ -16,9 +16,7 @@ class PlaceDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => PlaceDetailViewModel(
-          place.googlePlaceId,
-          context.read<UseCases>(),
+      create: (context) => PlaceDetailViewModel(context.read<UseCases>(),
           context.read<StreamController<MainUiEvent>>()),
       child: PlaceDetailScreen(place: place),
     );

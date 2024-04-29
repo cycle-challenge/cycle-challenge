@@ -204,4 +204,18 @@ class RemoteAPI {
       return Result.error(ApiError.fromResponse(e.response));
     }
   }
+
+
+  Future<Result<PlaceModel, ApiError>> findByGooglePlaceId(String googlePlaceId) async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/places/',
+          queryParameters: { 'googlePlaceId': googlePlaceId },
+          options: Options(headers: headers));
+
+      return Result.success(PlaceModel.of(response.data['data']));
+    } on DioException catch (e) {
+      print(e.response);
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
 }

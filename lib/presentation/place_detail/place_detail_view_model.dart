@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
@@ -24,10 +25,7 @@ class PlaceDetailViewModel with ChangeNotifier {
       StreamController.broadcast();
   Stream<PlaceDetailUIEvent> get stream => _eventController.stream;
 
-  PlaceDetailViewModel(
-      String googlePlaceID, this.useCases, this._mainEventController) {
-    _load(googlePlaceID);
-  }
+  PlaceDetailViewModel(this.useCases, this._mainEventController);
 
   void onEvent(PlaceDetailEvent event) {
     event.when(
@@ -39,8 +37,9 @@ class PlaceDetailViewModel with ChangeNotifier {
         launchURL: _launchURL);
   }
 
-  void _load(String googlePlaceID) async {
-    PlaceDetail detail = await useCases.getPlaceDetail(googlePlaceID);
+  void _load(PlaceModel place) async {
+    PlaceDetail detail =
+        place.detail ?? await useCases.getPlaceDetail(place.googlePlaceId);
     _state = _state.copyWith(placeDetail: detail);
     notifyListeners();
   }

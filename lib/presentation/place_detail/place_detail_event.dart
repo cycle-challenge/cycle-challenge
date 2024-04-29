@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 
 part 'place_detail_event.freezed.dart';
 
 @freezed
 abstract class PlaceDetailEvent with _$PlaceDetailEvent {
-  const factory PlaceDetailEvent.load(String googlePlaceID) =
+  const factory PlaceDetailEvent.load(PlaceModel place) =
       LoadPlaceDetailEvent;
   const factory PlaceDetailEvent.toggleBusinessHourExpanded() =
       ToggleBusinessHourExpandedEvent;

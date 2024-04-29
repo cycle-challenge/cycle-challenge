@@ -17,8 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchState {
   String get query => throw _privateConstructorUsedError;
-  List<Place> get places => throw _privateConstructorUsedError;
-  List<Place> get history => throw _privateConstructorUsedError;
+  List<PlaceSuggestion> get places => throw _privateConstructorUsedError;
+  List<PlaceSuggestion> get history => throw _privateConstructorUsedError;
+  Session? get session => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -31,7 +32,13 @@ abstract class $SearchStateCopyWith<$Res> {
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res, SearchState>;
   @useResult
-  $Res call({String query, List<Place> places, List<Place> history});
+  $Res call(
+      {String query,
+      List<PlaceSuggestion> places,
+      List<PlaceSuggestion> history,
+      Session? session});
+
+  $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
@@ -50,6 +57,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? query = null,
     Object? places = null,
     Object? history = null,
+    Object? session = freezed,
   }) {
     return _then(_value.copyWith(
       query: null == query
@@ -59,12 +67,28 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
       places: null == places
           ? _value.places
           : places // ignore: cast_nullable_to_non_nullable
-              as List<Place>,
+              as List<PlaceSuggestion>,
       history: null == history
           ? _value.history
           : history // ignore: cast_nullable_to_non_nullable
-              as List<Place>,
+              as List<PlaceSuggestion>,
+      session: freezed == session
+          ? _value.session
+          : session // ignore: cast_nullable_to_non_nullable
+              as Session?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SessionCopyWith<$Res>? get session {
+    if (_value.session == null) {
+      return null;
+    }
+
+    return $SessionCopyWith<$Res>(_value.session!, (value) {
+      return _then(_value.copyWith(session: value) as $Val);
+    });
   }
 }
 
@@ -76,7 +100,14 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       __$$SearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String query, List<Place> places, List<Place> history});
+  $Res call(
+      {String query,
+      List<PlaceSuggestion> places,
+      List<PlaceSuggestion> history,
+      Session? session});
+
+  @override
+  $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
@@ -93,6 +124,7 @@ class __$$SearchStateImplCopyWithImpl<$Res>
     Object? query = null,
     Object? places = null,
     Object? history = null,
+    Object? session = freezed,
   }) {
     return _then(_$SearchStateImpl(
       query: null == query
@@ -102,11 +134,15 @@ class __$$SearchStateImplCopyWithImpl<$Res>
       places: null == places
           ? _value._places
           : places // ignore: cast_nullable_to_non_nullable
-              as List<Place>,
+              as List<PlaceSuggestion>,
       history: null == history
           ? _value._history
           : history // ignore: cast_nullable_to_non_nullable
-              as List<Place>,
+              as List<PlaceSuggestion>,
+      session: freezed == session
+          ? _value.session
+          : session // ignore: cast_nullable_to_non_nullable
+              as Session?,
     ));
   }
 }
@@ -116,35 +152,39 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 class _$SearchStateImpl implements _SearchState {
   _$SearchStateImpl(
       {this.query = '',
-      final List<Place> places = const [],
-      final List<Place> history = const []})
+      final List<PlaceSuggestion> places = const [],
+      final List<PlaceSuggestion> history = const [],
+      this.session})
       : _places = places,
         _history = history;
 
   @override
   @JsonKey()
   final String query;
-  final List<Place> _places;
+  final List<PlaceSuggestion> _places;
   @override
   @JsonKey()
-  List<Place> get places {
+  List<PlaceSuggestion> get places {
     if (_places is EqualUnmodifiableListView) return _places;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_places);
   }
 
-  final List<Place> _history;
+  final List<PlaceSuggestion> _history;
   @override
   @JsonKey()
-  List<Place> get history {
+  List<PlaceSuggestion> get history {
     if (_history is EqualUnmodifiableListView) return _history;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_history);
   }
 
   @override
+  final Session? session;
+
+  @override
   String toString() {
-    return 'SearchState(query: $query, places: $places, history: $history)';
+    return 'SearchState(query: $query, places: $places, history: $history, session: $session)';
   }
 
   @override
@@ -154,7 +194,8 @@ class _$SearchStateImpl implements _SearchState {
             other is _$SearchStateImpl &&
             (identical(other.query, query) || other.query == query) &&
             const DeepCollectionEquality().equals(other._places, _places) &&
-            const DeepCollectionEquality().equals(other._history, _history));
+            const DeepCollectionEquality().equals(other._history, _history) &&
+            (identical(other.session, session) || other.session == session));
   }
 
   @override
@@ -162,7 +203,8 @@ class _$SearchStateImpl implements _SearchState {
       runtimeType,
       query,
       const DeepCollectionEquality().hash(_places),
-      const DeepCollectionEquality().hash(_history));
+      const DeepCollectionEquality().hash(_history),
+      session);
 
   @JsonKey(ignore: true)
   @override
@@ -174,15 +216,18 @@ class _$SearchStateImpl implements _SearchState {
 abstract class _SearchState implements SearchState {
   factory _SearchState(
       {final String query,
-      final List<Place> places,
-      final List<Place> history}) = _$SearchStateImpl;
+      final List<PlaceSuggestion> places,
+      final List<PlaceSuggestion> history,
+      final Session? session}) = _$SearchStateImpl;
 
   @override
   String get query;
   @override
-  List<Place> get places;
+  List<PlaceSuggestion> get places;
   @override
-  List<Place> get history;
+  List<PlaceSuggestion> get history;
+  @override
+  Session? get session;
   @override
   @JsonKey(ignore: true)
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>

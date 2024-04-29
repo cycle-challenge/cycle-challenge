@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:yeohaeng_ttukttak/data/datasource/kakao_api.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/google_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/local_stoarge.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
@@ -10,16 +10,18 @@ import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
+import 'package:yeohaeng_ttukttak/domain/model/session.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class PlaceRepository {
   RemoteAPI api;
-  KakaoApi kakaoApi;
   LocalStorage localStorage;
 
-  PlaceRepository(this.api, this.kakaoApi, this.localStorage);
+  GoogleApi googleApi;
+
+  PlaceRepository(this.api, this.localStorage, this.googleApi);
 
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
   final String remoteUrl = const String.fromEnvironment("REMOTE_HOST");
@@ -30,9 +32,10 @@ class PlaceRepository {
   }
 
   Future<PlaceDetail> getDetailInfo(String googlePlaceId) async {
+
     Map<String, String> params = {
       'fields':
-          'shortFormattedAddress,nationalPhoneNumber,regularOpeningHours,websiteUri',
+          'id,formattedAddress,nationalPhoneNumber,regularOpeningHours,websiteUri,location',
       'key': apiKey,
       'languageCode': 'ko'
     };
@@ -43,8 +46,12 @@ class PlaceRepository {
     Response response = await get(uri,
         headers: {'Content-type': 'application/json; charset=UTF-8'});
 
+
     if (response.statusCode == HttpStatus.ok) {
       Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
+
+
+      print(json);
       return PlaceDetail.of(json);
     } else {
       throw Exception(response.body);
@@ -83,15 +90,18 @@ class PlaceRepository {
     return api.getBookmarkedPlace();
   }
 
-  Future<Result<List<Place>, String>> search(String query) async {
-    return kakaoApi.search(query);
+  Future<Result<List<PlaceSuggestion>, String>> autoComplete(String query, Session session) async {
+    return googleApi.autoComplete(query, session);
+  }
+  Future<Result<PlaceDetail, String>> getDetail(String googlePlaceId, {Session? session}) async {
+    return googleApi.getDetail(googlePlaceId, session: session);
   }
 
-  Future<Result<List<Place>, String>> getSearchHistory() async {
+  Future<Result<List<PlaceSuggestion>, String>> getSearchHistory() async {
     return localStorage.getSearchHistory();
   }
 
-  Future<Result<List<Place>, String>> addSearchHistory(Place place) async {
+  Future<Result<List<PlaceSuggestion>, String>> addSearchHistory(PlaceSuggestion place) async {
     final result = await localStorage.addSearchHistory(place);
 
     return result.when(
@@ -104,7 +114,7 @@ class PlaceRepository {
         error: (message) => Result.error(message));
   }
 
-  Future<Result<List<Place>, String>> deleteSearchHistory(Place place) async {
+  Future<Result<List<PlaceSuggestion>, String>> deleteSearchHistory(PlaceSuggestion place) async {
     final result = await localStorage.deleteSearchHistory(place);
 
     return result.when(
@@ -115,5 +125,9 @@ class PlaceRepository {
               error: (message) => Result.error(message));
         },
         error: (message) => Result.error(message));
+  }
+
+  Future<Result<PlaceModel, ApiError>> findByGooglePlaceId(String googlePlaceId) async {
+    return api.findByGooglePlaceId(googlePlaceId);
   }
 }

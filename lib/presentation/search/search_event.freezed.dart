@@ -19,49 +19,49 @@ mixin _$SearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initState,
-    required TResult Function(String query) search,
-    required TResult Function(Place? place) addHistory,
-    required TResult Function(Place? place) deleteHistory,
+    required TResult Function(String query) autoComplete,
+    required TResult Function(PlaceSuggestion? place) search,
+    required TResult Function(PlaceSuggestion? place) deleteHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initState,
-    TResult? Function(String query)? search,
-    TResult? Function(Place? place)? addHistory,
-    TResult? Function(Place? place)? deleteHistory,
+    TResult? Function(String query)? autoComplete,
+    TResult? Function(PlaceSuggestion? place)? search,
+    TResult? Function(PlaceSuggestion? place)? deleteHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initState,
-    TResult Function(String query)? search,
-    TResult Function(Place? place)? addHistory,
-    TResult Function(Place? place)? deleteHistory,
+    TResult Function(String query)? autoComplete,
+    TResult Function(PlaceSuggestion? place)? search,
+    TResult Function(PlaceSuggestion? place)? deleteHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchInitStateEvent value) initState,
-    required TResult Function(SearchQueryEvent value) search,
-    required TResult Function(SearchAddHistoryEvent value) addHistory,
+    required TResult Function(SearchAutoCompleteEvent value) autoComplete,
+    required TResult Function(SearchRequestEvent value) search,
     required TResult Function(SearchDeleteHistoryEvent value) deleteHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchInitStateEvent value)? initState,
-    TResult? Function(SearchQueryEvent value)? search,
-    TResult? Function(SearchAddHistoryEvent value)? addHistory,
+    TResult? Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult? Function(SearchRequestEvent value)? search,
     TResult? Function(SearchDeleteHistoryEvent value)? deleteHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchInitStateEvent value)? initState,
-    TResult Function(SearchQueryEvent value)? search,
-    TResult Function(SearchAddHistoryEvent value)? addHistory,
+    TResult Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult Function(SearchRequestEvent value)? search,
     TResult Function(SearchDeleteHistoryEvent value)? deleteHistory,
     required TResult orElse(),
   }) =>
@@ -126,9 +126,9 @@ class _$SearchInitStateEventImpl implements SearchInitStateEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initState,
-    required TResult Function(String query) search,
-    required TResult Function(Place? place) addHistory,
-    required TResult Function(Place? place) deleteHistory,
+    required TResult Function(String query) autoComplete,
+    required TResult Function(PlaceSuggestion? place) search,
+    required TResult Function(PlaceSuggestion? place) deleteHistory,
   }) {
     return initState();
   }
@@ -137,9 +137,9 @@ class _$SearchInitStateEventImpl implements SearchInitStateEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initState,
-    TResult? Function(String query)? search,
-    TResult? Function(Place? place)? addHistory,
-    TResult? Function(Place? place)? deleteHistory,
+    TResult? Function(String query)? autoComplete,
+    TResult? Function(PlaceSuggestion? place)? search,
+    TResult? Function(PlaceSuggestion? place)? deleteHistory,
   }) {
     return initState?.call();
   }
@@ -148,9 +148,9 @@ class _$SearchInitStateEventImpl implements SearchInitStateEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initState,
-    TResult Function(String query)? search,
-    TResult Function(Place? place)? addHistory,
-    TResult Function(Place? place)? deleteHistory,
+    TResult Function(String query)? autoComplete,
+    TResult Function(PlaceSuggestion? place)? search,
+    TResult Function(PlaceSuggestion? place)? deleteHistory,
     required TResult orElse(),
   }) {
     if (initState != null) {
@@ -163,8 +163,8 @@ class _$SearchInitStateEventImpl implements SearchInitStateEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchInitStateEvent value) initState,
-    required TResult Function(SearchQueryEvent value) search,
-    required TResult Function(SearchAddHistoryEvent value) addHistory,
+    required TResult Function(SearchAutoCompleteEvent value) autoComplete,
+    required TResult Function(SearchRequestEvent value) search,
     required TResult Function(SearchDeleteHistoryEvent value) deleteHistory,
   }) {
     return initState(this);
@@ -174,8 +174,8 @@ class _$SearchInitStateEventImpl implements SearchInitStateEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchInitStateEvent value)? initState,
-    TResult? Function(SearchQueryEvent value)? search,
-    TResult? Function(SearchAddHistoryEvent value)? addHistory,
+    TResult? Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult? Function(SearchRequestEvent value)? search,
     TResult? Function(SearchDeleteHistoryEvent value)? deleteHistory,
   }) {
     return initState?.call(this);
@@ -185,8 +185,8 @@ class _$SearchInitStateEventImpl implements SearchInitStateEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchInitStateEvent value)? initState,
-    TResult Function(SearchQueryEvent value)? search,
-    TResult Function(SearchAddHistoryEvent value)? addHistory,
+    TResult Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult Function(SearchRequestEvent value)? search,
     TResult Function(SearchDeleteHistoryEvent value)? deleteHistory,
     required TResult orElse(),
   }) {
@@ -202,20 +202,22 @@ abstract class SearchInitStateEvent implements SearchEvent {
 }
 
 /// @nodoc
-abstract class _$$SearchQueryEventImplCopyWith<$Res> {
-  factory _$$SearchQueryEventImplCopyWith(_$SearchQueryEventImpl value,
-          $Res Function(_$SearchQueryEventImpl) then) =
-      __$$SearchQueryEventImplCopyWithImpl<$Res>;
+abstract class _$$SearchAutoCompleteEventImplCopyWith<$Res> {
+  factory _$$SearchAutoCompleteEventImplCopyWith(
+          _$SearchAutoCompleteEventImpl value,
+          $Res Function(_$SearchAutoCompleteEventImpl) then) =
+      __$$SearchAutoCompleteEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$SearchQueryEventImplCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$SearchQueryEventImpl>
-    implements _$$SearchQueryEventImplCopyWith<$Res> {
-  __$$SearchQueryEventImplCopyWithImpl(_$SearchQueryEventImpl _value,
-      $Res Function(_$SearchQueryEventImpl) _then)
+class __$$SearchAutoCompleteEventImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$SearchAutoCompleteEventImpl>
+    implements _$$SearchAutoCompleteEventImplCopyWith<$Res> {
+  __$$SearchAutoCompleteEventImplCopyWithImpl(
+      _$SearchAutoCompleteEventImpl _value,
+      $Res Function(_$SearchAutoCompleteEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -223,7 +225,7 @@ class __$$SearchQueryEventImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$SearchQueryEventImpl(
+    return _then(_$SearchAutoCompleteEventImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -234,22 +236,22 @@ class __$$SearchQueryEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchQueryEventImpl implements SearchQueryEvent {
-  const _$SearchQueryEventImpl(this.query);
+class _$SearchAutoCompleteEventImpl implements SearchAutoCompleteEvent {
+  const _$SearchAutoCompleteEventImpl(this.query);
 
   @override
   final String query;
 
   @override
   String toString() {
-    return 'SearchEvent.search(query: $query)';
+    return 'SearchEvent.autoComplete(query: $query)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchQueryEventImpl &&
+            other is _$SearchAutoCompleteEventImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
@@ -259,43 +261,43 @@ class _$SearchQueryEventImpl implements SearchQueryEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchQueryEventImplCopyWith<_$SearchQueryEventImpl> get copyWith =>
-      __$$SearchQueryEventImplCopyWithImpl<_$SearchQueryEventImpl>(
-          this, _$identity);
+  _$$SearchAutoCompleteEventImplCopyWith<_$SearchAutoCompleteEventImpl>
+      get copyWith => __$$SearchAutoCompleteEventImplCopyWithImpl<
+          _$SearchAutoCompleteEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initState,
-    required TResult Function(String query) search,
-    required TResult Function(Place? place) addHistory,
-    required TResult Function(Place? place) deleteHistory,
+    required TResult Function(String query) autoComplete,
+    required TResult Function(PlaceSuggestion? place) search,
+    required TResult Function(PlaceSuggestion? place) deleteHistory,
   }) {
-    return search(query);
+    return autoComplete(query);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initState,
-    TResult? Function(String query)? search,
-    TResult? Function(Place? place)? addHistory,
-    TResult? Function(Place? place)? deleteHistory,
+    TResult? Function(String query)? autoComplete,
+    TResult? Function(PlaceSuggestion? place)? search,
+    TResult? Function(PlaceSuggestion? place)? deleteHistory,
   }) {
-    return search?.call(query);
+    return autoComplete?.call(query);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initState,
-    TResult Function(String query)? search,
-    TResult Function(Place? place)? addHistory,
-    TResult Function(Place? place)? deleteHistory,
+    TResult Function(String query)? autoComplete,
+    TResult Function(PlaceSuggestion? place)? search,
+    TResult Function(PlaceSuggestion? place)? deleteHistory,
     required TResult orElse(),
   }) {
-    if (search != null) {
-      return search(query);
+    if (autoComplete != null) {
+      return autoComplete(query);
     }
     return orElse();
   }
@@ -304,8 +306,169 @@ class _$SearchQueryEventImpl implements SearchQueryEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchInitStateEvent value) initState,
-    required TResult Function(SearchQueryEvent value) search,
-    required TResult Function(SearchAddHistoryEvent value) addHistory,
+    required TResult Function(SearchAutoCompleteEvent value) autoComplete,
+    required TResult Function(SearchRequestEvent value) search,
+    required TResult Function(SearchDeleteHistoryEvent value) deleteHistory,
+  }) {
+    return autoComplete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SearchInitStateEvent value)? initState,
+    TResult? Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult? Function(SearchRequestEvent value)? search,
+    TResult? Function(SearchDeleteHistoryEvent value)? deleteHistory,
+  }) {
+    return autoComplete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchInitStateEvent value)? initState,
+    TResult Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult Function(SearchRequestEvent value)? search,
+    TResult Function(SearchDeleteHistoryEvent value)? deleteHistory,
+    required TResult orElse(),
+  }) {
+    if (autoComplete != null) {
+      return autoComplete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchAutoCompleteEvent implements SearchEvent {
+  const factory SearchAutoCompleteEvent(final String query) =
+      _$SearchAutoCompleteEventImpl;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$$SearchAutoCompleteEventImplCopyWith<_$SearchAutoCompleteEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchRequestEventImplCopyWith<$Res> {
+  factory _$$SearchRequestEventImplCopyWith(_$SearchRequestEventImpl value,
+          $Res Function(_$SearchRequestEventImpl) then) =
+      __$$SearchRequestEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PlaceSuggestion? place});
+
+  $PlaceSuggestionCopyWith<$Res>? get place;
+}
+
+/// @nodoc
+class __$$SearchRequestEventImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$SearchRequestEventImpl>
+    implements _$$SearchRequestEventImplCopyWith<$Res> {
+  __$$SearchRequestEventImplCopyWithImpl(_$SearchRequestEventImpl _value,
+      $Res Function(_$SearchRequestEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? place = freezed,
+  }) {
+    return _then(_$SearchRequestEventImpl(
+      freezed == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as PlaceSuggestion?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceSuggestionCopyWith<$Res>? get place {
+    if (_value.place == null) {
+      return null;
+    }
+
+    return $PlaceSuggestionCopyWith<$Res>(_value.place!, (value) {
+      return _then(_value.copyWith(place: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SearchRequestEventImpl implements SearchRequestEvent {
+  const _$SearchRequestEventImpl(this.place);
+
+  @override
+  final PlaceSuggestion? place;
+
+  @override
+  String toString() {
+    return 'SearchEvent.search(place: $place)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchRequestEventImpl &&
+            (identical(other.place, place) || other.place == place));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, place);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchRequestEventImplCopyWith<_$SearchRequestEventImpl> get copyWith =>
+      __$$SearchRequestEventImplCopyWithImpl<_$SearchRequestEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initState,
+    required TResult Function(String query) autoComplete,
+    required TResult Function(PlaceSuggestion? place) search,
+    required TResult Function(PlaceSuggestion? place) deleteHistory,
+  }) {
+    return search(place);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initState,
+    TResult? Function(String query)? autoComplete,
+    TResult? Function(PlaceSuggestion? place)? search,
+    TResult? Function(PlaceSuggestion? place)? deleteHistory,
+  }) {
+    return search?.call(place);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initState,
+    TResult Function(String query)? autoComplete,
+    TResult Function(PlaceSuggestion? place)? search,
+    TResult Function(PlaceSuggestion? place)? deleteHistory,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(place);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchInitStateEvent value) initState,
+    required TResult Function(SearchAutoCompleteEvent value) autoComplete,
+    required TResult Function(SearchRequestEvent value) search,
     required TResult Function(SearchDeleteHistoryEvent value) deleteHistory,
   }) {
     return search(this);
@@ -315,8 +478,8 @@ class _$SearchQueryEventImpl implements SearchQueryEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchInitStateEvent value)? initState,
-    TResult? Function(SearchQueryEvent value)? search,
-    TResult? Function(SearchAddHistoryEvent value)? addHistory,
+    TResult? Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult? Function(SearchRequestEvent value)? search,
     TResult? Function(SearchDeleteHistoryEvent value)? deleteHistory,
   }) {
     return search?.call(this);
@@ -326,8 +489,8 @@ class _$SearchQueryEventImpl implements SearchQueryEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchInitStateEvent value)? initState,
-    TResult Function(SearchQueryEvent value)? search,
-    TResult Function(SearchAddHistoryEvent value)? addHistory,
+    TResult Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult Function(SearchRequestEvent value)? search,
     TResult Function(SearchDeleteHistoryEvent value)? deleteHistory,
     required TResult orElse(),
   }) {
@@ -338,175 +501,14 @@ class _$SearchQueryEventImpl implements SearchQueryEvent {
   }
 }
 
-abstract class SearchQueryEvent implements SearchEvent {
-  const factory SearchQueryEvent(final String query) = _$SearchQueryEventImpl;
+abstract class SearchRequestEvent implements SearchEvent {
+  const factory SearchRequestEvent(final PlaceSuggestion? place) =
+      _$SearchRequestEventImpl;
 
-  String get query;
+  PlaceSuggestion? get place;
   @JsonKey(ignore: true)
-  _$$SearchQueryEventImplCopyWith<_$SearchQueryEventImpl> get copyWith =>
+  _$$SearchRequestEventImplCopyWith<_$SearchRequestEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SearchAddHistoryEventImplCopyWith<$Res> {
-  factory _$$SearchAddHistoryEventImplCopyWith(
-          _$SearchAddHistoryEventImpl value,
-          $Res Function(_$SearchAddHistoryEventImpl) then) =
-      __$$SearchAddHistoryEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Place? place});
-
-  $PlaceCopyWith<$Res>? get place;
-}
-
-/// @nodoc
-class __$$SearchAddHistoryEventImplCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$SearchAddHistoryEventImpl>
-    implements _$$SearchAddHistoryEventImplCopyWith<$Res> {
-  __$$SearchAddHistoryEventImplCopyWithImpl(_$SearchAddHistoryEventImpl _value,
-      $Res Function(_$SearchAddHistoryEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? place = freezed,
-  }) {
-    return _then(_$SearchAddHistoryEventImpl(
-      freezed == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as Place?,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PlaceCopyWith<$Res>? get place {
-    if (_value.place == null) {
-      return null;
-    }
-
-    return $PlaceCopyWith<$Res>(_value.place!, (value) {
-      return _then(_value.copyWith(place: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$SearchAddHistoryEventImpl implements SearchAddHistoryEvent {
-  const _$SearchAddHistoryEventImpl(this.place);
-
-  @override
-  final Place? place;
-
-  @override
-  String toString() {
-    return 'SearchEvent.addHistory(place: $place)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SearchAddHistoryEventImpl &&
-            (identical(other.place, place) || other.place == place));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, place);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SearchAddHistoryEventImplCopyWith<_$SearchAddHistoryEventImpl>
-      get copyWith => __$$SearchAddHistoryEventImplCopyWithImpl<
-          _$SearchAddHistoryEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initState,
-    required TResult Function(String query) search,
-    required TResult Function(Place? place) addHistory,
-    required TResult Function(Place? place) deleteHistory,
-  }) {
-    return addHistory(place);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initState,
-    TResult? Function(String query)? search,
-    TResult? Function(Place? place)? addHistory,
-    TResult? Function(Place? place)? deleteHistory,
-  }) {
-    return addHistory?.call(place);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initState,
-    TResult Function(String query)? search,
-    TResult Function(Place? place)? addHistory,
-    TResult Function(Place? place)? deleteHistory,
-    required TResult orElse(),
-  }) {
-    if (addHistory != null) {
-      return addHistory(place);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SearchInitStateEvent value) initState,
-    required TResult Function(SearchQueryEvent value) search,
-    required TResult Function(SearchAddHistoryEvent value) addHistory,
-    required TResult Function(SearchDeleteHistoryEvent value) deleteHistory,
-  }) {
-    return addHistory(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SearchInitStateEvent value)? initState,
-    TResult? Function(SearchQueryEvent value)? search,
-    TResult? Function(SearchAddHistoryEvent value)? addHistory,
-    TResult? Function(SearchDeleteHistoryEvent value)? deleteHistory,
-  }) {
-    return addHistory?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchInitStateEvent value)? initState,
-    TResult Function(SearchQueryEvent value)? search,
-    TResult Function(SearchAddHistoryEvent value)? addHistory,
-    TResult Function(SearchDeleteHistoryEvent value)? deleteHistory,
-    required TResult orElse(),
-  }) {
-    if (addHistory != null) {
-      return addHistory(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SearchAddHistoryEvent implements SearchEvent {
-  const factory SearchAddHistoryEvent(final Place? place) =
-      _$SearchAddHistoryEventImpl;
-
-  Place? get place;
-  @JsonKey(ignore: true)
-  _$$SearchAddHistoryEventImplCopyWith<_$SearchAddHistoryEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -516,9 +518,9 @@ abstract class _$$SearchDeleteHistoryEventImplCopyWith<$Res> {
           $Res Function(_$SearchDeleteHistoryEventImpl) then) =
       __$$SearchDeleteHistoryEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Place? place});
+  $Res call({PlaceSuggestion? place});
 
-  $PlaceCopyWith<$Res>? get place;
+  $PlaceSuggestionCopyWith<$Res>? get place;
 }
 
 /// @nodoc
@@ -539,18 +541,18 @@ class __$$SearchDeleteHistoryEventImplCopyWithImpl<$Res>
       freezed == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as Place?,
+              as PlaceSuggestion?,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PlaceCopyWith<$Res>? get place {
+  $PlaceSuggestionCopyWith<$Res>? get place {
     if (_value.place == null) {
       return null;
     }
 
-    return $PlaceCopyWith<$Res>(_value.place!, (value) {
+    return $PlaceSuggestionCopyWith<$Res>(_value.place!, (value) {
       return _then(_value.copyWith(place: value));
     });
   }
@@ -562,7 +564,7 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
   const _$SearchDeleteHistoryEventImpl(this.place);
 
   @override
-  final Place? place;
+  final PlaceSuggestion? place;
 
   @override
   String toString() {
@@ -591,9 +593,9 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initState,
-    required TResult Function(String query) search,
-    required TResult Function(Place? place) addHistory,
-    required TResult Function(Place? place) deleteHistory,
+    required TResult Function(String query) autoComplete,
+    required TResult Function(PlaceSuggestion? place) search,
+    required TResult Function(PlaceSuggestion? place) deleteHistory,
   }) {
     return deleteHistory(place);
   }
@@ -602,9 +604,9 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initState,
-    TResult? Function(String query)? search,
-    TResult? Function(Place? place)? addHistory,
-    TResult? Function(Place? place)? deleteHistory,
+    TResult? Function(String query)? autoComplete,
+    TResult? Function(PlaceSuggestion? place)? search,
+    TResult? Function(PlaceSuggestion? place)? deleteHistory,
   }) {
     return deleteHistory?.call(place);
   }
@@ -613,9 +615,9 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initState,
-    TResult Function(String query)? search,
-    TResult Function(Place? place)? addHistory,
-    TResult Function(Place? place)? deleteHistory,
+    TResult Function(String query)? autoComplete,
+    TResult Function(PlaceSuggestion? place)? search,
+    TResult Function(PlaceSuggestion? place)? deleteHistory,
     required TResult orElse(),
   }) {
     if (deleteHistory != null) {
@@ -628,8 +630,8 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchInitStateEvent value) initState,
-    required TResult Function(SearchQueryEvent value) search,
-    required TResult Function(SearchAddHistoryEvent value) addHistory,
+    required TResult Function(SearchAutoCompleteEvent value) autoComplete,
+    required TResult Function(SearchRequestEvent value) search,
     required TResult Function(SearchDeleteHistoryEvent value) deleteHistory,
   }) {
     return deleteHistory(this);
@@ -639,8 +641,8 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchInitStateEvent value)? initState,
-    TResult? Function(SearchQueryEvent value)? search,
-    TResult? Function(SearchAddHistoryEvent value)? addHistory,
+    TResult? Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult? Function(SearchRequestEvent value)? search,
     TResult? Function(SearchDeleteHistoryEvent value)? deleteHistory,
   }) {
     return deleteHistory?.call(this);
@@ -650,8 +652,8 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchInitStateEvent value)? initState,
-    TResult Function(SearchQueryEvent value)? search,
-    TResult Function(SearchAddHistoryEvent value)? addHistory,
+    TResult Function(SearchAutoCompleteEvent value)? autoComplete,
+    TResult Function(SearchRequestEvent value)? search,
     TResult Function(SearchDeleteHistoryEvent value)? deleteHistory,
     required TResult orElse(),
   }) {
@@ -663,10 +665,10 @@ class _$SearchDeleteHistoryEventImpl implements SearchDeleteHistoryEvent {
 }
 
 abstract class SearchDeleteHistoryEvent implements SearchEvent {
-  const factory SearchDeleteHistoryEvent(final Place? place) =
+  const factory SearchDeleteHistoryEvent(final PlaceSuggestion? place) =
       _$SearchDeleteHistoryEventImpl;
 
-  Place? get place;
+  PlaceSuggestion? get place;
   @JsonKey(ignore: true)
   _$$SearchDeleteHistoryEventImplCopyWith<_$SearchDeleteHistoryEventImpl>
       get copyWith => throw _privateConstructorUsedError;

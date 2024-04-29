@@ -1,34 +1,33 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class LocalStorage {
 
-  Future<Result<void, String>> addSearchHistory(Place place) async =>
+  Future<Result<void, String>> addSearchHistory(PlaceSuggestion place) async =>
       _execute(() async {
-        await Hive.openBox<Place>("place_search_history");
-        final box = Hive.box<Place>("place_search_history");
+        await Hive.openBox<PlaceSuggestion>("place_suggestion_history");
+        final box = Hive.box<PlaceSuggestion>("place_suggestion_history");
 
-        await box.put(place.kakaoId, place);
+        await box.put(place.googlePlaceId, place);
       });
 
-  Future<Result<void, String>> deleteSearchHistory(Place place) async =>
+  Future<Result<void, String>> deleteSearchHistory(PlaceSuggestion place) async =>
       _execute(() async {
-        await Hive.openBox<Place>("place_search_history");
-        final box = Hive.box<Place>("place_search_history");
+        await Hive.openBox<PlaceSuggestion>("place_suggestion_history");
+        final box = Hive.box<PlaceSuggestion>("place_suggestion_history");
 
-        await box.delete(place.kakaoId);
+        await box.delete(place.googlePlaceId);
         await box.close();
       });
 
-  Future<Result<List<Place>, String>> getSearchHistory() async =>
-      _execute<List<Place>>(() async {
-        await Hive.openBox<Place>("place_search_history");
-        final box = Hive.box<Place>("place_search_history");
+  Future<Result<List<PlaceSuggestion>, String>> getSearchHistory() async =>
+      _execute<List<PlaceSuggestion>>(() async {
+        await Hive.openBox<PlaceSuggestion>("place_suggestion_history");
+        final box = Hive.box<PlaceSuggestion>("place_suggestion_history");
         return box.values.toList();
       });
 

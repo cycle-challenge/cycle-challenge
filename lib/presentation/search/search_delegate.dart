@@ -1,26 +1,22 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/presentation/search/search_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/search/serch_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 
-class Search extends SearchDelegate<Place?> {
-  Place? result;
+class Search extends SearchDelegate<PlaceSuggestion?> {
+  StreamSubscription? _subscription;
 
   @override
-  void close(BuildContext context, Place? result) {
+  void close(BuildContext context, PlaceSuggestion? result) {
     final viewModel = context.read<SearchViewModel>();
     query = '';
     viewModel.onEvent(const SearchEvent.initState());
+    _subscription?.cancel();
 
     super.close(context, result);
-
-    if (result != null) {
-      final viewModel = context.read<MapViewModel>();
-      viewModel.onEvent(MapEvent.selectPlaceResult(result));
-    }
   }
 
   @override
@@ -78,7 +74,22 @@ class Search extends SearchDelegate<Place?> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return const SizedBox();
+    final viewModel = context.read<SearchViewModel>();
+    final places = viewModel.state.places;
+
+    return ListView.builder(
+        itemCount: places.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(places[index].name),
+            subtitle: Text(places[index].address),
+            leading: const Icon(Icons.place_outlined),
+            onTap: () {
+              viewModel.onEvent(SearchEvent.search(places[index]));
+              close(context, places[index]);
+            },
+          );
+        });
   }
 
   @override
@@ -86,17 +97,14 @@ class Search extends SearchDelegate<Place?> {
     final viewModel = context.watch<SearchViewModel>();
     final places =
         query.isEmpty ? viewModel.state.history : viewModel.state.places;
-    viewModel.onEvent(SearchEvent.search(query));
+    viewModel.onEvent(SearchEvent.autoComplete(query));
 
     return ListView.builder(
       itemCount: places.length,
       itemBuilder: (context, index) {
-        String address =
-            places[index].roadAddress ?? places[index].address ?? '';
-
         return ListTile(
           title: Text(places[index].name),
-          subtitle: Text(address),
+          subtitle: Text(places[index].address),
           leading: query.isEmpty
               ? const Icon(Icons.access_time)
               : const Icon(Icons.place_outlined),
@@ -108,7 +116,7 @@ class Search extends SearchDelegate<Place?> {
                       color: Theme.of(context).colorScheme.error))
               : null,
           onTap: () {
-            result = places[index];
+            viewModel.onEvent(SearchEvent.search(places[index]));
             close(context, places[index]);
           },
         );

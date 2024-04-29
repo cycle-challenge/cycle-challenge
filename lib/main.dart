@@ -5,12 +5,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
 
 void main() async {
   await Hive.initFlutter();
-  Hive.registerAdapter(PlaceAdapter());
+  Hive.registerAdapter(PlaceSuggestionAdapter());
 
   runApp(MultiProvider(
     providers: [...globalProviders],
