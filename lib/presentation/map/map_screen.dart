@@ -66,7 +66,8 @@ class _MapScreenState extends State<MapScreen> {
     final filterState = viewModel.filterState;
 
     bool isSheetShown =
-        mainState.navigationIndex == 1 || mainState.navigationIndex == 2;
+        (mainState.navigationIndex == 1 || mainState.navigationIndex == 2) &&
+            filterState.selectedPlace == null;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -138,9 +139,9 @@ class _MapScreenState extends State<MapScreen> {
                     const SizedBox(
                       height: 20,
                     ),
+                    if (filterState.selectedPlace != null)
+                      PlaceSimpleView(place: filterState.selectedPlace),
                     if (isSheetShown) const BottomSheetView(),
-                    if (!isSheetShown && filterState.selectedPlace != null)
-                      PlaceSimpleView(place: filterState.selectedPlace)
                   ],
                 ),
               )

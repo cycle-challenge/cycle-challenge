@@ -20,7 +20,6 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MapViewModel>();
-    final mainViewModel = context.watch<MainViewModel>();
     final filterState = viewModel.filterState;
     final state = viewModel.state;
 
@@ -34,13 +33,11 @@ class _MapViewState extends State<MapView> {
           viewModel.onEvent(const MapEvent.showSearchButton()),
       onTap: (_) {
         viewModel.onEvent(const MapEvent.selectPlace(null));
-        mainViewModel.onEvent(const MainEvent.changeNavigation(0));
       },
       markers: Set.of(filterState.filteredPlaces.map((e) => Marker(
           markerId: MarkerId(e.id.toString()),
           onTap: () {
             viewModel.onEvent(MapEvent.selectPlace(e));
-            mainViewModel.onEvent(const MainEvent.changeNavigation(0));
           },
           draggable: true,
           anchor: const Offset(0.5, 0.5),
