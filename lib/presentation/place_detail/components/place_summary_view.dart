@@ -34,7 +34,7 @@ class PlaceSummaryView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (state.placeDetail!.address != null)
+                  if (place.detail!.address != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 10.0),
                       child: Wrap(
@@ -46,14 +46,14 @@ class PlaceSummaryView extends StatelessWidget {
                               child: const Icon(Icons.place_outlined)),
                           Container(
                               margin: const EdgeInsets.only(right: 5.0),
-                              child: Text(state.placeDetail!.address!,
+                              child: Text(place.detail!.address!,
                                   style: textTheme.bodyLarge)),
                           Material(
                             child: InkWell(
                               borderRadius: BorderRadius.circular(5),
                               onTap: () => viewModel.onEvent(
                                   PlaceDetailEvent.copyText(
-                                      state.placeDetail?.address)),
+                                      place.detail?.address)),
                               child: Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 5.0),
@@ -66,8 +66,8 @@ class PlaceSummaryView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (state.placeDetail!.businessHours != null &&
-                      state.placeDetail!.isOpeningNow != null)
+                  if (place.detail!.businessHours != null &&
+                      place.detail!.isOpeningNow != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 10.0),
                       child: ExpansionPanelList(
@@ -90,7 +90,7 @@ class PlaceSummaryView extends StatelessWidget {
                                         child: RichText(
                                             text: TextSpan(children: [
                                           TextSpan(
-                                              text: state.placeDetail!
+                                              text: place.detail!
                                                       .isOpeningNow!
                                                   ? "영업 중 · "
                                                   : "영업 종료 · ",
@@ -99,8 +99,7 @@ class PlaceSummaryView extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.w600)),
                                           TextSpan(
-                                              text: state
-                                                  .placeDetail!
+                                              text: place.detail!
                                                   .businessHours![
                                                       now.weekday - 1]
                                                   .split(": ")[1],
@@ -115,7 +114,7 @@ class PlaceSummaryView extends StatelessWidget {
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) => Text(
-                                      "• ${state.placeDetail!.businessHours![index]}",
+                                      "• ${place.detail!.businessHours![index]}",
                                       style: textTheme.bodyLarge),
                                   separatorBuilder: (context, _) =>
                                       const SizedBox(height: 12),
@@ -126,7 +125,7 @@ class PlaceSummaryView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (state.placeDetail!.siteURL != null)
+                  if (place.detail!.siteURL != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       child: Row(
@@ -139,7 +138,7 @@ class PlaceSummaryView extends StatelessWidget {
                             child: Linkify(
                                 onOpen: (link) => viewModel.onEvent(
                                     PlaceDetailEvent.launchURL(link.url)),
-                                text: state.placeDetail!.siteURL!,
+                                text: place.detail!.siteURL!,
                                 style: textTheme.bodyLarge?.copyWith(
                                     color: Colors.blue,
                                     decorationColor: Colors.blue)),
@@ -147,7 +146,7 @@ class PlaceSummaryView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (state.placeDetail!.phoneNumber != null)
+                  if (place.detail!.phoneNumber != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       child: Row(
@@ -158,14 +157,14 @@ class PlaceSummaryView extends StatelessWidget {
                               child: const Icon(Icons.phone_outlined)),
                           Container(
                               margin: const EdgeInsets.only(right: 10.0),
-                              child: Text(state.placeDetail!.phoneNumber!,
+                              child: Text(place.detail!.phoneNumber!,
                                   style: textTheme.bodyLarge)),
                           Material(
                             child: InkWell(
                               borderRadius: BorderRadius.circular(5),
                               onTap: () => viewModel.onEvent(
                                   PlaceDetailEvent.copyText(
-                                      state.placeDetail?.phoneNumber)),
+                                      place.detail?.phoneNumber)),
                               child: Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 5.0),

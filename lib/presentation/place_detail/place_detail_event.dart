@@ -5,8 +5,6 @@ part 'place_detail_event.freezed.dart';
 
 @freezed
 abstract class PlaceDetailEvent with _$PlaceDetailEvent {
-  const factory PlaceDetailEvent.load(PlaceModel place) =
-      LoadPlaceDetailEvent;
   const factory PlaceDetailEvent.toggleBusinessHourExpanded() =
       ToggleBusinessHourExpandedEvent;
   const factory PlaceDetailEvent.fetchImage(int placeID, int page, int pageSize) =

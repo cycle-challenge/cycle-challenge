@@ -25,9 +25,6 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => context
-        .read<PlaceDetailViewModel>()
-        .onEvent(PlaceDetailEvent.load(widget.place)));
     _tabController = TabController(length: 4, vsync: this);
   }
 
@@ -42,7 +39,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
     final viewModel = context.watch<PlaceDetailViewModel>();
     final state = viewModel.state;
 
-    if (state.placeDetail == null) {
+    if (widget.place.detail == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -101,7 +98,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
             IconButton(
                 icon: const Icon(Icons.phone),
                 onPressed: () => viewModel.onEvent(
-                    PlaceDetailEvent.callPhone(state.placeDetail?.phoneNumber)))
+                    PlaceDetailEvent.callPhone(widget.place.detail?.phoneNumber)))
           ],
         ),
       ),

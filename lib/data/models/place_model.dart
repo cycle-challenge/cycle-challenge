@@ -19,9 +19,7 @@ class PlaceModel {
 
   final List<TravelModel> _travels;
 
-  PlaceDetail? _detail;
-
-  PlaceDetail? get detail => _detail;
+  PlaceDetail? detail;
 
   String get name => _name;
 
@@ -34,10 +32,6 @@ class PlaceModel {
   String get googlePlaceId => _googlePlaceId;
 
   List<TravelModel> get travels => _travels;
-
-  void setDetail(PlaceDetail detail) {
-    _detail = detail;
-  }
 
   PlaceModel({
     required id,

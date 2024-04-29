@@ -2,19 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
+import 'package:yeohaeng_ttukttak/presentation/search/place_search_result.dart';
 import 'package:yeohaeng_ttukttak/presentation/search/search_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 
-class Search extends SearchDelegate<PlaceSuggestion?> {
+class Search extends SearchDelegate<PlaceSearchResult?> {
   StreamSubscription? _subscription;
 
   @override
-  void close(BuildContext context, PlaceSuggestion? result) {
+  void close(BuildContext context, PlaceSearchResult? result) {
     final viewModel = context.read<SearchViewModel>();
     query = '';
-    viewModel.onEvent(const SearchEvent.initState());
     _subscription?.cancel();
+    viewModel.onEvent(const SearchEvent.initState());
 
     super.close(context, result);
   }
@@ -86,7 +86,6 @@ class Search extends SearchDelegate<PlaceSuggestion?> {
             leading: const Icon(Icons.place_outlined),
             onTap: () {
               viewModel.onEvent(SearchEvent.search(places[index]));
-              close(context, places[index]);
             },
           );
         });
@@ -98,6 +97,11 @@ class Search extends SearchDelegate<PlaceSuggestion?> {
     final places =
         query.isEmpty ? viewModel.state.history : viewModel.state.places;
     viewModel.onEvent(SearchEvent.autoComplete(query));
+
+    _subscription ??= context.read<SearchViewModel>().stream.listen((event) =>
+        event.when(
+            searchComplete: (detail, place) => close(
+                context, PlaceSearchResult(detail: detail, place: place))));
 
     return ListView.builder(
       itemCount: places.length,
@@ -117,7 +121,6 @@ class Search extends SearchDelegate<PlaceSuggestion?> {
               : null,
           onTap: () {
             viewModel.onEvent(SearchEvent.search(places[index]));
-            close(context, places[index]);
           },
         );
       },

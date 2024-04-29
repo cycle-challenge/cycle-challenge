@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PlaceDetailState {
   bool get isBusinessHourExpanded => throw _privateConstructorUsedError;
-  PlaceDetail? get placeDetail => throw _privateConstructorUsedError;
   List<ImageModel> get placeImages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,10 +30,7 @@ abstract class $PlaceDetailStateCopyWith<$Res> {
           PlaceDetailState value, $Res Function(PlaceDetailState) then) =
       _$PlaceDetailStateCopyWithImpl<$Res, PlaceDetailState>;
   @useResult
-  $Res call(
-      {bool isBusinessHourExpanded,
-      PlaceDetail? placeDetail,
-      List<ImageModel> placeImages});
+  $Res call({bool isBusinessHourExpanded, List<ImageModel> placeImages});
 }
 
 /// @nodoc
@@ -51,7 +47,6 @@ class _$PlaceDetailStateCopyWithImpl<$Res, $Val extends PlaceDetailState>
   @override
   $Res call({
     Object? isBusinessHourExpanded = null,
-    Object? placeDetail = freezed,
     Object? placeImages = null,
   }) {
     return _then(_value.copyWith(
@@ -59,10 +54,6 @@ class _$PlaceDetailStateCopyWithImpl<$Res, $Val extends PlaceDetailState>
           ? _value.isBusinessHourExpanded
           : isBusinessHourExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
-      placeDetail: freezed == placeDetail
-          ? _value.placeDetail
-          : placeDetail // ignore: cast_nullable_to_non_nullable
-              as PlaceDetail?,
       placeImages: null == placeImages
           ? _value.placeImages
           : placeImages // ignore: cast_nullable_to_non_nullable
@@ -79,10 +70,7 @@ abstract class _$$PlaceDetailStateImplCopyWith<$Res>
       __$$PlaceDetailStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isBusinessHourExpanded,
-      PlaceDetail? placeDetail,
-      List<ImageModel> placeImages});
+  $Res call({bool isBusinessHourExpanded, List<ImageModel> placeImages});
 }
 
 /// @nodoc
@@ -97,7 +85,6 @@ class __$$PlaceDetailStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isBusinessHourExpanded = null,
-    Object? placeDetail = freezed,
     Object? placeImages = null,
   }) {
     return _then(_$PlaceDetailStateImpl(
@@ -105,10 +92,6 @@ class __$$PlaceDetailStateImplCopyWithImpl<$Res>
           ? _value.isBusinessHourExpanded
           : isBusinessHourExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
-      placeDetail: freezed == placeDetail
-          ? _value.placeDetail
-          : placeDetail // ignore: cast_nullable_to_non_nullable
-              as PlaceDetail?,
       placeImages: null == placeImages
           ? _value._placeImages
           : placeImages // ignore: cast_nullable_to_non_nullable
@@ -122,14 +105,11 @@ class __$$PlaceDetailStateImplCopyWithImpl<$Res>
 class _$PlaceDetailStateImpl implements _PlaceDetailState {
   _$PlaceDetailStateImpl(
       {required this.isBusinessHourExpanded,
-      required this.placeDetail,
       required final List<ImageModel> placeImages})
       : _placeImages = placeImages;
 
   @override
   final bool isBusinessHourExpanded;
-  @override
-  final PlaceDetail? placeDetail;
   final List<ImageModel> _placeImages;
   @override
   List<ImageModel> get placeImages {
@@ -140,7 +120,7 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
 
   @override
   String toString() {
-    return 'PlaceDetailState(isBusinessHourExpanded: $isBusinessHourExpanded, placeDetail: $placeDetail, placeImages: $placeImages)';
+    return 'PlaceDetailState(isBusinessHourExpanded: $isBusinessHourExpanded, placeImages: $placeImages)';
   }
 
   @override
@@ -150,15 +130,13 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
             other is _$PlaceDetailStateImpl &&
             (identical(other.isBusinessHourExpanded, isBusinessHourExpanded) ||
                 other.isBusinessHourExpanded == isBusinessHourExpanded) &&
-            (identical(other.placeDetail, placeDetail) ||
-                other.placeDetail == placeDetail) &&
             const DeepCollectionEquality()
                 .equals(other._placeImages, _placeImages));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isBusinessHourExpanded,
-      placeDetail, const DeepCollectionEquality().hash(_placeImages));
+      const DeepCollectionEquality().hash(_placeImages));
 
   @JsonKey(ignore: true)
   @override
@@ -171,13 +149,10 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
 abstract class _PlaceDetailState implements PlaceDetailState {
   factory _PlaceDetailState(
       {required final bool isBusinessHourExpanded,
-      required final PlaceDetail? placeDetail,
       required final List<ImageModel> placeImages}) = _$PlaceDetailStateImpl;
 
   @override
   bool get isBusinessHourExpanded;
-  @override
-  PlaceDetail? get placeDetail;
   @override
   List<ImageModel> get placeImages;
   @override

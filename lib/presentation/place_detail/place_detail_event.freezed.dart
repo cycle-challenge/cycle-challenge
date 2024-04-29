@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PlaceDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceModel place) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
     required TResult Function(String? phoneNumber) callPhone,
@@ -28,7 +27,6 @@ mixin _$PlaceDetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceModel place)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
     TResult? Function(String? phoneNumber)? callPhone,
@@ -38,7 +36,6 @@ mixin _$PlaceDetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceModel place)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
     TResult Function(String? phoneNumber)? callPhone,
@@ -49,7 +46,6 @@ mixin _$PlaceDetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadPlaceDetailEvent value) load,
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
@@ -60,7 +56,6 @@ mixin _$PlaceDetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadPlaceDetailEvent value)? load,
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
@@ -71,7 +66,6 @@ mixin _$PlaceDetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadPlaceDetailEvent value)? load,
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
@@ -99,169 +93,6 @@ class _$PlaceDetailEventCopyWithImpl<$Res, $Val extends PlaceDetailEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$LoadPlaceDetailEventImplCopyWith<$Res> {
-  factory _$$LoadPlaceDetailEventImplCopyWith(_$LoadPlaceDetailEventImpl value,
-          $Res Function(_$LoadPlaceDetailEventImpl) then) =
-      __$$LoadPlaceDetailEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({PlaceModel place});
-}
-
-/// @nodoc
-class __$$LoadPlaceDetailEventImplCopyWithImpl<$Res>
-    extends _$PlaceDetailEventCopyWithImpl<$Res, _$LoadPlaceDetailEventImpl>
-    implements _$$LoadPlaceDetailEventImplCopyWith<$Res> {
-  __$$LoadPlaceDetailEventImplCopyWithImpl(_$LoadPlaceDetailEventImpl _value,
-      $Res Function(_$LoadPlaceDetailEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? place = null,
-  }) {
-    return _then(_$LoadPlaceDetailEventImpl(
-      null == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$LoadPlaceDetailEventImpl implements LoadPlaceDetailEvent {
-  const _$LoadPlaceDetailEventImpl(this.place);
-
-  @override
-  final PlaceModel place;
-
-  @override
-  String toString() {
-    return 'PlaceDetailEvent.load(place: $place)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadPlaceDetailEventImpl &&
-            (identical(other.place, place) || other.place == place));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, place);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadPlaceDetailEventImplCopyWith<_$LoadPlaceDetailEventImpl>
-      get copyWith =>
-          __$$LoadPlaceDetailEventImplCopyWithImpl<_$LoadPlaceDetailEventImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(PlaceModel place) load,
-    required TResult Function() toggleBusinessHourExpanded,
-    required TResult Function(int placeID, int page, int pageSize) fetchImage,
-    required TResult Function(String? phoneNumber) callPhone,
-    required TResult Function(String? text) copyText,
-    required TResult Function(String? url) launchURL,
-  }) {
-    return load(place);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceModel place)? load,
-    TResult? Function()? toggleBusinessHourExpanded,
-    TResult? Function(int placeID, int page, int pageSize)? fetchImage,
-    TResult? Function(String? phoneNumber)? callPhone,
-    TResult? Function(String? text)? copyText,
-    TResult? Function(String? url)? launchURL,
-  }) {
-    return load?.call(place);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceModel place)? load,
-    TResult Function()? toggleBusinessHourExpanded,
-    TResult Function(int placeID, int page, int pageSize)? fetchImage,
-    TResult Function(String? phoneNumber)? callPhone,
-    TResult Function(String? text)? copyText,
-    TResult Function(String? url)? launchURL,
-    required TResult orElse(),
-  }) {
-    if (load != null) {
-      return load(place);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoadPlaceDetailEvent value) load,
-    required TResult Function(ToggleBusinessHourExpandedEvent value)
-        toggleBusinessHourExpanded,
-    required TResult Function(FetchPlaceImageEvent value) fetchImage,
-    required TResult Function(CallPhoneEvent value) callPhone,
-    required TResult Function(CopyTextEvent value) copyText,
-    required TResult Function(LaunchURL value) launchURL,
-  }) {
-    return load(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadPlaceDetailEvent value)? load,
-    TResult? Function(ToggleBusinessHourExpandedEvent value)?
-        toggleBusinessHourExpanded,
-    TResult? Function(FetchPlaceImageEvent value)? fetchImage,
-    TResult? Function(CallPhoneEvent value)? callPhone,
-    TResult? Function(CopyTextEvent value)? copyText,
-    TResult? Function(LaunchURL value)? launchURL,
-  }) {
-    return load?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadPlaceDetailEvent value)? load,
-    TResult Function(ToggleBusinessHourExpandedEvent value)?
-        toggleBusinessHourExpanded,
-    TResult Function(FetchPlaceImageEvent value)? fetchImage,
-    TResult Function(CallPhoneEvent value)? callPhone,
-    TResult Function(CopyTextEvent value)? copyText,
-    TResult Function(LaunchURL value)? launchURL,
-    required TResult orElse(),
-  }) {
-    if (load != null) {
-      return load(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadPlaceDetailEvent implements PlaceDetailEvent {
-  const factory LoadPlaceDetailEvent(final PlaceModel place) =
-      _$LoadPlaceDetailEventImpl;
-
-  PlaceModel get place;
-  @JsonKey(ignore: true)
-  _$$LoadPlaceDetailEventImplCopyWith<_$LoadPlaceDetailEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -307,7 +138,6 @@ class _$ToggleBusinessHourExpandedEventImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceModel place) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
     required TResult Function(String? phoneNumber) callPhone,
@@ -320,7 +150,6 @@ class _$ToggleBusinessHourExpandedEventImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceModel place)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
     TResult? Function(String? phoneNumber)? callPhone,
@@ -333,7 +162,6 @@ class _$ToggleBusinessHourExpandedEventImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceModel place)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
     TResult Function(String? phoneNumber)? callPhone,
@@ -350,7 +178,6 @@ class _$ToggleBusinessHourExpandedEventImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadPlaceDetailEvent value) load,
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
@@ -364,7 +191,6 @@ class _$ToggleBusinessHourExpandedEventImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadPlaceDetailEvent value)? load,
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
@@ -378,7 +204,6 @@ class _$ToggleBusinessHourExpandedEventImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadPlaceDetailEvent value)? load,
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
@@ -482,7 +307,6 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceModel place) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
     required TResult Function(String? phoneNumber) callPhone,
@@ -495,7 +319,6 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceModel place)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
     TResult? Function(String? phoneNumber)? callPhone,
@@ -508,7 +331,6 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceModel place)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
     TResult Function(String? phoneNumber)? callPhone,
@@ -525,7 +347,6 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadPlaceDetailEvent value) load,
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
@@ -539,7 +360,6 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadPlaceDetailEvent value)? load,
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
@@ -553,7 +373,6 @@ class _$FetchPlaceImageEventImpl implements FetchPlaceImageEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadPlaceDetailEvent value)? load,
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
@@ -648,7 +467,6 @@ class _$CallPhoneEventImpl implements CallPhoneEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceModel place) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
     required TResult Function(String? phoneNumber) callPhone,
@@ -661,7 +479,6 @@ class _$CallPhoneEventImpl implements CallPhoneEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceModel place)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
     TResult? Function(String? phoneNumber)? callPhone,
@@ -674,7 +491,6 @@ class _$CallPhoneEventImpl implements CallPhoneEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceModel place)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
     TResult Function(String? phoneNumber)? callPhone,
@@ -691,7 +507,6 @@ class _$CallPhoneEventImpl implements CallPhoneEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadPlaceDetailEvent value) load,
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
@@ -705,7 +520,6 @@ class _$CallPhoneEventImpl implements CallPhoneEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadPlaceDetailEvent value)? load,
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
@@ -719,7 +533,6 @@ class _$CallPhoneEventImpl implements CallPhoneEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadPlaceDetailEvent value)? load,
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
@@ -809,7 +622,6 @@ class _$CopyTextEventImpl implements CopyTextEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceModel place) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
     required TResult Function(String? phoneNumber) callPhone,
@@ -822,7 +634,6 @@ class _$CopyTextEventImpl implements CopyTextEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceModel place)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
     TResult? Function(String? phoneNumber)? callPhone,
@@ -835,7 +646,6 @@ class _$CopyTextEventImpl implements CopyTextEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceModel place)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
     TResult Function(String? phoneNumber)? callPhone,
@@ -852,7 +662,6 @@ class _$CopyTextEventImpl implements CopyTextEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadPlaceDetailEvent value) load,
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
@@ -866,7 +675,6 @@ class _$CopyTextEventImpl implements CopyTextEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadPlaceDetailEvent value)? load,
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
@@ -880,7 +688,6 @@ class _$CopyTextEventImpl implements CopyTextEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadPlaceDetailEvent value)? load,
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,
@@ -969,7 +776,6 @@ class _$LaunchURLImpl implements LaunchURL {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceModel place) load,
     required TResult Function() toggleBusinessHourExpanded,
     required TResult Function(int placeID, int page, int pageSize) fetchImage,
     required TResult Function(String? phoneNumber) callPhone,
@@ -982,7 +788,6 @@ class _$LaunchURLImpl implements LaunchURL {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceModel place)? load,
     TResult? Function()? toggleBusinessHourExpanded,
     TResult? Function(int placeID, int page, int pageSize)? fetchImage,
     TResult? Function(String? phoneNumber)? callPhone,
@@ -995,7 +800,6 @@ class _$LaunchURLImpl implements LaunchURL {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceModel place)? load,
     TResult Function()? toggleBusinessHourExpanded,
     TResult Function(int placeID, int page, int pageSize)? fetchImage,
     TResult Function(String? phoneNumber)? callPhone,
@@ -1012,7 +816,6 @@ class _$LaunchURLImpl implements LaunchURL {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadPlaceDetailEvent value) load,
     required TResult Function(ToggleBusinessHourExpandedEvent value)
         toggleBusinessHourExpanded,
     required TResult Function(FetchPlaceImageEvent value) fetchImage,
@@ -1026,7 +829,6 @@ class _$LaunchURLImpl implements LaunchURL {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadPlaceDetailEvent value)? load,
     TResult? Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult? Function(FetchPlaceImageEvent value)? fetchImage,
@@ -1040,7 +842,6 @@ class _$LaunchURLImpl implements LaunchURL {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadPlaceDetailEvent value)? load,
     TResult Function(ToggleBusinessHourExpandedEvent value)?
         toggleBusinessHourExpanded,
     TResult Function(FetchPlaceImageEvent value)? fetchImage,

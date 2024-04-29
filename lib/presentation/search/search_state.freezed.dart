@@ -19,6 +19,7 @@ mixin _$SearchState {
   String get query => throw _privateConstructorUsedError;
   List<PlaceSuggestion> get places => throw _privateConstructorUsedError;
   List<PlaceSuggestion> get history => throw _privateConstructorUsedError;
+  dynamic get autoCompleteCount => throw _privateConstructorUsedError;
   Session? get session => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,6 +37,7 @@ abstract class $SearchStateCopyWith<$Res> {
       {String query,
       List<PlaceSuggestion> places,
       List<PlaceSuggestion> history,
+      dynamic autoCompleteCount,
       Session? session});
 
   $SessionCopyWith<$Res>? get session;
@@ -57,6 +59,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? query = null,
     Object? places = null,
     Object? history = null,
+    Object? autoCompleteCount = freezed,
     Object? session = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,6 +75,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
           ? _value.history
           : history // ignore: cast_nullable_to_non_nullable
               as List<PlaceSuggestion>,
+      autoCompleteCount: freezed == autoCompleteCount
+          ? _value.autoCompleteCount
+          : autoCompleteCount // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       session: freezed == session
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
@@ -104,6 +111,7 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       {String query,
       List<PlaceSuggestion> places,
       List<PlaceSuggestion> history,
+      dynamic autoCompleteCount,
       Session? session});
 
   @override
@@ -124,6 +132,7 @@ class __$$SearchStateImplCopyWithImpl<$Res>
     Object? query = null,
     Object? places = null,
     Object? history = null,
+    Object? autoCompleteCount = freezed,
     Object? session = freezed,
   }) {
     return _then(_$SearchStateImpl(
@@ -139,6 +148,9 @@ class __$$SearchStateImplCopyWithImpl<$Res>
           ? _value._history
           : history // ignore: cast_nullable_to_non_nullable
               as List<PlaceSuggestion>,
+      autoCompleteCount: freezed == autoCompleteCount
+          ? _value.autoCompleteCount!
+          : autoCompleteCount,
       session: freezed == session
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
@@ -154,6 +166,7 @@ class _$SearchStateImpl implements _SearchState {
       {this.query = '',
       final List<PlaceSuggestion> places = const [],
       final List<PlaceSuggestion> history = const [],
+      this.autoCompleteCount = 0,
       this.session})
       : _places = places,
         _history = history;
@@ -180,11 +193,14 @@ class _$SearchStateImpl implements _SearchState {
   }
 
   @override
+  @JsonKey()
+  final dynamic autoCompleteCount;
+  @override
   final Session? session;
 
   @override
   String toString() {
-    return 'SearchState(query: $query, places: $places, history: $history, session: $session)';
+    return 'SearchState(query: $query, places: $places, history: $history, autoCompleteCount: $autoCompleteCount, session: $session)';
   }
 
   @override
@@ -195,6 +211,8 @@ class _$SearchStateImpl implements _SearchState {
             (identical(other.query, query) || other.query == query) &&
             const DeepCollectionEquality().equals(other._places, _places) &&
             const DeepCollectionEquality().equals(other._history, _history) &&
+            const DeepCollectionEquality()
+                .equals(other.autoCompleteCount, autoCompleteCount) &&
             (identical(other.session, session) || other.session == session));
   }
 
@@ -204,6 +222,7 @@ class _$SearchStateImpl implements _SearchState {
       query,
       const DeepCollectionEquality().hash(_places),
       const DeepCollectionEquality().hash(_history),
+      const DeepCollectionEquality().hash(autoCompleteCount),
       session);
 
   @JsonKey(ignore: true)
@@ -218,6 +237,7 @@ abstract class _SearchState implements SearchState {
       {final String query,
       final List<PlaceSuggestion> places,
       final List<PlaceSuggestion> history,
+      final dynamic autoCompleteCount,
       final Session? session}) = _$SearchStateImpl;
 
   @override
@@ -226,6 +246,8 @@ abstract class _SearchState implements SearchState {
   List<PlaceSuggestion> get places;
   @override
   List<PlaceSuggestion> get history;
+  @override
+  dynamic get autoCompleteCount;
   @override
   Session? get session;
   @override

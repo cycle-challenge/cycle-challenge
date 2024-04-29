@@ -29,13 +29,12 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final GlobalKey _key = GlobalKey();
   GoogleMapController? _mapCompleter;
-  StreamSubscription? _subscription, _searchSubscription;
+  StreamSubscription? _subscription;
 
   @override
   void dispose() {
     super.dispose();
     _subscription?.cancel();
-    _searchSubscription?.cancel();
   }
 
   @override
@@ -43,22 +42,9 @@ class _MapScreenState extends State<MapScreen> {
     super.initState();
     Future.microtask(() {
       final viewModel = context.read<MapViewModel>();
-      final searchViewModel = context.read<SearchViewModel>();
-
-      _searchSubscription = searchViewModel.stream
-          .listen((event) => event.when(searchComplete: _onSearchComplete));
       _subscription = viewModel.stream
           .listen((event) => event.when(moveCamera: _onMoveCamera));
     });
-  }
-
-  void _onSearchComplete(PlaceDetail detail, PlaceModel? place) {
-    final viewModel = context.read<MapViewModel>();
-
-    _onMoveCamera(detail.latitude, detail.longitude);
-    viewModel.onEvent(const MapEvent.findNearbyPlace());
-
-    return viewModel.onEvent(MapEvent.selectPlace(place));
   }
 
   void _onMoveCamera(double latitude, double longitude) async {

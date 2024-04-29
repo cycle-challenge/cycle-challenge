@@ -11,6 +11,7 @@ class SearchState with _$SearchState {
     @Default('') String query,
     @Default([]) List<PlaceSuggestion> places,
     @Default([]) List<PlaceSuggestion> history,
+    @Default(0) autoCompleteCount,
     Session? session,
   }) = _SearchState;
 

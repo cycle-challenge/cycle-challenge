@@ -32,6 +32,13 @@ class SearchViewModel with ChangeNotifier {
   }
 
   void _onInitState() async {
+    // 세션이 남아 있는 경우, 아무 요청을 보내 세션을 취소
+    if (_state.session != null && _state.autoCompleteCount > 0) {
+      debugPrint('[SESSION_TERMINATED] ${_state.session?.token}');
+      await _placeRepository.getDetail('ChIJv78qn9rDZDUR7N-SSFboGkA',
+          session: _state.session);
+    }
+
     final result = await _placeRepository.getSearchHistory();
 
     result.when(
@@ -47,7 +54,8 @@ class SearchViewModel with ChangeNotifier {
 
     // 세션이 없는 경우 신규 발급
     if (_state.session == null) {
-      _state = _state.copyWith(session: await Session.create());
+      _state = _state.copyWith(
+          session: await Session.create(), autoCompleteCount: 0);
     }
 
     _state = _state.copyWith(query: query);
@@ -56,7 +64,8 @@ class SearchViewModel with ChangeNotifier {
 
     result.when(
         success: (places) {
-          _state = _state.copyWith(places: places);
+          _state = _state.copyWith(
+              places: places, autoCompleteCount: _state.autoCompleteCount + 1);
           notifyListeners();
         },
         error: (message) =>
@@ -66,17 +75,13 @@ class SearchViewModel with ChangeNotifier {
   void _onSearch(PlaceSuggestion? place) async {
     if (place == null) return;
 
-    // 세션이 없는 경우 신규 발급
-    if (_state.session == null) {
-      _state = _state.copyWith(session: await Session.create());
-    }
-
     final result = await _placeRepository.getDetail(place.googlePlaceId,
         session: _state.session);
 
     result.when(
         success: (detail) async {
           // 세션 초기화
+          debugPrint('[SESSION_COMPLETED] ${_state.session?.token}');
           _state = _state.copyWith(session: null);
 
           // 서버에 등록된 관광지 정보가 있는지 확인
