@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/profile/components/profile_travel_view.dart';
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final authViewModel = context.watch<AuthViewModel>();
+    final member = authViewModel.state.member;
+
+    if (member == null) return const SizedBox();
+
+    return Scaffold(
+      appBar: AppBar(actions: [
+        IconButton(onPressed: () => authViewModel.onEvent(const AuthEvent.signOut()), icon: const Icon(Icons.logout)),
+        const SizedBox(width: 8)
+      ]),
+      body: Column(
+        children: [
+          ListTile(
+              leading: const CircleAvatar(
+                  radius: 28,
+                  backgroundImage: AssetImage('assets/image/default.png')),
+              title: Text(member.nickname,
+                  style: Theme.of(context).textTheme.titleLarge),
+              subtitle: Text('여행 0개 • 리뷰 0건',
+                  style: Theme.of(context).textTheme.bodyMedium)),
+          const SizedBox(height: 8),
+          Expanded(
+              child: DefaultTabController(
+            length: 2,
+            child: Column(
+              children: [
+                const TabBar(
+                    tabs: [Tab(child: Text('여행')), Tab(child: Text('리뷰'))]),
+                Expanded(
+                    child: TabBarView(children: [const ProfileTravelView(), Container()]))
+              ],
+            ),
+          ))
+        ],
+      ),
+    );
+  }
+}

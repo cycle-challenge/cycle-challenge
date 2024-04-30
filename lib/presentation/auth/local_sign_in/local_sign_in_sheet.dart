@@ -14,7 +14,6 @@ import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_in/local_sign_in_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/local_sign_up/local_sign_up_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 
 class LocalSignInSheet extends StatefulWidget {
   const LocalSignInSheet({super.key});

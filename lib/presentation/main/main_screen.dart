@@ -12,6 +12,7 @@ import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -80,16 +81,27 @@ class _MainScreenState extends State<MainScreen> {
 
     final state = viewModel.state;
 
+    Widget body = Container();
+
+    switch (viewModel.state.navigationIndex) {
+      case 0:
+      case 1:
+      case 2:
+        body = const MapScreen();
+        break;
+      case 3:
+        body = const BookmarkScreen();
+        break;
+      case 4:
+        body = const ProfileScreen();
+    }
+
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 200),
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          return FadeTransition(opacity: animation, child: child);
-        },
-        child: viewModel.state.navigationIndex == 3
-            ? const BookmarkScreen()
-            : const MapScreen(),
-      ),
+          duration: const Duration(milliseconds: 200),
+          transitionBuilder: (Widget child, Animation<double> animation) =>
+              FadeTransition(opacity: animation, child: child),
+          child: body),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       floatingActionButton: isPlaceSelected
           ? FloatingActionButton(
@@ -116,11 +128,6 @@ class _MainScreenState extends State<MainScreen> {
                 surfaceTintColor: Theme.of(context).colorScheme.surface)
             : NavigationBar(
                 onDestinationSelected: (index) {
-                  if (index == 4) {
-                    final authViewModel = context.read<AuthViewModel>();
-                    authViewModel.onEvent(const AuthEvent.signOut());
-                  }
-
                   viewModel.onEvent(const MainEvent.initBottomSheet(null));
                   viewModel.onEvent(MainEvent.changeNavigation(index));
                 },
