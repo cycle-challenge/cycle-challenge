@@ -22,6 +22,8 @@ mixin _$PlaceSuggestion {
   String get name => throw _privateConstructorUsedError;
   @HiveField(2)
   String get address => throw _privateConstructorUsedError;
+  @HiveField(3)
+  DateTime? get modifiedAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlaceSuggestionCopyWith<PlaceSuggestion> get copyWith =>
@@ -37,7 +39,8 @@ abstract class $PlaceSuggestionCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String googlePlaceId,
       @HiveField(1) String name,
-      @HiveField(2) String address});
+      @HiveField(2) String address,
+      @HiveField(3) DateTime? modifiedAt});
 }
 
 /// @nodoc
@@ -56,6 +59,7 @@ class _$PlaceSuggestionCopyWithImpl<$Res, $Val extends PlaceSuggestion>
     Object? googlePlaceId = null,
     Object? name = null,
     Object? address = null,
+    Object? modifiedAt = freezed,
   }) {
     return _then(_value.copyWith(
       googlePlaceId: null == googlePlaceId
@@ -70,6 +74,10 @@ class _$PlaceSuggestionCopyWithImpl<$Res, $Val extends PlaceSuggestion>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      modifiedAt: freezed == modifiedAt
+          ? _value.modifiedAt
+          : modifiedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -85,7 +93,8 @@ abstract class _$$PlaceSuggestionImplCopyWith<$Res>
   $Res call(
       {@HiveField(0) String googlePlaceId,
       @HiveField(1) String name,
-      @HiveField(2) String address});
+      @HiveField(2) String address,
+      @HiveField(3) DateTime? modifiedAt});
 }
 
 /// @nodoc
@@ -102,6 +111,7 @@ class __$$PlaceSuggestionImplCopyWithImpl<$Res>
     Object? googlePlaceId = null,
     Object? name = null,
     Object? address = null,
+    Object? modifiedAt = freezed,
   }) {
     return _then(_$PlaceSuggestionImpl(
       googlePlaceId: null == googlePlaceId
@@ -116,6 +126,10 @@ class __$$PlaceSuggestionImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      modifiedAt: freezed == modifiedAt
+          ? _value.modifiedAt
+          : modifiedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -126,7 +140,8 @@ class _$PlaceSuggestionImpl implements _PlaceSuggestion {
   _$PlaceSuggestionImpl(
       {@HiveField(0) required this.googlePlaceId,
       @HiveField(1) required this.name,
-      @HiveField(2) required this.address});
+      @HiveField(2) required this.address,
+      @HiveField(3) this.modifiedAt});
 
   @override
   @HiveField(0)
@@ -137,10 +152,13 @@ class _$PlaceSuggestionImpl implements _PlaceSuggestion {
   @override
   @HiveField(2)
   final String address;
+  @override
+  @HiveField(3)
+  final DateTime? modifiedAt;
 
   @override
   String toString() {
-    return 'PlaceSuggestion(googlePlaceId: $googlePlaceId, name: $name, address: $address)';
+    return 'PlaceSuggestion(googlePlaceId: $googlePlaceId, name: $name, address: $address, modifiedAt: $modifiedAt)';
   }
 
   @override
@@ -151,11 +169,14 @@ class _$PlaceSuggestionImpl implements _PlaceSuggestion {
             (identical(other.googlePlaceId, googlePlaceId) ||
                 other.googlePlaceId == googlePlaceId) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.modifiedAt, modifiedAt) ||
+                other.modifiedAt == modifiedAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, googlePlaceId, name, address);
+  int get hashCode =>
+      Object.hash(runtimeType, googlePlaceId, name, address, modifiedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +190,8 @@ abstract class _PlaceSuggestion implements PlaceSuggestion {
   factory _PlaceSuggestion(
       {@HiveField(0) required final String googlePlaceId,
       @HiveField(1) required final String name,
-      @HiveField(2) required final String address}) = _$PlaceSuggestionImpl;
+      @HiveField(2) required final String address,
+      @HiveField(3) final DateTime? modifiedAt}) = _$PlaceSuggestionImpl;
 
   @override
   @HiveField(0)
@@ -180,6 +202,9 @@ abstract class _PlaceSuggestion implements PlaceSuggestion {
   @override
   @HiveField(2)
   String get address;
+  @override
+  @HiveField(3)
+  DateTime? get modifiedAt;
   @override
   @JsonKey(ignore: true)
   _$$PlaceSuggestionImplCopyWith<_$PlaceSuggestionImpl> get copyWith =>

@@ -24,25 +24,23 @@ class Search extends SearchDelegate<PlaceSearchResult?> {
     final ThemeData theme = Theme.of(context);
 
     return theme.copyWith(
-      hintColor: Colors.red,
-      navigationBarTheme: theme.navigationBarTheme.copyWith(),
-      textTheme: theme.textTheme
-          .copyWith(titleLarge: theme.textTheme.bodyLarge // query Color
-              ),
-      inputDecorationTheme: theme.inputDecorationTheme.copyWith(
-          hintStyle: theme.textTheme.bodyLarge
-              ?.copyWith(color: theme.colorScheme.outline),
-          fillColor: theme.colorScheme.surface,
-          filled: true,
-          isDense: true,
-          border: UnderlineInputBorder(
-              borderSide: BorderSide(color: theme.colorScheme.outline)),
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: theme.colorScheme.outline))),
-      appBarTheme: theme.appBarTheme.copyWith(
-        titleSpacing: 0,
-      ),
-    );
+        hintColor: Colors.red,
+        navigationBarTheme: theme.navigationBarTheme.copyWith(),
+        textTheme: theme.textTheme
+            .copyWith(titleLarge: theme.textTheme.bodyLarge // query Color
+                ),
+        inputDecorationTheme: theme.inputDecorationTheme.copyWith(
+            hintStyle: theme.textTheme.bodyLarge
+                ?.copyWith(color: theme.colorScheme.outline),
+            fillColor: theme.colorScheme.surface,
+            filled: true,
+            isDense: true,
+            border: UnderlineInputBorder(
+                borderSide: BorderSide(color: theme.colorScheme.outline)),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: theme.colorScheme.outline))),
+        appBarTheme: theme.appBarTheme
+            .copyWith(titleSpacing: 0, scrolledUnderElevation: 0));
   }
 
   @override

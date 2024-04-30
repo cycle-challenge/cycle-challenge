@@ -20,19 +20,22 @@ class PlaceSuggestionAdapter extends TypeAdapter<PlaceSuggestion> {
       googlePlaceId: fields[0] as String,
       name: fields[1] as String,
       address: fields[2] as String,
+      modifiedAt: fields[3] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, PlaceSuggestion obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.googlePlaceId)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.address);
+      ..write(obj.address)
+      ..writeByte(3)
+      ..write(obj.modifiedAt);
   }
 
   @override

@@ -69,11 +69,6 @@ class _MapScreenState extends State<MapScreen> {
 
     final isPlaceSelected = viewModel.filterState.selectedPlace != null;
 
-    final bookmarkViewModel = context.watch<BookmarkViewModel>();
-
-    bool isBookmarked =
-    bookmarkViewModel.state.placeIdSet.contains(filterState.selectedPlace?.id);
-
     bool isSheetShown =
         (mainState.navigationIndex == 1 || mainState.navigationIndex == 2) &&
            !isPlaceSelected;

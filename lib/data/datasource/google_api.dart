@@ -13,16 +13,22 @@ class GoogleApi {
   Future<Result<List<PlaceSuggestion>, String>> autoComplete(
       String query, Session session) async {
     try {
-      final response = await dio.post(
-          'https://places.googleapis.com/v1/places:autocomplete',
-          queryParameters: {'key': apiKey, 'input': query},
-          options: Options(headers: {
-            'Accept-Language': 'ko',
-            'sessionToken': session.token
-          }));
+      debugPrint('[SESSION_TOKEN] ${session.token}');
+      final response =
+          await dio.post('https://places.googleapis.com/v1/places:autocomplete',
+              data: {
+                'input': query,
+                'sessionToken': session.token,
+                'includedRegionCodes': ['kr']
+              },
+              options: Options(headers: {
+                'Accept-Language': 'ko',
+                'X-Goog-Api-Key': apiKey,
+              }));
 
-      if (!response.data.containsKey('suggestions'))
+      if (!response.data.containsKey('suggestions')) {
         return const Result.success([]);
+      }
 
       final places = List.of(response.data['suggestions'])
           .map((e) => PlaceSuggestion.fromJson(e))

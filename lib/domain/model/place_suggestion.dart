@@ -10,7 +10,8 @@ class PlaceSuggestion with _$PlaceSuggestion {
   factory PlaceSuggestion(
       {@HiveField(0) required String googlePlaceId,
       @HiveField(1) required String name,
-      @HiveField(2) required String address}) = _PlaceSuggestion;
+      @HiveField(2) required String address,
+      @HiveField(3) DateTime? modifiedAt}) = _PlaceSuggestion;
 
   factory PlaceSuggestion.fromJson(Map<String, dynamic> json) {
     return PlaceSuggestion(
