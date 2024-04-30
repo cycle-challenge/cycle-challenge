@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
@@ -13,6 +17,7 @@ import 'package:yeohaeng_ttukttak/presentation/map/components/filter/filter_view
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/map_search_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/search_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/place_simple_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 import 'components/map/map_view.dart';
 
@@ -37,17 +42,21 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    Future.microtask(() {
       final viewModel = context.read<MapViewModel>();
-
       _subscription = viewModel.stream
           .listen((event) => event.when(moveCamera: _onMoveCamera));
     });
   }
 
   void _onMoveCamera(double latitude, double longitude) async {
-    _mapCompleter?.moveCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(latitude, longitude), zoom: 13)));
+    final viewModel = context.read<MapViewModel>();
+
+    final position =
+        CameraPosition(target: LatLng(latitude, longitude), zoom: 13);
+    _mapCompleter?.moveCamera(CameraUpdate.newCameraPosition(position));
+
+    viewModel.onEvent(MapEvent.changePosition(position));
   }
 
   @override
@@ -58,8 +67,11 @@ class _MapScreenState extends State<MapScreen> {
     final mainState = mainViewModel.state;
     final filterState = viewModel.filterState;
 
+    final isPlaceSelected = viewModel.filterState.selectedPlace != null;
+
     bool isSheetShown =
-        mainState.navigationIndex == 1 || mainState.navigationIndex == 2;
+        (mainState.navigationIndex == 1 || mainState.navigationIndex == 2) &&
+           !isPlaceSelected;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -74,7 +86,7 @@ class _MapScreenState extends State<MapScreen> {
                     : Theme.of(context).colorScheme.surface.withOpacity(0.0),
           ),
           child: AppBar(
-            title: const SearchBarWidget(),
+            title: SearchBarWidget(),
             backgroundColor:
                 Theme.of(context).colorScheme.surface.withOpacity(0.0),
             scrolledUnderElevation: 0,
@@ -131,9 +143,9 @@ class _MapScreenState extends State<MapScreen> {
                     const SizedBox(
                       height: 20,
                     ),
+                    if (isPlaceSelected)
+                      PlaceSimpleView(place: filterState.selectedPlace),
                     if (isSheetShown) const BottomSheetView(),
-                    if (!isSheetShown && filterState.selectedPlace != null)
-                      PlaceSimpleView(place: filterState.selectedPlace)
                   ],
                 ),
               )

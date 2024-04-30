@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/google_api.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/local_stoarge.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
@@ -15,7 +17,6 @@ import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
-import 'package:yeohaeng_ttukttak/domain/use_case/find_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_place_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_location_use_case.dart';
@@ -30,6 +31,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
 List<SingleChildWidget> globalProviders = [
@@ -47,7 +49,9 @@ List<SingleChildWidget> independentModules = [
   Provider<SecureStorage>(
       create: (_) => SecureStorage(const FlutterSecureStorage())),
   Provider<StreamController<MainUiEvent>>(
-      create: (_) => StreamController.broadcast())
+      create: (_) => StreamController.broadcast()),
+  Provider<GoogleApi>(create: (_) => GoogleApi()),
+  Provider<LocalStorage>(create: (_) => LocalStorage())
 ];
 
 List<SingleChildWidget> dependentModules = [
@@ -57,7 +61,8 @@ List<SingleChildWidget> dependentModules = [
             context.read<StreamController<MainUiEvent>>()))),
   Provider<RemoteAPI>(create: (context) => RemoteAPI(context.read<Dio>())),
   Provider<PlaceRepository>(
-      create: (context) => PlaceRepository(context.read<RemoteAPI>())),
+      create: (context) =>
+          PlaceRepository(context.read<RemoteAPI>(), context.read<LocalStorage>(), context.read<GoogleApi>())),
   Provider<TravelRepository>(
       create: (context) => TravelRepository(context.read<RemoteAPI>())),
   Provider<AddPlaceBookmarkUseCase>(
@@ -72,9 +77,6 @@ List<SingleChildWidget> dependentModules = [
   Provider<DeleteTravelBookmarkUseCase>(
       create: (context) =>
           DeleteTravelBookmarkUseCase(context.read<TravelRepository>())),
-  Provider<FindBookmarksUseCase>(
-      create: (context) => FindBookmarksUseCase(
-          context.read<PlaceRepository>(), context.read<TravelRepository>())),
   Provider<GetBookmarkedPlaceUseCase>(
       create: (context) =>
           GetBookmarkedPlaceUseCase(context.read<PlaceRepository>())),
@@ -106,7 +108,6 @@ List<SingleChildWidget> dependentModules = [
           addTravelBookmarkUseCase: context.read<AddTravelBookmarkUseCase>(),
           deleteTravelBookmarkUseCase:
               context.read<DeleteTravelBookmarkUseCase>(),
-          findBookmarksUseCase: context.read<FindBookmarksUseCase>(),
           getBookmarkedPlaceUseCase: context.read<GetBookmarkedPlaceUseCase>(),
           getBookmarkedTravelUseCase:
               context.read<GetBookmarkedTravelUseCase>()))
@@ -124,5 +125,8 @@ List<SingleChildWidget> viewModels = [
           context.read<StreamController<MainUiEvent>>())),
   ChangeNotifierProvider<MainViewModel>(
       create: (context) =>
-          MainViewModel(context.read<StreamController<MainUiEvent>>()))
+          MainViewModel(context.read<StreamController<MainUiEvent>>())),
+  ChangeNotifierProvider<SearchViewModel>(
+      create: (context) => SearchViewModel(context.read<PlaceRepository>(),
+          context.read<StreamController<MainUiEvent>>()))
 ];

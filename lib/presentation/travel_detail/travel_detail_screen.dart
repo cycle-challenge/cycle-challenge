@@ -22,6 +22,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/components/init_view_button_widget.dart';
@@ -282,20 +283,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                                 GestureDetector(
                                   onTap: () => Navigator.of(context).push(
                                       MaterialPageRoute(
-                                          builder: (_) =>
-                                              ChangeNotifierProvider(
-                                                create: (context) =>
-                                                    PlaceDetailViewModel(
-                                                        visit.place
-                                                            .googlePlaceId,
-                                                        context
-                                                            .read<UseCases>(),
-                                                        context.read<
-                                                            StreamController<
-                                                                MainUiEvent>>()),
-                                                child: PlaceDetailScreen(
-                                                    place: visit.place),
-                                              ))),
+                                          builder: (_) => PlaceDetailPage(place: visit.place))),
                                   child: ListTile(
                                       title: Text(visit.place.name),
                                       contentPadding: EdgeInsets.zero,

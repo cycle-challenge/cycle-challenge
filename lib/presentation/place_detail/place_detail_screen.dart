@@ -1,12 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_summary_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
@@ -25,6 +21,7 @@ class PlaceDetailScreen extends StatefulWidget {
 class _PlaceDetailScreenState extends State<PlaceDetailScreen>
     with TickerProviderStateMixin {
   late final TabController _tabController;
+
   @override
   void initState() {
     super.initState();
@@ -42,12 +39,13 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
     final viewModel = context.watch<PlaceDetailViewModel>();
     final state = viewModel.state;
 
-    if (state.placeDetail == null) {
+    if (widget.place.detail == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
     final bookmarkViewModel = context.watch<BookmarkViewModel>();
-    bool isBookmarked = bookmarkViewModel.state.placeIdSet.contains(widget.place.id);
+    bool isBookmarked =
+        bookmarkViewModel.state.placeIdSet.contains(widget.place.id);
 
     return Scaffold(
       appBar: AppBar(
@@ -79,10 +77,10 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: isBookmarked
-            ? () => bookmarkViewModel.onEvent(
-            BookmarkEvent.deletePlace(widget.place))
-            : () => bookmarkViewModel.onEvent(
-            BookmarkEvent.addPlace(widget.place)),
+            ? () => bookmarkViewModel
+                .onEvent(BookmarkEvent.deletePlace(widget.place))
+            : () =>
+                bookmarkViewModel.onEvent(BookmarkEvent.addPlace(widget.place)),
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
@@ -100,7 +98,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
             IconButton(
                 icon: const Icon(Icons.phone),
                 onPressed: () => viewModel.onEvent(
-                    PlaceDetailEvent.callPhone(state.placeDetail?.phoneNumber)))
+                    PlaceDetailEvent.callPhone(widget.place.detail?.phoneNumber)))
           ],
         ),
       ),

@@ -5,8 +5,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_ui_event.dart';
@@ -14,6 +17,7 @@ import 'package:yeohaeng_ttukttak/presentation/map/states/map_data_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/states/map_filter_data_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/states/map_state.dart';
+import 'package:yeohaeng_ttukttak/presentation/search/place_search_result.dart';
 
 class MapViewModel with ChangeNotifier {
   MapState _state = MapState();
@@ -54,10 +58,11 @@ class MapViewModel with ChangeNotifier {
         changePosition: _changePosition,
         showSearchButton: _showSearchButton,
         changeToMyPosition: _changeToMyPosition,
-        updateFilter: _updateFilter);
+        updateFilter: _updateFilter,
+        selectPlaceSearchResult: _onSelectPlaceSearchResult);
   }
 
-  void _findNearbyPlace() async {
+  Future<void> _findNearbyPlace() async {
     _state = _state.copyWith(isShownSearchButton: false);
 
     final result =
@@ -75,6 +80,28 @@ class MapViewModel with ChangeNotifier {
   void _selectPlace(PlaceModel? place) {
     _filterDataState = _filterDataState.copyWith(selectedPlace: place);
     notifyListeners();
+  }
+
+  void _onSelectPlaceSearchResult(PlaceSearchResult result) async {
+    _state = _state.copyWith(
+        latitude: result.detail.latitude,
+        longitude: result.detail.longitude);
+    await _findNearbyPlace();
+
+    _dataState = _dataState.copyWith(
+        places: _dataState.places.map((e) {
+      if (e.id == result.place?.id) e.detail = result.detail;
+      return e;
+    }).toList());
+
+    PlaceModel? selectedPlace = _dataState.places
+        .where((e) => e.id == result.place?.id)
+        .firstOrNull;
+
+    _filterDataState = _filterDataState.copyWith(selectedPlace: selectedPlace);
+
+    _eventController.add(MapUIEvent.moveCamera(
+        result.detail.latitude, result.detail.longitude));
   }
 
   void _filter() {
@@ -96,7 +123,6 @@ class MapViewModel with ChangeNotifier {
 
     notifyListeners();
   }
-
 
   void _changePosition(CameraPosition position) {
     double latitude = position.target.latitude;

@@ -24,10 +24,6 @@ class TravelRepository {
     return api.deleteTravelBookmark(id);
   }
 
-  Future<Result<List<Bookmark>, ApiError>> findTravelBookmarks() async {
-    return api.findTravelBookmarks();
-  }
-
   Future<Result<List<TravelModel>, ApiError>> getBookmarkedTravel() async {
     return api.getBookmarkedTravel();
   }

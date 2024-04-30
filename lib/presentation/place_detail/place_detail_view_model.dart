@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
+import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
@@ -16,22 +17,27 @@ class PlaceDetailViewModel with ChangeNotifier {
 
   final StreamController<MainUiEvent> _mainEventController;
 
-  PlaceDetailState _state = PlaceDetailState(
-      isBusinessHourExpanded: false, placeDetail: null, placeImages: []);
+  late PlaceDetailState _state;
   PlaceDetailState get state => _state;
 
   final StreamController<PlaceDetailUIEvent> _eventController =
       StreamController.broadcast();
   Stream<PlaceDetailUIEvent> get stream => _eventController.stream;
 
-  PlaceDetailViewModel(
-      String googlePlaceID, this.useCases, this._mainEventController) {
-    _load(googlePlaceID);
+  PlaceDetailViewModel(PlaceModel place, this.useCases, this._mainEventController) {
+    _state = PlaceDetailState(
+        isBusinessHourExpanded: false, placeImages: []);
+
+    if (place.detail == null) {
+      useCases.getPlaceDetail(place.googlePlaceId).then((detail) {
+        place.detail = detail;
+        notifyListeners();
+      });
+    }
   }
 
   void onEvent(PlaceDetailEvent event) {
     event.when(
-        load: _load,
         toggleBusinessHourExpanded: _toggleBusinessHourExpanded,
         fetchImage: _fetchPlaceImage,
         callPhone: _callPhone,
@@ -39,11 +45,6 @@ class PlaceDetailViewModel with ChangeNotifier {
         launchURL: _launchURL);
   }
 
-  void _load(String googlePlaceID) async {
-    PlaceDetail detail = await useCases.getPlaceDetail(googlePlaceID);
-    _state = _state.copyWith(placeDetail: detail);
-    notifyListeners();
-  }
 
   void _toggleBusinessHourExpanded() {
     _state =
