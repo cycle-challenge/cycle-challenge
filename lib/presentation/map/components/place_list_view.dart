@@ -107,11 +107,11 @@ class PlaceListView extends StatelessWidget {
                             itemCount: 5,
                             separatorBuilder: (context, index) =>
                                 const SizedBox(width: 8),
-                            itemBuilder: (BuildContext context, int index) {
+                            itemBuilder: (BuildContext context, int imageIndex) {
                               return ClipRRect(
-                                child: index < places[index].images.length
+                                child: imageIndex < places[index].images.length
                                     ? Image.network(
-                                  places[index].images[index].small,
+                                  places[index].images[imageIndex].small,
                                         width: 144,
                                         height: 144,
                                         fit: BoxFit.cover,
