@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PlaceSearchResult {
   PlaceDetail get detail => throw _privateConstructorUsedError;
-  PlaceModel? get place => throw _privateConstructorUsedError;
+  Place? get place => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlaceSearchResultCopyWith<PlaceSearchResult> get copyWith =>
@@ -30,7 +30,9 @@ abstract class $PlaceSearchResultCopyWith<$Res> {
           PlaceSearchResult value, $Res Function(PlaceSearchResult) then) =
       _$PlaceSearchResultCopyWithImpl<$Res, PlaceSearchResult>;
   @useResult
-  $Res call({PlaceDetail detail, PlaceModel? place});
+  $Res call({PlaceDetail detail, Place? place});
+
+  $PlaceCopyWith<$Res>? get place;
 }
 
 /// @nodoc
@@ -57,8 +59,20 @@ class _$PlaceSearchResultCopyWithImpl<$Res, $Val extends PlaceSearchResult>
       place: freezed == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel?,
+              as Place?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceCopyWith<$Res>? get place {
+    if (_value.place == null) {
+      return null;
+    }
+
+    return $PlaceCopyWith<$Res>(_value.place!, (value) {
+      return _then(_value.copyWith(place: value) as $Val);
+    });
   }
 }
 
@@ -70,7 +84,10 @@ abstract class _$$PlaceSearchResultImplCopyWith<$Res>
       __$$PlaceSearchResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlaceDetail detail, PlaceModel? place});
+  $Res call({PlaceDetail detail, Place? place});
+
+  @override
+  $PlaceCopyWith<$Res>? get place;
 }
 
 /// @nodoc
@@ -95,7 +112,7 @@ class __$$PlaceSearchResultImplCopyWithImpl<$Res>
       place: freezed == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel?,
+              as Place?,
     ));
   }
 }
@@ -108,7 +125,7 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
   @override
   final PlaceDetail detail;
   @override
-  final PlaceModel? place;
+  final Place? place;
 
   @override
   String toString() {
@@ -138,12 +155,12 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
 abstract class _PlaceSearchResult implements PlaceSearchResult {
   factory _PlaceSearchResult(
       {required final PlaceDetail detail,
-      required final PlaceModel? place}) = _$PlaceSearchResultImpl;
+      required final Place? place}) = _$PlaceSearchResultImpl;
 
   @override
   PlaceDetail get detail;
   @override
-  PlaceModel? get place;
+  Place? get place;
   @override
   @JsonKey(ignore: true)
   _$$PlaceSearchResultImplCopyWith<_$PlaceSearchResultImpl> get copyWith =>

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
@@ -12,9 +13,9 @@ import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_page.
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
 class TravelListView extends StatefulWidget {
-  final List<TravelModel> _travels;
+  final List<Travel> travels;
 
-  const TravelListView({super.key, required travels}) : _travels = travels;
+  const TravelListView({super.key, required this.travels});
 
   @override
   State<TravelListView> createState() => _TravelListViewState();
@@ -46,7 +47,6 @@ class _TravelListViewState extends State<TravelListView> {
     final viewModel = context.watch<MainViewModel>();
     final state = viewModel.state;
 
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -72,11 +72,11 @@ class _TravelListViewState extends State<TravelListView> {
             itemBuilder: (BuildContext context, int index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TravelWidget(
-                  travel: widget._travels[index], width: double.maxFinite),
+                  travel: widget.travels[index], width: double.maxFinite),
             ),
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 20),
-            itemCount: widget._travels.length,
+            itemCount: widget.travels.length,
           ),
         ),
       ],
@@ -85,12 +85,11 @@ class _TravelListViewState extends State<TravelListView> {
 }
 
 class TravelWidget extends StatelessWidget {
-  final TravelModel _travel;
+  final Travel travel;
   double _width;
 
-  TravelWidget({super.key, required width, required travel})
-      : _travel = travel,
-        _width = width;
+  TravelWidget({super.key, required width, required this.travel})
+      : _width = width;
 
   @override
   Widget build(BuildContext context) {
@@ -103,12 +102,12 @@ class TravelWidget extends StatelessWidget {
 
 
     final bookmarkViewModel = context.watch<BookmarkViewModel>();
-    bool isBookmarked = bookmarkViewModel.state.travelIdSet.contains(_travel.id);
+    bool isBookmarked = bookmarkViewModel.state.travelIdSet.contains(travel.id);
 
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TravelDetailPage(travel: _travel,)));
+            builder: (context) => TravelDetailPage(travel: travel,)));
       },
       child: Container(
         width: _width,
@@ -122,7 +121,7 @@ class TravelWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     image: DecorationImage(
-                        image: NetworkImage(_travel.thumbnail.medium),
+                        image: NetworkImage(travel.thumbnail!.medium),
                         fit: BoxFit.cover))),
             Container(
               width: double.infinity,
@@ -149,7 +148,7 @@ class TravelWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _travel.name,
+                      travel.name,
                       style: titleLarge?.copyWith(fontWeight: FontWeight.w600),
                     ),
                     Row(
@@ -158,20 +157,20 @@ class TravelWidget extends StatelessWidget {
                           child: RichText(
                               text: TextSpan(children: [
                             TextSpan(
-                                text: _travel.nickname,
+                                text: travel.nickname,
                                 style: bodyMedium?.copyWith(
                                     fontWeight: FontWeight.w600)),
                             TextSpan(
                                 text:
-                                    " · ${_travel.ageGroup.label} · ${_travel.transport.label}")
+                                    " · ${travel.ageGroup!.label} · ${travel.transport!.label}")
                           ])),
                         ),
                         IconButton(
                           onPressed: isBookmarked
                               ? () => bookmarkViewModel
-                              .onEvent(BookmarkEvent.deleteTravel(_travel))
+                              .onEvent(BookmarkEvent.deleteTravel(travel))
                               : () => bookmarkViewModel
-                              .onEvent(BookmarkEvent.addTravel(_travel)),
+                              .onEvent(BookmarkEvent.addTravel(travel)),
                           icon: Icon(
                               isBookmarked
                                   ? Icons.bookmark

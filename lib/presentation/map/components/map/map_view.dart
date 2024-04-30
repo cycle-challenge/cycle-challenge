@@ -44,7 +44,7 @@ class _MapViewState extends State<MapView> {
           icon: filterState.selectedPlace?.id == e.id
               ? state.selectedMarkerIcon[e.type.name] ?? BitmapDescriptor.defaultMarker
               : state.markerIcon[e.type.name] ?? BitmapDescriptor.defaultMarker,
-          position: LatLng(e.location.latitude, e.location.longitude)))),
+          position: LatLng(e.latitude, e.longitude)))),
       onCameraMove: (CameraPosition position) =>
           viewModel.onEvent(MapEvent.changePosition(position)),
       zoomControlsEnabled: false,

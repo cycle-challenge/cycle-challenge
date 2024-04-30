@@ -2,14 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+
+
 import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
-import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_ui_event.dart';
@@ -25,6 +23,7 @@ class MapViewModel with ChangeNotifier {
   final StreamController<MainUiEvent> _mainEventController;
 
   MapDataState _dataState = MapDataState();
+  MapDataState get dataState => _dataState;
 
   MapFilterDataState _filterDataState = MapFilterDataState(
       placeFilter: PlaceFilter(), travelFilter: TravelFilter());
@@ -59,7 +58,23 @@ class MapViewModel with ChangeNotifier {
         showSearchButton: _showSearchButton,
         changeToMyPosition: _changeToMyPosition,
         updateFilter: _updateFilter,
-        selectPlaceSearchResult: _onSelectPlaceSearchResult);
+        selectPlaceSearchResult: _onSelectPlaceSearchResult,
+        getPlaceDetail: _onGetPlaceDetail);
+  }
+
+  void _onGetPlaceDetail(Place place) async {
+    final result = await useCases.getPlaceDetail(place.googlePlaceId);
+
+    print(result);
+
+    result.when(
+        success: (detail) {
+          _dataState = _dataState.copyWith(
+              placeDetails: {..._dataState.placeDetails, detail.id: detail});
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message)));
   }
 
   Future<void> _findNearbyPlace() async {
@@ -68,45 +83,43 @@ class MapViewModel with ChangeNotifier {
     final result =
         await useCases.getNearbyPlaces(_state.latitude, _state.longitude);
 
-    result.when(success: (result) {
-      final (places, travels) = result;
-      _dataState = _dataState.copyWith(places: places, travels: travels);
-      _filter();
-    }, error: (message) {
-      _mainEventController.add(MainUiEvent.showSnackbar(message));
-    });
+    result.when(
+        success: (result) {
+          final (places, travels) = result;
+          _dataState = _dataState.copyWith(places: places, travels: travels);
+          _filter();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message)));
   }
 
-  void _selectPlace(PlaceModel? place) {
+  void _selectPlace(Place? place) {
     _filterDataState = _filterDataState.copyWith(selectedPlace: place);
     notifyListeners();
   }
 
   void _onSelectPlaceSearchResult(PlaceSearchResult result) async {
     _state = _state.copyWith(
-        latitude: result.detail.latitude,
-        longitude: result.detail.longitude);
+        latitude: result.detail.latitude, longitude: result.detail.longitude);
     await _findNearbyPlace();
 
-    _dataState = _dataState.copyWith(
-        places: _dataState.places.map((e) {
-      if (e.id == result.place?.id) e.detail = result.detail;
-      return e;
-    }).toList());
+    _dataState = _dataState.copyWith(placeDetails: {
+      ..._dataState.placeDetails,
+      result.detail.id: result.detail
+    });
 
-    PlaceModel? selectedPlace = _dataState.places
-        .where((e) => e.id == result.place?.id)
-        .firstOrNull;
+    final selectedPlace =
+        _dataState.places.where((e) => e.id == result.place?.id).firstOrNull;
 
     _filterDataState = _filterDataState.copyWith(selectedPlace: selectedPlace);
 
-    _eventController.add(MapUIEvent.moveCamera(
-        result.detail.latitude, result.detail.longitude));
+    _eventController.add(
+        MapUIEvent.moveCamera(result.detail.latitude, result.detail.longitude));
   }
 
   void _filter() {
-    List<PlaceModel> places = _dataState.places;
-    List<TravelModel> travels = _dataState.travels;
+    final places = _dataState.places;
+    final travels = _dataState.travels;
 
     final placeFilter = _filterDataState.placeFilter;
     final travelFilter = _filterDataState.travelFilter;

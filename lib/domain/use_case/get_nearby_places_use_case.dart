@@ -1,8 +1,6 @@
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
-import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
-import 'package:yeohaeng_ttukttak/utils/api_error.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class GetNearbyPlacesUseCase {
@@ -10,7 +8,7 @@ class GetNearbyPlacesUseCase {
 
   GetNearbyPlacesUseCase(this.repository);
 
-  Future<Result<(List<PlaceModel>, List<TravelModel>), String>> call(
+  Future<Result<(List<Place>, List<Travel>), String>> call(
       double latitude, double longitude) async {
     final result = await repository.findNearby(latitude, longitude, 5000);
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
 
 class PlaceBookmarkItem extends StatelessWidget {
-  final PlaceModel place;
+  final Place place;
 
   const PlaceBookmarkItem({super.key, required this.place});
 

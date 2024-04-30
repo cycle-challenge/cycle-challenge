@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
@@ -24,16 +25,10 @@ class PlaceDetailViewModel with ChangeNotifier {
       StreamController.broadcast();
   Stream<PlaceDetailUIEvent> get stream => _eventController.stream;
 
-  PlaceDetailViewModel(PlaceModel place, this.useCases, this._mainEventController) {
+  PlaceDetailViewModel(Place place, this.useCases, this._mainEventController) {
     _state = PlaceDetailState(
         isBusinessHourExpanded: false, placeImages: []);
 
-    if (place.detail == null) {
-      useCases.getPlaceDetail(place.googlePlaceId).then((detail) {
-        place.detail = detail;
-        notifyListeners();
-      });
-    }
   }
 
   void onEvent(PlaceDetailEvent event) {

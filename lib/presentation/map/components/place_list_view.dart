@@ -2,23 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
 class PlaceListView extends StatelessWidget {
   final ScrollController _controller = ScrollController();
-  final List<PlaceModel> places;
+  final List<Place> places;
 
   PlaceListView({super.key, required this.places});
 
@@ -55,18 +50,17 @@ class PlaceListView extends StatelessWidget {
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             itemBuilder: (BuildContext context, int index) {
-              PlaceModel place = places[index];
               String distance =
-                  place.location.distance?.toStringAsFixed(1).toString() ??
+                  places[index].distance?.toStringAsFixed(1).toString() ??
                       "0.0";
-              String type = place.type.label;
+              String type = places[index].type.label;
 
               bool isBookmarked =
-                  bookmarkViewModel.state.placeIdSet.contains(place.id);
+                  bookmarkViewModel.state.placeIdSet.contains(places[index].id);
 
               return GestureDetector(
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => PlaceDetailPage(place: place))),
+                    builder: (_) => PlaceDetailPage(place: places[index]))),
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
@@ -81,7 +75,7 @@ class PlaceListView extends StatelessWidget {
                               Container(
                                 constraints:
                                     const BoxConstraints(maxWidth: 230),
-                                child: Text(place.name,
+                                child: Text(places[index].name,
                                     style:
                                         Theme.of(context).textTheme.titleLarge),
                               ),
@@ -92,9 +86,9 @@ class PlaceListView extends StatelessWidget {
                           IconButton(
                             onPressed: isBookmarked
                                 ? () => bookmarkViewModel
-                                    .onEvent(BookmarkEvent.deletePlace(place))
+                                    .onEvent(BookmarkEvent.deletePlace(places[index]))
                                 : () => bookmarkViewModel
-                                    .onEvent(BookmarkEvent.addPlace(place)),
+                                    .onEvent(BookmarkEvent.addPlace(places[index])),
                             icon: Icon(
                                 isBookmarked
                                     ? Icons.bookmark
@@ -115,9 +109,9 @@ class PlaceListView extends StatelessWidget {
                                 const SizedBox(width: 8),
                             itemBuilder: (BuildContext context, int index) {
                               return ClipRRect(
-                                child: index < place.images.length
+                                child: index < places[index].images.length
                                     ? Image.network(
-                                        place.images[index].small,
+                                  places[index].images[index].small,
                                         width: 144,
                                         height: 144,
                                         fit: BoxFit.cover,

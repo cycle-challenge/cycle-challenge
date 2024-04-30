@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BookmarkState {
-  List<PlaceModel> get places => throw _privateConstructorUsedError;
-  List<TravelModel> get travels => throw _privateConstructorUsedError;
+  List<Place> get places => throw _privateConstructorUsedError;
+  List<Travel> get travels => throw _privateConstructorUsedError;
   Set<int> get placeIdSet => throw _privateConstructorUsedError;
   Set<int> get travelIdSet => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
@@ -34,8 +34,8 @@ abstract class $BookmarkStateCopyWith<$Res> {
       _$BookmarkStateCopyWithImpl<$Res, BookmarkState>;
   @useResult
   $Res call(
-      {List<PlaceModel> places,
-      List<TravelModel> travels,
+      {List<Place> places,
+      List<Travel> travels,
       Set<int> placeIdSet,
       Set<int> travelIdSet,
       bool isEditing});
@@ -64,11 +64,11 @@ class _$BookmarkStateCopyWithImpl<$Res, $Val extends BookmarkState>
       places: null == places
           ? _value.places
           : places // ignore: cast_nullable_to_non_nullable
-              as List<PlaceModel>,
+              as List<Place>,
       travels: null == travels
           ? _value.travels
           : travels // ignore: cast_nullable_to_non_nullable
-              as List<TravelModel>,
+              as List<Travel>,
       placeIdSet: null == placeIdSet
           ? _value.placeIdSet
           : placeIdSet // ignore: cast_nullable_to_non_nullable
@@ -94,8 +94,8 @@ abstract class _$$BookmarkStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<PlaceModel> places,
-      List<TravelModel> travels,
+      {List<Place> places,
+      List<Travel> travels,
       Set<int> placeIdSet,
       Set<int> travelIdSet,
       bool isEditing});
@@ -122,11 +122,11 @@ class __$$BookmarkStateImplCopyWithImpl<$Res>
       places: null == places
           ? _value._places
           : places // ignore: cast_nullable_to_non_nullable
-              as List<PlaceModel>,
+              as List<Place>,
       travels: null == travels
           ? _value._travels
           : travels // ignore: cast_nullable_to_non_nullable
-              as List<TravelModel>,
+              as List<Travel>,
       placeIdSet: null == placeIdSet
           ? _value._placeIdSet
           : placeIdSet // ignore: cast_nullable_to_non_nullable
@@ -147,8 +147,8 @@ class __$$BookmarkStateImplCopyWithImpl<$Res>
 
 class _$BookmarkStateImpl implements _BookmarkState {
   _$BookmarkStateImpl(
-      {final List<PlaceModel> places = const [],
-      final List<TravelModel> travels = const [],
+      {final List<Place> places = const [],
+      final List<Travel> travels = const [],
       final Set<int> placeIdSet = const {},
       final Set<int> travelIdSet = const {},
       this.isEditing = false})
@@ -157,19 +157,19 @@ class _$BookmarkStateImpl implements _BookmarkState {
         _placeIdSet = placeIdSet,
         _travelIdSet = travelIdSet;
 
-  final List<PlaceModel> _places;
+  final List<Place> _places;
   @override
   @JsonKey()
-  List<PlaceModel> get places {
+  List<Place> get places {
     if (_places is EqualUnmodifiableListView) return _places;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_places);
   }
 
-  final List<TravelModel> _travels;
+  final List<Travel> _travels;
   @override
   @JsonKey()
-  List<TravelModel> get travels {
+  List<Travel> get travels {
     if (_travels is EqualUnmodifiableListView) return _travels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_travels);
@@ -235,16 +235,16 @@ class _$BookmarkStateImpl implements _BookmarkState {
 
 abstract class _BookmarkState implements BookmarkState {
   factory _BookmarkState(
-      {final List<PlaceModel> places,
-      final List<TravelModel> travels,
+      {final List<Place> places,
+      final List<Travel> travels,
       final Set<int> placeIdSet,
       final Set<int> travelIdSet,
       final bool isEditing}) = _$BookmarkStateImpl;
 
   @override
-  List<PlaceModel> get places;
+  List<Place> get places;
   @override
-  List<TravelModel> get travels;
+  List<Travel> get travels;
   @override
   Set<int> get placeIdSet;
   @override

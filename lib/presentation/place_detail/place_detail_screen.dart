@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_summary_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
@@ -10,7 +12,7 @@ import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_ima
 import 'package:yeohaeng_ttukttak/presentation/map/components/travel_list_view.dart';
 
 class PlaceDetailScreen extends StatefulWidget {
-  final PlaceModel place;
+  final Place place;
 
   const PlaceDetailScreen({super.key, required this.place});
 
@@ -37,9 +39,11 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PlaceDetailViewModel>();
-    final state = viewModel.state;
 
-    if (widget.place.detail == null) {
+    final mapViewModel = context.watch<MapViewModel>();
+    final detail = mapViewModel.dataState.placeDetails[widget.place.googlePlaceId];
+
+    if (detail == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -72,7 +76,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
           ),
           PlaceImageView(place: widget.place),
           Container(),
-          TravelListView(travels: widget.place.travels ?? [])
+          TravelListView(travels: widget.place.travels)
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -98,7 +102,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
             IconButton(
                 icon: const Icon(Icons.phone),
                 onPressed: () => viewModel.onEvent(
-                    PlaceDetailEvent.callPhone(widget.place.detail?.phoneNumber)))
+                    PlaceDetailEvent.callPhone(detail.phoneNumber)))
           ],
         ),
       ),

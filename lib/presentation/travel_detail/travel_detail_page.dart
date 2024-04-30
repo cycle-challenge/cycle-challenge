@@ -3,14 +3,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_view_model.dart';
 
 class TravelDetailPage extends StatelessWidget {
-  final TravelModel travel;
+  final Travel travel;
 
   const TravelDetailPage({super.key, required this.travel});
 
@@ -18,7 +19,7 @@ class TravelDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TravelDetailViewModel>(
         create: (context) => TravelDetailViewModel(
-            travel.id,
+            travel.id!,
             context.read<TravelRepository>(),
             context.read<StreamController<MainUiEvent>>()),
         child: TravelDetailScreen(travel: travel));

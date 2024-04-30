@@ -3,10 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
@@ -17,7 +13,6 @@ import 'package:yeohaeng_ttukttak/presentation/map/components/filter/filter_view
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/map_search_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/search_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/place_simple_view.dart';
-import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 import 'components/map/map_view.dart';
 
@@ -144,7 +139,7 @@ class _MapScreenState extends State<MapScreen> {
                       height: 20,
                     ),
                     if (isPlaceSelected)
-                      PlaceSimpleView(place: filterState.selectedPlace),
+                      PlaceSimpleView(place: filterState.selectedPlace!),
                     if (isSheetShown) const BottomSheetView(),
                   ],
                 ),

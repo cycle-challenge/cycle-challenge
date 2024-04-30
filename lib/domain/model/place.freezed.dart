@@ -14,29 +14,29 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Place _$PlaceFromJson(Map<String, dynamic> json) {
+  return _Place.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Place {
-  @HiveField(0)
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @HiveField(1)
+  @NestedJsonKey(name: 'location/latitude')
   double get latitude => throw _privateConstructorUsedError;
-  @HiveField(2)
+  @NestedJsonKey(name: 'location/longitude')
   double get longitude => throw _privateConstructorUsedError;
-  @HiveField(3)
-  int get kakaoId => throw _privateConstructorUsedError;
-  @HiveField(4, defaultValue: -1)
-  int? get id => throw _privateConstructorUsedError;
-  @HiveField(5, defaultValue: 0.0)
+  String get googlePlaceId => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: PlaceType.of)
+  PlaceType get type => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: Place._imagesFromJson)
+  List<Image> get images => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: Place._travelsFromJson)
+  List<Travel> get travels => throw _privateConstructorUsedError;
+  @NestedJsonKey(name: 'location/distance')
   double? get distance => throw _privateConstructorUsedError;
-  @HiveField(6, defaultValue: '')
-  String? get phone => throw _privateConstructorUsedError;
-  @HiveField(7, defaultValue: '')
-  String? get address => throw _privateConstructorUsedError;
-  @HiveField(8, defaultValue: '')
-  String? get roadAddress => throw _privateConstructorUsedError;
-  @HiveField(9, defaultValue: '')
-  String? get detailUrl => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlaceCopyWith<Place> get copyWith => throw _privateConstructorUsedError;
 }
@@ -47,16 +47,15 @@ abstract class $PlaceCopyWith<$Res> {
       _$PlaceCopyWithImpl<$Res, Place>;
   @useResult
   $Res call(
-      {@HiveField(0) String name,
-      @HiveField(1) double latitude,
-      @HiveField(2) double longitude,
-      @HiveField(3) int kakaoId,
-      @HiveField(4, defaultValue: -1) int? id,
-      @HiveField(5, defaultValue: 0.0) double? distance,
-      @HiveField(6, defaultValue: '') String? phone,
-      @HiveField(7, defaultValue: '') String? address,
-      @HiveField(8, defaultValue: '') String? roadAddress,
-      @HiveField(9, defaultValue: '') String? detailUrl});
+      {int id,
+      String name,
+      @NestedJsonKey(name: 'location/latitude') double latitude,
+      @NestedJsonKey(name: 'location/longitude') double longitude,
+      String googlePlaceId,
+      @JsonKey(fromJson: PlaceType.of) PlaceType type,
+      @JsonKey(fromJson: Place._imagesFromJson) List<Image> images,
+      @JsonKey(fromJson: Place._travelsFromJson) List<Travel> travels,
+      @NestedJsonKey(name: 'location/distance') double? distance});
 }
 
 /// @nodoc
@@ -72,18 +71,21 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
-    Object? kakaoId = null,
-    Object? id = freezed,
+    Object? googlePlaceId = null,
+    Object? type = null,
+    Object? images = null,
+    Object? travels = null,
     Object? distance = freezed,
-    Object? phone = freezed,
-    Object? address = freezed,
-    Object? roadAddress = freezed,
-    Object? detailUrl = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -96,34 +98,26 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      kakaoId: null == kakaoId
-          ? _value.kakaoId
-          : kakaoId // ignore: cast_nullable_to_non_nullable
-              as int,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      googlePlaceId: null == googlePlaceId
+          ? _value.googlePlaceId
+          : googlePlaceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as PlaceType,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>,
+      travels: null == travels
+          ? _value.travels
+          : travels // ignore: cast_nullable_to_non_nullable
+              as List<Travel>,
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      roadAddress: freezed == roadAddress
-          ? _value.roadAddress
-          : roadAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
-      detailUrl: freezed == detailUrl
-          ? _value.detailUrl
-          : detailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -136,16 +130,15 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String name,
-      @HiveField(1) double latitude,
-      @HiveField(2) double longitude,
-      @HiveField(3) int kakaoId,
-      @HiveField(4, defaultValue: -1) int? id,
-      @HiveField(5, defaultValue: 0.0) double? distance,
-      @HiveField(6, defaultValue: '') String? phone,
-      @HiveField(7, defaultValue: '') String? address,
-      @HiveField(8, defaultValue: '') String? roadAddress,
-      @HiveField(9, defaultValue: '') String? detailUrl});
+      {int id,
+      String name,
+      @NestedJsonKey(name: 'location/latitude') double latitude,
+      @NestedJsonKey(name: 'location/longitude') double longitude,
+      String googlePlaceId,
+      @JsonKey(fromJson: PlaceType.of) PlaceType type,
+      @JsonKey(fromJson: Place._imagesFromJson) List<Image> images,
+      @JsonKey(fromJson: Place._travelsFromJson) List<Travel> travels,
+      @NestedJsonKey(name: 'location/distance') double? distance});
 }
 
 /// @nodoc
@@ -159,18 +152,21 @@ class __$$PlaceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
-    Object? kakaoId = null,
-    Object? id = freezed,
+    Object? googlePlaceId = null,
+    Object? type = null,
+    Object? images = null,
+    Object? travels = null,
     Object? distance = freezed,
-    Object? phone = freezed,
-    Object? address = freezed,
-    Object? roadAddress = freezed,
-    Object? detailUrl = freezed,
   }) {
     return _then(_$PlaceImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -183,87 +179,91 @@ class __$$PlaceImplCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      kakaoId: null == kakaoId
-          ? _value.kakaoId
-          : kakaoId // ignore: cast_nullable_to_non_nullable
-              as int,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      googlePlaceId: null == googlePlaceId
+          ? _value.googlePlaceId
+          : googlePlaceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as PlaceType,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>,
+      travels: null == travels
+          ? _value._travels
+          : travels // ignore: cast_nullable_to_non_nullable
+              as List<Travel>,
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      roadAddress: freezed == roadAddress
-          ? _value.roadAddress
-          : roadAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
-      detailUrl: freezed == detailUrl
-          ? _value.detailUrl
-          : detailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PlaceImpl implements _Place {
   _$PlaceImpl(
-      {@HiveField(0) required this.name,
-      @HiveField(1) required this.latitude,
-      @HiveField(2) required this.longitude,
-      @HiveField(3) required this.kakaoId,
-      @HiveField(4, defaultValue: -1) this.id,
-      @HiveField(5, defaultValue: 0.0) this.distance,
-      @HiveField(6, defaultValue: '') this.phone,
-      @HiveField(7, defaultValue: '') this.address,
-      @HiveField(8, defaultValue: '') this.roadAddress,
-      @HiveField(9, defaultValue: '') this.detailUrl});
+      {required this.id,
+      required this.name,
+      @NestedJsonKey(name: 'location/latitude') required this.latitude,
+      @NestedJsonKey(name: 'location/longitude') required this.longitude,
+      required this.googlePlaceId,
+      @JsonKey(fromJson: PlaceType.of) required this.type,
+      @JsonKey(fromJson: Place._imagesFromJson)
+      final List<Image> images = const [],
+      @JsonKey(fromJson: Place._travelsFromJson)
+      final List<Travel> travels = const [],
+      @NestedJsonKey(name: 'location/distance') this.distance})
+      : _images = images,
+        _travels = travels;
+
+  factory _$PlaceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlaceImplFromJson(json);
 
   @override
-  @HiveField(0)
+  final int id;
+  @override
   final String name;
   @override
-  @HiveField(1)
+  @NestedJsonKey(name: 'location/latitude')
   final double latitude;
   @override
-  @HiveField(2)
+  @NestedJsonKey(name: 'location/longitude')
   final double longitude;
   @override
-  @HiveField(3)
-  final int kakaoId;
+  final String googlePlaceId;
   @override
-  @HiveField(4, defaultValue: -1)
-  final int? id;
+  @JsonKey(fromJson: PlaceType.of)
+  final PlaceType type;
+  final List<Image> _images;
   @override
-  @HiveField(5, defaultValue: 0.0)
+  @JsonKey(fromJson: Place._imagesFromJson)
+  List<Image> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
+
+  final List<Travel> _travels;
+  @override
+  @JsonKey(fromJson: Place._travelsFromJson)
+  List<Travel> get travels {
+    if (_travels is EqualUnmodifiableListView) return _travels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_travels);
+  }
+
+  @override
+  @NestedJsonKey(name: 'location/distance')
   final double? distance;
-  @override
-  @HiveField(6, defaultValue: '')
-  final String? phone;
-  @override
-  @HiveField(7, defaultValue: '')
-  final String? address;
-  @override
-  @HiveField(8, defaultValue: '')
-  final String? roadAddress;
-  @override
-  @HiveField(9, defaultValue: '')
-  final String? detailUrl;
 
   @override
   String toString() {
-    return 'Place(name: $name, latitude: $latitude, longitude: $longitude, kakaoId: $kakaoId, id: $id, distance: $distance, phone: $phone, address: $address, roadAddress: $roadAddress, detailUrl: $detailUrl)';
+    return 'Place(id: $id, name: $name, latitude: $latitude, longitude: $longitude, googlePlaceId: $googlePlaceId, type: $type, images: $images, travels: $travels, distance: $distance)';
   }
 
   @override
@@ -271,77 +271,89 @@ class _$PlaceImpl implements _Place {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlaceImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
-            (identical(other.kakaoId, kakaoId) || other.kakaoId == kakaoId) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.googlePlaceId, googlePlaceId) ||
+                other.googlePlaceId == googlePlaceId) &&
+            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            const DeepCollectionEquality().equals(other._travels, _travels) &&
             (identical(other.distance, distance) ||
-                other.distance == distance) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.roadAddress, roadAddress) ||
-                other.roadAddress == roadAddress) &&
-            (identical(other.detailUrl, detailUrl) ||
-                other.detailUrl == detailUrl));
+                other.distance == distance));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, latitude, longitude,
-      kakaoId, id, distance, phone, address, roadAddress, detailUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      latitude,
+      longitude,
+      googlePlaceId,
+      type,
+      const DeepCollectionEquality().hash(_images),
+      const DeepCollectionEquality().hash(_travels),
+      distance);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PlaceImplCopyWith<_$PlaceImpl> get copyWith =>
       __$$PlaceImplCopyWithImpl<_$PlaceImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PlaceImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Place implements Place {
   factory _Place(
-      {@HiveField(0) required final String name,
-      @HiveField(1) required final double latitude,
-      @HiveField(2) required final double longitude,
-      @HiveField(3) required final int kakaoId,
-      @HiveField(4, defaultValue: -1) final int? id,
-      @HiveField(5, defaultValue: 0.0) final double? distance,
-      @HiveField(6, defaultValue: '') final String? phone,
-      @HiveField(7, defaultValue: '') final String? address,
-      @HiveField(8, defaultValue: '') final String? roadAddress,
-      @HiveField(9, defaultValue: '') final String? detailUrl}) = _$PlaceImpl;
+      {required final int id,
+      required final String name,
+      @NestedJsonKey(name: 'location/latitude') required final double latitude,
+      @NestedJsonKey(name: 'location/longitude')
+      required final double longitude,
+      required final String googlePlaceId,
+      @JsonKey(fromJson: PlaceType.of) required final PlaceType type,
+      @JsonKey(fromJson: Place._imagesFromJson) final List<Image> images,
+      @JsonKey(fromJson: Place._travelsFromJson) final List<Travel> travels,
+      @NestedJsonKey(name: 'location/distance')
+      final double? distance}) = _$PlaceImpl;
+
+  factory _Place.fromJson(Map<String, dynamic> json) = _$PlaceImpl.fromJson;
 
   @override
-  @HiveField(0)
+  int get id;
+  @override
   String get name;
   @override
-  @HiveField(1)
+  @NestedJsonKey(name: 'location/latitude')
   double get latitude;
   @override
-  @HiveField(2)
+  @NestedJsonKey(name: 'location/longitude')
   double get longitude;
   @override
-  @HiveField(3)
-  int get kakaoId;
+  String get googlePlaceId;
   @override
-  @HiveField(4, defaultValue: -1)
-  int? get id;
+  @JsonKey(fromJson: PlaceType.of)
+  PlaceType get type;
   @override
-  @HiveField(5, defaultValue: 0.0)
+  @JsonKey(fromJson: Place._imagesFromJson)
+  List<Image> get images;
+  @override
+  @JsonKey(fromJson: Place._travelsFromJson)
+  List<Travel> get travels;
+  @override
+  @NestedJsonKey(name: 'location/distance')
   double? get distance;
-  @override
-  @HiveField(6, defaultValue: '')
-  String? get phone;
-  @override
-  @HiveField(7, defaultValue: '')
-  String? get address;
-  @override
-  @HiveField(8, defaultValue: '')
-  String? get roadAddress;
-  @override
-  @HiveField(9, defaultValue: '')
-  String? get detailUrl;
   @override
   @JsonKey(ignore: true)
   _$$PlaceImplCopyWith<_$PlaceImpl> get copyWith =>

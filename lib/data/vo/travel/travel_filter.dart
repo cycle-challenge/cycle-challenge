@@ -5,9 +5,9 @@ import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_motivation
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_period.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_transport.dart';
 
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 
-class TravelFilter implements Filter<TravelModel> {
+class TravelFilter implements Filter<Travel> {
   final Set<TravelAgeGroup> _ageGroup = <TravelAgeGroup>{};
 
   final Set<TravelPeriod> _period = <TravelPeriod>{};
@@ -51,17 +51,17 @@ class TravelFilter implements Filter<TravelModel> {
   }
 
   @override
-  List<TravelModel> apply(List<TravelModel> travels) {
+  List<Travel> apply(List<Travel> travels) {
     if (!hasAnyFilter) return travels;
 
     return travels
         .where((travel) =>
-            _filterSingle<TravelAgeGroup>(_ageGroup, travel.ageGroup) &&
+            _filterSingle<TravelAgeGroup>(_ageGroup, travel.ageGroup!) &&
             (_period.isEmpty ||
                 _period.intersection(travel.seasons).isNotEmpty) &&
-            _filterSingle<TravelTransport>(_transport, travel.transport) &&
-            _filterSingle<TravelMotivation>(_motivation, travel.motivation) &&
-            _filterSingle<TravelAccompany>(_accompany, travel.accompany))
+            _filterSingle<TravelTransport>(_transport, travel.transport!) &&
+            _filterSingle<TravelMotivation>(_motivation, travel.motivation!) &&
+            _filterSingle<TravelAccompany>(_accompany, travel.accompany!))
         .toList();
   }
 }

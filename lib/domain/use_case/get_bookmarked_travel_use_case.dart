@@ -1,5 +1,5 @@
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class GetBookmarkedTravelUseCase {
@@ -7,7 +7,7 @@ class GetBookmarkedTravelUseCase {
 
   GetBookmarkedTravelUseCase(this.travelRepository);
 
-  Future<Result<List<TravelModel>, String>> call() async {
+  Future<Result<List<Travel>, String>> call() async {
     final result = await travelRepository.getBookmarkedTravel();
 
     return result.when(

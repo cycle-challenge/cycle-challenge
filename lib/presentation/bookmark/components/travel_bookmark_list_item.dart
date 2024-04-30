@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 
 class TravelBookmarkListItem extends StatelessWidget {
-  final TravelModel travel;
+  final Travel travel;
 
   const TravelBookmarkListItem({super.key, required this.travel});
 
   @override
   Widget build(BuildContext context) {
-    String? thumbnailUrl = travel.thumbnail.medium;
+    String? thumbnailUrl = travel.thumbnail?.medium;
     final viewModel = context.watch<BookmarkViewModel>();
 
     return Dismissible(
@@ -34,7 +33,7 @@ class TravelBookmarkListItem extends StatelessWidget {
         title: Text(travel.name),
         contentPadding: const EdgeInsets.symmetric(horizontal: 12.0),
         subtitle: Text(
-            '${travel.nickname} · ${travel.ageGroup.label} · ${travel.transport.label} '),
+            '${travel.nickname} · ${travel.ageGroup!.label} · ${travel.transport!.label} '),
         titleTextStyle: Theme.of(context)
             .textTheme
             .bodyLarge

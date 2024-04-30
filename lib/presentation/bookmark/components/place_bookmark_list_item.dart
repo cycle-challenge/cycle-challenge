@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 
 class PlaceBookmarkListItem extends StatelessWidget {
-  final PlaceModel place;
+  final Place place;
 
   const PlaceBookmarkListItem({super.key, required this.place});
 

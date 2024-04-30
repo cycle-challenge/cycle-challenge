@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 
 part 'place_detail_state.freezed.dart';

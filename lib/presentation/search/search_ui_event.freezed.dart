@@ -17,21 +17,20 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchUiEvent {
   PlaceDetail get detail => throw _privateConstructorUsedError;
-  PlaceModel? get place => throw _privateConstructorUsedError;
+  Place? get place => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceDetail detail, PlaceModel? place)
-        searchComplete,
+    required TResult Function(PlaceDetail detail, Place? place) searchComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceDetail detail, PlaceModel? place)? searchComplete,
+    TResult? Function(PlaceDetail detail, Place? place)? searchComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceDetail detail, PlaceModel? place)? searchComplete,
+    TResult Function(PlaceDetail detail, Place? place)? searchComplete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +62,9 @@ abstract class $SearchUiEventCopyWith<$Res> {
           SearchUiEvent value, $Res Function(SearchUiEvent) then) =
       _$SearchUiEventCopyWithImpl<$Res, SearchUiEvent>;
   @useResult
-  $Res call({PlaceDetail detail, PlaceModel? place});
+  $Res call({PlaceDetail detail, Place? place});
+
+  $PlaceCopyWith<$Res>? get place;
 }
 
 /// @nodoc
@@ -90,8 +91,20 @@ class _$SearchUiEventCopyWithImpl<$Res, $Val extends SearchUiEvent>
       place: freezed == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel?,
+              as Place?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceCopyWith<$Res>? get place {
+    if (_value.place == null) {
+      return null;
+    }
+
+    return $PlaceCopyWith<$Res>(_value.place!, (value) {
+      return _then(_value.copyWith(place: value) as $Val);
+    });
   }
 }
 
@@ -103,7 +116,10 @@ abstract class _$$SearchCompleteEventImplCopyWith<$Res>
       __$$SearchCompleteEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlaceDetail detail, PlaceModel? place});
+  $Res call({PlaceDetail detail, Place? place});
+
+  @override
+  $PlaceCopyWith<$Res>? get place;
 }
 
 /// @nodoc
@@ -128,7 +144,7 @@ class __$$SearchCompleteEventImplCopyWithImpl<$Res>
       freezed == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel?,
+              as Place?,
     ));
   }
 }
@@ -141,7 +157,7 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   @override
   final PlaceDetail detail;
   @override
-  final PlaceModel? place;
+  final Place? place;
 
   @override
   String toString() {
@@ -170,8 +186,7 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceDetail detail, PlaceModel? place)
-        searchComplete,
+    required TResult Function(PlaceDetail detail, Place? place) searchComplete,
   }) {
     return searchComplete(detail, place);
   }
@@ -179,7 +194,7 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceDetail detail, PlaceModel? place)? searchComplete,
+    TResult? Function(PlaceDetail detail, Place? place)? searchComplete,
   }) {
     return searchComplete?.call(detail, place);
   }
@@ -187,7 +202,7 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceDetail detail, PlaceModel? place)? searchComplete,
+    TResult Function(PlaceDetail detail, Place? place)? searchComplete,
     required TResult orElse(),
   }) {
     if (searchComplete != null) {
@@ -227,13 +242,12 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
 
 abstract class SearchCompleteEvent implements SearchUiEvent {
   const factory SearchCompleteEvent(
-          final PlaceDetail detail, final PlaceModel? place) =
-      _$SearchCompleteEventImpl;
+      final PlaceDetail detail, final Place? place) = _$SearchCompleteEventImpl;
 
   @override
   PlaceDetail get detail;
   @override
-  PlaceModel? get place;
+  Place? get place;
   @override
   @JsonKey(ignore: true)
   _$$SearchCompleteEventImplCopyWith<_$SearchCompleteEventImpl> get copyWith =>

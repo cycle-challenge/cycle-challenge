@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_page.dart';
 
 class TravelBookmarkItem extends StatelessWidget {
-  final TravelModel travel;
+  final Travel travel;
 
   const TravelBookmarkItem({super.key, required this.travel});
 
@@ -33,7 +33,7 @@ class TravelBookmarkItem extends StatelessWidget {
               child: Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(travel.thumbnail.medium),
+                          image: NetworkImage(travel.thumbnail!.medium),
                           fit: BoxFit.cover))),
             ),
             Positioned.fill(
@@ -70,7 +70,7 @@ class TravelBookmarkItem extends StatelessWidget {
                                   fontWeight: FontWeight.w600)),
                           TextSpan(
                               text:
-                              " · ${travel.ageGroup.label} · ${travel.transport.label}")
+                              " · ${travel.ageGroup!.label} · ${travel.transport!.label}")
                         ]))
                   ],
                 ),

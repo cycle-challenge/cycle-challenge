@@ -1,5 +1,5 @@
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class GetBookmarkedPlaceUseCase {
@@ -7,7 +7,7 @@ class GetBookmarkedPlaceUseCase {
 
   GetBookmarkedPlaceUseCase(this.placeRepository);
 
-  Future<Result<List<PlaceModel>, String>> call() async {
+  Future<Result<List<Place>, String>> call() async {
     final result = await placeRepository.getBookmarkedPlace();
 
     return result.when(

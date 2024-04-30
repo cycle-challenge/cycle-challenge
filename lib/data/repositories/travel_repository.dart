@@ -1,8 +1,8 @@
 
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
@@ -24,7 +24,7 @@ class TravelRepository {
     return api.deleteTravelBookmark(id);
   }
 
-  Future<Result<List<TravelModel>, ApiError>> getBookmarkedTravel() async {
+  Future<Result<List<Travel>, ApiError>> getBookmarkedTravel() async {
     return api.getBookmarkedTravel();
   }
 }

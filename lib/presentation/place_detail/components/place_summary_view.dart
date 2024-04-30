@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/travel_list_view.dart';
@@ -13,7 +15,7 @@ import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceSummaryView extends StatelessWidget {
   final TabController tabController;
-  final PlaceModel place;
+  final Place place;
 
   const PlaceSummaryView(
       {super.key, required this.tabController, required this.place});
@@ -25,6 +27,13 @@ class PlaceSummaryView extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
     DateTime now = DateTime.now();
 
+    final mapViewModel = context.watch<MapViewModel>();
+    final detail = mapViewModel.dataState.placeDetails[place.googlePlaceId];
+
+    if (detail == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return SingleChildScrollView(
       child: Container(
           width: MediaQuery.of(context).size.width * 0.9,
@@ -34,7 +43,7 @@ class PlaceSummaryView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (place.detail!.address != null)
+                  if (detail.address != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 10.0),
                       child: Wrap(
@@ -46,14 +55,13 @@ class PlaceSummaryView extends StatelessWidget {
                               child: const Icon(Icons.place_outlined)),
                           Container(
                               margin: const EdgeInsets.only(right: 5.0),
-                              child: Text(place.detail!.address!,
+                              child: Text(detail.address!,
                                   style: textTheme.bodyLarge)),
                           Material(
                             child: InkWell(
                               borderRadius: BorderRadius.circular(5),
                               onTap: () => viewModel.onEvent(
-                                  PlaceDetailEvent.copyText(
-                                      place.detail?.address)),
+                                  PlaceDetailEvent.copyText(detail.address)),
                               child: Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 5.0),
@@ -66,8 +74,8 @@ class PlaceSummaryView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (place.detail!.businessHours != null &&
-                      place.detail!.isOpeningNow != null)
+                  if (detail.businessHours != null &&
+                      detail.isOpeningNow != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 10.0),
                       child: ExpansionPanelList(
@@ -90,8 +98,7 @@ class PlaceSummaryView extends StatelessWidget {
                                         child: RichText(
                                             text: TextSpan(children: [
                                           TextSpan(
-                                              text: place.detail!
-                                                      .isOpeningNow!
+                                              text: detail.isOpeningNow!
                                                   ? "영업 중 · "
                                                   : "영업 종료 · ",
                                               style: textTheme.bodyLarge
@@ -99,8 +106,7 @@ class PlaceSummaryView extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.w600)),
                                           TextSpan(
-                                              text: place.detail!
-                                                  .businessHours![
+                                              text: detail.businessHours![
                                                       now.weekday - 1]
                                                   .split(": ")[1],
                                               style: textTheme.bodyLarge)
@@ -114,7 +120,7 @@ class PlaceSummaryView extends StatelessWidget {
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) => Text(
-                                      "• ${place.detail!.businessHours![index]}",
+                                      "• ${detail.businessHours![index]}",
                                       style: textTheme.bodyLarge),
                                   separatorBuilder: (context, _) =>
                                       const SizedBox(height: 12),
@@ -125,7 +131,7 @@ class PlaceSummaryView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (place.detail!.siteURL != null)
+                  if (detail.siteURL != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       child: Row(
@@ -138,7 +144,7 @@ class PlaceSummaryView extends StatelessWidget {
                             child: Linkify(
                                 onOpen: (link) => viewModel.onEvent(
                                     PlaceDetailEvent.launchURL(link.url)),
-                                text: place.detail!.siteURL!,
+                                text: detail.siteURL!,
                                 style: textTheme.bodyLarge?.copyWith(
                                     color: Colors.blue,
                                     decorationColor: Colors.blue)),
@@ -146,7 +152,7 @@ class PlaceSummaryView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (place.detail!.phoneNumber != null)
+                  if (detail.phoneNumber != null)
                     Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       child: Row(
@@ -157,14 +163,14 @@ class PlaceSummaryView extends StatelessWidget {
                               child: const Icon(Icons.phone_outlined)),
                           Container(
                               margin: const EdgeInsets.only(right: 10.0),
-                              child: Text(place.detail!.phoneNumber!,
+                              child: Text(detail.phoneNumber!,
                                   style: textTheme.bodyLarge)),
                           Material(
                             child: InkWell(
                               borderRadius: BorderRadius.circular(5),
                               onTap: () => viewModel.onEvent(
                                   PlaceDetailEvent.copyText(
-                                      place.detail?.phoneNumber)),
+                                      detail.phoneNumber)),
                               child: Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 5.0),

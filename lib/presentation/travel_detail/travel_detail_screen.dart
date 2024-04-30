@@ -11,11 +11,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/vo/visit/bound.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
@@ -31,7 +33,7 @@ import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_view_
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 
 class TravelDetailScreen extends StatefulWidget {
-  final TravelModel travel;
+  final Travel travel;
 
   const TravelDetailScreen({super.key, required this.travel});
 
@@ -225,8 +227,8 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                                   BitmapDescriptor.defaultMarker
                               : state.markerIcon[visit.place.type.name] ??
                                   BitmapDescriptor.defaultMarker,
-                          position: LatLng(visit.place.location.latitude,
-                              visit.place.location.longitude),
+                          position: LatLng(visit.place.latitude,
+                              visit.place.longitude),
                           onTap: () => viewModel
                               .onEvent(TravelDetailEvent.changeVisit(index)));
                     }) ??
@@ -269,7 +271,7 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
                             );
                           }
 
-                          VisitModel visit = summary.visits[index];
+                          Visit visit = summary.visits[index];
 
                           bool isBookmarked = bookmarkViewModel.state.placeIdSet
                               .contains(visit.place.id);
@@ -400,46 +402,53 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
         child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
             color: Theme.of(context).colorScheme.onSurface),
       ),
-      bottomNavigationBar: BottomAppBar(
-        height: 139,
-        surfaceTintColor: Theme.of(context).colorScheme.surface,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                    width: 1))),
+        child: BottomAppBar(
+          height: 139,
+          surfaceTintColor: Theme.of(context).colorScheme.surface,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${index + 1}일 차",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.w600)),
+                    Text(
+                      widget.travel.name,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
+                ),
+              ),
+              Row(
                 children: [
-                  Text("${index + 1}일 차",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(fontWeight: FontWeight.w600)),
-                  Text(
-                    widget.travel.name,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
+                  TextButton(
+                      onPressed: hasPrev
+                          ? () => viewModel
+                              .onEvent(const TravelDetailEvent.prevDayOfTravel())
+                          : null,
+                      child: const Text("어제")),
+                  TextButton(
+                      onPressed: hasNext
+                          ? () => viewModel
+                              .onEvent(const TravelDetailEvent.nextDayOfTravel())
+                          : null,
+                      child: const Text("내일")),
                 ],
               ),
-            ),
-            Row(
-              children: [
-                TextButton(
-                    onPressed: hasPrev
-                        ? () => viewModel
-                            .onEvent(const TravelDetailEvent.prevDayOfTravel())
-                        : null,
-                    child: const Text("어제")),
-                TextButton(
-                    onPressed: hasNext
-                        ? () => viewModel
-                            .onEvent(const TravelDetailEvent.nextDayOfTravel())
-                        : null,
-                    child: const Text("내일")),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

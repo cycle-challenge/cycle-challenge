@@ -4,7 +4,6 @@ import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
