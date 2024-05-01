@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TravelCreateAddVisitState {
   List<Place> get selectedPlaces => throw _privateConstructorUsedError;
+  PlaceFilter get placeFilter => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TravelCreateAddVisitStateCopyWith<TravelCreateAddVisitState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $TravelCreateAddVisitStateCopyWith<$Res> {
           $Res Function(TravelCreateAddVisitState) then) =
       _$TravelCreateAddVisitStateCopyWithImpl<$Res, TravelCreateAddVisitState>;
   @useResult
-  $Res call({List<Place> selectedPlaces});
+  $Res call({List<Place> selectedPlaces, PlaceFilter placeFilter});
 }
 
 /// @nodoc
@@ -47,12 +48,17 @@ class _$TravelCreateAddVisitStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? selectedPlaces = null,
+    Object? placeFilter = null,
   }) {
     return _then(_value.copyWith(
       selectedPlaces: null == selectedPlaces
           ? _value.selectedPlaces
           : selectedPlaces // ignore: cast_nullable_to_non_nullable
               as List<Place>,
+      placeFilter: null == placeFilter
+          ? _value.placeFilter
+          : placeFilter // ignore: cast_nullable_to_non_nullable
+              as PlaceFilter,
     ) as $Val);
   }
 }
@@ -66,7 +72,7 @@ abstract class _$$TravelCreateAddVisitStateImplCopyWith<$Res>
       __$$TravelCreateAddVisitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Place> selectedPlaces});
+  $Res call({List<Place> selectedPlaces, PlaceFilter placeFilter});
 }
 
 /// @nodoc
@@ -83,12 +89,17 @@ class __$$TravelCreateAddVisitStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedPlaces = null,
+    Object? placeFilter = null,
   }) {
     return _then(_$TravelCreateAddVisitStateImpl(
       selectedPlaces: null == selectedPlaces
           ? _value._selectedPlaces
           : selectedPlaces // ignore: cast_nullable_to_non_nullable
               as List<Place>,
+      placeFilter: null == placeFilter
+          ? _value.placeFilter
+          : placeFilter // ignore: cast_nullable_to_non_nullable
+              as PlaceFilter,
     ));
   }
 }
@@ -96,7 +107,8 @@ class __$$TravelCreateAddVisitStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TravelCreateAddVisitStateImpl implements _TravelCreateAddVisitState {
-  _$TravelCreateAddVisitStateImpl({final List<Place> selectedPlaces = const []})
+  _$TravelCreateAddVisitStateImpl(
+      {final List<Place> selectedPlaces = const [], required this.placeFilter})
       : _selectedPlaces = selectedPlaces;
 
   final List<Place> _selectedPlaces;
@@ -109,8 +121,11 @@ class _$TravelCreateAddVisitStateImpl implements _TravelCreateAddVisitState {
   }
 
   @override
+  final PlaceFilter placeFilter;
+
+  @override
   String toString() {
-    return 'TravelCreateAddVisitState(selectedPlaces: $selectedPlaces)';
+    return 'TravelCreateAddVisitState(selectedPlaces: $selectedPlaces, placeFilter: $placeFilter)';
   }
 
   @override
@@ -119,12 +134,14 @@ class _$TravelCreateAddVisitStateImpl implements _TravelCreateAddVisitState {
         (other.runtimeType == runtimeType &&
             other is _$TravelCreateAddVisitStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._selectedPlaces, _selectedPlaces));
+                .equals(other._selectedPlaces, _selectedPlaces) &&
+            (identical(other.placeFilter, placeFilter) ||
+                other.placeFilter == placeFilter));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_selectedPlaces));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_selectedPlaces), placeFilter);
 
   @JsonKey(ignore: true)
   @override
@@ -135,11 +152,15 @@ class _$TravelCreateAddVisitStateImpl implements _TravelCreateAddVisitState {
 }
 
 abstract class _TravelCreateAddVisitState implements TravelCreateAddVisitState {
-  factory _TravelCreateAddVisitState({final List<Place> selectedPlaces}) =
+  factory _TravelCreateAddVisitState(
+          {final List<Place> selectedPlaces,
+          required final PlaceFilter placeFilter}) =
       _$TravelCreateAddVisitStateImpl;
 
   @override
   List<Place> get selectedPlaces;
+  @override
+  PlaceFilter get placeFilter;
   @override
   @JsonKey(ignore: true)
   _$$TravelCreateAddVisitStateImplCopyWith<_$TravelCreateAddVisitStateImpl>

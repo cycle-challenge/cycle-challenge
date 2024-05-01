@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
@@ -9,8 +10,6 @@ import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/grouped_visit_list_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_page.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
@@ -123,7 +122,9 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          print(state.visits.map((visit) => visit.place.name));
+        },
         elevation: 0,
         backgroundColor: colorScheme.secondaryContainer,
         foregroundColor: colorScheme.onSecondaryContainer,
@@ -147,7 +148,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
                   },
                   icon: const Icon(Icons.add)),
               const SizedBox(width: 8),
-              IconButton.filledTonal(
+              FilledButton.tonalIcon(
                   onPressed: () async {
                     final now = DateTime.now();
                     DateTimeRange? travelDates = await showDateRangePicker(
@@ -155,10 +156,16 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
                         context: context,
                         firstDate: now,
                         lastDate: now.add(const Duration(days: 730)));
+
+                    if (travelDates == null) return;
+
                     viewModel
                         .onEvent(TravelCreateEvent.setTravelDates(travelDates));
                   },
-                  icon: const Icon(Icons.date_range_outlined))
+                  icon: const Icon(Icons.date_range_outlined),
+                  label: Text(state.travelDates != null
+                      ? '${DateFormat('M.d').format(state.travelDates!.start)} - ${DateFormat('M.d').format(state.travelDates!.end)}'
+                      : '날짜'))
             ])),
       ),
     );

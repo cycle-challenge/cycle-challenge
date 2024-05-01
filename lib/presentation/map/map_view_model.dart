@@ -65,8 +65,6 @@ class MapViewModel with ChangeNotifier {
   void _onGetPlaceDetail(Place place) async {
     final result = await useCases.getPlaceDetail(place.googlePlaceId);
 
-    print(result);
-
     result.when(
         success: (detail) {
           _dataState = _dataState.copyWith(
