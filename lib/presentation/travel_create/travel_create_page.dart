@@ -13,11 +13,8 @@ class TravelCreatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final places = context.watch<BookmarkViewModel>().state.places;
-    final visits = places.map((e) => Visit(place: e)).toList();
-
     return ChangeNotifierProvider<TravelCreateViewModel>(
-        create: (context) => TravelCreateViewModel(visits),
+        create: (context) => TravelCreateViewModel(),
         child: TravelCreateScreen(travel: travel));
   }
 }

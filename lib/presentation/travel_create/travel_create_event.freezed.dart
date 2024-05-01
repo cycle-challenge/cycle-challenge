@@ -20,6 +20,8 @@ mixin _$TravelCreateEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(double height) changePanelHeight,
     required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +29,8 @@ mixin _$TravelCreateEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double height)? changePanelHeight,
     TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +38,8 @@ mixin _$TravelCreateEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double height)? changePanelHeight,
     TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     required TResult orElse(),
   }) =>
@@ -44,6 +50,8 @@ mixin _$TravelCreateEvent {
         changePanelHeight,
     required TResult Function(TravelCreateSetTravelDatesEvent value)
         setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +60,8 @@ mixin _$TravelCreateEvent {
     TResult? Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +70,8 @@ mixin _$TravelCreateEvent {
     TResult Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     required TResult orElse(),
   }) =>
@@ -156,6 +168,8 @@ class _$TravelCreateChangePanelHeightEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function(double height) changePanelHeight,
     required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
   }) {
     return changePanelHeight(height);
@@ -166,6 +180,8 @@ class _$TravelCreateChangePanelHeightEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double height)? changePanelHeight,
     TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
   }) {
     return changePanelHeight?.call(height);
@@ -176,6 +192,8 @@ class _$TravelCreateChangePanelHeightEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double height)? changePanelHeight,
     TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     required TResult orElse(),
   }) {
@@ -192,6 +210,8 @@ class _$TravelCreateChangePanelHeightEventImpl
         changePanelHeight,
     required TResult Function(TravelCreateSetTravelDatesEvent value)
         setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
   }) {
     return changePanelHeight(this);
@@ -203,6 +223,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     TResult? Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
   }) {
     return changePanelHeight?.call(this);
@@ -214,6 +236,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     TResult Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     required TResult orElse(),
   }) {
@@ -308,6 +332,8 @@ class _$TravelCreateSetTravelDatesEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function(double height) changePanelHeight,
     required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
   }) {
     return setTravelDates(travelDates);
@@ -318,6 +344,8 @@ class _$TravelCreateSetTravelDatesEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double height)? changePanelHeight,
     TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
   }) {
     return setTravelDates?.call(travelDates);
@@ -328,6 +356,8 @@ class _$TravelCreateSetTravelDatesEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double height)? changePanelHeight,
     TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     required TResult orElse(),
   }) {
@@ -344,6 +374,8 @@ class _$TravelCreateSetTravelDatesEventImpl
         changePanelHeight,
     required TResult Function(TravelCreateSetTravelDatesEvent value)
         setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
   }) {
     return setTravelDates(this);
@@ -355,6 +387,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     TResult? Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
   }) {
     return setTravelDates?.call(this);
@@ -366,6 +400,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     TResult Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     required TResult orElse(),
   }) {
@@ -385,6 +421,322 @@ abstract class TravelCreateSetTravelDatesEvent implements TravelCreateEvent {
   _$$TravelCreateSetTravelDatesEventImplCopyWith<
           _$TravelCreateSetTravelDatesEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddVisitImplCopyWith<$Res> {
+  factory _$$AddVisitImplCopyWith(
+          _$AddVisitImpl value, $Res Function(_$AddVisitImpl) then) =
+      __$$AddVisitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Place> places});
+}
+
+/// @nodoc
+class __$$AddVisitImplCopyWithImpl<$Res>
+    extends _$TravelCreateEventCopyWithImpl<$Res, _$AddVisitImpl>
+    implements _$$AddVisitImplCopyWith<$Res> {
+  __$$AddVisitImplCopyWithImpl(
+      _$AddVisitImpl _value, $Res Function(_$AddVisitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? places = null,
+  }) {
+    return _then(_$AddVisitImpl(
+      null == places
+          ? _value._places
+          : places // ignore: cast_nullable_to_non_nullable
+              as List<Place>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddVisitImpl implements _AddVisit {
+  const _$AddVisitImpl(final List<Place> places) : _places = places;
+
+  final List<Place> _places;
+  @override
+  List<Place> get places {
+    if (_places is EqualUnmodifiableListView) return _places;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_places);
+  }
+
+  @override
+  String toString() {
+    return 'TravelCreateEvent.addVisit(places: $places)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddVisitImpl &&
+            const DeepCollectionEquality().equals(other._places, _places));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_places));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddVisitImplCopyWith<_$AddVisitImpl> get copyWith =>
+      __$$AddVisitImplCopyWithImpl<_$AddVisitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double height) changePanelHeight,
+    required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
+    required TResult Function(int oldIndex, int newIndex) reorderVisit,
+  }) {
+    return addVisit(places);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double height)? changePanelHeight,
+    TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
+    TResult? Function(int oldIndex, int newIndex)? reorderVisit,
+  }) {
+    return addVisit?.call(places);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double height)? changePanelHeight,
+    TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
+    TResult Function(int oldIndex, int newIndex)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (addVisit != null) {
+      return addVisit(places);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TravelCreateChangePanelHeightEvent value)
+        changePanelHeight,
+    required TResult Function(TravelCreateSetTravelDatesEvent value)
+        setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
+    required TResult Function(TravelReorderVisitEvent value) reorderVisit,
+  }) {
+    return addVisit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
+    TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
+  }) {
+    return addVisit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
+    TResult Function(TravelReorderVisitEvent value)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (addVisit != null) {
+      return addVisit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddVisit implements TravelCreateEvent {
+  const factory _AddVisit(final List<Place> places) = _$AddVisitImpl;
+
+  List<Place> get places;
+  @JsonKey(ignore: true)
+  _$$AddVisitImplCopyWith<_$AddVisitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteVisitImplCopyWith<$Res> {
+  factory _$$DeleteVisitImplCopyWith(
+          _$DeleteVisitImpl value, $Res Function(_$DeleteVisitImpl) then) =
+      __$$DeleteVisitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$DeleteVisitImplCopyWithImpl<$Res>
+    extends _$TravelCreateEventCopyWithImpl<$Res, _$DeleteVisitImpl>
+    implements _$$DeleteVisitImplCopyWith<$Res> {
+  __$$DeleteVisitImplCopyWithImpl(
+      _$DeleteVisitImpl _value, $Res Function(_$DeleteVisitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$DeleteVisitImpl(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteVisitImpl implements _DeleteVisit {
+  const _$DeleteVisitImpl(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'TravelCreateEvent.deleteVisit(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteVisitImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteVisitImplCopyWith<_$DeleteVisitImpl> get copyWith =>
+      __$$DeleteVisitImplCopyWithImpl<_$DeleteVisitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double height) changePanelHeight,
+    required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
+    required TResult Function(int oldIndex, int newIndex) reorderVisit,
+  }) {
+    return deleteVisit(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double height)? changePanelHeight,
+    TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
+    TResult? Function(int oldIndex, int newIndex)? reorderVisit,
+  }) {
+    return deleteVisit?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double height)? changePanelHeight,
+    TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
+    TResult Function(int oldIndex, int newIndex)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (deleteVisit != null) {
+      return deleteVisit(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TravelCreateChangePanelHeightEvent value)
+        changePanelHeight,
+    required TResult Function(TravelCreateSetTravelDatesEvent value)
+        setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
+    required TResult Function(TravelReorderVisitEvent value) reorderVisit,
+  }) {
+    return deleteVisit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
+    TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
+  }) {
+    return deleteVisit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
+    TResult Function(TravelReorderVisitEvent value)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (deleteVisit != null) {
+      return deleteVisit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteVisit implements TravelCreateEvent {
+  const factory _DeleteVisit(final int index) = _$DeleteVisitImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$DeleteVisitImplCopyWith<_$DeleteVisitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -466,6 +818,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(double height) changePanelHeight,
     required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
   }) {
     return reorderVisit(oldIndex, newIndex);
@@ -476,6 +830,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double height)? changePanelHeight,
     TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
   }) {
     return reorderVisit?.call(oldIndex, newIndex);
@@ -486,6 +842,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double height)? changePanelHeight,
     TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     required TResult orElse(),
   }) {
@@ -502,6 +860,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
         changePanelHeight,
     required TResult Function(TravelCreateSetTravelDatesEvent value)
         setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
   }) {
     return reorderVisit(this);
@@ -513,6 +873,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     TResult? Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
   }) {
     return reorderVisit?.call(this);
@@ -524,6 +886,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     TResult Function(TravelCreateChangePanelHeightEvent value)?
         changePanelHeight,
     TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     required TResult orElse(),
   }) {

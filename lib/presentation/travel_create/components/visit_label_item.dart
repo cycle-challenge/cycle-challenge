@@ -13,8 +13,7 @@ class VisitLabelItem extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-
-    final dateString = date != null? DateFormat('yy년 M월 d일 (E)', 'ko_KR')
+    final dateString = date != null? DateFormat('M월 d일 (E)', 'ko_KR')
         .format(date!) : '분류 없음';
 
     return Container(

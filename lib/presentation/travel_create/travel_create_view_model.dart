@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_state.dart';
@@ -9,15 +10,30 @@ class TravelCreateViewModel with ChangeNotifier {
   TravelCreateState _state = TravelCreateState();
   TravelCreateState get state => _state;
 
-  TravelCreateViewModel(List<Visit> visits) {
-    _state = _state.copyWith(visits: visits);
-    _groupVisits();
-  }
-
   void onEvent(TravelCreateEvent event) => event.when(
       changePanelHeight: _onChangePanelHeight,
       setTravelDates: _onSetTravelDates,
-      reorderVisit: _onReorderVisit);
+      reorderVisit: _onReorderVisit,
+      addVisit: _onAddVisit,
+      deleteVisit: _onDeleteVisit);
+
+  void _onAddVisit(List<Place> places) {
+    final visits = places.map((place) => Visit(place: place)).toList();
+    _state = _state.copyWith(visits: List.of(_state.visits)..addAll(visits));
+    _groupVisits();
+  }
+
+  void _onDeleteVisit(int index) {
+    final List<TravelGroupItem> newGroup = List.from(_state.group)
+      ..removeAt(index);
+
+    final List<Visit> newVisits = [];
+    newGroup.forEach((element) =>
+        element.whenOrNull(visit: (visit) => newVisits.add(visit)));
+
+    _state = _state.copyWith(visits: newVisits);
+    _groupVisits();
+  }
 
   void _onChangePanelHeight(double height) {
     _state = _state.copyWith(panelHeight: height);
@@ -30,8 +46,6 @@ class TravelCreateViewModel with ChangeNotifier {
   }
 
   void _onReorderVisit(int oldIndex, int newIndex) {
-    oldIndex++;
-    newIndex++;
     if (oldIndex < newIndex) newIndex -= 1;
 
     final List<TravelGroupItem> newGroup = List.from(_state.group)
@@ -43,7 +57,8 @@ class TravelCreateViewModel with ChangeNotifier {
 
     newGroup.forEach((element) => element.when(
         label: (_) => dayOfTravel++,
-        visit: (visit) => newVisits.add(visit.copyWith(dayOfTravel: dayOfTravel))));
+        visit: (visit) =>
+            newVisits.add(visit.copyWith(dayOfTravel: dayOfTravel))));
 
     _state = _state.copyWith(visits: newVisits);
     _groupVisits();
@@ -64,8 +79,11 @@ class TravelCreateViewModel with ChangeNotifier {
     bool addedUncategorized = false;
 
     groupedVisits.entries.forEach((entry) {
-      if (entry.key != null && _state.travelDates != null && entry.key! <= days!) {
-        data.add(TravelGroupItem.label(_state.travelDates!.start.add(Duration(days: entry.key!))));
+      if (entry.key != null &&
+          _state.travelDates != null &&
+          entry.key! <= days!) {
+        data.add(TravelGroupItem.label(
+            _state.travelDates!.start.add(Duration(days: entry.key!))));
       } else if (!addedUncategorized) {
         data.add(const TravelGroupItem.label(null));
         addedUncategorized = true;
@@ -78,5 +96,4 @@ class TravelCreateViewModel with ChangeNotifier {
     _state = _state.copyWith(group: data);
     notifyListeners();
   }
-
 }

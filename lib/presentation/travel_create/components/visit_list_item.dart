@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
 
 class VisitListItem extends StatelessWidget {
   final Visit visit;
@@ -9,6 +12,7 @@ class VisitListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     String? thumbnailUrl = visit.place.images.firstOrNull?.medium;
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
@@ -24,7 +28,11 @@ class VisitListItem extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Icon(Icons.delete_forever_outlined))),
         key: Key(visit.place.id.toString()),
-        onDismissed: (direction) {},
+        onDismissed: (_) {
+
+          final viewModel = context.read<TravelCreateViewModel>();
+          viewModel.onEvent(TravelCreateEvent.deleteVisit(index + 1));
+        },
         child: ListTile(
           shape: Border(
             bottom: BorderSide(color: colorScheme.outlineVariant),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +9,8 @@ import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
 
 class GroupedVisitListView extends StatelessWidget {
-  const GroupedVisitListView({super.key});
+  final double gapHeight;
+  const GroupedVisitListView({super.key, required this.gapHeight});
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +36,24 @@ class GroupedVisitListView extends StatelessWidget {
         Expanded(
           child: ReorderableListView.builder(
               buildDefaultDragHandles: false,
-              header: VisitLabelItem(
-                  date: state.group[0].whenOrNull(label: (date) => date)),
-              itemBuilder: (context, index) {
-                return Container(
+              header: state.group.isNotEmpty ? VisitLabelItem(
+                  date: state.group[0].whenOrNull(label: (date) => date)) : null,
+              itemBuilder: (context, index) => Container(
                   key: Key('$index'),
                   child: state.group[index + 1].when(
                       label: (date) => VisitLabelItem(date: date),
                       visit: (visit) {
                         return VisitListItem(visit: visit, index: index);
                       }),
-                );
-              },
-              itemCount: state.group.length - 1,
+                ),
+              itemCount: max(state.group.length - 1, 0),
               onReorderStart: (index) {
                 HapticFeedback.heavyImpact();
               },
-              onReorder: (oldIndex, newIndex) {
-                viewModel.onEvent(
-                    TravelCreateEvent.reorderVisit(oldIndex, newIndex));
-              }),
+              onReorder: (oldIndex, newIndex) => viewModel.onEvent(
+                    TravelCreateEvent.reorderVisit(oldIndex + 1, newIndex + 1))),
         ),
+        SizedBox(height: gapHeight + 30)
       ],
     );
   }

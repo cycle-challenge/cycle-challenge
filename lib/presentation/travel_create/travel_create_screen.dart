@@ -1,13 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
-import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/grouped_visit_list_view.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/components/visit_list_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_page.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
@@ -28,9 +31,9 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
 
   @override
   void dispose() {
-    _controller?.dispose();
-    _panelController.close();
     super.dispose();
+    _panelController.close();
+    _controller?.dispose();
   }
 
   @override
@@ -43,7 +46,6 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
 
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
-
 
     return Scaffold(
       appBar: AppBar(
@@ -73,6 +75,9 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
         final double panelMaxHeight =
             constraints.maxHeight - mediaQuery.padding.top;
 
+        final double gapHeight =
+            max((panelMaxHeight - panelMinHeight) - state.panelHeight, 0);
+
         return SlidingUpPanel(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             panelSnapping: true,
@@ -86,7 +91,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
               final height = pos * (panelMaxHeight - panelMinHeight);
               viewModel.onEvent(TravelCreateEvent.changePanelHeight(height));
             },
-            panel: const GroupedVisitListView(),
+            panel: GroupedVisitListView(gapHeight: gapHeight),
             body: GoogleMap(
                 padding: EdgeInsets.only(
                     top: mediaQuery.padding.top,
@@ -132,7 +137,15 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
             surfaceTintColor: colorScheme.surface,
             child: Row(children: [
               IconButton.filledTonal(
-                  onPressed: () {}, icon: const Icon(Icons.add)),
+                  onPressed: () async {
+                    final places = await Navigator.of(context)
+                        .push<List<Place>>(MaterialPageRoute(
+                            builder: (_) => const TravelCreateAddVisitPage()));
+
+                    if (places == null) return;
+                    viewModel.onEvent(TravelCreateEvent.addVisit(places));
+                  },
+                  icon: const Icon(Icons.add)),
               const SizedBox(width: 8),
               IconButton.filledTonal(
                   onPressed: () async {
