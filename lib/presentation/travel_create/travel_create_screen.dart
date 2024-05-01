@@ -86,7 +86,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
               final height = pos * (panelMaxHeight - panelMinHeight);
               viewModel.onEvent(TravelCreateEvent.changePanelHeight(height));
             },
-            panel: GroupedVisitListView(visits: state.visits, travelDates: state.travelDates),
+            panel: const GroupedVisitListView(),
             body: GoogleMap(
                 padding: EdgeInsets.only(
                     top: mediaQuery.padding.top,

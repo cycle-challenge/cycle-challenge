@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TravelGroupItem {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String date) label,
+    required TResult Function(DateTime? date) label,
     required TResult Function(Visit visit) visit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String date)? label,
+    TResult? Function(DateTime? date)? label,
     TResult? Function(Visit visit)? visit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String date)? label,
+    TResult Function(DateTime? date)? label,
     TResult Function(Visit visit)? visit,
     required TResult orElse(),
   }) =>
@@ -80,7 +80,7 @@ abstract class _$$LabelImplCopyWith<$Res> {
           _$LabelImpl value, $Res Function(_$LabelImpl) then) =
       __$$LabelImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String date});
+  $Res call({DateTime? date});
 }
 
 /// @nodoc
@@ -94,13 +94,13 @@ class __$$LabelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? date = null,
+    Object? date = freezed,
   }) {
     return _then(_$LabelImpl(
-      null == date
+      freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime?,
     ));
   }
 }
@@ -111,7 +111,7 @@ class _$LabelImpl implements _Label {
   const _$LabelImpl(this.date);
 
   @override
-  final String date;
+  final DateTime? date;
 
   @override
   String toString() {
@@ -138,7 +138,7 @@ class _$LabelImpl implements _Label {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String date) label,
+    required TResult Function(DateTime? date) label,
     required TResult Function(Visit visit) visit,
   }) {
     return label(date);
@@ -147,7 +147,7 @@ class _$LabelImpl implements _Label {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String date)? label,
+    TResult? Function(DateTime? date)? label,
     TResult? Function(Visit visit)? visit,
   }) {
     return label?.call(date);
@@ -156,7 +156,7 @@ class _$LabelImpl implements _Label {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String date)? label,
+    TResult Function(DateTime? date)? label,
     TResult Function(Visit visit)? visit,
     required TResult orElse(),
   }) {
@@ -199,9 +199,9 @@ class _$LabelImpl implements _Label {
 }
 
 abstract class _Label implements TravelGroupItem {
-  const factory _Label(final String date) = _$LabelImpl;
+  const factory _Label(final DateTime? date) = _$LabelImpl;
 
-  String get date;
+  DateTime? get date;
   @JsonKey(ignore: true)
   _$$LabelImplCopyWith<_$LabelImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -281,7 +281,7 @@ class _$VisitImpl implements _Visit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String date) label,
+    required TResult Function(DateTime? date) label,
     required TResult Function(Visit visit) visit,
   }) {
     return visit(this.visit);
@@ -290,7 +290,7 @@ class _$VisitImpl implements _Visit {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String date)? label,
+    TResult? Function(DateTime? date)? label,
     TResult? Function(Visit visit)? visit,
   }) {
     return visit?.call(this.visit);
@@ -299,7 +299,7 @@ class _$VisitImpl implements _Visit {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String date)? label,
+    TResult Function(DateTime? date)? label,
     TResult Function(Visit visit)? visit,
     required TResult orElse(),
   }) {

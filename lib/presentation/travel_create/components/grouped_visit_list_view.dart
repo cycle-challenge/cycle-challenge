@@ -1,22 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/visit_label_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/visit_list_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
 
 class GroupedVisitListView extends StatelessWidget {
-  final DateTimeRange? travelDates;
-
-  final List<Visit> visits;
-
-  const GroupedVisitListView(
-      {super.key, required this.visits, required this.travelDates});
+  const GroupedVisitListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +21,20 @@ class GroupedVisitListView extends StatelessWidget {
         Container(
           width: double.maxFinite,
           padding: const EdgeInsets.symmetric(vertical: 6),
-          child: Center(child: Container(
+          child: Center(
+              child: Container(
             width: 36,
             height: 6,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-            color: colorScheme.outline),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: colorScheme.outline),
           )),
         ),
         Expanded(
           child: ReorderableListView.builder(
               buildDefaultDragHandles: false,
               header: VisitLabelItem(
-                  date: state.group[0].whenOrNull(label: (date) => date)!),
+                  date: state.group[0].whenOrNull(label: (date) => date)),
               itemBuilder: (context, index) {
                 return Container(
                   key: Key('$index'),
@@ -57,7 +50,8 @@ class GroupedVisitListView extends StatelessWidget {
                 HapticFeedback.heavyImpact();
               },
               onReorder: (oldIndex, newIndex) {
-                viewModel.onEvent(TravelCreateEvent.reorderVisit(oldIndex, newIndex));
+                viewModel.onEvent(
+                    TravelCreateEvent.reorderVisit(oldIndex, newIndex));
               }),
         ),
       ],

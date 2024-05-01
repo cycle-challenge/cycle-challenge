@@ -65,11 +65,9 @@ class TravelCreateViewModel with ChangeNotifier {
 
     groupedVisits.entries.forEach((entry) {
       if (entry.key != null && _state.travelDates != null && entry.key! <= days!) {
-        final dateString = DateFormat('yy년 M월 d일 (E)', 'ko_KR')
-            .format(_state.travelDates!.start.add(Duration(days: entry.key!)));
-        data.add(TravelGroupItem.label(dateString));
+        data.add(TravelGroupItem.label(_state.travelDates!.start.add(Duration(days: entry.key!))));
       } else if (!addedUncategorized) {
-        data.add(const TravelGroupItem.label('분류 없음'));
+        data.add(const TravelGroupItem.label(null));
         addedUncategorized = true;
       }
 
