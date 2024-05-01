@@ -1,21 +1,49 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_group_item.dart';
 
 class TravelCreateViewModel with ChangeNotifier {
-  TravelCreateState _state = TravelCreateState();
+  final StreamController<MainUiEvent> _mainEventController;
+  late TravelCreateState _state;
   TravelCreateState get state => _state;
+
+  TravelCreateViewModel(this._mainEventController, {required Travel travel}) {
+    _state = TravelCreateState(travel: travel);
+  }
 
   void onEvent(TravelCreateEvent event) => event.when(
       changePanelHeight: _onChangePanelHeight,
       setTravelDates: _onSetTravelDates,
       reorderVisit: _onReorderVisit,
       addVisit: _onAddVisit,
-      deleteVisit: _onDeleteVisit);
+      deleteVisit: _onDeleteVisit,
+      complete: _onComplete, edit:_onEdit);
+
+  void _onEdit(Travel travel) {
+    _state = _state.copyWith(travel: travel);
+    notifyListeners();
+  }
+
+  void _onComplete() {
+    if (state.visits.isEmpty) {
+      return _mainEventController
+          .add(const MainUiEvent.showSnackbar('최소 한 개 이상의 관광지를 선택해야 합니다.'));
+    }
+
+    for (Visit visit in state.visits) {
+      if (visit.dayOfTravel == null) {
+        return _mainEventController
+            .add(const MainUiEvent.showSnackbar('들릴 관광지에 날짜를 선택해 주세요.'));
+      }
+    }
+  }
 
   void _onAddVisit(List<Place> places) {
     final visits = places.map((place) => Visit(place: place)).toList();

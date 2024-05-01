@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TravelCreateState {
+  Travel get travel => throw _privateConstructorUsedError;
   double get panelHeight => throw _privateConstructorUsedError;
   List<Visit> get visits => throw _privateConstructorUsedError;
   List<TravelGroupItem> get group => throw _privateConstructorUsedError;
@@ -33,10 +34,13 @@ abstract class $TravelCreateStateCopyWith<$Res> {
       _$TravelCreateStateCopyWithImpl<$Res, TravelCreateState>;
   @useResult
   $Res call(
-      {double panelHeight,
+      {Travel travel,
+      double panelHeight,
       List<Visit> visits,
       List<TravelGroupItem> group,
       DateTimeRange? travelDates});
+
+  $TravelCopyWith<$Res> get travel;
 }
 
 /// @nodoc
@@ -52,12 +56,17 @@ class _$TravelCreateStateCopyWithImpl<$Res, $Val extends TravelCreateState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? travel = null,
     Object? panelHeight = null,
     Object? visits = null,
     Object? group = null,
     Object? travelDates = freezed,
   }) {
     return _then(_value.copyWith(
+      travel: null == travel
+          ? _value.travel
+          : travel // ignore: cast_nullable_to_non_nullable
+              as Travel,
       panelHeight: null == panelHeight
           ? _value.panelHeight
           : panelHeight // ignore: cast_nullable_to_non_nullable
@@ -76,6 +85,14 @@ class _$TravelCreateStateCopyWithImpl<$Res, $Val extends TravelCreateState>
               as DateTimeRange?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TravelCopyWith<$Res> get travel {
+    return $TravelCopyWith<$Res>(_value.travel, (value) {
+      return _then(_value.copyWith(travel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -87,10 +104,14 @@ abstract class _$$TravelCreateStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double panelHeight,
+      {Travel travel,
+      double panelHeight,
       List<Visit> visits,
       List<TravelGroupItem> group,
       DateTimeRange? travelDates});
+
+  @override
+  $TravelCopyWith<$Res> get travel;
 }
 
 /// @nodoc
@@ -104,12 +125,17 @@ class __$$TravelCreateStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? travel = null,
     Object? panelHeight = null,
     Object? visits = null,
     Object? group = null,
     Object? travelDates = freezed,
   }) {
     return _then(_$TravelCreateStateImpl(
+      travel: null == travel
+          ? _value.travel
+          : travel // ignore: cast_nullable_to_non_nullable
+              as Travel,
       panelHeight: null == panelHeight
           ? _value.panelHeight
           : panelHeight // ignore: cast_nullable_to_non_nullable
@@ -134,13 +160,16 @@ class __$$TravelCreateStateImplCopyWithImpl<$Res>
 
 class _$TravelCreateStateImpl implements _TravelCreateState {
   _$TravelCreateStateImpl(
-      {this.panelHeight = 0.0,
+      {required this.travel,
+      this.panelHeight = 0.0,
       final List<Visit> visits = const [],
       final List<TravelGroupItem> group = const [],
       this.travelDates})
       : _visits = visits,
         _group = group;
 
+  @override
+  final Travel travel;
   @override
   @JsonKey()
   final double panelHeight;
@@ -167,7 +196,7 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
 
   @override
   String toString() {
-    return 'TravelCreateState(panelHeight: $panelHeight, visits: $visits, group: $group, travelDates: $travelDates)';
+    return 'TravelCreateState(travel: $travel, panelHeight: $panelHeight, visits: $visits, group: $group, travelDates: $travelDates)';
   }
 
   @override
@@ -175,6 +204,7 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TravelCreateStateImpl &&
+            (identical(other.travel, travel) || other.travel == travel) &&
             (identical(other.panelHeight, panelHeight) ||
                 other.panelHeight == panelHeight) &&
             const DeepCollectionEquality().equals(other._visits, _visits) &&
@@ -186,6 +216,7 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      travel,
       panelHeight,
       const DeepCollectionEquality().hash(_visits),
       const DeepCollectionEquality().hash(_group),
@@ -201,11 +232,14 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
 
 abstract class _TravelCreateState implements TravelCreateState {
   factory _TravelCreateState(
-      {final double panelHeight,
+      {required final Travel travel,
+      final double panelHeight,
       final List<Visit> visits,
       final List<TravelGroupItem> group,
       final DateTimeRange? travelDates}) = _$TravelCreateStateImpl;
 
+  @override
+  Travel get travel;
   @override
   double get panelHeight;
   @override

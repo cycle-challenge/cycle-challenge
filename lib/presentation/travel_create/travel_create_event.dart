@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 
 part 'travel_create_event.freezed.dart';
@@ -16,4 +17,6 @@ abstract class TravelCreateEvent with _$TravelCreateEvent {
   const factory TravelCreateEvent.deleteVisit(int index) = _DeleteVisit;
   const factory TravelCreateEvent.reorderVisit(int oldIndex, int newIndex) =
   TravelReorderVisitEvent;
+  const factory TravelCreateEvent.complete() = _Complete;
+  const factory TravelCreateEvent.edit(Travel travel) = _Edit;
 }

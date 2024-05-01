@@ -9,6 +9,7 @@ import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/grouped_visit_list_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/components/travel_edit_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
@@ -16,9 +17,7 @@ import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_scree
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 
 class TravelCreateScreen extends StatefulWidget {
-  final Travel travel;
-
-  const TravelCreateScreen({super.key, required this.travel});
+  const TravelCreateScreen({super.key});
 
   @override
   State<TravelCreateScreen> createState() => _TravelCreateScreenState();
@@ -51,9 +50,24 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
           centerTitle: false,
           scrolledUnderElevation: 0,
           backgroundColor: colorScheme.surface.withOpacity(0),
-          title: Text(widget.travel.name,
+          title: Text(state.travel.name,
               style:
                   textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600)),
+          actions: [
+            IconButton(
+                onPressed: () async {
+                  final travel = await showModalBottomSheet<Travel>(
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      context: context,
+                      builder: (_) => TravelEditSheet(travel: state.travel));
+                  if (travel == null) return;
+
+                  viewModel.onEvent(TravelCreateEvent.edit(travel));
+                 },
+                icon: const Icon(Icons.edit)),
+            const SizedBox(width: 8)
+          ],
           flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -122,9 +136,8 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print(state.visits.map((visit) => visit.place.name));
-        },
+        onPressed: () =>
+            viewModel.onEvent(const TravelCreateEvent.complete()),
         elevation: 0,
         backgroundColor: colorScheme.secondaryContainer,
         foregroundColor: colorScheme.onSecondaryContainer,
