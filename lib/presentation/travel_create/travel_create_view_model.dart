@@ -51,29 +51,34 @@ class TravelCreateViewModel with ChangeNotifier {
 
   void _groupVisits() {
     int? days = _state.travelDates?.duration.inDays;
-    final Map<int?, List<Visit>> initialGroup = {};
+    final Map<int?, List<Visit>> groupedVisits = {
+      for (var i = 0; i <= (days ?? -1); i++) i: [],
+    };
 
-    if (days != null) {
-      List.generate(days + 1, (index) => initialGroup[index] = []);
-    }
-
-    final group = _state.visits.fold(initialGroup, (group, visit) {
-      group[visit.dayOfTravel] ??= [];
-      group[visit.dayOfTravel]?.add(visit);
-      return group;
+    _state.visits.forEach((visit) {
+      groupedVisits.putIfAbsent(visit.dayOfTravel, () => []).add(visit);
     });
 
+    // 최종 데이터 리스트 생성
     final List<TravelGroupItem> data = [];
+    bool addedUncategorized = false;
 
-    group.entries.forEach((e) {
-      data.add(TravelGroupItem.label(e.key != null && _state.travelDates != null
-          ? DateFormat('yyyy년 MM월 dd일')
-              .format(_state.travelDates!.start.add(Duration(days: e.key!)))
-          : '분류 없음'));
-      data.addAll(e.value.map((e) => TravelGroupItem.visit(e)));
+    groupedVisits.entries.forEach((entry) {
+      if (entry.key != null && _state.travelDates != null && entry.key! <= days!) {
+        final dateString = DateFormat('yy년 M월 d일 (E)', 'ko_KR')
+            .format(_state.travelDates!.start.add(Duration(days: entry.key!)));
+        data.add(TravelGroupItem.label(dateString));
+      } else if (!addedUncategorized) {
+        data.add(const TravelGroupItem.label('분류 없음'));
+        addedUncategorized = true;
+      }
+
+      data.addAll(entry.value.map(TravelGroupItem.visit));
     });
 
+    // 상태 업데이트 및 리스너 통지
     _state = _state.copyWith(group: data);
     notifyListeners();
   }
+
 }

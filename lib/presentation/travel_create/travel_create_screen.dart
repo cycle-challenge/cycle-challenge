@@ -48,6 +48,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: false,
+          scrolledUnderElevation: 0,
           backgroundColor: colorScheme.surface.withOpacity(0),
           title: Text(widget.travel.name,
               style:
@@ -137,6 +138,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
                   onPressed: () async {
                     final now = DateTime.now();
                     DateTimeRange? travelDates = await showDateRangePicker(
+                        initialDateRange: state.travelDates,
                         context: context,
                         firstDate: now,
                         lastDate: now.add(const Duration(days: 730)));
