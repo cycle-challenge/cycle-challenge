@@ -34,6 +34,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
   StreamSubscription? _subscription;
 
   bool _isCameraMovingProgrammatically = false;
+  bool _isPanelTouching = false;
 
   @override
   void initState() {
@@ -135,8 +136,18 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
             onPanelSlide: (double pos) {
               final height = pos * (panelMaxHeight - panelMinHeight);
               viewModel.onEvent(TravelCreateEvent.changePanelHeight(height));
+
+              if (!_panelController.isPanelAnimating &&
+                  !_isPanelTouching &&
+                  pos < 1.0) {
+                viewModel.onEvent(const TravelCreateEvent.initCamera());
+              }
             },
-            panel: GroupedVisitListView(gapHeight: gapHeight),
+            panel: Listener(
+                behavior: HitTestBehavior.opaque,
+                onPointerUp: (_) => _isPanelTouching = false,
+                onPointerDown: (_) => _isPanelTouching = true,
+                child: GroupedVisitListView(gapHeight: gapHeight)),
             body: Stack(
               children: [
                 Positioned.fill(
