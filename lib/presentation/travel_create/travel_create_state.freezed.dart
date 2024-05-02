@@ -21,6 +21,8 @@ mixin _$TravelCreateState {
   List<Visit> get visits => throw _privateConstructorUsedError;
   List<TravelGroupItem> get group => throw _privateConstructorUsedError;
   DateTimeRange? get travelDates => throw _privateConstructorUsedError;
+  VisitArea? get entireArea => throw _privateConstructorUsedError;
+  bool get isCameraMoved => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TravelCreateStateCopyWith<TravelCreateState> get copyWith =>
@@ -38,9 +40,12 @@ abstract class $TravelCreateStateCopyWith<$Res> {
       double panelHeight,
       List<Visit> visits,
       List<TravelGroupItem> group,
-      DateTimeRange? travelDates});
+      DateTimeRange? travelDates,
+      VisitArea? entireArea,
+      bool isCameraMoved});
 
   $TravelCopyWith<$Res> get travel;
+  $VisitAreaCopyWith<$Res>? get entireArea;
 }
 
 /// @nodoc
@@ -61,6 +66,8 @@ class _$TravelCreateStateCopyWithImpl<$Res, $Val extends TravelCreateState>
     Object? visits = null,
     Object? group = null,
     Object? travelDates = freezed,
+    Object? entireArea = freezed,
+    Object? isCameraMoved = null,
   }) {
     return _then(_value.copyWith(
       travel: null == travel
@@ -83,6 +90,14 @@ class _$TravelCreateStateCopyWithImpl<$Res, $Val extends TravelCreateState>
           ? _value.travelDates
           : travelDates // ignore: cast_nullable_to_non_nullable
               as DateTimeRange?,
+      entireArea: freezed == entireArea
+          ? _value.entireArea
+          : entireArea // ignore: cast_nullable_to_non_nullable
+              as VisitArea?,
+      isCameraMoved: null == isCameraMoved
+          ? _value.isCameraMoved
+          : isCameraMoved // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -91,6 +106,18 @@ class _$TravelCreateStateCopyWithImpl<$Res, $Val extends TravelCreateState>
   $TravelCopyWith<$Res> get travel {
     return $TravelCopyWith<$Res>(_value.travel, (value) {
       return _then(_value.copyWith(travel: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VisitAreaCopyWith<$Res>? get entireArea {
+    if (_value.entireArea == null) {
+      return null;
+    }
+
+    return $VisitAreaCopyWith<$Res>(_value.entireArea!, (value) {
+      return _then(_value.copyWith(entireArea: value) as $Val);
     });
   }
 }
@@ -108,10 +135,14 @@ abstract class _$$TravelCreateStateImplCopyWith<$Res>
       double panelHeight,
       List<Visit> visits,
       List<TravelGroupItem> group,
-      DateTimeRange? travelDates});
+      DateTimeRange? travelDates,
+      VisitArea? entireArea,
+      bool isCameraMoved});
 
   @override
   $TravelCopyWith<$Res> get travel;
+  @override
+  $VisitAreaCopyWith<$Res>? get entireArea;
 }
 
 /// @nodoc
@@ -130,6 +161,8 @@ class __$$TravelCreateStateImplCopyWithImpl<$Res>
     Object? visits = null,
     Object? group = null,
     Object? travelDates = freezed,
+    Object? entireArea = freezed,
+    Object? isCameraMoved = null,
   }) {
     return _then(_$TravelCreateStateImpl(
       travel: null == travel
@@ -152,6 +185,14 @@ class __$$TravelCreateStateImplCopyWithImpl<$Res>
           ? _value.travelDates
           : travelDates // ignore: cast_nullable_to_non_nullable
               as DateTimeRange?,
+      entireArea: freezed == entireArea
+          ? _value.entireArea
+          : entireArea // ignore: cast_nullable_to_non_nullable
+              as VisitArea?,
+      isCameraMoved: null == isCameraMoved
+          ? _value.isCameraMoved
+          : isCameraMoved // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -164,7 +205,9 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
       this.panelHeight = 0.0,
       final List<Visit> visits = const [],
       final List<TravelGroupItem> group = const [],
-      this.travelDates})
+      this.travelDates,
+      this.entireArea,
+      this.isCameraMoved = false})
       : _visits = visits,
         _group = group;
 
@@ -193,10 +236,15 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
 
   @override
   final DateTimeRange? travelDates;
+  @override
+  final VisitArea? entireArea;
+  @override
+  @JsonKey()
+  final bool isCameraMoved;
 
   @override
   String toString() {
-    return 'TravelCreateState(travel: $travel, panelHeight: $panelHeight, visits: $visits, group: $group, travelDates: $travelDates)';
+    return 'TravelCreateState(travel: $travel, panelHeight: $panelHeight, visits: $visits, group: $group, travelDates: $travelDates, entireArea: $entireArea, isCameraMoved: $isCameraMoved)';
   }
 
   @override
@@ -210,7 +258,11 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
             const DeepCollectionEquality().equals(other._visits, _visits) &&
             const DeepCollectionEquality().equals(other._group, _group) &&
             (identical(other.travelDates, travelDates) ||
-                other.travelDates == travelDates));
+                other.travelDates == travelDates) &&
+            (identical(other.entireArea, entireArea) ||
+                other.entireArea == entireArea) &&
+            (identical(other.isCameraMoved, isCameraMoved) ||
+                other.isCameraMoved == isCameraMoved));
   }
 
   @override
@@ -220,7 +272,9 @@ class _$TravelCreateStateImpl implements _TravelCreateState {
       panelHeight,
       const DeepCollectionEquality().hash(_visits),
       const DeepCollectionEquality().hash(_group),
-      travelDates);
+      travelDates,
+      entireArea,
+      isCameraMoved);
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +290,9 @@ abstract class _TravelCreateState implements TravelCreateState {
       final double panelHeight,
       final List<Visit> visits,
       final List<TravelGroupItem> group,
-      final DateTimeRange? travelDates}) = _$TravelCreateStateImpl;
+      final DateTimeRange? travelDates,
+      final VisitArea? entireArea,
+      final bool isCameraMoved}) = _$TravelCreateStateImpl;
 
   @override
   Travel get travel;
@@ -248,6 +304,10 @@ abstract class _TravelCreateState implements TravelCreateState {
   List<TravelGroupItem> get group;
   @override
   DateTimeRange? get travelDates;
+  @override
+  VisitArea? get entireArea;
+  @override
+  bool get isCameraMoved;
   @override
   @JsonKey(ignore: true)
   _$$TravelCreateStateImplCopyWith<_$TravelCreateStateImpl> get copyWith =>

@@ -23,6 +23,8 @@ mixin _$Visit {
   int? get id => throw _privateConstructorUsedError;
   int? get dayOfTravel => throw _privateConstructorUsedError;
   int? get orderOfVisit => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false)
+  VisitArea? get area => throw _privateConstructorUsedError;
   @JsonKey(fromJson: Place.fromJson)
   Place get place => throw _privateConstructorUsedError;
   @JsonKey(fromJson: Visit._imagesFromJson)
@@ -42,9 +44,11 @@ abstract class $VisitCopyWith<$Res> {
       {int? id,
       int? dayOfTravel,
       int? orderOfVisit,
+      @JsonKey(includeFromJson: false) VisitArea? area,
       @JsonKey(fromJson: Place.fromJson) Place place,
       @JsonKey(fromJson: Visit._imagesFromJson) List<Image> images});
 
+  $VisitAreaCopyWith<$Res>? get area;
   $PlaceCopyWith<$Res> get place;
 }
 
@@ -64,6 +68,7 @@ class _$VisitCopyWithImpl<$Res, $Val extends Visit>
     Object? id = freezed,
     Object? dayOfTravel = freezed,
     Object? orderOfVisit = freezed,
+    Object? area = freezed,
     Object? place = null,
     Object? images = null,
   }) {
@@ -80,6 +85,10 @@ class _$VisitCopyWithImpl<$Res, $Val extends Visit>
           ? _value.orderOfVisit
           : orderOfVisit // ignore: cast_nullable_to_non_nullable
               as int?,
+      area: freezed == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as VisitArea?,
       place: null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
@@ -89,6 +98,18 @@ class _$VisitCopyWithImpl<$Res, $Val extends Visit>
           : images // ignore: cast_nullable_to_non_nullable
               as List<Image>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VisitAreaCopyWith<$Res>? get area {
+    if (_value.area == null) {
+      return null;
+    }
+
+    return $VisitAreaCopyWith<$Res>(_value.area!, (value) {
+      return _then(_value.copyWith(area: value) as $Val);
+    });
   }
 
   @override
@@ -111,9 +132,12 @@ abstract class _$$VisitImplCopyWith<$Res> implements $VisitCopyWith<$Res> {
       {int? id,
       int? dayOfTravel,
       int? orderOfVisit,
+      @JsonKey(includeFromJson: false) VisitArea? area,
       @JsonKey(fromJson: Place.fromJson) Place place,
       @JsonKey(fromJson: Visit._imagesFromJson) List<Image> images});
 
+  @override
+  $VisitAreaCopyWith<$Res>? get area;
   @override
   $PlaceCopyWith<$Res> get place;
 }
@@ -132,6 +156,7 @@ class __$$VisitImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? dayOfTravel = freezed,
     Object? orderOfVisit = freezed,
+    Object? area = freezed,
     Object? place = null,
     Object? images = null,
   }) {
@@ -148,6 +173,10 @@ class __$$VisitImplCopyWithImpl<$Res>
           ? _value.orderOfVisit
           : orderOfVisit // ignore: cast_nullable_to_non_nullable
               as int?,
+      area: freezed == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as VisitArea?,
       place: null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
@@ -167,6 +196,7 @@ class _$VisitImpl implements _Visit {
       {this.id,
       this.dayOfTravel,
       this.orderOfVisit,
+      @JsonKey(includeFromJson: false) this.area,
       @JsonKey(fromJson: Place.fromJson) required this.place,
       @JsonKey(fromJson: Visit._imagesFromJson)
       final List<Image> images = const []})
@@ -182,6 +212,9 @@ class _$VisitImpl implements _Visit {
   @override
   final int? orderOfVisit;
   @override
+  @JsonKey(includeFromJson: false)
+  final VisitArea? area;
+  @override
   @JsonKey(fromJson: Place.fromJson)
   final Place place;
   final List<Image> _images;
@@ -195,7 +228,7 @@ class _$VisitImpl implements _Visit {
 
   @override
   String toString() {
-    return 'Visit(id: $id, dayOfTravel: $dayOfTravel, orderOfVisit: $orderOfVisit, place: $place, images: $images)';
+    return 'Visit(id: $id, dayOfTravel: $dayOfTravel, orderOfVisit: $orderOfVisit, area: $area, place: $place, images: $images)';
   }
 
   @override
@@ -208,6 +241,7 @@ class _$VisitImpl implements _Visit {
                 other.dayOfTravel == dayOfTravel) &&
             (identical(other.orderOfVisit, orderOfVisit) ||
                 other.orderOfVisit == orderOfVisit) &&
+            (identical(other.area, area) || other.area == area) &&
             (identical(other.place, place) || other.place == place) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
@@ -215,7 +249,7 @@ class _$VisitImpl implements _Visit {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, dayOfTravel, orderOfVisit,
-      place, const DeepCollectionEquality().hash(_images));
+      area, place, const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -236,6 +270,7 @@ abstract class _Visit implements Visit {
           {final int? id,
           final int? dayOfTravel,
           final int? orderOfVisit,
+          @JsonKey(includeFromJson: false) final VisitArea? area,
           @JsonKey(fromJson: Place.fromJson) required final Place place,
           @JsonKey(fromJson: Visit._imagesFromJson) final List<Image> images}) =
       _$VisitImpl;
@@ -248,6 +283,9 @@ abstract class _Visit implements Visit {
   int? get dayOfTravel;
   @override
   int? get orderOfVisit;
+  @override
+  @JsonKey(includeFromJson: false)
+  VisitArea? get area;
   @override
   @JsonKey(fromJson: Place.fromJson)
   Place get place;

@@ -65,6 +65,7 @@ dependencies:
   uuid: ^4.4.0
   grouped_list: ^5.1.2
   intl: ^0.18.1
+  dart_jts: ^0.3.0+1
 
 dev_dependencies:
   flutter_test:

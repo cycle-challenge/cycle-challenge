@@ -1,12 +1,16 @@
+import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/grouped_visit_list_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/travel_edit_sheet.dart';
@@ -27,11 +31,39 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
   GoogleMapController? _controller;
   final _panelController = PanelController();
 
+  StreamSubscription? _subscription;
+
+  bool _isCameraMovingProgrammatically = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<TravelCreateViewModel>();
+      _subscription =
+          viewModel.stream.listen((event) => event.when(moveArea: _moveArea));
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _panelController.animatePanelToPosition(0.65));
+  }
+
   @override
   void dispose() {
     super.dispose();
-    _panelController.close();
+    _subscription?.cancel();
     _controller?.dispose();
+  }
+
+  void _moveArea(VisitArea area) async {
+    LatLngBounds bounds = LatLngBounds(
+        southwest: LatLng(area.swLat, area.swLon),
+        northeast: LatLng(area.neLat, area.neLon));
+
+    _isCameraMovingProgrammatically = true;
+    await _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 50));
+    _isCameraMovingProgrammatically = false;
   }
 
   @override
@@ -64,7 +96,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
                   if (travel == null) return;
 
                   viewModel.onEvent(TravelCreateEvent.edit(travel));
-                 },
+                },
                 icon: const Icon(Icons.edit)),
             const SizedBox(width: 8)
           ],
@@ -105,39 +137,70 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
               viewModel.onEvent(TravelCreateEvent.changePanelHeight(height));
             },
             panel: GroupedVisitListView(gapHeight: gapHeight),
-            body: GoogleMap(
-                padding: EdgeInsets.only(
-                    top: mediaQuery.padding.top,
-                    bottom: state.panelHeight + 260),
-                myLocationButtonEnabled: false,
-                initialCameraPosition: const CameraPosition(
-                  target: LatLng(36.6272, 127.4987),
-                  zoom: 13,
-                ),
-                onMapCreated: (GoogleMapController controller) async {
-                  bool isDarkMode = MediaQuery.platformBrightnessOf(context) ==
-                      Brightness.dark;
+            body: Stack(
+              children: [
+                Expanded(
+                    child: GoogleMap(
+                        padding: EdgeInsets.only(
+                            top: mediaQuery.padding.top,
+                            bottom: state.panelHeight + 260),
+                        myLocationButtonEnabled: false,
+                        initialCameraPosition: const CameraPosition(
+                          target: LatLng(36.6272, 127.4987),
+                          zoom: 13,
+                        ),
+                        onCameraMoveStarted: () {
+                          if (_isCameraMovingProgrammatically) return;
+                          viewModel
+                              .onEvent(const TravelCreateEvent.moveCamera());
+                        },
+                        onMapCreated: (GoogleMapController controller) async {
+                          bool isDarkMode =
+                              MediaQuery.platformBrightnessOf(context) ==
+                                  Brightness.dark;
 
-                  String path = isDarkMode
-                      ? "assets/map/map_style_dark.json"
-                      : "assets/map/map_style.json";
-                  controller.setMapStyle(await getJsonFile(path));
-                  _controller = controller;
-                },
-                markers: Set.of(state.visits.mapWithIndex((visit, index) =>
-                    Marker(
-                        markerId: MarkerId(visit.place.id.toString()),
-                        draggable: true,
-                        anchor: const Offset(0.5, 0.5),
-                        icon: mapState.markerIcon[visit.place.type.name] ??
-                            BitmapDescriptor.defaultMarker,
-                        position: LatLng(
-                            visit.place.latitude, visit.place.longitude))))));
+                          String path = isDarkMode
+                              ? "assets/map/map_style_dark.json"
+                              : "assets/map/map_style.json";
+                          controller.setMapStyle(await getJsonFile(path));
+                          _controller = controller;
+                        },
+                        markers: Set.of(state.visits.mapWithIndex(
+                            (visit, index) => Marker(
+                                markerId: MarkerId(visit.place.id.toString()),
+                                draggable: true,
+                                anchor: const Offset(0.5, 0.5),
+                                icon: mapState
+                                        .markerIcon[visit.place.type.name] ??
+                                    BitmapDescriptor.defaultMarker,
+                                position: LatLng(visit.place.latitude,
+                                    visit.place.longitude)))))),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: state.panelHeight + 260,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 200),
+                    child: state.isCameraMoved == true
+                        ? Center(
+                            child: FilledButton.icon(
+                                style: FilledButton.styleFrom(
+                                    backgroundColor: colorScheme.surface,
+                                    foregroundColor: colorScheme.onSurface),
+                                onPressed: () => viewModel.onEvent(
+                                    const TravelCreateEvent.initCamera()),
+                                icon: const Icon(Icons.refresh),
+                                label: const Text("카메라 초기화")),
+                          )
+                        : null,
+                  ),
+                )
+              ],
+            ));
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            viewModel.onEvent(const TravelCreateEvent.complete()),
+        onPressed: () => viewModel.onEvent(const TravelCreateEvent.complete()),
         elevation: 0,
         backgroundColor: colorScheme.secondaryContainer,
         foregroundColor: colorScheme.onSecondaryContainer,

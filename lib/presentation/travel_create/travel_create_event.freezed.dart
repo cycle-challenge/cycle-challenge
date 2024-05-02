@@ -25,6 +25,8 @@ mixin _$TravelCreateEvent {
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +38,8 @@ mixin _$TravelCreateEvent {
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +51,8 @@ mixin _$TravelCreateEvent {
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +67,8 @@ mixin _$TravelCreateEvent {
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +81,8 @@ mixin _$TravelCreateEvent {
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +95,8 @@ mixin _$TravelCreateEvent {
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -185,6 +197,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) {
     return changePanelHeight(height);
   }
@@ -199,6 +213,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) {
     return changePanelHeight?.call(height);
   }
@@ -213,6 +229,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) {
     if (changePanelHeight != null) {
@@ -233,6 +251,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) {
     return changePanelHeight(this);
   }
@@ -248,6 +268,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) {
     return changePanelHeight?.call(this);
   }
@@ -263,6 +285,8 @@ class _$TravelCreateChangePanelHeightEventImpl
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) {
     if (changePanelHeight != null) {
@@ -361,6 +385,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) {
     return setTravelDates(travelDates);
   }
@@ -375,6 +401,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) {
     return setTravelDates?.call(travelDates);
   }
@@ -389,6 +417,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) {
     if (setTravelDates != null) {
@@ -409,6 +439,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) {
     return setTravelDates(this);
   }
@@ -424,6 +456,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) {
     return setTravelDates?.call(this);
   }
@@ -439,6 +473,8 @@ class _$TravelCreateSetTravelDatesEventImpl
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) {
     if (setTravelDates != null) {
@@ -536,6 +572,8 @@ class _$AddVisitImpl implements _AddVisit {
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) {
     return addVisit(places);
   }
@@ -550,6 +588,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) {
     return addVisit?.call(places);
   }
@@ -564,6 +604,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) {
     if (addVisit != null) {
@@ -584,6 +626,8 @@ class _$AddVisitImpl implements _AddVisit {
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) {
     return addVisit(this);
   }
@@ -599,6 +643,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) {
     return addVisit?.call(this);
   }
@@ -614,6 +660,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) {
     if (addVisit != null) {
@@ -703,6 +751,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) {
     return deleteVisit(index);
   }
@@ -717,6 +767,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) {
     return deleteVisit?.call(index);
   }
@@ -731,6 +783,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) {
     if (deleteVisit != null) {
@@ -751,6 +805,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) {
     return deleteVisit(this);
   }
@@ -766,6 +822,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) {
     return deleteVisit?.call(this);
   }
@@ -781,6 +839,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) {
     if (deleteVisit != null) {
@@ -883,6 +943,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) {
     return reorderVisit(oldIndex, newIndex);
   }
@@ -897,6 +959,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) {
     return reorderVisit?.call(oldIndex, newIndex);
   }
@@ -911,6 +975,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) {
     if (reorderVisit != null) {
@@ -931,6 +997,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) {
     return reorderVisit(this);
   }
@@ -946,6 +1014,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) {
     return reorderVisit?.call(this);
   }
@@ -961,6 +1031,8 @@ class _$TravelReorderVisitEventImpl implements TravelReorderVisitEvent {
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) {
     if (reorderVisit != null) {
@@ -1026,6 +1098,8 @@ class _$CompleteImpl implements _Complete {
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) {
     return complete();
   }
@@ -1040,6 +1114,8 @@ class _$CompleteImpl implements _Complete {
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) {
     return complete?.call();
   }
@@ -1054,6 +1130,8 @@ class _$CompleteImpl implements _Complete {
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) {
     if (complete != null) {
@@ -1074,6 +1152,8 @@ class _$CompleteImpl implements _Complete {
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) {
     return complete(this);
   }
@@ -1089,6 +1169,8 @@ class _$CompleteImpl implements _Complete {
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) {
     return complete?.call(this);
   }
@@ -1104,6 +1186,8 @@ class _$CompleteImpl implements _Complete {
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) {
     if (complete != null) {
@@ -1197,6 +1281,8 @@ class _$EditImpl implements _Edit {
     required TResult Function(int oldIndex, int newIndex) reorderVisit,
     required TResult Function() complete,
     required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
   }) {
     return edit(travel);
   }
@@ -1211,6 +1297,8 @@ class _$EditImpl implements _Edit {
     TResult? Function(int oldIndex, int newIndex)? reorderVisit,
     TResult? Function()? complete,
     TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
   }) {
     return edit?.call(travel);
   }
@@ -1225,6 +1313,8 @@ class _$EditImpl implements _Edit {
     TResult Function(int oldIndex, int newIndex)? reorderVisit,
     TResult Function()? complete,
     TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -1245,6 +1335,8 @@ class _$EditImpl implements _Edit {
     required TResult Function(TravelReorderVisitEvent value) reorderVisit,
     required TResult Function(_Complete value) complete,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
   }) {
     return edit(this);
   }
@@ -1260,6 +1352,8 @@ class _$EditImpl implements _Edit {
     TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult? Function(_Complete value)? complete,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
   }) {
     return edit?.call(this);
   }
@@ -1275,6 +1369,8 @@ class _$EditImpl implements _Edit {
     TResult Function(TravelReorderVisitEvent value)? reorderVisit,
     TResult Function(_Complete value)? complete,
     TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -1291,4 +1387,300 @@ abstract class _Edit implements TravelCreateEvent {
   @JsonKey(ignore: true)
   _$$EditImplCopyWith<_$EditImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MoveCameraImplCopyWith<$Res> {
+  factory _$$MoveCameraImplCopyWith(
+          _$MoveCameraImpl value, $Res Function(_$MoveCameraImpl) then) =
+      __$$MoveCameraImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MoveCameraImplCopyWithImpl<$Res>
+    extends _$TravelCreateEventCopyWithImpl<$Res, _$MoveCameraImpl>
+    implements _$$MoveCameraImplCopyWith<$Res> {
+  __$$MoveCameraImplCopyWithImpl(
+      _$MoveCameraImpl _value, $Res Function(_$MoveCameraImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MoveCameraImpl implements _MoveCamera {
+  const _$MoveCameraImpl();
+
+  @override
+  String toString() {
+    return 'TravelCreateEvent.moveCamera()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MoveCameraImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double height) changePanelHeight,
+    required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
+    required TResult Function(int oldIndex, int newIndex) reorderVisit,
+    required TResult Function() complete,
+    required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
+  }) {
+    return moveCamera();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double height)? changePanelHeight,
+    TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
+    TResult? Function(int oldIndex, int newIndex)? reorderVisit,
+    TResult? Function()? complete,
+    TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
+  }) {
+    return moveCamera?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double height)? changePanelHeight,
+    TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
+    TResult Function(int oldIndex, int newIndex)? reorderVisit,
+    TResult Function()? complete,
+    TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
+    required TResult orElse(),
+  }) {
+    if (moveCamera != null) {
+      return moveCamera();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TravelCreateChangePanelHeightEvent value)
+        changePanelHeight,
+    required TResult Function(TravelCreateSetTravelDatesEvent value)
+        setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
+    required TResult Function(TravelReorderVisitEvent value) reorderVisit,
+    required TResult Function(_Complete value) complete,
+    required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
+  }) {
+    return moveCamera(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
+    TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
+    TResult? Function(_Complete value)? complete,
+    TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
+  }) {
+    return moveCamera?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
+    TResult Function(TravelReorderVisitEvent value)? reorderVisit,
+    TResult Function(_Complete value)? complete,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
+    required TResult orElse(),
+  }) {
+    if (moveCamera != null) {
+      return moveCamera(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MoveCamera implements TravelCreateEvent {
+  const factory _MoveCamera() = _$MoveCameraImpl;
+}
+
+/// @nodoc
+abstract class _$$InitCameraImplCopyWith<$Res> {
+  factory _$$InitCameraImplCopyWith(
+          _$InitCameraImpl value, $Res Function(_$InitCameraImpl) then) =
+      __$$InitCameraImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitCameraImplCopyWithImpl<$Res>
+    extends _$TravelCreateEventCopyWithImpl<$Res, _$InitCameraImpl>
+    implements _$$InitCameraImplCopyWith<$Res> {
+  __$$InitCameraImplCopyWithImpl(
+      _$InitCameraImpl _value, $Res Function(_$InitCameraImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitCameraImpl implements _InitCamera {
+  const _$InitCameraImpl();
+
+  @override
+  String toString() {
+    return 'TravelCreateEvent.initCamera()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitCameraImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double height) changePanelHeight,
+    required TResult Function(DateTimeRange? travelDates) setTravelDates,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
+    required TResult Function(int oldIndex, int newIndex) reorderVisit,
+    required TResult Function() complete,
+    required TResult Function(Travel travel) edit,
+    required TResult Function() moveCamera,
+    required TResult Function() initCamera,
+  }) {
+    return initCamera();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double height)? changePanelHeight,
+    TResult? Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
+    TResult? Function(int oldIndex, int newIndex)? reorderVisit,
+    TResult? Function()? complete,
+    TResult? Function(Travel travel)? edit,
+    TResult? Function()? moveCamera,
+    TResult? Function()? initCamera,
+  }) {
+    return initCamera?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double height)? changePanelHeight,
+    TResult Function(DateTimeRange? travelDates)? setTravelDates,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
+    TResult Function(int oldIndex, int newIndex)? reorderVisit,
+    TResult Function()? complete,
+    TResult Function(Travel travel)? edit,
+    TResult Function()? moveCamera,
+    TResult Function()? initCamera,
+    required TResult orElse(),
+  }) {
+    if (initCamera != null) {
+      return initCamera();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TravelCreateChangePanelHeightEvent value)
+        changePanelHeight,
+    required TResult Function(TravelCreateSetTravelDatesEvent value)
+        setTravelDates,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
+    required TResult Function(TravelReorderVisitEvent value) reorderVisit,
+    required TResult Function(_Complete value) complete,
+    required TResult Function(_Edit value) edit,
+    required TResult Function(_MoveCamera value) moveCamera,
+    required TResult Function(_InitCamera value) initCamera,
+  }) {
+    return initCamera(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult? Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
+    TResult? Function(TravelReorderVisitEvent value)? reorderVisit,
+    TResult? Function(_Complete value)? complete,
+    TResult? Function(_Edit value)? edit,
+    TResult? Function(_MoveCamera value)? moveCamera,
+    TResult? Function(_InitCamera value)? initCamera,
+  }) {
+    return initCamera?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TravelCreateChangePanelHeightEvent value)?
+        changePanelHeight,
+    TResult Function(TravelCreateSetTravelDatesEvent value)? setTravelDates,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
+    TResult Function(TravelReorderVisitEvent value)? reorderVisit,
+    TResult Function(_Complete value)? complete,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_MoveCamera value)? moveCamera,
+    TResult Function(_InitCamera value)? initCamera,
+    required TResult orElse(),
+  }) {
+    if (initCamera != null) {
+      return initCamera(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitCamera implements TravelCreateEvent {
+  const factory _InitCamera() = _$InitCameraImpl;
 }

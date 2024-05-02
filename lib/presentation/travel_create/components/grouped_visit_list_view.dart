@@ -35,23 +35,26 @@ class GroupedVisitListView extends StatelessWidget {
         ),
         Expanded(
           child: ReorderableListView.builder(
+              physics: const ClampingScrollPhysics(),
               buildDefaultDragHandles: false,
-              header: state.group.isNotEmpty ? VisitLabelItem(
-                  date: state.group[0].whenOrNull(label: (date) => date)) : null,
+              header: state.group.isNotEmpty
+                  ? VisitLabelItem(
+                      date: state.group[0].whenOrNull(label: (date) => date))
+                  : null,
               itemBuilder: (context, index) => Container(
-                  key: Key('$index'),
-                  child: state.group[index + 1].when(
-                      label: (date) => VisitLabelItem(date: date),
-                      visit: (visit) {
-                        return VisitListItem(visit: visit, index: index);
-                      }),
-                ),
+                    key: Key('$index'),
+                    child: state.group[index + 1].when(
+                        label: (date) => VisitLabelItem(date: date),
+                        visit: (visit) {
+                          return VisitListItem(visit: visit, index: index);
+                        }),
+                  ),
               itemCount: max(state.group.length - 1, 0),
               onReorderStart: (index) {
                 HapticFeedback.heavyImpact();
               },
               onReorder: (oldIndex, newIndex) => viewModel.onEvent(
-                    TravelCreateEvent.reorderVisit(oldIndex + 1, newIndex + 1))),
+                  TravelCreateEvent.reorderVisit(oldIndex + 1, newIndex + 1))),
         ),
         SizedBox(height: gapHeight + 30)
       ],

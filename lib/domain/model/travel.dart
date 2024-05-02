@@ -24,7 +24,9 @@ class Travel with _$Travel {
     @JsonKey(name: 'accompanyType', fromJson: TravelAccompany.of) TravelAccompany? accompany,
     @JsonKey(name: 'transportType', fromJson: TravelTransport.of) TravelTransport? transport,
     @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of) TravelAgeGroup? ageGroup,
-    @NestedJsonKey(name: 'member/nickname') String? nickname
+    @NestedJsonKey(name: 'member/nickname') String? nickname,
+    DateTime? statedOn,
+    DateTime? endedOn,
   }) = _Travel;
 
   factory Travel.fromJson(Map<String, dynamic> json) => _$TravelFromJson(json);

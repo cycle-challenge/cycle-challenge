@@ -54,7 +54,7 @@ class VisitListItem extends StatelessWidget {
           trailing: ReorderableDragStartListener(
               index: index,
               child: const Padding(
-                padding: EdgeInsets.fromLTRB(16, 12, 0, 12),
+                padding: EdgeInsets.fromLTRB(32, 12, 0, 12),
                 child: Icon(Icons.drag_handle),
               )),
         ),

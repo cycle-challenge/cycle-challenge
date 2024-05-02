@@ -1,20 +1,35 @@
 import 'dart:async';
 
+import 'package:dart_jts/dart_jts.dart';
 import 'package:flutter/material.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
+import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_state.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_group_item.dart';
 
 class TravelCreateViewModel with ChangeNotifier {
+  static final GeometryFactory geometryFactory =
+      GeometryFactory.withPrecisionModelSrid(PrecisionModel(), 4326);
+
+  final TravelRepository _travelRepository;
+
+  final StreamController<TravelCreateUiEvent> _eventController =
+      StreamController.broadcast();
+  Stream<TravelCreateUiEvent> get stream => _eventController.stream;
+
   final StreamController<MainUiEvent> _mainEventController;
+
   late TravelCreateState _state;
   TravelCreateState get state => _state;
 
-  TravelCreateViewModel(this._mainEventController, {required Travel travel}) {
+  TravelCreateViewModel(this._mainEventController, this._travelRepository,
+      {required Travel travel}) {
     _state = TravelCreateState(travel: travel);
   }
 
@@ -24,14 +39,17 @@ class TravelCreateViewModel with ChangeNotifier {
       reorderVisit: _onReorderVisit,
       addVisit: _onAddVisit,
       deleteVisit: _onDeleteVisit,
-      complete: _onComplete, edit:_onEdit);
+      complete: _onComplete,
+      edit: _onEdit,
+      moveCamera: _onMoveCamera,
+      initCamera: _onInitCamera);
 
   void _onEdit(Travel travel) {
     _state = _state.copyWith(travel: travel);
     notifyListeners();
   }
 
-  void _onComplete() {
+  void _onComplete() async {
     if (state.visits.isEmpty) {
       return _mainEventController
           .add(const MainUiEvent.showSnackbar('최소 한 개 이상의 관광지를 선택해야 합니다.'));
@@ -43,11 +61,42 @@ class TravelCreateViewModel with ChangeNotifier {
             .add(const MainUiEvent.showSnackbar('들릴 관광지에 날짜를 선택해 주세요.'));
       }
     }
+
+    final List<Visit> visits = [];
+
+    int orderOfVisit = 0;
+
+    _state.group.forEach((elm) => elm.whenOrNull(
+        visit: (visit) =>
+            visits.add(visit.copyWith(orderOfVisit: orderOfVisit++))));
+
+    final Travel travel = _state.travel.copyWith(
+        statedOn: _state.travelDates?.start, endedOn: _state.travelDates?.end);
+
+    final result = await _travelRepository.create(travel, visits);
+  }
+
+  void _onInitCamera() {
+    _state = _state.copyWith(isCameraMoved: false);
+    notifyListeners();
+
+    if (_state.entireArea != null) {
+      _eventController.add(TravelCreateUiEvent.moveArea(_state.entireArea!));
+    }
+    _createBound();
+  }
+
+  void _onMoveCamera() {
+    if (_state.isCameraMoved) return;
+
+    _state = _state.copyWith(isCameraMoved: true);
+    notifyListeners();
   }
 
   void _onAddVisit(List<Place> places) {
     final visits = places.map((place) => Visit(place: place)).toList();
     _state = _state.copyWith(visits: List.of(_state.visits)..addAll(visits));
+    _createBound();
     _groupVisits();
   }
 
@@ -60,6 +109,7 @@ class TravelCreateViewModel with ChangeNotifier {
         element.whenOrNull(visit: (visit) => newVisits.add(visit)));
 
     _state = _state.copyWith(visits: newVisits);
+    _createBound();
     _groupVisits();
   }
 
@@ -90,6 +140,45 @@ class TravelCreateViewModel with ChangeNotifier {
 
     _state = _state.copyWith(visits: newVisits);
     _groupVisits();
+  }
+
+  void _createBound() {
+    final Envelope entire = Envelope.empty();
+
+    final Map<Visit, Envelope> points = {};
+
+    _state.visits.forEach((visit) {
+      final point = geometryFactory
+          .createPoint(Coordinate(visit.place.longitude, visit.place.latitude));
+      points[visit] = point.buffer(0.01).getEnvelopeInternal();
+    });
+
+    // 전체 영역을 계산
+    points.values.forEach((point) => entire.expandToIncludeEnvelope(point));
+
+    final List<Visit> results = [];
+
+    // 각 관광지를 순회하며 부분 영역을 계산
+    points.entries.forEach((entry) {
+      final visit = entry.key;
+      final point = entry.value;
+
+      final Envelope partial = Envelope.empty();
+
+      partial.expandToIncludeEnvelope(point);
+
+      // 다른 관광지가 부분 영역에 포함되는지 검사하고, 참일 경우 부분 영역에 포함
+      points.values
+          .where((other) => partial.intersectsEnvelope(other))
+          .forEach((other) => partial.expandToIncludeEnvelope(other));
+
+      results.add(visit.copyWith(area: VisitArea.fromEnvelop(partial)));
+    });
+
+    _state = _state.copyWith(
+        visits: results, entireArea: VisitArea.fromEnvelop(entire));
+
+    _eventController.add(TravelCreateUiEvent.moveArea(_state.entireArea!));
   }
 
   void _groupVisits() {

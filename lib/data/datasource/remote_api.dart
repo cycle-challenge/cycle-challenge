@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
@@ -7,6 +10,7 @@ import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
@@ -86,8 +90,9 @@ class RemoteAPI {
           },
           options: Options(headers: headers));
 
-      return Result.success(
-          List.of(response.data['data']).map((e) => Place.fromJson(e)).toList());
+      return Result.success(List.of(response.data['data'])
+          .map((e) => Place.fromJson(e))
+          .toList());
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }
@@ -185,8 +190,9 @@ class RemoteAPI {
       final response = await dio.get('$remoteUrl/api/v1/places/bookmarked',
           options: Options(headers: headers));
 
-      return Result.success(
-          List.of(response.data['data']).map((e) => Place.fromJson(e)).toList());
+      return Result.success(List.of(response.data['data'])
+          .map((e) => Place.fromJson(e))
+          .toList());
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }
@@ -205,16 +211,40 @@ class RemoteAPI {
     }
   }
 
-
-  Future<Result<Place, ApiError>> findByGooglePlaceId(String googlePlaceId) async {
+  Future<Result<Place, ApiError>> findByGooglePlaceId(
+      String googlePlaceId) async {
     try {
       final response = await dio.get('$remoteUrl/api/v1/places/',
-          queryParameters: { 'googlePlaceId': googlePlaceId },
+          queryParameters: {'googlePlaceId': googlePlaceId},
           options: Options(headers: headers));
 
       return Result.success(Place.fromJson(response.data['data']));
     } on DioException catch (e) {
-      print(e.response);
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<void, ApiError>> createTravel(
+      Travel travel, List<Visit> visits) async {
+    try {
+      final response = await dio.post('$remoteUrl/api/v1/travels/',
+          options: Options(headers: headers),
+          data: {
+            'name': travel.name,
+            'startedOn': travel.statedOn?.toIso8601String(),
+            'endedOn': travel.endedOn?.toIso8601String(),
+            'visibility': travel.visibility,
+            'visits': visits
+                .map<Map<String, dynamic>>((visit) => {
+                      'dayOfTravel': visit.dayOfTravel,
+                      'orderOfVisit': visit.orderOfVisit,
+                      'placeId': visit.place.id
+                    })
+                .toList()
+          });
+
+      return const Result.success(null);
+    } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }
   }

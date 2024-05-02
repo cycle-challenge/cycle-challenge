@@ -85,8 +85,7 @@ class CreateTravelSheet extends StatelessWidget {
                             final travel = Travel(
                                 name: values['name'],
                                 visibility: values['visibility']);
-
-                            Navigator.of(context).push(MaterialPageRoute(
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(
                                 builder: (_) =>
                                     TravelCreatePage(travel: travel)));
                           },

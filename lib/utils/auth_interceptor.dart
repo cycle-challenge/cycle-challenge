@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
@@ -20,16 +21,17 @@ class AuthInterceptor extends Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     final result = await secureStorage.findAuth();
-    result.when(
+    result.whenOrNull(
         success: (auth) => options.headers
-            .addAll({'Authorization': 'Bearer ${auth.accessToken}'}),
-        error: (_) {});
+            .addAll({'Authorization': 'Bearer ${auth.accessToken}'}));
 
     super.onRequest(options, handler);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
+    print(err);
+
     String? errorCode = err.response?.data['code'];
 
     if (errorCode == null || errorCode != 'INVALID_AUTHORIZATION') {

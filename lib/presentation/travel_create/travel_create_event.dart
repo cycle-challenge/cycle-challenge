@@ -19,4 +19,6 @@ abstract class TravelCreateEvent with _$TravelCreateEvent {
   TravelReorderVisitEvent;
   const factory TravelCreateEvent.complete() = _Complete;
   const factory TravelCreateEvent.edit(Travel travel) = _Edit;
+  const factory TravelCreateEvent.moveCamera() = _MoveCamera;
+  const factory TravelCreateEvent.initCamera() = _InitCamera;
 }

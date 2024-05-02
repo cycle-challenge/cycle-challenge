@@ -46,6 +46,11 @@ class _MainScreenState extends State<MainScreen> {
   void _onAuthorizationExpired() {
     final authViewModel = context.read<AuthViewModel>();
     authViewModel.onEvent(const AuthEvent.signOut());
+
+    while (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
+
     _onShowSnackBar("인증 정보가 만료되었습니다. 다시 로그인 해주세요.");
   }
 
