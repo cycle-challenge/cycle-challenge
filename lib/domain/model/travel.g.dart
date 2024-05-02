@@ -21,6 +21,9 @@ _$TravelImpl _$$TravelImplFromJson(Map<String, dynamic> json) => _$TravelImpl(
       ageGroup: $enumDecodeNullable(
           _$TravelAgeGroupEnumMap, nestedReader(json, 'member/ageGroup')),
       nickname: nestedReader(json, 'member/nickname') as String?,
+      places: json['places'] == null
+          ? const []
+          : Travel._placesFromJson(json['places'] as List),
       statedOn: json['statedOn'] == null
           ? null
           : DateTime.parse(json['statedOn'] as String),
@@ -42,6 +45,7 @@ Map<String, dynamic> _$$TravelImplToJson(_$TravelImpl instance) =>
       'transportType': _$TravelTransportEnumMap[instance.transport],
       'member/ageGroup': _$TravelAgeGroupEnumMap[instance.ageGroup],
       'member/nickname': instance.nickname,
+      'places': instance.places,
       'statedOn': instance.statedOn?.toIso8601String(),
       'endedOn': instance.endedOn?.toIso8601String(),
     };

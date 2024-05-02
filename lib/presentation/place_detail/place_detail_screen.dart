@@ -76,7 +76,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
           ),
           PlaceImageView(place: widget.place),
           Container(),
-          TravelListView(travels: widget.place.travels)
+          const TravelListView(travels: [])
         ],
       ),
       floatingActionButton: FloatingActionButton(

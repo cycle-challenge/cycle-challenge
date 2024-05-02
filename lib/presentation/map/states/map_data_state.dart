@@ -9,7 +9,6 @@ part 'map_data_state.freezed.dart';
 @freezed
 class MapDataState with _$MapDataState {
   factory MapDataState({
-    @Default([]) List<Place> places,
     @Default([]) List<Travel> travels,
     @Default({}) Map<String, PlaceDetail> placeDetails
   }) = _MapDataState;

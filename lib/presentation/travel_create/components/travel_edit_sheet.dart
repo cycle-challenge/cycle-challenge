@@ -13,6 +13,7 @@ class TravelEditSheet extends StatelessWidget {
 
   final _formKey = GlobalKey<FormBuilderState>();
   final _nameFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _visibilityFieldKey = GlobalKey<FormBuilderFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,7 @@ class TravelEditSheet extends StatelessWidget {
                           style: textTheme.bodyLarge
                               ?.copyWith(fontWeight: FontWeight.w600)),
                       FormBuilderRadioGroup(
+                          key: _visibilityFieldKey,
                           orientation: OptionsOrientation.vertical,
                           name: 'visibility',
                           options: [

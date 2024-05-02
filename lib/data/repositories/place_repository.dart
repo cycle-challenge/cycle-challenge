@@ -26,11 +26,6 @@ class PlaceRepository {
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
   final String remoteUrl = const String.fromEnvironment("REMOTE_HOST");
 
-  Future<Result<List<Place>, ApiError>> findNearby(
-      double latitude, double longitude, int radius) {
-    return api.findNearby(latitude, longitude, radius);
-  }
-
   Future<PageModel<ImageModel>> getImages(
       int id, int page, int pageSize) async {
     Map<String, String> params = {

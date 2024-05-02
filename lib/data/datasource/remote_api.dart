@@ -80,10 +80,10 @@ class RemoteAPI {
     }
   }
 
-  Future<Result<List<Place>, ApiError>> findNearby(
+  Future<Result<List<Travel>, ApiError>> findNearby(
       double latitude, double longitude, int radius) async {
     try {
-      final response = await dio.get('$remoteUrl/api/v1/places/nearby',
+      final response = await dio.get('$remoteUrl/api/v1/travels/nearby',
           queryParameters: {
             'location': '$latitude,$longitude',
             'radius': radius.toString(),
@@ -91,7 +91,7 @@ class RemoteAPI {
           options: Options(headers: headers));
 
       return Result.success(List.of(response.data['data'])
-          .map((e) => Place.fromJson(e))
+          .map((e) => Travel.fromJson(e))
           .toList());
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));

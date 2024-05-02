@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter.dart';
@@ -82,9 +81,19 @@ class MapViewModel with ChangeNotifier {
         await useCases.getNearbyPlaces(_state.latitude, _state.longitude);
 
     result.when(
-        success: (result) {
-          final (places, travels) = result;
-          _dataState = _dataState.copyWith(places: places, travels: travels);
+        success: (travels) {
+          travels = travels.map((e) {
+            final places = e.places
+                .map((e) {
+                  return e.copyWith(
+                    distance: useCases.calculateDistanceUseCase(_state.latitude,
+                        _state.longitude, e.latitude, e.longitude));
+                })
+                .toList();
+            return e.copyWith(places: places);
+          }).toList();
+
+          _dataState = _dataState.copyWith(travels: travels);
           _filter();
         },
         error: (message) =>
@@ -106,8 +115,10 @@ class MapViewModel with ChangeNotifier {
       result.detail.id: result.detail
     });
 
-    final selectedPlace =
-        _dataState.places.where((e) => e.id == result.place?.id).firstOrNull;
+    final selectedPlace = _dataState.travels
+        .expand((e) => e.places)
+        .where((e) => e.id == result.place?.id)
+        .firstOrNull;
 
     _filterDataState = _filterDataState.copyWith(selectedPlace: selectedPlace);
 
@@ -116,18 +127,15 @@ class MapViewModel with ChangeNotifier {
   }
 
   void _filter() {
-    final places = _dataState.places;
     final travels = _dataState.travels;
 
     final placeFilter = _filterDataState.placeFilter;
     final travelFilter = _filterDataState.travelFilter;
 
-    final filteredPlaces = placeFilter
-        .apply(places)
-        .where((place) => travelFilter.apply(place.travels).isNotEmpty)
-        .toList();
-
     final filteredTravels = travelFilter.apply(travels);
+
+    final filteredPlaces = placeFilter
+        .apply(filteredTravels.expand((e) => e.places).toSet().toList());
 
     _filterDataState = _filterDataState.copyWith(
         filteredPlaces: filteredPlaces, filteredTravels: filteredTravels);

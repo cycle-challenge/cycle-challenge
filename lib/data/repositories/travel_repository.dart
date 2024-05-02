@@ -13,6 +13,11 @@ class TravelRepository {
 
   TravelRepository(this.api);
 
+  Future<Result<List<Travel>, ApiError>> findNearby(
+      double latitude, double longitude, int radius) {
+    return api.findNearby(latitude, longitude, radius);
+  }
+
   Future<Result<List<DailyVisitSummary>, ApiError>> findVisits(int id) async {
     return api.findVisits(id);
   }

@@ -139,7 +139,7 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
             panel: GroupedVisitListView(gapHeight: gapHeight),
             body: Stack(
               children: [
-                Expanded(
+                Positioned.fill(
                     child: GoogleMap(
                         padding: EdgeInsets.only(
                             top: mediaQuery.padding.top,

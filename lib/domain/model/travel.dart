@@ -21,13 +21,20 @@ class Travel with _$Travel {
     @JsonKey(fromJson: Image.fromJson) Image? thumbnail,
     int? id,
     @JsonKey(fromJson: TravelMotivation.of) TravelMotivation? motivation,
-    @JsonKey(name: 'accompanyType', fromJson: TravelAccompany.of) TravelAccompany? accompany,
-    @JsonKey(name: 'transportType', fromJson: TravelTransport.of) TravelTransport? transport,
-    @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of) TravelAgeGroup? ageGroup,
+    @JsonKey(name: 'accompanyType', fromJson: TravelAccompany.of)
+    TravelAccompany? accompany,
+    @JsonKey(name: 'transportType', fromJson: TravelTransport.of)
+    TravelTransport? transport,
+    @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
+    TravelAgeGroup? ageGroup,
     @NestedJsonKey(name: 'member/nickname') String? nickname,
+    @Default([]) @JsonKey(fromJson: Travel._placesFromJson) List<Place> places,
     DateTime? statedOn,
     DateTime? endedOn,
   }) = _Travel;
 
   factory Travel.fromJson(Map<String, dynamic> json) => _$TravelFromJson(json);
+
+  static List<Place> _placesFromJson(List<dynamic> json) =>
+      json.map((e) => Place.fromJson(e)).toList();
 }

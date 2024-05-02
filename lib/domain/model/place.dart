@@ -19,14 +19,10 @@ class Place with _$Place {
       required String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) required PlaceType type,
       @JsonKey(fromJson: Place._imagesFromJson) @Default([]) List<Image> images,
-      @JsonKey(fromJson: Place._travelsFromJson) @Default([]) List<Travel> travels,
-        @NestedJsonKey(name: 'location/distance') double? distance}) = _Place;
+      @JsonKey(includeFromJson: false) double? distance}) = _Place;
 
   factory Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);
 
   static List<Image> _imagesFromJson(List<dynamic> json) =>
-     json.map((e) => Image.fromJson(e)).toList();
-
-  static List<Travel> _travelsFromJson(List<dynamic> json) =>
-      json.map((e) => Travel.fromJson(e)).toList();
+      json.map((e) => Image.fromJson(e)).toList();
 }

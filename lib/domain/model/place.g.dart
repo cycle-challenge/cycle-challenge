@@ -16,10 +16,6 @@ _$PlaceImpl _$$PlaceImplFromJson(Map<String, dynamic> json) => _$PlaceImpl(
       images: json['images'] == null
           ? const []
           : Place._imagesFromJson(json['images'] as List),
-      travels: json['travels'] == null
-          ? const []
-          : Place._travelsFromJson(json['travels'] as List),
-      distance: (nestedReader(json, 'location/distance') as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$PlaceImplToJson(_$PlaceImpl instance) =>
@@ -31,8 +27,6 @@ Map<String, dynamic> _$$PlaceImplToJson(_$PlaceImpl instance) =>
       'googlePlaceId': instance.googlePlaceId,
       'type': _$PlaceTypeEnumMap[instance.type]!,
       'images': instance.images,
-      'travels': instance.travels,
-      'location/distance': instance.distance,
     };
 
 const _$PlaceTypeEnumMap = {

@@ -36,6 +36,8 @@ mixin _$Travel {
   TravelAgeGroup? get ageGroup => throw _privateConstructorUsedError;
   @NestedJsonKey(name: 'member/nickname')
   String? get nickname => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: Travel._placesFromJson)
+  List<Place> get places => throw _privateConstructorUsedError;
   DateTime? get statedOn => throw _privateConstructorUsedError;
   DateTime? get endedOn => throw _privateConstructorUsedError;
 
@@ -63,6 +65,7 @@ abstract class $TravelCopyWith<$Res> {
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       TravelAgeGroup? ageGroup,
       @NestedJsonKey(name: 'member/nickname') String? nickname,
+      @JsonKey(fromJson: Travel._placesFromJson) List<Place> places,
       DateTime? statedOn,
       DateTime? endedOn});
 
@@ -92,6 +95,7 @@ class _$TravelCopyWithImpl<$Res, $Val extends Travel>
     Object? transport = freezed,
     Object? ageGroup = freezed,
     Object? nickname = freezed,
+    Object? places = null,
     Object? statedOn = freezed,
     Object? endedOn = freezed,
   }) {
@@ -136,6 +140,10 @@ class _$TravelCopyWithImpl<$Res, $Val extends Travel>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String?,
+      places: null == places
+          ? _value.places
+          : places // ignore: cast_nullable_to_non_nullable
+              as List<Place>,
       statedOn: freezed == statedOn
           ? _value.statedOn
           : statedOn // ignore: cast_nullable_to_non_nullable
@@ -181,6 +189,7 @@ abstract class _$$TravelImplCopyWith<$Res> implements $TravelCopyWith<$Res> {
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       TravelAgeGroup? ageGroup,
       @NestedJsonKey(name: 'member/nickname') String? nickname,
+      @JsonKey(fromJson: Travel._placesFromJson) List<Place> places,
       DateTime? statedOn,
       DateTime? endedOn});
 
@@ -209,6 +218,7 @@ class __$$TravelImplCopyWithImpl<$Res>
     Object? transport = freezed,
     Object? ageGroup = freezed,
     Object? nickname = freezed,
+    Object? places = null,
     Object? statedOn = freezed,
     Object? endedOn = freezed,
   }) {
@@ -253,6 +263,10 @@ class __$$TravelImplCopyWithImpl<$Res>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String?,
+      places: null == places
+          ? _value._places
+          : places // ignore: cast_nullable_to_non_nullable
+              as List<Place>,
       statedOn: freezed == statedOn
           ? _value.statedOn
           : statedOn // ignore: cast_nullable_to_non_nullable
@@ -282,9 +296,12 @@ class _$TravelImpl implements _Travel {
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       this.ageGroup,
       @NestedJsonKey(name: 'member/nickname') this.nickname,
+      @JsonKey(fromJson: Travel._placesFromJson)
+      final List<Place> places = const [],
       this.statedOn,
       this.endedOn})
-      : _seasons = seasons;
+      : _seasons = seasons,
+        _places = places;
 
   factory _$TravelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TravelImplFromJson(json);
@@ -323,6 +340,15 @@ class _$TravelImpl implements _Travel {
   @override
   @NestedJsonKey(name: 'member/nickname')
   final String? nickname;
+  final List<Place> _places;
+  @override
+  @JsonKey(fromJson: Travel._placesFromJson)
+  List<Place> get places {
+    if (_places is EqualUnmodifiableListView) return _places;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_places);
+  }
+
   @override
   final DateTime? statedOn;
   @override
@@ -330,7 +356,7 @@ class _$TravelImpl implements _Travel {
 
   @override
   String toString() {
-    return 'Travel(name: $name, visibility: $visibility, seasons: $seasons, thumbnail: $thumbnail, id: $id, motivation: $motivation, accompany: $accompany, transport: $transport, ageGroup: $ageGroup, nickname: $nickname, statedOn: $statedOn, endedOn: $endedOn)';
+    return 'Travel(name: $name, visibility: $visibility, seasons: $seasons, thumbnail: $thumbnail, id: $id, motivation: $motivation, accompany: $accompany, transport: $transport, ageGroup: $ageGroup, nickname: $nickname, places: $places, statedOn: $statedOn, endedOn: $endedOn)';
   }
 
   @override
@@ -355,6 +381,7 @@ class _$TravelImpl implements _Travel {
                 other.ageGroup == ageGroup) &&
             (identical(other.nickname, nickname) ||
                 other.nickname == nickname) &&
+            const DeepCollectionEquality().equals(other._places, _places) &&
             (identical(other.statedOn, statedOn) ||
                 other.statedOn == statedOn) &&
             (identical(other.endedOn, endedOn) || other.endedOn == endedOn));
@@ -374,6 +401,7 @@ class _$TravelImpl implements _Travel {
       transport,
       ageGroup,
       nickname,
+      const DeepCollectionEquality().hash(_places),
       statedOn,
       endedOn);
 
@@ -407,6 +435,7 @@ abstract class _Travel implements Travel {
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       final TravelAgeGroup? ageGroup,
       @NestedJsonKey(name: 'member/nickname') final String? nickname,
+      @JsonKey(fromJson: Travel._placesFromJson) final List<Place> places,
       final DateTime? statedOn,
       final DateTime? endedOn}) = _$TravelImpl;
 
@@ -438,6 +467,9 @@ abstract class _Travel implements Travel {
   @override
   @NestedJsonKey(name: 'member/nickname')
   String? get nickname;
+  @override
+  @JsonKey(fromJson: Travel._placesFromJson)
+  List<Place> get places;
   @override
   DateTime? get statedOn;
   @override

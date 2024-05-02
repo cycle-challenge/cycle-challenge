@@ -363,24 +363,24 @@ class PlaceSummaryView extends StatelessWidget {
                                 ))
                           ],
                         ),
-                        Container(
-                            height: 220,
-                            alignment: Alignment.centerLeft,
-                            margin: const EdgeInsets.only(top: 10.0),
-                            child: ListView.separated(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: min(place.travels.length, 3),
-                              separatorBuilder: (context, index) =>
-                                  const SizedBox(width: 8),
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  child: TravelWidget(
-                                      width: 280.0,
-                                      travel: place.travels[index]),
-                                );
-                              },
-                            )),
+                        // Container(
+                        //     height: 220,
+                        //     alignment: Alignment.centerLeft,
+                        //     margin: const EdgeInsets.only(top: 10.0),
+                        //     child: ListView.separated(
+                        //       shrinkWrap: true,
+                        //       scrollDirection: Axis.horizontal,
+                        //       itemCount: min(place.travels.length, 3),
+                        //       separatorBuilder: (context, index) =>
+                        //           const SizedBox(width: 8),
+                        //       itemBuilder: (BuildContext context, int index) {
+                        //         return GestureDetector(
+                        //           child: TravelWidget(
+                        //               width: 280.0,
+                        //               travel: place.travels[index]),
+                        //         );
+                        //       },
+                        //     )),
                       ],
                     ),
                   ),

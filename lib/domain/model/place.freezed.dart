@@ -31,9 +31,7 @@ mixin _$Place {
   PlaceType get type => throw _privateConstructorUsedError;
   @JsonKey(fromJson: Place._imagesFromJson)
   List<Image> get images => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: Place._travelsFromJson)
-  List<Travel> get travels => throw _privateConstructorUsedError;
-  @NestedJsonKey(name: 'location/distance')
+  @JsonKey(includeFromJson: false)
   double? get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,8 +52,7 @@ abstract class $PlaceCopyWith<$Res> {
       String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
       @JsonKey(fromJson: Place._imagesFromJson) List<Image> images,
-      @JsonKey(fromJson: Place._travelsFromJson) List<Travel> travels,
-      @NestedJsonKey(name: 'location/distance') double? distance});
+      @JsonKey(includeFromJson: false) double? distance});
 }
 
 /// @nodoc
@@ -78,7 +75,6 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
     Object? googlePlaceId = null,
     Object? type = null,
     Object? images = null,
-    Object? travels = null,
     Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
@@ -110,10 +106,6 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Image>,
-      travels: null == travels
-          ? _value.travels
-          : travels // ignore: cast_nullable_to_non_nullable
-              as List<Travel>,
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -137,8 +129,7 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
       String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
       @JsonKey(fromJson: Place._imagesFromJson) List<Image> images,
-      @JsonKey(fromJson: Place._travelsFromJson) List<Travel> travels,
-      @NestedJsonKey(name: 'location/distance') double? distance});
+      @JsonKey(includeFromJson: false) double? distance});
 }
 
 /// @nodoc
@@ -159,7 +150,6 @@ class __$$PlaceImplCopyWithImpl<$Res>
     Object? googlePlaceId = null,
     Object? type = null,
     Object? images = null,
-    Object? travels = null,
     Object? distance = freezed,
   }) {
     return _then(_$PlaceImpl(
@@ -191,10 +181,6 @@ class __$$PlaceImplCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Image>,
-      travels: null == travels
-          ? _value._travels
-          : travels // ignore: cast_nullable_to_non_nullable
-              as List<Travel>,
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -215,11 +201,8 @@ class _$PlaceImpl implements _Place {
       @JsonKey(fromJson: PlaceType.of) required this.type,
       @JsonKey(fromJson: Place._imagesFromJson)
       final List<Image> images = const [],
-      @JsonKey(fromJson: Place._travelsFromJson)
-      final List<Travel> travels = const [],
-      @NestedJsonKey(name: 'location/distance') this.distance})
-      : _images = images,
-        _travels = travels;
+      @JsonKey(includeFromJson: false) this.distance})
+      : _images = images;
 
   factory _$PlaceImpl.fromJson(Map<String, dynamic> json) =>
       _$$PlaceImplFromJson(json);
@@ -248,22 +231,13 @@ class _$PlaceImpl implements _Place {
     return EqualUnmodifiableListView(_images);
   }
 
-  final List<Travel> _travels;
   @override
-  @JsonKey(fromJson: Place._travelsFromJson)
-  List<Travel> get travels {
-    if (_travels is EqualUnmodifiableListView) return _travels;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_travels);
-  }
-
-  @override
-  @NestedJsonKey(name: 'location/distance')
+  @JsonKey(includeFromJson: false)
   final double? distance;
 
   @override
   String toString() {
-    return 'Place(id: $id, name: $name, latitude: $latitude, longitude: $longitude, googlePlaceId: $googlePlaceId, type: $type, images: $images, travels: $travels, distance: $distance)';
+    return 'Place(id: $id, name: $name, latitude: $latitude, longitude: $longitude, googlePlaceId: $googlePlaceId, type: $type, images: $images, distance: $distance)';
   }
 
   @override
@@ -281,7 +255,6 @@ class _$PlaceImpl implements _Place {
                 other.googlePlaceId == googlePlaceId) &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality().equals(other._travels, _travels) &&
             (identical(other.distance, distance) ||
                 other.distance == distance));
   }
@@ -297,7 +270,6 @@ class _$PlaceImpl implements _Place {
       googlePlaceId,
       type,
       const DeepCollectionEquality().hash(_images),
-      const DeepCollectionEquality().hash(_travels),
       distance);
 
   @JsonKey(ignore: true)
@@ -324,9 +296,7 @@ abstract class _Place implements Place {
       required final String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) required final PlaceType type,
       @JsonKey(fromJson: Place._imagesFromJson) final List<Image> images,
-      @JsonKey(fromJson: Place._travelsFromJson) final List<Travel> travels,
-      @NestedJsonKey(name: 'location/distance')
-      final double? distance}) = _$PlaceImpl;
+      @JsonKey(includeFromJson: false) final double? distance}) = _$PlaceImpl;
 
   factory _Place.fromJson(Map<String, dynamic> json) = _$PlaceImpl.fromJson;
 
@@ -349,10 +319,7 @@ abstract class _Place implements Place {
   @JsonKey(fromJson: Place._imagesFromJson)
   List<Image> get images;
   @override
-  @JsonKey(fromJson: Place._travelsFromJson)
-  List<Travel> get travels;
-  @override
-  @NestedJsonKey(name: 'location/distance')
+  @JsonKey(includeFromJson: false)
   double? get distance;
   @override
   @JsonKey(ignore: true)
