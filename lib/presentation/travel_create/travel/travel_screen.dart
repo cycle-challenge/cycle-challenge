@@ -8,8 +8,12 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/travel_modify_bottom_app_bar.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/visit_list_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/visit_modify_list_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
@@ -87,30 +91,44 @@ class _TravelScreenState extends State<TravelScreen> {
     final bool isPanelExpanded =
         _panelController.isAttached && _panelController.panelPosition == 1.0;
 
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
+    bool isBookmarked =
+        bookmarkViewModel.state.travelIdSet.contains(widget.travel.id);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          decoration: BoxDecoration(
-              border: isPanelExpanded
-                  ? Border(
-                      bottom: BorderSide(
-                          width: 1, color: colorScheme.outlineVariant))
-                  : null,
-              color: isPanelExpanded
-                  ? colorScheme.surface.withOpacity(1)
-                  : colorScheme.surface.withOpacity(0)),
-          child: AppBar(
-              centerTitle: false,
-              scrolledUnderElevation: 0,
-              backgroundColor: colorScheme.surface.withOpacity(0.0),
-              title: Text(widget.travel.name,
-                  style: textTheme.titleLarge
-                      ?.copyWith(fontWeight: FontWeight.w600))),
-        ),
-      ),
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              decoration: BoxDecoration(
+                  border: isPanelExpanded
+                      ? Border(
+                          bottom: BorderSide(
+                              width: 1, color: colorScheme.outlineVariant))
+                      : null,
+                  color: isPanelExpanded
+                      ? colorScheme.surface.withOpacity(1)
+                      : colorScheme.surface.withOpacity(0)),
+              child: AppBar(
+                  centerTitle: false,
+                  scrolledUnderElevation: 0,
+                  backgroundColor: colorScheme.surface.withOpacity(0.0),
+                  title: Text(widget.travel.name,
+                      style: textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.w600)),
+                  flexibleSpace: Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: <Color>[
+                        colorScheme.surface,
+                        colorScheme.surface.withOpacity(0.75),
+                        colorScheme.surface.withOpacity(0.5),
+                        colorScheme.surface.withOpacity(0.3),
+                        colorScheme.surface.withOpacity(0),
+                      ])))))),
       body: LayoutBuilder(builder: (context, constraints) {
         MediaQueryData mediaQuery = MediaQuery.of(context);
 
@@ -159,10 +177,9 @@ class _TravelScreenState extends State<TravelScreen> {
                         duration: const Duration(milliseconds: 150));
                   }
                 },
-                child: VisitListView(
-                    gapHeight: gapHeight,
-                    panelController: _panelController,
-                    isScrollingUp: _isScrollingUp)),
+                child: state.isModifying
+                    ? VisitModifyListView(gapHeight: gapHeight)
+                    : VisitListView(gapHeight: gapHeight)),
             body: Stack(
               children: [
                 Positioned.fill(
@@ -197,7 +214,8 @@ class _TravelScreenState extends State<TravelScreen> {
                                 draggable: true,
                                 zIndex: index == state.visitIndex ? 2 : 1,
                                 anchor: const Offset(0.5, 0.5),
-                                icon: (index == state.visitIndex
+                                icon: (index == state.visitIndex &&
+                                            !state.isModifying
                                         ? mapState.selectedMarkerIcon[
                                             visit.place.type.name]
                                         : mapState.markerIcon[
@@ -225,23 +243,50 @@ class _TravelScreenState extends State<TravelScreen> {
                         : null,
                   ),
                 ),
-                Positioned(
-                    right: 16,
-                    bottom: state.panelHeight + 185,
-                    child: IconButton(
-                        style: IconButton.styleFrom(
-                            backgroundColor: colorScheme.surface,
-                            foregroundColor: colorScheme.onSurface),
-                        onPressed: () => viewModel.onEvent(
-                            TravelEvent.setIsViewExpanded(
-                                !state.isViewExpanded)),
-                        icon: Icon(state.isViewExpanded
-                            ? Icons.expand_less
-                            : Icons.expand_more)))
+                if (!state.isModifying)
+                  Positioned(
+                      right: 16,
+                      bottom: state.panelHeight + 185,
+                      child: IconButton(
+                          style: IconButton.styleFrom(
+                              backgroundColor: colorScheme.surface,
+                              foregroundColor: colorScheme.onSurface),
+                          onPressed: () => viewModel.onEvent(
+                              TravelEvent.setIsViewExpanded(
+                                  !state.isViewExpanded)),
+                          icon: Icon(state.isViewExpanded
+                              ? Icons.expand_less
+                              : Icons.expand_more)))
               ],
             ));
       }),
-      bottomNavigationBar: const BottomAppBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      floatingActionButton: state.isModifying
+          ? FloatingActionButton(
+              onPressed: () => viewModel.onEvent(const TravelEvent.editComplete()),
+              elevation: 0,
+              backgroundColor: colorScheme.secondaryContainer,
+              foregroundColor: colorScheme.onSecondaryContainer,
+              child: const Icon(Icons.save))
+          : FloatingActionButton(
+              onPressed: isBookmarked
+                  ? () => bookmarkViewModel
+                      .onEvent(BookmarkEvent.deleteTravel(widget.travel))
+                  : () => bookmarkViewModel
+                      .onEvent(BookmarkEvent.addTravel(widget.travel)),
+              elevation: 0,
+              backgroundColor: colorScheme.secondaryContainer,
+              child: Icon(
+                  isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+                  color: colorScheme.onSurface),
+            ),
+      bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+              border:
+                  Border(top: BorderSide(color: colorScheme.outlineVariant))),
+          child: state.isModifying
+              ? const TravelModifyBottomAppBar()
+              : BottomAppBar(surfaceTintColor: colorScheme.surface)),
     );
   }
 }

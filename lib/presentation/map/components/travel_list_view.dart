@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +8,7 @@ import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
@@ -24,10 +24,8 @@ class TravelListView extends StatefulWidget {
 class _TravelListViewState extends State<TravelListView> {
   final ScrollController _controller = ScrollController();
 
-
   @override
   void initState() {
-
     Future.microtask(() {
       final viewModel = context.read<MainViewModel>();
 
@@ -35,9 +33,7 @@ class _TravelListViewState extends State<TravelListView> {
         bool canScrollUp = _controller.offset > 0;
         viewModel.onEvent(MainEvent.setCanViewScrollUp(canScrollUp));
       });
-
     });
-
 
     super.initState();
   }
@@ -62,8 +58,7 @@ class _TravelListViewState extends State<TravelListView> {
               ),
             ),
           ),
-        if (state.isExpanded)
-          const SizedBox(height: 12),
+        if (state.isExpanded) const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
             controller: _controller,
@@ -100,14 +95,14 @@ class TravelWidget extends StatelessWidget {
     TextStyle? bodyMedium =
         Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
-
     final bookmarkViewModel = context.watch<BookmarkViewModel>();
     bool isBookmarked = bookmarkViewModel.state.travelIdSet.contains(travel.id);
+
 
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TravelDetailPage(travel: travel,)));
+          builder: (context) => TravelPage(travel: travel)));
       },
       child: Container(
         width: _width,
@@ -168,9 +163,9 @@ class TravelWidget extends StatelessWidget {
                         IconButton(
                           onPressed: isBookmarked
                               ? () => bookmarkViewModel
-                              .onEvent(BookmarkEvent.deleteTravel(travel))
+                                  .onEvent(BookmarkEvent.deleteTravel(travel))
                               : () => bookmarkViewModel
-                              .onEvent(BookmarkEvent.addTravel(travel)),
+                                  .onEvent(BookmarkEvent.addTravel(travel)),
                           icon: Icon(
                               isBookmarked
                                   ? Icons.bookmark

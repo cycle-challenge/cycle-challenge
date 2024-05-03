@@ -51,9 +51,11 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
       _subscription = viewModel.stream.listen((event) => event.when(
           moveArea: _moveArea,
           complete: (travel, travelDates) {
+
+
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) =>
-                    TravelPage(travel: travel, travelDates: travelDates)));
+                    TravelPage(travel: travel.copyWith(startedOn: travelDates.start, endedOn: travelDates.end))));
           }));
     });
 

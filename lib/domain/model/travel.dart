@@ -30,8 +30,8 @@ class Travel with _$Travel {
     TravelAgeGroup? ageGroup,
     @NestedJsonKey(name: 'member/nickname') String? nickname,
     @Default([]) @JsonKey(includeIfNull: false, fromJson: Travel._placesFromJson) List<Place> places,
-    DateTime? statedOn,
-    DateTime? endedOn
+    @JsonKey(fromJson: DateTime.parse) DateTime? startedOn,
+    @JsonKey(fromJson: DateTime.parse) DateTime? endedOn
   }) = _Travel;
 
   factory Travel.fromJson(Map<String, dynamic> json) => _$TravelFromJson(json);

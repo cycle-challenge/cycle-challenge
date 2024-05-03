@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/visit_display_type.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_group_item.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
@@ -10,9 +11,8 @@ class CreateTravelUseCase {
 
   CreateTravelUseCase(this._travelRepository);
 
-  Future<Result<Travel, String?>> call(Travel travel,
-      DateTimeRange? travelDates, List<TravelGroupItem> group) async {
-    if (travelDates == null) {
+  Future<Result<Travel, String?>> call(Travel travel, List<VisitDisplayType> items) async {
+    if (travel.startedOn == null || travel.endedOn == null) {
       return const Result.error('날짜를 선택해 주세요.');
     }
 
@@ -20,8 +20,8 @@ class CreateTravelUseCase {
 
     // 방문 순서를 다시 계산
     int orderOfVisit = 0;
-    group.forEach((elm) => elm.whenOrNull(
-        visit: (visit) =>
+    items.forEach((elm) => elm.whenOrNull(
+        item: (visit) =>
             visits.add(visit.copyWith(orderOfVisit: orderOfVisit++))));
 
     if (visits.isEmpty) {
@@ -34,9 +34,7 @@ class CreateTravelUseCase {
       }
     }
 
-    final result = await _travelRepository.create(
-        travel.copyWith(statedOn: travelDates.start, endedOn: travelDates.end),
-        visits);
+    final result = await _travelRepository.create(travel, visits);
 
     return result.when(
         success: (id) async {

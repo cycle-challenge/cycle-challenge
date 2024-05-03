@@ -64,8 +64,10 @@ class TravelCreateAddVisitScreen extends StatelessWidget {
                         backgroundColor: colorScheme.onSurface,
                         elevation: 0),
                     onPressed: state.selectedPlaces.isNotEmpty
-                        ? () => Navigator.of(context)
-                            .pop<List<Place>>(state.selectedPlaces)
+                        ? () {
+                          Navigator.of(context)
+                            .pop<List<Place>>(state.selectedPlaces);
+                        }
                         : null,
                     child: const Text("추가하기"))),
           ],

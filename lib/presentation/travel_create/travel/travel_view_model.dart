@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:dart_jts/dart_jts.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
@@ -22,21 +23,30 @@ class TravelViewModel with ChangeNotifier {
       StreamController.broadcast();
   Stream<TravelUiEvent> get stream => _eventController.stream;
 
-  TravelState _state = TravelState();
+  late TravelState _state;
   TravelState get state => _state;
 
   TravelViewModel(this.useCases, this._mainEventController,
-      {required int travelId,
-      required DateTime startedOn,
-      required DateTime endedOn,
-      List<Visit>? visits}) {
+      {required Travel travel, List<Visit>? visits, bool isModifying = false}) {
+    _state = TravelState(travel: travel, isModifying: isModifying);
+
     if (visits != null) {
-      _init(startedOn, endedOn, visits);
+      _init(visits);
       return;
     }
 
-    useCases.getTravelVisitsUseCase(travelId).then((result) => result.when(
-        success: (visits) => _init(startedOn, endedOn, visits),
+    if (travel.id == null) return;
+
+    useCases.getTravelVisitsUseCase(travel.id!).then((result) => result.when(
+        success: (visits) {
+          final int minDayOfTravel =
+              visits.map((e) => e.dayOfTravel).whereType<int>().reduce(min);
+
+          _init(visits
+              .map((e) =>
+                  e.copyWith(dayOfTravel: e.dayOfTravel! - minDayOfTravel))
+              .toList());
+        },
         error: (message) =>
             _mainEventController.add(MainUiEvent.showSnackbar(message))));
   }
@@ -47,7 +57,84 @@ class TravelViewModel with ChangeNotifier {
       initCamera: _onInitCamera,
       scrollVisit: _onScrollVisit,
       setCanPanelScrollUp: _onSetCanPanelScrollUp,
-      setIsViewExpanded: _onSetIsViewExpanded);
+      setIsViewExpanded: _onSetIsViewExpanded,
+      addVisit: _onAddVisit,
+      deleteVisit: _onDeleteVisit,
+      reorderVisit: _onReorderVisit,
+      setTravelDate: _onSetTravelDates,
+      editComplete: _onEditComplete);
+
+  void _onEditComplete() async {
+    final result =
+        await useCases.createTravelUseCase(_state.travel, _state.items);
+
+    result.when(
+        success: (travel) {
+          _state = _state.copyWith(travel: travel, isModifying: false);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message!)));
+  }
+
+  void _onSetTravelDates(DateTimeRange travelDate) {
+    _state = _state.copyWith(
+        travel: state.travel
+            .copyWith(startedOn: travelDate.start, endedOn: travelDate.end));
+
+    final visits = List.of(_state.items)
+        .map((e) => e.whenOrNull(item: (visit) => visit))
+        .whereType<Visit>()
+        .toList();
+
+    _init(visits);
+  }
+
+  void _onAddVisit(List<Place> places) {
+    final visits = List.of(_state.items)
+        .map((e) => e.whenOrNull(item: (visit) => visit))
+        .whereType<Visit>()
+        .toList();
+
+    visits.addAll(places.map((e) => Visit(place: e)).toList());
+
+    _init(visits);
+  }
+
+  void _onDeleteVisit(int index) {
+    final newItems = List.of(_state.items)..removeAt(index);
+
+    final visits = newItems
+        .map((e) => e.whenOrNull(item: (visit) => visit))
+        .whereType<Visit>()
+        .toList();
+
+    _init(visits);
+  }
+
+  void _onReorderVisit(int oldIndex, int newIndex) {
+    if (oldIndex < newIndex) newIndex -= 1;
+
+    final newItems = List.from(_state.items)
+      ..removeAt(oldIndex)
+      ..insert(newIndex, _state.items[oldIndex]);
+
+    int? dayOfTravel = -1;
+
+    final visits = newItems
+        .map((item) => item.when(
+            label: (datetime) {
+              if (datetime == null) dayOfTravel = null;
+              if (datetime != null && dayOfTravel != null) {
+                return dayOfTravel = dayOfTravel! + 1;
+              }
+            },
+            item: (visit) => visit.copyWith(dayOfTravel: dayOfTravel)))
+        .whereType<Visit>()
+        .toList();
+
+    _init(visits);
+  }
 
   void _onSetCanPanelScrollUp(bool canPanelScrollUp) {
     if (_state.canPanelScrollUp == canPanelScrollUp) return;
@@ -61,9 +148,10 @@ class TravelViewModel with ChangeNotifier {
     _state = _state.copyWith(isViewExpanded: isViewExpanded);
     notifyListeners();
 
-    _eventController.add(TravelUiEvent.moveArea(_state.isViewExpanded
-        ? _state.entireArea!
-        : _state.partialAreas[_state.visitIndex]));
+    _eventController.add(TravelUiEvent.moveArea(
+        _state.isViewExpanded || _state.isModifying
+            ? _state.entireArea!
+            : _state.partialAreas[_state.visitIndex]));
   }
 
   void _onSetIsCameraMoved(bool isCameraMoved) {
@@ -79,6 +167,8 @@ class TravelViewModel with ChangeNotifier {
   }
 
   void _onScrollVisit(int itemIndex) {
+    if (_state.items.isEmpty) return;
+
     int labelCount = _state.items
         .sublist(0, itemIndex + 1) // 현재 인덱스까지 리스트 자르기
         .map((e) => e.whenOrNull(label: (e) => 0)) // item 타입은 null을 할당
@@ -91,29 +181,42 @@ class TravelViewModel with ChangeNotifier {
     _state = _state.copyWith(visitIndex: visitIndex);
     notifyListeners();
 
-    _eventController.add(TravelUiEvent.moveArea(_state.isViewExpanded
-        ? _state.entireArea!
-        : _state.partialAreas[_state.visitIndex]));
+    _eventController.add(TravelUiEvent.moveArea(
+        (_state.isViewExpanded || _state.isModifying)
+            ? _state.entireArea!
+            : _state.partialAreas[_state.visitIndex]));
   }
 
-  void _init(DateTime startedOn, DateTime endedOn, List<Visit> visits) {
+  void _init(List<Visit> visits) {
     List<VisitDisplayType> items = [];
 
-    List<DateTime> dateTimes = List.generate(
-        endedOn.difference(startedOn).inDays + 1,
-        (index) => startedOn.add(Duration(days: index)));
+    final startedOn = state.travel.startedOn;
+    final endedOn = state.travel.endedOn;
 
-    int dateIndex = 0;
+    final int days = (startedOn != null && endedOn != null)
+        ? endedOn.difference(startedOn).inDays + 1
+        : 0;
 
-    visits.asMap().forEach((index, visit) {
-      if (index == 0) {
-        items.add(VisitDisplayType.label(dateTimes[dateIndex++]));
-      } else if (visits[index - 1].dayOfTravel! < visit.dayOfTravel!) {
-        items.add(VisitDisplayType.label(dateTimes[dateIndex++]));
+    final Map<int?, List<Visit>> group = {for (var i = 0; i < days; i++) i: []};
+
+    visits.forEach((visit) {
+      group.putIfAbsent(visit.dayOfTravel, () => []).add(visit);
+    });
+
+    group.entries.forEach((entry) {
+      final index = entry.key;
+
+      if (index != null && startedOn != null) {
+        items.add(VisitDisplayType.label(startedOn.add(Duration(days: index))));
       }
 
-      return items.add(VisitDisplayType.item(visit));
+      if (index == null) {
+        items.add(const VisitDisplayType.label(null));
+      }
+
+      items.addAll(entry.value.map((e) => VisitDisplayType.item(e)));
     });
+
     _state = _state.copyWith(items: items);
     notifyListeners();
     _createBound();
@@ -137,9 +240,10 @@ class TravelViewModel with ChangeNotifier {
       return;
     }
 
-    _eventController.add(TravelUiEvent.moveArea(_state.isViewExpanded
-        ? _state.entireArea!
-        : _state.partialAreas[_state.visitIndex]));
+    _eventController.add(TravelUiEvent.moveArea(
+        _state.isViewExpanded || _state.isModifying
+            ? _state.entireArea!
+            : _state.partialAreas[_state.visitIndex]));
     _createBound();
   }
 

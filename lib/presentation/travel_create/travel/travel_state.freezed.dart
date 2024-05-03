@@ -16,14 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TravelState {
-  double get panelHeight => throw _privateConstructorUsedError;
+  Travel get travel => throw _privateConstructorUsedError;
   List<VisitDisplayType> get items => throw _privateConstructorUsedError;
+  int get visitIndex => throw _privateConstructorUsedError;
+  double get panelHeight => throw _privateConstructorUsedError;
   bool get isCameraMoved => throw _privateConstructorUsedError;
   List<VisitArea> get partialAreas => throw _privateConstructorUsedError;
-  int get visitIndex => throw _privateConstructorUsedError;
   VisitArea? get entireArea => throw _privateConstructorUsedError;
   bool get canPanelScrollUp => throw _privateConstructorUsedError;
   bool get isViewExpanded => throw _privateConstructorUsedError;
+  bool get isModifying => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TravelStateCopyWith<TravelState> get copyWith =>
@@ -37,15 +39,18 @@ abstract class $TravelStateCopyWith<$Res> {
       _$TravelStateCopyWithImpl<$Res, TravelState>;
   @useResult
   $Res call(
-      {double panelHeight,
+      {Travel travel,
       List<VisitDisplayType> items,
+      int visitIndex,
+      double panelHeight,
       bool isCameraMoved,
       List<VisitArea> partialAreas,
-      int visitIndex,
       VisitArea? entireArea,
       bool canPanelScrollUp,
-      bool isViewExpanded});
+      bool isViewExpanded,
+      bool isModifying});
 
+  $TravelCopyWith<$Res> get travel;
   $VisitAreaCopyWith<$Res>? get entireArea;
 }
 
@@ -62,24 +67,34 @@ class _$TravelStateCopyWithImpl<$Res, $Val extends TravelState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? panelHeight = null,
+    Object? travel = null,
     Object? items = null,
+    Object? visitIndex = null,
+    Object? panelHeight = null,
     Object? isCameraMoved = null,
     Object? partialAreas = null,
-    Object? visitIndex = null,
     Object? entireArea = freezed,
     Object? canPanelScrollUp = null,
     Object? isViewExpanded = null,
+    Object? isModifying = null,
   }) {
     return _then(_value.copyWith(
-      panelHeight: null == panelHeight
-          ? _value.panelHeight
-          : panelHeight // ignore: cast_nullable_to_non_nullable
-              as double,
+      travel: null == travel
+          ? _value.travel
+          : travel // ignore: cast_nullable_to_non_nullable
+              as Travel,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<VisitDisplayType>,
+      visitIndex: null == visitIndex
+          ? _value.visitIndex
+          : visitIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      panelHeight: null == panelHeight
+          ? _value.panelHeight
+          : panelHeight // ignore: cast_nullable_to_non_nullable
+              as double,
       isCameraMoved: null == isCameraMoved
           ? _value.isCameraMoved
           : isCameraMoved // ignore: cast_nullable_to_non_nullable
@@ -88,10 +103,6 @@ class _$TravelStateCopyWithImpl<$Res, $Val extends TravelState>
           ? _value.partialAreas
           : partialAreas // ignore: cast_nullable_to_non_nullable
               as List<VisitArea>,
-      visitIndex: null == visitIndex
-          ? _value.visitIndex
-          : visitIndex // ignore: cast_nullable_to_non_nullable
-              as int,
       entireArea: freezed == entireArea
           ? _value.entireArea
           : entireArea // ignore: cast_nullable_to_non_nullable
@@ -104,7 +115,19 @@ class _$TravelStateCopyWithImpl<$Res, $Val extends TravelState>
           ? _value.isViewExpanded
           : isViewExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      isModifying: null == isModifying
+          ? _value.isModifying
+          : isModifying // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TravelCopyWith<$Res> get travel {
+    return $TravelCopyWith<$Res>(_value.travel, (value) {
+      return _then(_value.copyWith(travel: value) as $Val);
+    });
   }
 
   @override
@@ -129,15 +152,19 @@ abstract class _$$TravelStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double panelHeight,
+      {Travel travel,
       List<VisitDisplayType> items,
+      int visitIndex,
+      double panelHeight,
       bool isCameraMoved,
       List<VisitArea> partialAreas,
-      int visitIndex,
       VisitArea? entireArea,
       bool canPanelScrollUp,
-      bool isViewExpanded});
+      bool isViewExpanded,
+      bool isModifying});
 
+  @override
+  $TravelCopyWith<$Res> get travel;
   @override
   $VisitAreaCopyWith<$Res>? get entireArea;
 }
@@ -153,24 +180,34 @@ class __$$TravelStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? panelHeight = null,
+    Object? travel = null,
     Object? items = null,
+    Object? visitIndex = null,
+    Object? panelHeight = null,
     Object? isCameraMoved = null,
     Object? partialAreas = null,
-    Object? visitIndex = null,
     Object? entireArea = freezed,
     Object? canPanelScrollUp = null,
     Object? isViewExpanded = null,
+    Object? isModifying = null,
   }) {
     return _then(_$TravelStateImpl(
-      panelHeight: null == panelHeight
-          ? _value.panelHeight
-          : panelHeight // ignore: cast_nullable_to_non_nullable
-              as double,
+      travel: null == travel
+          ? _value.travel
+          : travel // ignore: cast_nullable_to_non_nullable
+              as Travel,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<VisitDisplayType>,
+      visitIndex: null == visitIndex
+          ? _value.visitIndex
+          : visitIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      panelHeight: null == panelHeight
+          ? _value.panelHeight
+          : panelHeight // ignore: cast_nullable_to_non_nullable
+              as double,
       isCameraMoved: null == isCameraMoved
           ? _value.isCameraMoved
           : isCameraMoved // ignore: cast_nullable_to_non_nullable
@@ -179,10 +216,6 @@ class __$$TravelStateImplCopyWithImpl<$Res>
           ? _value._partialAreas
           : partialAreas // ignore: cast_nullable_to_non_nullable
               as List<VisitArea>,
-      visitIndex: null == visitIndex
-          ? _value.visitIndex
-          : visitIndex // ignore: cast_nullable_to_non_nullable
-              as int,
       entireArea: freezed == entireArea
           ? _value.entireArea
           : entireArea // ignore: cast_nullable_to_non_nullable
@@ -195,6 +228,10 @@ class __$$TravelStateImplCopyWithImpl<$Res>
           ? _value.isViewExpanded
           : isViewExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      isModifying: null == isModifying
+          ? _value.isModifying
+          : isModifying // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -203,20 +240,21 @@ class __$$TravelStateImplCopyWithImpl<$Res>
 
 class _$TravelStateImpl implements _TravelState {
   _$TravelStateImpl(
-      {this.panelHeight = 0.0,
+      {required this.travel,
       final List<VisitDisplayType> items = const [],
+      this.visitIndex = 0,
+      this.panelHeight = 0.0,
       this.isCameraMoved = false,
       final List<VisitArea> partialAreas = const [],
-      this.visitIndex = 0,
       this.entireArea,
       this.canPanelScrollUp = false,
-      this.isViewExpanded = false})
+      this.isViewExpanded = false,
+      this.isModifying = false})
       : _items = items,
         _partialAreas = partialAreas;
 
   @override
-  @JsonKey()
-  final double panelHeight;
+  final Travel travel;
   final List<VisitDisplayType> _items;
   @override
   @JsonKey()
@@ -226,6 +264,12 @@ class _$TravelStateImpl implements _TravelState {
     return EqualUnmodifiableListView(_items);
   }
 
+  @override
+  @JsonKey()
+  final int visitIndex;
+  @override
+  @JsonKey()
+  final double panelHeight;
   @override
   @JsonKey()
   final bool isCameraMoved;
@@ -239,9 +283,6 @@ class _$TravelStateImpl implements _TravelState {
   }
 
   @override
-  @JsonKey()
-  final int visitIndex;
-  @override
   final VisitArea? entireArea;
   @override
   @JsonKey()
@@ -249,10 +290,13 @@ class _$TravelStateImpl implements _TravelState {
   @override
   @JsonKey()
   final bool isViewExpanded;
+  @override
+  @JsonKey()
+  final bool isModifying;
 
   @override
   String toString() {
-    return 'TravelState(panelHeight: $panelHeight, items: $items, isCameraMoved: $isCameraMoved, partialAreas: $partialAreas, visitIndex: $visitIndex, entireArea: $entireArea, canPanelScrollUp: $canPanelScrollUp, isViewExpanded: $isViewExpanded)';
+    return 'TravelState(travel: $travel, items: $items, visitIndex: $visitIndex, panelHeight: $panelHeight, isCameraMoved: $isCameraMoved, partialAreas: $partialAreas, entireArea: $entireArea, canPanelScrollUp: $canPanelScrollUp, isViewExpanded: $isViewExpanded, isModifying: $isModifying)';
   }
 
   @override
@@ -260,34 +304,39 @@ class _$TravelStateImpl implements _TravelState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TravelStateImpl &&
+            (identical(other.travel, travel) || other.travel == travel) &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.visitIndex, visitIndex) ||
+                other.visitIndex == visitIndex) &&
             (identical(other.panelHeight, panelHeight) ||
                 other.panelHeight == panelHeight) &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.isCameraMoved, isCameraMoved) ||
                 other.isCameraMoved == isCameraMoved) &&
             const DeepCollectionEquality()
                 .equals(other._partialAreas, _partialAreas) &&
-            (identical(other.visitIndex, visitIndex) ||
-                other.visitIndex == visitIndex) &&
             (identical(other.entireArea, entireArea) ||
                 other.entireArea == entireArea) &&
             (identical(other.canPanelScrollUp, canPanelScrollUp) ||
                 other.canPanelScrollUp == canPanelScrollUp) &&
             (identical(other.isViewExpanded, isViewExpanded) ||
-                other.isViewExpanded == isViewExpanded));
+                other.isViewExpanded == isViewExpanded) &&
+            (identical(other.isModifying, isModifying) ||
+                other.isModifying == isModifying));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      panelHeight,
+      travel,
       const DeepCollectionEquality().hash(_items),
+      visitIndex,
+      panelHeight,
       isCameraMoved,
       const DeepCollectionEquality().hash(_partialAreas),
-      visitIndex,
       entireArea,
       canPanelScrollUp,
-      isViewExpanded);
+      isViewExpanded,
+      isModifying);
 
   @JsonKey(ignore: true)
   @override
@@ -298,31 +347,37 @@ class _$TravelStateImpl implements _TravelState {
 
 abstract class _TravelState implements TravelState {
   factory _TravelState(
-      {final double panelHeight,
+      {required final Travel travel,
       final List<VisitDisplayType> items,
+      final int visitIndex,
+      final double panelHeight,
       final bool isCameraMoved,
       final List<VisitArea> partialAreas,
-      final int visitIndex,
       final VisitArea? entireArea,
       final bool canPanelScrollUp,
-      final bool isViewExpanded}) = _$TravelStateImpl;
+      final bool isViewExpanded,
+      final bool isModifying}) = _$TravelStateImpl;
 
   @override
-  double get panelHeight;
+  Travel get travel;
   @override
   List<VisitDisplayType> get items;
+  @override
+  int get visitIndex;
+  @override
+  double get panelHeight;
   @override
   bool get isCameraMoved;
   @override
   List<VisitArea> get partialAreas;
-  @override
-  int get visitIndex;
   @override
   VisitArea? get entireArea;
   @override
   bool get canPanelScrollUp;
   @override
   bool get isViewExpanded;
+  @override
+  bool get isModifying;
   @override
   @JsonKey(ignore: true)
   _$$TravelStateImplCopyWith<_$TravelStateImpl> get copyWith =>

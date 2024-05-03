@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$VisitDisplayType {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DateTime dateTime) label,
+    required TResult Function(DateTime? dateTime) label,
     required TResult Function(Visit visit) item,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DateTime dateTime)? label,
+    TResult? Function(DateTime? dateTime)? label,
     TResult? Function(Visit visit)? item,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DateTime dateTime)? label,
+    TResult Function(DateTime? dateTime)? label,
     TResult Function(Visit visit)? item,
     required TResult orElse(),
   }) =>
@@ -80,7 +80,7 @@ abstract class _$$LabelImplCopyWith<$Res> {
           _$LabelImpl value, $Res Function(_$LabelImpl) then) =
       __$$LabelImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({DateTime dateTime});
+  $Res call({DateTime? dateTime});
 }
 
 /// @nodoc
@@ -94,13 +94,13 @@ class __$$LabelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateTime = null,
+    Object? dateTime = freezed,
   }) {
     return _then(_$LabelImpl(
-      null == dateTime
+      freezed == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -111,7 +111,7 @@ class _$LabelImpl implements _Label {
   const _$LabelImpl(this.dateTime);
 
   @override
-  final DateTime dateTime;
+  final DateTime? dateTime;
 
   @override
   String toString() {
@@ -139,7 +139,7 @@ class _$LabelImpl implements _Label {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DateTime dateTime) label,
+    required TResult Function(DateTime? dateTime) label,
     required TResult Function(Visit visit) item,
   }) {
     return label(dateTime);
@@ -148,7 +148,7 @@ class _$LabelImpl implements _Label {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DateTime dateTime)? label,
+    TResult? Function(DateTime? dateTime)? label,
     TResult? Function(Visit visit)? item,
   }) {
     return label?.call(dateTime);
@@ -157,7 +157,7 @@ class _$LabelImpl implements _Label {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DateTime dateTime)? label,
+    TResult Function(DateTime? dateTime)? label,
     TResult Function(Visit visit)? item,
     required TResult orElse(),
   }) {
@@ -200,9 +200,9 @@ class _$LabelImpl implements _Label {
 }
 
 abstract class _Label implements VisitDisplayType {
-  const factory _Label(final DateTime dateTime) = _$LabelImpl;
+  const factory _Label(final DateTime? dateTime) = _$LabelImpl;
 
-  DateTime get dateTime;
+  DateTime? get dateTime;
   @JsonKey(ignore: true)
   _$$LabelImplCopyWith<_$LabelImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -282,7 +282,7 @@ class _$VisitImpl implements _Visit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DateTime dateTime) label,
+    required TResult Function(DateTime? dateTime) label,
     required TResult Function(Visit visit) item,
   }) {
     return item(visit);
@@ -291,7 +291,7 @@ class _$VisitImpl implements _Visit {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DateTime dateTime)? label,
+    TResult? Function(DateTime? dateTime)? label,
     TResult? Function(Visit visit)? item,
   }) {
     return item?.call(visit);
@@ -300,7 +300,7 @@ class _$VisitImpl implements _Visit {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DateTime dateTime)? label,
+    TResult Function(DateTime? dateTime)? label,
     TResult Function(Visit visit)? item,
     required TResult orElse(),
   }) {

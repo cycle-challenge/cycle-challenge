@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_page.dart';
 
 class CreateTravelSheet extends StatelessWidget {
@@ -88,7 +89,7 @@ class CreateTravelSheet extends StatelessWidget {
                                 visibility: values['visibility']);
                             Navigator.of(context).pushReplacement(MaterialPageRoute(
                                 builder: (_) =>
-                                    TravelCreatePage(travel: travel)));
+                                    TravelPage(travel: travel, isModifying: true)));
                           },
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,

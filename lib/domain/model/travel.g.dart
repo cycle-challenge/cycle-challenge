@@ -24,12 +24,8 @@ _$TravelImpl _$$TravelImplFromJson(Map<String, dynamic> json) => _$TravelImpl(
       places: json['places'] == null
           ? const []
           : Travel._placesFromJson(json['places'] as List),
-      statedOn: json['statedOn'] == null
-          ? null
-          : DateTime.parse(json['statedOn'] as String),
-      endedOn: json['endedOn'] == null
-          ? null
-          : DateTime.parse(json['endedOn'] as String),
+      startedOn: DateTime.parse(json['startedOn'] as String),
+      endedOn: DateTime.parse(json['endedOn'] as String),
     );
 
 Map<String, dynamic> _$$TravelImplToJson(_$TravelImpl instance) {
@@ -53,7 +49,7 @@ Map<String, dynamic> _$$TravelImplToJson(_$TravelImpl instance) {
   val['member/ageGroup'] = _$TravelAgeGroupEnumMap[instance.ageGroup];
   val['member/nickname'] = instance.nickname;
   val['places'] = instance.places;
-  val['statedOn'] = instance.statedOn?.toIso8601String();
+  val['startedOn'] = instance.startedOn?.toIso8601String();
   val['endedOn'] = instance.endedOn?.toIso8601String();
   return val;
 }

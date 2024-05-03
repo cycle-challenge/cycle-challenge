@@ -3,7 +3,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/date_label_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/visit_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
@@ -11,14 +10,8 @@ import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_
 
 class VisitListView extends StatefulWidget {
   final double gapHeight;
-  final PanelController panelController;
-  final bool isScrollingUp;
 
-  const VisitListView(
-      {super.key,
-      required this.gapHeight,
-      required this.panelController,
-      required this.isScrollingUp});
+  const VisitListView({super.key, required this.gapHeight});
 
   @override
   State<VisitListView> createState() => _VisitListViewState();
@@ -66,7 +59,7 @@ class _VisitListViewState extends State<VisitListView> {
 
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    final double lastItemHeight = state.items.isNotEmpty
+    final lastItemHeight = state.items.isNotEmpty
         ? state.items.last
             .when(label: (_) => labelHeight, item: (_) => itemHeight)
         : 0;

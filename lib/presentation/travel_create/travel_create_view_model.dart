@@ -54,20 +54,20 @@ class TravelCreateViewModel with ChangeNotifier {
   }
 
   void _onComplete() async {
-    final result = await useCases.createTravelUseCase(
-        _state.travel, _state.travelDates, _state.group);
-
-    result.when(
-        success: (travel) {
-          _state = _state.copyWith(travel: travel);
-
-          _eventController.add(TravelCreateUiEvent.complete(
-            _state.travel,
-              _state.travelDates!
-          ));
-        },
-        error: (message) =>
-            _mainEventController.add(MainUiEvent.showSnackbar(message!)));
+    // final result = await useCases.createTravelUseCase(
+    //     _state.travel, _state.travelDates, _state.group);
+    //
+    // result.when(
+    //     success: (travel) {
+    //       _state = _state.copyWith(travel: travel);
+    //
+    //       _eventController.add(TravelCreateUiEvent.complete(
+    //         _state.travel,
+    //           _state.travelDates!
+    //       ));
+    //     },
+    //     error: (message) =>
+    //         _mainEventController.add(MainUiEvent.showSnackbar(message!)));
   }
 
   void _onInitCamera() async {

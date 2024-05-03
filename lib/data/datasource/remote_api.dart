@@ -240,8 +240,6 @@ class RemoteAPI {
       final response = await dio.get('$remoteUrl/api/v1/travels/$id/visits',
           options: Options(headers: headers));
 
-      print(response.data['data']);
-
       return Result.success(List.of(response.data['data']).map((e) => Visit.fromJson(e)).toList());
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
@@ -255,7 +253,7 @@ class RemoteAPI {
           options: Options(headers: headers),
           data: {
             'name': travel.name,
-            'startedOn': travel.statedOn?.toIso8601String(),
+            'startedOn': travel.startedOn?.toIso8601String(),
             'endedOn': travel.endedOn?.toIso8601String(),
             'visibility': travel.visibility,
             'visits': visits
