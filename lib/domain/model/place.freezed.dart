@@ -29,7 +29,7 @@ mixin _$Place {
   String get googlePlaceId => throw _privateConstructorUsedError;
   @JsonKey(fromJson: PlaceType.of)
   PlaceType get type => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: Place._imagesFromJson)
+  @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
   List<Image> get images => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   double? get distance => throw _privateConstructorUsedError;
@@ -51,7 +51,8 @@ abstract class $PlaceCopyWith<$Res> {
       @NestedJsonKey(name: 'location/longitude') double longitude,
       String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
-      @JsonKey(fromJson: Place._imagesFromJson) List<Image> images,
+      @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
+      List<Image> images,
       @JsonKey(includeFromJson: false) double? distance});
 }
 
@@ -128,7 +129,8 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
       @NestedJsonKey(name: 'location/longitude') double longitude,
       String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
-      @JsonKey(fromJson: Place._imagesFromJson) List<Image> images,
+      @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
+      List<Image> images,
       @JsonKey(includeFromJson: false) double? distance});
 }
 
@@ -199,7 +201,7 @@ class _$PlaceImpl implements _Place {
       @NestedJsonKey(name: 'location/longitude') required this.longitude,
       required this.googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) required this.type,
-      @JsonKey(fromJson: Place._imagesFromJson)
+      @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       final List<Image> images = const [],
       @JsonKey(includeFromJson: false) this.distance})
       : _images = images;
@@ -224,7 +226,7 @@ class _$PlaceImpl implements _Place {
   final PlaceType type;
   final List<Image> _images;
   @override
-  @JsonKey(fromJson: Place._imagesFromJson)
+  @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
   List<Image> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
@@ -295,7 +297,8 @@ abstract class _Place implements Place {
       required final double longitude,
       required final String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) required final PlaceType type,
-      @JsonKey(fromJson: Place._imagesFromJson) final List<Image> images,
+      @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
+      final List<Image> images,
       @JsonKey(includeFromJson: false) final double? distance}) = _$PlaceImpl;
 
   factory _Place.fromJson(Map<String, dynamic> json) = _$PlaceImpl.fromJson;
@@ -316,7 +319,7 @@ abstract class _Place implements Place {
   @JsonKey(fromJson: PlaceType.of)
   PlaceType get type;
   @override
-  @JsonKey(fromJson: Place._imagesFromJson)
+  @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
   List<Image> get images;
   @override
   @JsonKey(includeFromJson: false)

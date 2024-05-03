@@ -47,6 +47,7 @@ class CreateTravelSheet extends StatelessWidget {
                       FormBuilderRadioGroup(
                           orientation: OptionsOrientation.vertical,
                           name: 'visibility',
+                          disabled: const ['public'],
                           options: [
                             FormBuilderFieldOption(
                                 value: 'public',

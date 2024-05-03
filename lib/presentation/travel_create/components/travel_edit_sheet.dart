@@ -56,6 +56,7 @@ class TravelEditSheet extends StatelessWidget {
                           key: _visibilityFieldKey,
                           orientation: OptionsOrientation.vertical,
                           name: 'visibility',
+                          disabled: const ['public'],
                           options: [
                             FormBuilderFieldOption(
                                 value: 'public',

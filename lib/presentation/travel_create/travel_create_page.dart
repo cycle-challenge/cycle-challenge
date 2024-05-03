@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
@@ -19,6 +20,7 @@ class TravelCreatePage extends StatelessWidget {
         create: (context) => TravelCreateViewModel(
             context.read<StreamController<MainUiEvent>>(),
             context.read<TravelRepository>(),
+            context.read<UseCases>(),
             travel: travel),
         child: const TravelCreateScreen());
   }

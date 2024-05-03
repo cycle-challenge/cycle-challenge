@@ -78,7 +78,7 @@ class MapViewModel with ChangeNotifier {
     _state = _state.copyWith(isShownSearchButton: false);
 
     final result =
-        await useCases.getNearbyPlaces(_state.latitude, _state.longitude);
+        await useCases.getNearbyTravels(_state.latitude, _state.longitude);
 
     result.when(
         success: (travels) {

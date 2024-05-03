@@ -7,6 +7,7 @@ import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_state.dart';
@@ -19,6 +20,8 @@ class TravelCreateViewModel with ChangeNotifier {
 
   final TravelRepository _travelRepository;
 
+  final UseCases useCases;
+
   final StreamController<TravelCreateUiEvent> _eventController =
       StreamController.broadcast();
   Stream<TravelCreateUiEvent> get stream => _eventController.stream;
@@ -28,7 +31,8 @@ class TravelCreateViewModel with ChangeNotifier {
   late TravelCreateState _state;
   TravelCreateState get state => _state;
 
-  TravelCreateViewModel(this._mainEventController, this._travelRepository,
+  TravelCreateViewModel(
+      this._mainEventController, this._travelRepository, this.useCases,
       {required Travel travel}) {
     _state = TravelCreateState(travel: travel);
   }
@@ -50,35 +54,40 @@ class TravelCreateViewModel with ChangeNotifier {
   }
 
   void _onComplete() async {
-    if (state.visits.isEmpty) {
-      return _mainEventController
-          .add(const MainUiEvent.showSnackbar('최소 한 개 이상의 관광지를 선택해야 합니다.'));
-    }
+    final result = await useCases.createTravelUseCase(
+        _state.travel, _state.travelDates, _state.group);
 
-    for (Visit visit in state.visits) {
-      if (visit.dayOfTravel == null) {
-        return _mainEventController
-            .add(const MainUiEvent.showSnackbar('들릴 관광지에 날짜를 선택해 주세요.'));
-      }
-    }
+    result.when(
+        success: (travel) {
+          _state = _state.copyWith(travel: travel);
 
-    final List<Visit> visits = [];
-
-    int orderOfVisit = 0;
-
-    _state.group.forEach((elm) => elm.whenOrNull(
-        visit: (visit) =>
-            visits.add(visit.copyWith(orderOfVisit: orderOfVisit++))));
-
-    final Travel travel = _state.travel.copyWith(
-        statedOn: _state.travelDates?.start, endedOn: _state.travelDates?.end);
-
-    final result = await _travelRepository.create(travel, visits);
+          _eventController.add(TravelCreateUiEvent.complete(
+            _state.travel,
+              _state.travelDates!
+          ));
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message!)));
   }
 
-  void _onInitCamera() {
+  void _onInitCamera() async {
     _state = _state.copyWith(isCameraMoved: false);
     notifyListeners();
+
+    if (_state.visits.isEmpty) {
+      final result = await useCases.getMyLocation();
+
+      result.when(
+          success: (location) {
+            final (lat, lon) = location;
+
+            _eventController.add(TravelCreateUiEvent.moveArea(VisitArea(
+                swLat: lat, swLon: lon, neLat: lat + 0.03, neLon: lon + 0.03)));
+          },
+          error: (message) =>
+              _mainEventController.add(MainUiEvent.showSnackbar(message)));
+      return;
+    }
 
     if (_state.entireArea != null) {
       _eventController.add(TravelCreateUiEvent.moveArea(_state.entireArea!));

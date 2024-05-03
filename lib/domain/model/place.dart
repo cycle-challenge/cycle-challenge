@@ -18,7 +18,7 @@ class Place with _$Place {
       @NestedJsonKey(name: 'location/longitude') required double longitude,
       required String googlePlaceId,
       @JsonKey(fromJson: PlaceType.of) required PlaceType type,
-      @JsonKey(fromJson: Place._imagesFromJson) @Default([]) List<Image> images,
+      @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson) @Default([]) List<Image> images,
       @JsonKey(includeFromJson: false) double? distance}) = _Place;
 
   factory Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);

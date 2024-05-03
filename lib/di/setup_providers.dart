@@ -11,11 +11,14 @@ import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
+import 'package:yeohaeng_ttukttak/data/repositories/visit_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_travel_bookmark_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/calculate_bound_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/calculate_distance_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_place_use_case.dart';
@@ -24,6 +27,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/get_my_location_use_case.dart'
 import 'package:yeohaeng_ttukttak/domain/use_case/get_nearby_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_place_detail_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_place_image_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/get_travel_visits_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/launch_url_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/load_marker_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
@@ -48,6 +52,7 @@ List<SingleChildWidget> independentModules = [
   Provider<GetMyLocationUseCase>(create: (_) => GetMyLocationUseCase()),
   Provider<LoadMarkerUseCase>(create: (_) => LoadMarkerUseCase()),
   Provider<CalculateDistanceUseCase>(create: (_) => CalculateDistanceUseCase()),
+  Provider<CalculateBoundUseCase>(create: (_) => CalculateBoundUseCase()),
   Provider<SecureStorage>(
       create: (_) => SecureStorage(const FlutterSecureStorage())),
   Provider<StreamController<MainUiEvent>>(
@@ -63,10 +68,12 @@ List<SingleChildWidget> dependentModules = [
             context.read<StreamController<MainUiEvent>>()))),
   Provider<RemoteAPI>(create: (context) => RemoteAPI(context.read<Dio>())),
   Provider<PlaceRepository>(
-      create: (context) =>
-          PlaceRepository(context.read<RemoteAPI>(), context.read<LocalStorage>(), context.read<GoogleApi>())),
+      create: (context) => PlaceRepository(context.read<RemoteAPI>(),
+          context.read<LocalStorage>(), context.read<GoogleApi>())),
   Provider<TravelRepository>(
       create: (context) => TravelRepository(context.read<RemoteAPI>())),
+  Provider<VisitRepository>(
+      create: (context) => VisitRepository(context.read<RemoteAPI>())),
   Provider<AddPlaceBookmarkUseCase>(
       create: (context) =>
           AddPlaceBookmarkUseCase(context.read<PlaceRepository>())),
@@ -85,6 +92,12 @@ List<SingleChildWidget> dependentModules = [
   Provider<GetBookmarkedTravelUseCase>(
       create: (context) =>
           GetBookmarkedTravelUseCase(context.read<TravelRepository>())),
+  Provider<CreateTravelUseCase>(
+      create: (context) =>
+          CreateTravelUseCase(context.read<TravelRepository>())),
+  Provider<GetTravelVisitsUseCase>(
+      create: (context) =>
+          GetTravelVisitsUseCase(context.read<VisitRepository>())),
   Provider<AuthRepository>(
       create: (context) => AuthRepository(
           context.read<RemoteAPI>(), context.read<SecureStorage>())),
@@ -93,7 +106,8 @@ List<SingleChildWidget> dependentModules = [
   ProxyProvider<PlaceRepository, GetPlaceImageUseCase>(
       update: (context, repository, _) => GetPlaceImageUseCase(repository)),
   Provider<GetNearbyTravelsUseCase>(
-      create: (context) => GetNearbyTravelsUseCase(context.read<TravelRepository>())),
+      create: (context) =>
+          GetNearbyTravelsUseCase(context.read<TravelRepository>())),
   Provider<UseCases>(
       create: (context) => UseCases(
           getPlaceDetail: context.read<GetPlaceDetailUseCase>(),
@@ -101,7 +115,7 @@ List<SingleChildWidget> dependentModules = [
           callPhone: context.read<CallPhoneUseCase>(),
           copyText: context.read<CopyTextUseCase>(),
           launchURL: context.read<LaunchUrlUseCase>(),
-          getNearbyPlaces: context.read<GetNearbyTravelsUseCase>(),
+          getNearbyTravels: context.read<GetNearbyTravelsUseCase>(),
           getMyLocation: context.read<GetMyLocationUseCase>(),
           loadMarker: context.read<LoadMarkerUseCase>(),
           addPlaceBookmarkUseCase: context.read<AddPlaceBookmarkUseCase>(),
@@ -113,7 +127,10 @@ List<SingleChildWidget> dependentModules = [
           getBookmarkedPlaceUseCase: context.read<GetBookmarkedPlaceUseCase>(),
           getBookmarkedTravelUseCase:
               context.read<GetBookmarkedTravelUseCase>(),
-          calculateDistanceUseCase: context.read<CalculateDistanceUseCase>()))
+          calculateDistanceUseCase: context.read<CalculateDistanceUseCase>(),
+          createTravelUseCase: context.read<CreateTravelUseCase>(),
+          getTravelVisitsUseCase: context.read<GetTravelVisitsUseCase>(),
+          calculateBoundUseCase: context.read<CalculateBoundUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [

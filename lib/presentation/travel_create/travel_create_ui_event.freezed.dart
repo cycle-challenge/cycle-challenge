@@ -16,42 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TravelCreateUiEvent {
-  VisitArea get area => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(VisitArea area) moveArea,
+    required TResult Function(Travel travel, DateTimeRange travelDates)
+        complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(VisitArea area)? moveArea,
+    TResult? Function(Travel travel, DateTimeRange travelDates)? complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(VisitArea area)? moveArea,
+    TResult Function(Travel travel, DateTimeRange travelDates)? complete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MoveArea value) moveArea,
+    required TResult Function(_Complete value) complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MoveArea value)? moveArea,
+    TResult? Function(_Complete value)? complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MoveArea value)? moveArea,
+    TResult Function(_Complete value)? complete,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TravelCreateUiEventCopyWith<TravelCreateUiEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,10 +62,6 @@ abstract class $TravelCreateUiEventCopyWith<$Res> {
   factory $TravelCreateUiEventCopyWith(
           TravelCreateUiEvent value, $Res Function(TravelCreateUiEvent) then) =
       _$TravelCreateUiEventCopyWithImpl<$Res, TravelCreateUiEvent>;
-  @useResult
-  $Res call({VisitArea area});
-
-  $VisitAreaCopyWith<$Res> get area;
 }
 
 /// @nodoc
@@ -75,40 +73,16 @@ class _$TravelCreateUiEventCopyWithImpl<$Res, $Val extends TravelCreateUiEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? area = null,
-  }) {
-    return _then(_value.copyWith(
-      area: null == area
-          ? _value.area
-          : area // ignore: cast_nullable_to_non_nullable
-              as VisitArea,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $VisitAreaCopyWith<$Res> get area {
-    return $VisitAreaCopyWith<$Res>(_value.area, (value) {
-      return _then(_value.copyWith(area: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$MoveAreaImplCopyWith<$Res>
-    implements $TravelCreateUiEventCopyWith<$Res> {
+abstract class _$$MoveAreaImplCopyWith<$Res> {
   factory _$$MoveAreaImplCopyWith(
           _$MoveAreaImpl value, $Res Function(_$MoveAreaImpl) then) =
       __$$MoveAreaImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({VisitArea area});
 
-  @override
   $VisitAreaCopyWith<$Res> get area;
 }
 
@@ -131,6 +105,14 @@ class __$$MoveAreaImplCopyWithImpl<$Res>
           : area // ignore: cast_nullable_to_non_nullable
               as VisitArea,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VisitAreaCopyWith<$Res> get area {
+    return $VisitAreaCopyWith<$Res>(_value.area, (value) {
+      return _then(_value.copyWith(area: value));
+    });
   }
 }
 
@@ -168,6 +150,8 @@ class _$MoveAreaImpl implements _MoveArea {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(VisitArea area) moveArea,
+    required TResult Function(Travel travel, DateTimeRange travelDates)
+        complete,
   }) {
     return moveArea(area);
   }
@@ -176,6 +160,7 @@ class _$MoveAreaImpl implements _MoveArea {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(VisitArea area)? moveArea,
+    TResult? Function(Travel travel, DateTimeRange travelDates)? complete,
   }) {
     return moveArea?.call(area);
   }
@@ -184,6 +169,7 @@ class _$MoveAreaImpl implements _MoveArea {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(VisitArea area)? moveArea,
+    TResult Function(Travel travel, DateTimeRange travelDates)? complete,
     required TResult orElse(),
   }) {
     if (moveArea != null) {
@@ -196,6 +182,7 @@ class _$MoveAreaImpl implements _MoveArea {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MoveArea value) moveArea,
+    required TResult Function(_Complete value) complete,
   }) {
     return moveArea(this);
   }
@@ -204,6 +191,7 @@ class _$MoveAreaImpl implements _MoveArea {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MoveArea value)? moveArea,
+    TResult? Function(_Complete value)? complete,
   }) {
     return moveArea?.call(this);
   }
@@ -212,6 +200,7 @@ class _$MoveAreaImpl implements _MoveArea {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MoveArea value)? moveArea,
+    TResult Function(_Complete value)? complete,
     required TResult orElse(),
   }) {
     if (moveArea != null) {
@@ -224,10 +213,163 @@ class _$MoveAreaImpl implements _MoveArea {
 abstract class _MoveArea implements TravelCreateUiEvent {
   const factory _MoveArea(final VisitArea area) = _$MoveAreaImpl;
 
-  @override
   VisitArea get area;
-  @override
   @JsonKey(ignore: true)
   _$$MoveAreaImplCopyWith<_$MoveAreaImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CompleteImplCopyWith<$Res> {
+  factory _$$CompleteImplCopyWith(
+          _$CompleteImpl value, $Res Function(_$CompleteImpl) then) =
+      __$$CompleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Travel travel, DateTimeRange travelDates});
+
+  $TravelCopyWith<$Res> get travel;
+}
+
+/// @nodoc
+class __$$CompleteImplCopyWithImpl<$Res>
+    extends _$TravelCreateUiEventCopyWithImpl<$Res, _$CompleteImpl>
+    implements _$$CompleteImplCopyWith<$Res> {
+  __$$CompleteImplCopyWithImpl(
+      _$CompleteImpl _value, $Res Function(_$CompleteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? travel = null,
+    Object? travelDates = null,
+  }) {
+    return _then(_$CompleteImpl(
+      null == travel
+          ? _value.travel
+          : travel // ignore: cast_nullable_to_non_nullable
+              as Travel,
+      null == travelDates
+          ? _value.travelDates
+          : travelDates // ignore: cast_nullable_to_non_nullable
+              as DateTimeRange,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TravelCopyWith<$Res> get travel {
+    return $TravelCopyWith<$Res>(_value.travel, (value) {
+      return _then(_value.copyWith(travel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CompleteImpl implements _Complete {
+  const _$CompleteImpl(this.travel, this.travelDates);
+
+  @override
+  final Travel travel;
+  @override
+  final DateTimeRange travelDates;
+
+  @override
+  String toString() {
+    return 'TravelCreateUiEvent.complete(travel: $travel, travelDates: $travelDates)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CompleteImpl &&
+            (identical(other.travel, travel) || other.travel == travel) &&
+            (identical(other.travelDates, travelDates) ||
+                other.travelDates == travelDates));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, travel, travelDates);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CompleteImplCopyWith<_$CompleteImpl> get copyWith =>
+      __$$CompleteImplCopyWithImpl<_$CompleteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(VisitArea area) moveArea,
+    required TResult Function(Travel travel, DateTimeRange travelDates)
+        complete,
+  }) {
+    return complete(travel, travelDates);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(VisitArea area)? moveArea,
+    TResult? Function(Travel travel, DateTimeRange travelDates)? complete,
+  }) {
+    return complete?.call(travel, travelDates);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(VisitArea area)? moveArea,
+    TResult Function(Travel travel, DateTimeRange travelDates)? complete,
+    required TResult orElse(),
+  }) {
+    if (complete != null) {
+      return complete(travel, travelDates);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MoveArea value) moveArea,
+    required TResult Function(_Complete value) complete,
+  }) {
+    return complete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MoveArea value)? moveArea,
+    TResult? Function(_Complete value)? complete,
+  }) {
+    return complete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MoveArea value)? moveArea,
+    TResult Function(_Complete value)? complete,
+    required TResult orElse(),
+  }) {
+    if (complete != null) {
+      return complete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Complete implements TravelCreateUiEvent {
+  const factory _Complete(
+      final Travel travel, final DateTimeRange travelDates) = _$CompleteImpl;
+
+  Travel get travel;
+  DateTimeRange get travelDates;
+  @JsonKey(ignore: true)
+  _$$CompleteImplCopyWith<_$CompleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

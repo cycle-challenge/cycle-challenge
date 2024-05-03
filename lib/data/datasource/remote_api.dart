@@ -224,7 +224,31 @@ class RemoteAPI {
     }
   }
 
-  Future<Result<void, ApiError>> createTravel(
+  Future<Result<Travel, ApiError>> findTravel(int id) async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/travels/$id',
+          options: Options(headers: headers));
+
+      return Result.success(Travel.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<List<Visit>, ApiError>> findTravelVisits(int id) async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/travels/$id/visits',
+          options: Options(headers: headers));
+
+      print(response.data['data']);
+
+      return Result.success(List.of(response.data['data']).map((e) => Visit.fromJson(e)).toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<int, ApiError>> createTravel(
       Travel travel, List<Visit> visits) async {
     try {
       final response = await dio.post('$remoteUrl/api/v1/travels/',
@@ -243,7 +267,8 @@ class RemoteAPI {
                 .toList()
           });
 
-      return const Result.success(null);
+      return Result.success(
+          int.parse(response.headers['location']!.first.split('/').last));
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }

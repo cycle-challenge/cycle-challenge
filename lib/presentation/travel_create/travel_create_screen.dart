@@ -11,9 +11,14 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/grouped_visit_list_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/components/travel_edit_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_page.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
@@ -42,8 +47,14 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
 
     Future.microtask(() {
       final viewModel = context.read<TravelCreateViewModel>();
-      _subscription =
-          viewModel.stream.listen((event) => event.when(moveArea: _moveArea));
+
+      _subscription = viewModel.stream.listen((event) => event.when(
+          moveArea: _moveArea,
+          complete: (travel, travelDates) {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) =>
+                    TravelPage(travel: travel, travelDates: travelDates)));
+          }));
     });
 
     WidgetsBinding.instance.addPostFrameCallback(
@@ -84,8 +95,8 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
           scrolledUnderElevation: 0,
           backgroundColor: colorScheme.surface.withOpacity(0),
           title: Text(state.travel.name,
-              style:
-                  textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600)),
+              style: textTheme.titleLarge
+                  ?.copyWith(fontWeight: FontWeight.w600)),
           actions: [
             IconButton(
                 onPressed: () async {
@@ -144,9 +155,12 @@ class _TravelCreateScreenState extends State<TravelCreateScreen> {
               }
             },
             panel: Listener(
-                behavior: HitTestBehavior.opaque,
-                onPointerUp: (_) => _isPanelTouching = false,
-                onPointerDown: (_) => _isPanelTouching = true,
+                onPointerUp: (_) {
+                  _isPanelTouching = false;
+                },
+                onPointerDown: (_) {
+                  _isPanelTouching = true;
+                },
                 child: GroupedVisitListView(gapHeight: gapHeight)),
             body: Stack(
               children: [

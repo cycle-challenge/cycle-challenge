@@ -1,4 +1,3 @@
-
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
@@ -8,7 +7,6 @@ import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class TravelRepository {
-
   RemoteAPI api;
 
   TravelRepository(this.api);
@@ -34,7 +32,12 @@ class TravelRepository {
     return api.getBookmarkedTravel();
   }
 
-  Future<Result<void, ApiError>> create(Travel travel, List<Visit> visits) {
+  Future<Result<int, ApiError>> create(Travel travel, List<Visit> visits) {
     return api.createTravel(travel, visits);
   }
+
+  Future<Result<Travel, ApiError>> find(int id) {
+    return api.findTravel(id);
+  }
+  
 }

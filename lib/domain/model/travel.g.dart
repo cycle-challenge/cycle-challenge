@@ -15,9 +15,9 @@ _$TravelImpl _$$TravelImplFromJson(Map<String, dynamic> json) => _$TravelImpl(
           const {},
       thumbnail: Image.fromJson(json['thumbnail'] as Map<String, dynamic>),
       id: json['id'] as int?,
-      motivation: TravelMotivation.of(json['motivation'] as String),
-      accompany: TravelAccompany.of(json['accompanyType'] as String),
-      transport: TravelTransport.of(json['transportType'] as String),
+      motivation: TravelMotivation.of(json['motivation'] as String?),
+      accompany: TravelAccompany.of(json['accompanyType'] as String?),
+      transport: TravelTransport.of(json['transportType'] as String?),
       ageGroup: $enumDecodeNullable(
           _$TravelAgeGroupEnumMap, nestedReader(json, 'member/ageGroup')),
       nickname: nestedReader(json, 'member/nickname') as String?,
@@ -32,23 +32,31 @@ _$TravelImpl _$$TravelImplFromJson(Map<String, dynamic> json) => _$TravelImpl(
           : DateTime.parse(json['endedOn'] as String),
     );
 
-Map<String, dynamic> _$$TravelImplToJson(_$TravelImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'visibility': instance.visibility,
-      'seasons':
-          instance.seasons.map((e) => _$TravelPeriodEnumMap[e]!).toList(),
-      'thumbnail': instance.thumbnail,
-      'id': instance.id,
-      'motivation': _$TravelMotivationEnumMap[instance.motivation],
-      'accompanyType': _$TravelAccompanyEnumMap[instance.accompany],
-      'transportType': _$TravelTransportEnumMap[instance.transport],
-      'member/ageGroup': _$TravelAgeGroupEnumMap[instance.ageGroup],
-      'member/nickname': instance.nickname,
-      'places': instance.places,
-      'statedOn': instance.statedOn?.toIso8601String(),
-      'endedOn': instance.endedOn?.toIso8601String(),
-    };
+Map<String, dynamic> _$$TravelImplToJson(_$TravelImpl instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'visibility': instance.visibility,
+    'seasons': instance.seasons.map((e) => _$TravelPeriodEnumMap[e]!).toList(),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('thumbnail', instance.thumbnail);
+  val['id'] = instance.id;
+  writeNotNull('motivation', _$TravelMotivationEnumMap[instance.motivation]);
+  writeNotNull('accompanyType', _$TravelAccompanyEnumMap[instance.accompany]);
+  writeNotNull('transportType', _$TravelTransportEnumMap[instance.transport]);
+  val['member/ageGroup'] = _$TravelAgeGroupEnumMap[instance.ageGroup];
+  val['member/nickname'] = instance.nickname;
+  val['places'] = instance.places;
+  val['statedOn'] = instance.statedOn?.toIso8601String();
+  val['endedOn'] = instance.endedOn?.toIso8601String();
+  return val;
+}
 
 const _$TravelPeriodEnumMap = {
   TravelPeriod.spring: 'spring',
@@ -63,6 +71,7 @@ const _$TravelAgeGroupEnumMap = {
   TravelAgeGroup.s40: 's40',
   TravelAgeGroup.s50: 's50',
   TravelAgeGroup.p60: 'p60',
+  TravelAgeGroup.other: 'other',
 };
 
 const _$TravelMotivationEnumMap = {
