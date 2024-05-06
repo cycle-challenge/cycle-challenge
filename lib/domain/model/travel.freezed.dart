@@ -34,7 +34,7 @@ mixin _$Travel {
   TravelTransport? get transport => throw _privateConstructorUsedError;
   @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
   TravelAgeGroup? get ageGroup => throw _privateConstructorUsedError;
-  @NestedJsonKey(defaultValue: null, name: 'member/nickname')
+  @NestedJsonKey(name: 'member/nickname')
   String? get nickname => throw _privateConstructorUsedError;
   @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)
   List<Place> get places => throw _privateConstructorUsedError;
@@ -66,8 +66,7 @@ abstract class $TravelCopyWith<$Res> {
       TravelTransport? transport,
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       TravelAgeGroup? ageGroup,
-      @NestedJsonKey(defaultValue: null, name: 'member/nickname')
-      String? nickname,
+      @NestedJsonKey(name: 'member/nickname') String? nickname,
       @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)
       List<Place> places,
       @JsonKey(fromJson: Travel._dateTimeFromJson) DateTime? startedOn,
@@ -192,8 +191,7 @@ abstract class _$$TravelImplCopyWith<$Res> implements $TravelCopyWith<$Res> {
       TravelTransport? transport,
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       TravelAgeGroup? ageGroup,
-      @NestedJsonKey(defaultValue: null, name: 'member/nickname')
-      String? nickname,
+      @NestedJsonKey(name: 'member/nickname') String? nickname,
       @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)
       List<Place> places,
       @JsonKey(fromJson: Travel._dateTimeFromJson) DateTime? startedOn,
@@ -301,7 +299,7 @@ class _$TravelImpl implements _Travel {
       this.transport,
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       this.ageGroup,
-      @NestedJsonKey(defaultValue: null, name: 'member/nickname') this.nickname,
+      @NestedJsonKey(name: 'member/nickname') this.nickname,
       @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)
       final List<Place> places = const [],
       @JsonKey(fromJson: Travel._dateTimeFromJson) this.startedOn,
@@ -344,7 +342,7 @@ class _$TravelImpl implements _Travel {
   @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
   final TravelAgeGroup? ageGroup;
   @override
-  @NestedJsonKey(defaultValue: null, name: 'member/nickname')
+  @NestedJsonKey(name: 'member/nickname')
   final String? nickname;
   final List<Place> _places;
   @override
@@ -442,8 +440,7 @@ abstract class _Travel implements Travel {
       final TravelTransport? transport,
       @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
       final TravelAgeGroup? ageGroup,
-      @NestedJsonKey(defaultValue: null, name: 'member/nickname')
-      final String? nickname,
+      @NestedJsonKey(name: 'member/nickname') final String? nickname,
       @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)
       final List<Place> places,
       @JsonKey(fromJson: Travel._dateTimeFromJson) final DateTime? startedOn,
@@ -476,7 +473,7 @@ abstract class _Travel implements Travel {
   @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
   TravelAgeGroup? get ageGroup;
   @override
-  @NestedJsonKey(defaultValue: null, name: 'member/nickname')
+  @NestedJsonKey(name: 'member/nickname')
   String? get nickname;
   @override
   @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)

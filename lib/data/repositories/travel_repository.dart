@@ -43,5 +43,8 @@ class TravelRepository {
   Future<Result<Travel, ApiError>> find(int id) {
     return api.findTravel(id);
   }
-  
+
+  Future<Result<List<Travel>, ApiError>> findMy() {
+    return api.findMyTravels();
+  }
 }

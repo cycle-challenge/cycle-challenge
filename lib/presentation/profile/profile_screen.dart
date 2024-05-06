@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/components/profile_travel_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -11,6 +12,9 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authViewModel = context.watch<AuthViewModel>();
     final member = authViewModel.state.member;
+
+    final viewModel = context.watch<ProfileViewModel>();
+    final state = viewModel.state;
 
     if (member == null) return const SizedBox();
 
@@ -27,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                   backgroundImage: AssetImage('assets/image/default.png')),
               title: Text(member.nickname,
                   style: Theme.of(context).textTheme.titleLarge),
-              subtitle: Text('여행 0개 • 리뷰 0건',
+              subtitle: Text('여행 ${state.myTravels.length}개 • 리뷰 0건',
                   style: Theme.of(context).textTheme.bodyMedium)),
           const SizedBox(height: 8),
           Expanded(

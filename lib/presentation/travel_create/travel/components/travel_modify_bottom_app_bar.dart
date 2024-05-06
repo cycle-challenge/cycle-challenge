@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel_create/components/travel_edit_sheet.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_page.dart';
+
 
 class TravelModifyBottomAppBar extends StatelessWidget {
   const TravelModifyBottomAppBar({super.key});
@@ -25,14 +26,16 @@ class TravelModifyBottomAppBar extends StatelessWidget {
         child: Row(children: [
           IconButton.filledTonal(
               onPressed: () async {
-                final places = await Navigator.of(context).push<List<Place>>(
-                    MaterialPageRoute(
-                        builder: (_) => const TravelCreateAddVisitPage()));
+                final travel = await showModalBottomSheet<Travel>(
+                    isScrollControlled: true,
+                    useSafeArea: true,
+                    context: context,
+                    builder: (_) => TravelEditSheet(travel: state.travel));
+                if (travel == null) return;
 
-                if (places == null) return;
-                viewModel.onEvent(TravelEvent.addVisit(places));
+                viewModel.onEvent(TravelEvent.edit(travel));
               },
-              icon: const Icon(Icons.add)),
+              icon: const Icon(Icons.edit)),
           const SizedBox(width: 8),
           FilledButton.tonalIcon(
               onPressed: () async {

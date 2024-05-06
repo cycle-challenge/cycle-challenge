@@ -6,11 +6,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_page.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_page.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_screen.dart';
 
 class TravelListView extends StatefulWidget {
   final List<Travel> travels;

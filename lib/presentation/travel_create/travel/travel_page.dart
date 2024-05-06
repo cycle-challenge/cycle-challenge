@@ -21,6 +21,6 @@ class TravelPage extends StatelessWidget {
         create: (context) => TravelViewModel(context.read<UseCases>(),
             context.read<StreamController<MainUiEvent>>(),
             travel: travel, isModifying: isModifying ?? false),
-        child: TravelScreen(travel: travel));
+        child: const TravelScreen());
   }
 }

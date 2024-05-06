@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_view_model.dart';
 
 class VisitModifyListItem extends StatelessWidget {
   final Visit visit;

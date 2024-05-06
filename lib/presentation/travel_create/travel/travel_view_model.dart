@@ -48,8 +48,10 @@ class TravelViewModel with ChangeNotifier {
               visits.map((e) => e.dayOfTravel).whereType<int>().reduce(min);
 
           _init(visits
-              .map((e) =>
-                  e.copyWith(dayOfTravel: e.dayOfTravel! - minDayOfTravel))
+              .map((e) => e.copyWith(
+                  dayOfTravel: e.dayOfTravel != null
+                      ? e.dayOfTravel! - minDayOfTravel
+                      : null))
               .toList());
         },
         error: (message) =>
@@ -67,7 +69,19 @@ class TravelViewModel with ChangeNotifier {
       deleteVisit: _onDeleteVisit,
       reorderVisit: _onReorderVisit,
       setTravelDate: _onSetTravelDates,
-      editComplete: _onEditComplete);
+      editComplete: _onEditComplete,
+      editStart: _onEditStart,
+      edit: _onEdit);
+
+  void _onEditStart() {
+    _state = _state.copyWith(isModifying: true);
+    notifyListeners();
+  }
+
+  void _onEdit(Travel travel) {
+    _state = _state.copyWith(travel: travel);
+    notifyListeners();
+  }
 
   void _onEditComplete() async {
     final result =
@@ -176,7 +190,7 @@ class TravelViewModel with ChangeNotifier {
     if (_state.items.isEmpty) return;
 
     int labelCount = _state.items
-        .sublist(0, itemIndex + 1) // 현재 인덱스까지 리스트 자르기
+        .sublist(0, min(itemIndex + 1, _state.items.length)) // 현재 인덱스까지 리스트 자르기
         .map((e) => e.whenOrNull(label: (e) => 0)) // item 타입은 null을 할당
         .whereType<int>()
         .length;

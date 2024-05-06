@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/presentation/profile/profile_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_page.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_page.dart';
 
 class CreateTravelSheet extends StatelessWidget {
   CreateTravelSheet({super.key});
@@ -14,6 +16,7 @@ class CreateTravelSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final viewModel = context.watch<ProfileViewModel>();
 
     return Padding(
       padding:
@@ -48,7 +51,9 @@ class CreateTravelSheet extends StatelessWidget {
                       FormBuilderRadioGroup(
                           orientation: OptionsOrientation.vertical,
                           name: 'visibility',
-                          disabled: const ['public'],
+                          disabled: const [
+                            'public'
+                          ],
                           options: [
                             FormBuilderFieldOption(
                                 value: 'public',
@@ -76,21 +81,26 @@ class CreateTravelSheet extends StatelessWidget {
                             backgroundColor: colorScheme.onSurface,
                             elevation: 0,
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             final isValid =
                                 _formKey.currentState?.saveAndValidate();
 
                             final values = _formKey.currentState?.value;
 
-                            if (isValid == null || !isValid || values == null)
+                            if (isValid == null || !isValid || values == null) {
                               return;
+                            }
+
                             final travel = Travel(
                                 name: values['name'],
                                 visibility: values['visibility']);
 
-                            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                builder: (_) =>
-                                    TravelPage(travel: travel, isModifying: true)));
+                            await Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (_) => TravelPage(
+                                        travel: travel, isModifying: true)));
+
+                            viewModel.onEvent(const ProfileEvent.init());
                           },
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,

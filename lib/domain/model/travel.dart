@@ -28,8 +28,7 @@ class Travel with _$Travel {
           TravelTransport? transport,
           @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
           TravelAgeGroup? ageGroup,
-          @NestedJsonKey(defaultValue: null, name: 'member/nickname')
-          String? nickname,
+          @NestedJsonKey(name: 'member/nickname') String? nickname,
           @Default([])
           @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)
           List<Place> places,

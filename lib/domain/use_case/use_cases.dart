@@ -6,6 +6,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/get_my_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/modify_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
@@ -40,6 +41,7 @@ class UseCases {
   final CreateVisitsUseCase createVisitsUseCase;
   final GetTravelVisitsUseCase getTravelVisitsUseCase;
   final CalculateBoundUseCase calculateBoundUseCase;
+  final GetMyTravelsUseCase getMyTravelsUseCase;
 
   UseCases({
     required this.getPlaceDetail,
@@ -61,6 +63,7 @@ class UseCases {
     required this.modifyTravelUseCase,
     required this.getTravelVisitsUseCase,
     required this.createVisitsUseCase,
-    required this.calculateBoundUseCase
+    required this.calculateBoundUseCase,
+    required this.getMyTravelsUseCase
   });
 }

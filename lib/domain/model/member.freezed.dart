@@ -21,6 +21,7 @@ Member _$MemberFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Member {
   String get nickname => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +33,7 @@ abstract class $MemberCopyWith<$Res> {
   factory $MemberCopyWith(Member value, $Res Function(Member) then) =
       _$MemberCopyWithImpl<$Res, Member>;
   @useResult
-  $Res call({String nickname});
+  $Res call({String nickname, String? email});
 }
 
 /// @nodoc
@@ -49,12 +50,17 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
   @override
   $Res call({
     Object? nickname = null,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
       nickname: null == nickname
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -66,7 +72,7 @@ abstract class _$$MemberImplCopyWith<$Res> implements $MemberCopyWith<$Res> {
       __$$MemberImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String nickname});
+  $Res call({String nickname, String? email});
 }
 
 /// @nodoc
@@ -81,12 +87,17 @@ class __$$MemberImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? nickname = null,
+    Object? email = freezed,
   }) {
     return _then(_$MemberImpl(
       nickname: null == nickname
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -94,17 +105,19 @@ class __$$MemberImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MemberImpl implements _Member {
-  _$MemberImpl({required this.nickname});
+  _$MemberImpl({required this.nickname, this.email});
 
   factory _$MemberImpl.fromJson(Map<String, dynamic> json) =>
       _$$MemberImplFromJson(json);
 
   @override
   final String nickname;
+  @override
+  final String? email;
 
   @override
   String toString() {
-    return 'Member(nickname: $nickname)';
+    return 'Member(nickname: $nickname, email: $email)';
   }
 
   @override
@@ -113,12 +126,13 @@ class _$MemberImpl implements _Member {
         (other.runtimeType == runtimeType &&
             other is _$MemberImpl &&
             (identical(other.nickname, nickname) ||
-                other.nickname == nickname));
+                other.nickname == nickname) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, nickname);
+  int get hashCode => Object.hash(runtimeType, nickname, email);
 
   @JsonKey(ignore: true)
   @override
@@ -135,12 +149,15 @@ class _$MemberImpl implements _Member {
 }
 
 abstract class _Member implements Member {
-  factory _Member({required final String nickname}) = _$MemberImpl;
+  factory _Member({required final String nickname, final String? email}) =
+      _$MemberImpl;
 
   factory _Member.fromJson(Map<String, dynamic> json) = _$MemberImpl.fromJson;
 
   @override
   String get nickname;
+  @override
+  String? get email;
   @override
   @JsonKey(ignore: true)
   _$$MemberImplCopyWith<_$MemberImpl> get copyWith =>

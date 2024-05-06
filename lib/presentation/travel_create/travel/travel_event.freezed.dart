@@ -24,6 +24,8 @@ mixin _$TravelEvent {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -39,6 +41,8 @@ mixin _$TravelEvent {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -54,6 +58,8 @@ mixin _$TravelEvent {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -70,6 +76,8 @@ mixin _$TravelEvent {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -85,6 +93,8 @@ mixin _$TravelEvent {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -100,6 +110,8 @@ mixin _$TravelEvent {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -199,6 +211,8 @@ class _$SetPanelHeightImpl implements _SetPanelHeight {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -217,6 +231,8 @@ class _$SetPanelHeightImpl implements _SetPanelHeight {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -235,6 +251,8 @@ class _$SetPanelHeightImpl implements _SetPanelHeight {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -257,6 +275,8 @@ class _$SetPanelHeightImpl implements _SetPanelHeight {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -275,6 +295,8 @@ class _$SetPanelHeightImpl implements _SetPanelHeight {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -293,6 +315,8 @@ class _$SetPanelHeightImpl implements _SetPanelHeight {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -388,6 +412,8 @@ class _$SetIsCameraMovingImpl implements _SetIsCameraMoving {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -406,6 +432,8 @@ class _$SetIsCameraMovingImpl implements _SetIsCameraMoving {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -424,6 +452,8 @@ class _$SetIsCameraMovingImpl implements _SetIsCameraMoving {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -446,6 +476,8 @@ class _$SetIsCameraMovingImpl implements _SetIsCameraMoving {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -464,6 +496,8 @@ class _$SetIsCameraMovingImpl implements _SetIsCameraMoving {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -482,6 +516,8 @@ class _$SetIsCameraMovingImpl implements _SetIsCameraMoving {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -550,6 +586,8 @@ class _$InitCameraImpl implements _InitCamera {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -568,6 +606,8 @@ class _$InitCameraImpl implements _InitCamera {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -586,6 +626,8 @@ class _$InitCameraImpl implements _InitCamera {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -608,6 +650,8 @@ class _$InitCameraImpl implements _InitCamera {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -626,6 +670,8 @@ class _$InitCameraImpl implements _InitCamera {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -644,6 +690,8 @@ class _$InitCameraImpl implements _InitCamera {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -732,6 +780,8 @@ class _$ScrollVisitImpl implements _ScrollVisit {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -750,6 +800,8 @@ class _$ScrollVisitImpl implements _ScrollVisit {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -768,6 +820,8 @@ class _$ScrollVisitImpl implements _ScrollVisit {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -790,6 +844,8 @@ class _$ScrollVisitImpl implements _ScrollVisit {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -808,6 +864,8 @@ class _$ScrollVisitImpl implements _ScrollVisit {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -826,6 +884,8 @@ class _$ScrollVisitImpl implements _ScrollVisit {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -921,6 +981,8 @@ class _$SetCanPanelScrollUpImpl implements _SetCanPanelScrollUp {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -939,6 +1001,8 @@ class _$SetCanPanelScrollUpImpl implements _SetCanPanelScrollUp {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -957,6 +1021,8 @@ class _$SetCanPanelScrollUpImpl implements _SetCanPanelScrollUp {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -979,6 +1045,8 @@ class _$SetCanPanelScrollUpImpl implements _SetCanPanelScrollUp {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -997,6 +1065,8 @@ class _$SetCanPanelScrollUpImpl implements _SetCanPanelScrollUp {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -1015,6 +1085,8 @@ class _$SetCanPanelScrollUpImpl implements _SetCanPanelScrollUp {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -1111,6 +1183,8 @@ class _$SetIsViewExpandedImpl implements _SetIsViewExpanded {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -1129,6 +1203,8 @@ class _$SetIsViewExpandedImpl implements _SetIsViewExpanded {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -1147,6 +1223,8 @@ class _$SetIsViewExpandedImpl implements _SetIsViewExpanded {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -1169,6 +1247,8 @@ class _$SetIsViewExpandedImpl implements _SetIsViewExpanded {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -1187,6 +1267,8 @@ class _$SetIsViewExpandedImpl implements _SetIsViewExpanded {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -1205,6 +1287,8 @@ class _$SetIsViewExpandedImpl implements _SetIsViewExpanded {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -1226,6 +1310,382 @@ abstract class _SetIsViewExpanded implements TravelEvent {
   bool get isViewExpanded;
   @JsonKey(ignore: true)
   _$$SetIsViewExpandedImplCopyWith<_$SetIsViewExpandedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditStartImplCopyWith<$Res> {
+  factory _$$EditStartImplCopyWith(
+          _$EditStartImpl value, $Res Function(_$EditStartImpl) then) =
+      __$$EditStartImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EditStartImplCopyWithImpl<$Res>
+    extends _$TravelEventCopyWithImpl<$Res, _$EditStartImpl>
+    implements _$$EditStartImplCopyWith<$Res> {
+  __$$EditStartImplCopyWithImpl(
+      _$EditStartImpl _value, $Res Function(_$EditStartImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EditStartImpl implements _EditStart {
+  const _$EditStartImpl();
+
+  @override
+  String toString() {
+    return 'TravelEvent.editStart()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EditStartImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double height) setPanelHeight,
+    required TResult Function(bool isCameraMoved) setIsCameraMoved,
+    required TResult Function() initCamera,
+    required TResult Function(int index) scrollVisit,
+    required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
+    required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
+    required TResult Function() editComplete,
+    required TResult Function(DateTimeRange travelDate) setTravelDate,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
+    required TResult Function(int oldIndex, int newIndex) reorderVisit,
+  }) {
+    return editStart();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double height)? setPanelHeight,
+    TResult? Function(bool isCameraMoved)? setIsCameraMoved,
+    TResult? Function()? initCamera,
+    TResult? Function(int index)? scrollVisit,
+    TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
+    TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
+    TResult? Function()? editComplete,
+    TResult? Function(DateTimeRange travelDate)? setTravelDate,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
+    TResult? Function(int oldIndex, int newIndex)? reorderVisit,
+  }) {
+    return editStart?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double height)? setPanelHeight,
+    TResult Function(bool isCameraMoved)? setIsCameraMoved,
+    TResult Function()? initCamera,
+    TResult Function(int index)? scrollVisit,
+    TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
+    TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
+    TResult Function()? editComplete,
+    TResult Function(DateTimeRange travelDate)? setTravelDate,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
+    TResult Function(int oldIndex, int newIndex)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (editStart != null) {
+      return editStart();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetPanelHeight value) setPanelHeight,
+    required TResult Function(_SetIsCameraMoving value) setIsCameraMoved,
+    required TResult Function(_InitCamera value) initCamera,
+    required TResult Function(_ScrollVisit value) scrollVisit,
+    required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
+    required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
+    required TResult Function(_EditComplete value) editComplete,
+    required TResult Function(_SetTravelDate value) setTravelDate,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
+    required TResult Function(_ReorderVisit value) reorderVisit,
+  }) {
+    return editStart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetPanelHeight value)? setPanelHeight,
+    TResult? Function(_SetIsCameraMoving value)? setIsCameraMoved,
+    TResult? Function(_InitCamera value)? initCamera,
+    TResult? Function(_ScrollVisit value)? scrollVisit,
+    TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
+    TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
+    TResult? Function(_EditComplete value)? editComplete,
+    TResult? Function(_SetTravelDate value)? setTravelDate,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
+    TResult? Function(_ReorderVisit value)? reorderVisit,
+  }) {
+    return editStart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetPanelHeight value)? setPanelHeight,
+    TResult Function(_SetIsCameraMoving value)? setIsCameraMoved,
+    TResult Function(_InitCamera value)? initCamera,
+    TResult Function(_ScrollVisit value)? scrollVisit,
+    TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
+    TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_EditComplete value)? editComplete,
+    TResult Function(_SetTravelDate value)? setTravelDate,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
+    TResult Function(_ReorderVisit value)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (editStart != null) {
+      return editStart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditStart implements TravelEvent {
+  const factory _EditStart() = _$EditStartImpl;
+}
+
+/// @nodoc
+abstract class _$$EditImplCopyWith<$Res> {
+  factory _$$EditImplCopyWith(
+          _$EditImpl value, $Res Function(_$EditImpl) then) =
+      __$$EditImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Travel travel});
+
+  $TravelCopyWith<$Res> get travel;
+}
+
+/// @nodoc
+class __$$EditImplCopyWithImpl<$Res>
+    extends _$TravelEventCopyWithImpl<$Res, _$EditImpl>
+    implements _$$EditImplCopyWith<$Res> {
+  __$$EditImplCopyWithImpl(_$EditImpl _value, $Res Function(_$EditImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? travel = null,
+  }) {
+    return _then(_$EditImpl(
+      null == travel
+          ? _value.travel
+          : travel // ignore: cast_nullable_to_non_nullable
+              as Travel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TravelCopyWith<$Res> get travel {
+    return $TravelCopyWith<$Res>(_value.travel, (value) {
+      return _then(_value.copyWith(travel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$EditImpl implements _Edit {
+  const _$EditImpl(this.travel);
+
+  @override
+  final Travel travel;
+
+  @override
+  String toString() {
+    return 'TravelEvent.edit(travel: $travel)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditImpl &&
+            (identical(other.travel, travel) || other.travel == travel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, travel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditImplCopyWith<_$EditImpl> get copyWith =>
+      __$$EditImplCopyWithImpl<_$EditImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double height) setPanelHeight,
+    required TResult Function(bool isCameraMoved) setIsCameraMoved,
+    required TResult Function() initCamera,
+    required TResult Function(int index) scrollVisit,
+    required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
+    required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
+    required TResult Function() editComplete,
+    required TResult Function(DateTimeRange travelDate) setTravelDate,
+    required TResult Function(List<Place> places) addVisit,
+    required TResult Function(int index) deleteVisit,
+    required TResult Function(int oldIndex, int newIndex) reorderVisit,
+  }) {
+    return edit(travel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double height)? setPanelHeight,
+    TResult? Function(bool isCameraMoved)? setIsCameraMoved,
+    TResult? Function()? initCamera,
+    TResult? Function(int index)? scrollVisit,
+    TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
+    TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
+    TResult? Function()? editComplete,
+    TResult? Function(DateTimeRange travelDate)? setTravelDate,
+    TResult? Function(List<Place> places)? addVisit,
+    TResult? Function(int index)? deleteVisit,
+    TResult? Function(int oldIndex, int newIndex)? reorderVisit,
+  }) {
+    return edit?.call(travel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double height)? setPanelHeight,
+    TResult Function(bool isCameraMoved)? setIsCameraMoved,
+    TResult Function()? initCamera,
+    TResult Function(int index)? scrollVisit,
+    TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
+    TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
+    TResult Function()? editComplete,
+    TResult Function(DateTimeRange travelDate)? setTravelDate,
+    TResult Function(List<Place> places)? addVisit,
+    TResult Function(int index)? deleteVisit,
+    TResult Function(int oldIndex, int newIndex)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (edit != null) {
+      return edit(travel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetPanelHeight value) setPanelHeight,
+    required TResult Function(_SetIsCameraMoving value) setIsCameraMoved,
+    required TResult Function(_InitCamera value) initCamera,
+    required TResult Function(_ScrollVisit value) scrollVisit,
+    required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
+    required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
+    required TResult Function(_EditComplete value) editComplete,
+    required TResult Function(_SetTravelDate value) setTravelDate,
+    required TResult Function(_AddVisit value) addVisit,
+    required TResult Function(_DeleteVisit value) deleteVisit,
+    required TResult Function(_ReorderVisit value) reorderVisit,
+  }) {
+    return edit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetPanelHeight value)? setPanelHeight,
+    TResult? Function(_SetIsCameraMoving value)? setIsCameraMoved,
+    TResult? Function(_InitCamera value)? initCamera,
+    TResult? Function(_ScrollVisit value)? scrollVisit,
+    TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
+    TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
+    TResult? Function(_EditComplete value)? editComplete,
+    TResult? Function(_SetTravelDate value)? setTravelDate,
+    TResult? Function(_AddVisit value)? addVisit,
+    TResult? Function(_DeleteVisit value)? deleteVisit,
+    TResult? Function(_ReorderVisit value)? reorderVisit,
+  }) {
+    return edit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetPanelHeight value)? setPanelHeight,
+    TResult Function(_SetIsCameraMoving value)? setIsCameraMoved,
+    TResult Function(_InitCamera value)? initCamera,
+    TResult Function(_ScrollVisit value)? scrollVisit,
+    TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
+    TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_EditComplete value)? editComplete,
+    TResult Function(_SetTravelDate value)? setTravelDate,
+    TResult Function(_AddVisit value)? addVisit,
+    TResult Function(_DeleteVisit value)? deleteVisit,
+    TResult Function(_ReorderVisit value)? reorderVisit,
+    required TResult orElse(),
+  }) {
+    if (edit != null) {
+      return edit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Edit implements TravelEvent {
+  const factory _Edit(final Travel travel) = _$EditImpl;
+
+  Travel get travel;
+  @JsonKey(ignore: true)
+  _$$EditImplCopyWith<_$EditImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1273,6 +1733,8 @@ class _$EditCompleteImpl implements _EditComplete {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -1291,6 +1753,8 @@ class _$EditCompleteImpl implements _EditComplete {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -1309,6 +1773,8 @@ class _$EditCompleteImpl implements _EditComplete {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -1331,6 +1797,8 @@ class _$EditCompleteImpl implements _EditComplete {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -1349,6 +1817,8 @@ class _$EditCompleteImpl implements _EditComplete {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -1367,6 +1837,8 @@ class _$EditCompleteImpl implements _EditComplete {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -1456,6 +1928,8 @@ class _$SetTravelDateImpl implements _SetTravelDate {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -1474,6 +1948,8 @@ class _$SetTravelDateImpl implements _SetTravelDate {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -1492,6 +1968,8 @@ class _$SetTravelDateImpl implements _SetTravelDate {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -1514,6 +1992,8 @@ class _$SetTravelDateImpl implements _SetTravelDate {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -1532,6 +2012,8 @@ class _$SetTravelDateImpl implements _SetTravelDate {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -1550,6 +2032,8 @@ class _$SetTravelDateImpl implements _SetTravelDate {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -1650,6 +2134,8 @@ class _$AddVisitImpl implements _AddVisit {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -1668,6 +2154,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -1686,6 +2174,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -1708,6 +2198,8 @@ class _$AddVisitImpl implements _AddVisit {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -1726,6 +2218,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -1744,6 +2238,8 @@ class _$AddVisitImpl implements _AddVisit {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -1837,6 +2333,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -1855,6 +2353,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -1873,6 +2373,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -1895,6 +2397,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -1913,6 +2417,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -1931,6 +2437,8 @@ class _$DeleteVisitImpl implements _DeleteVisit {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,
@@ -2034,6 +2542,8 @@ class _$ReorderVisitImpl implements _ReorderVisit {
     required TResult Function(int index) scrollVisit,
     required TResult Function(bool canPanelScrollUp) setCanPanelScrollUp,
     required TResult Function(bool isViewExpanded) setIsViewExpanded,
+    required TResult Function() editStart,
+    required TResult Function(Travel travel) edit,
     required TResult Function() editComplete,
     required TResult Function(DateTimeRange travelDate) setTravelDate,
     required TResult Function(List<Place> places) addVisit,
@@ -2052,6 +2562,8 @@ class _$ReorderVisitImpl implements _ReorderVisit {
     TResult? Function(int index)? scrollVisit,
     TResult? Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult? Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult? Function()? editStart,
+    TResult? Function(Travel travel)? edit,
     TResult? Function()? editComplete,
     TResult? Function(DateTimeRange travelDate)? setTravelDate,
     TResult? Function(List<Place> places)? addVisit,
@@ -2070,6 +2582,8 @@ class _$ReorderVisitImpl implements _ReorderVisit {
     TResult Function(int index)? scrollVisit,
     TResult Function(bool canPanelScrollUp)? setCanPanelScrollUp,
     TResult Function(bool isViewExpanded)? setIsViewExpanded,
+    TResult Function()? editStart,
+    TResult Function(Travel travel)? edit,
     TResult Function()? editComplete,
     TResult Function(DateTimeRange travelDate)? setTravelDate,
     TResult Function(List<Place> places)? addVisit,
@@ -2092,6 +2606,8 @@ class _$ReorderVisitImpl implements _ReorderVisit {
     required TResult Function(_ScrollVisit value) scrollVisit,
     required TResult Function(_SetCanPanelScrollUp value) setCanPanelScrollUp,
     required TResult Function(_SetIsViewExpanded value) setIsViewExpanded,
+    required TResult Function(_EditStart value) editStart,
+    required TResult Function(_Edit value) edit,
     required TResult Function(_EditComplete value) editComplete,
     required TResult Function(_SetTravelDate value) setTravelDate,
     required TResult Function(_AddVisit value) addVisit,
@@ -2110,6 +2626,8 @@ class _$ReorderVisitImpl implements _ReorderVisit {
     TResult? Function(_ScrollVisit value)? scrollVisit,
     TResult? Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult? Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult? Function(_EditStart value)? editStart,
+    TResult? Function(_Edit value)? edit,
     TResult? Function(_EditComplete value)? editComplete,
     TResult? Function(_SetTravelDate value)? setTravelDate,
     TResult? Function(_AddVisit value)? addVisit,
@@ -2128,6 +2646,8 @@ class _$ReorderVisitImpl implements _ReorderVisit {
     TResult Function(_ScrollVisit value)? scrollVisit,
     TResult Function(_SetCanPanelScrollUp value)? setCanPanelScrollUp,
     TResult Function(_SetIsViewExpanded value)? setIsViewExpanded,
+    TResult Function(_EditStart value)? editStart,
+    TResult Function(_Edit value)? edit,
     TResult Function(_EditComplete value)? editComplete,
     TResult Function(_SetTravelDate value)? setTravelDate,
     TResult Function(_AddVisit value)? addVisit,

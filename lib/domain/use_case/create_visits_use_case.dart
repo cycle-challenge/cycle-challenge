@@ -1,10 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/visit_repository.dart';
-import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/visit_display_type.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_group_item.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class CreateVisitsUseCase {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 
 part 'travel_event.freezed.dart';
 
@@ -13,6 +14,8 @@ abstract class TravelEvent with _$TravelEvent {
   const factory TravelEvent.setCanPanelScrollUp(bool canPanelScrollUp) = _SetCanPanelScrollUp;
   const factory TravelEvent.setIsViewExpanded(bool isViewExpanded) = _SetIsViewExpanded;
 
+  const factory TravelEvent.editStart() = _EditStart;
+  const factory TravelEvent.edit(Travel travel) = _Edit;
   const factory TravelEvent.editComplete() = _EditComplete;
   const factory TravelEvent.setTravelDate(DateTimeRange travelDate) = _SetTravelDate;
 

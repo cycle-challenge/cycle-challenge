@@ -20,6 +20,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/get_my_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/modify_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
@@ -38,6 +39,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/auth_interceptor.dart';
 
@@ -94,6 +96,9 @@ List<SingleChildWidget> dependentModules = [
   Provider<GetBookmarkedTravelUseCase>(
       create: (context) =>
           GetBookmarkedTravelUseCase(context.read<TravelRepository>())),
+  Provider<GetMyTravelsUseCase>(
+      create: (context) =>
+          GetMyTravelsUseCase(context.read<TravelRepository>())),
   Provider<CreateTravelUseCase>(
       create: (context) =>
           CreateTravelUseCase(context.read<TravelRepository>())),
@@ -140,7 +145,8 @@ List<SingleChildWidget> dependentModules = [
           modifyTravelUseCase: context.read<ModifyTravelUseCase>(),
           getTravelVisitsUseCase: context.read<GetTravelVisitsUseCase>(),
           createVisitsUseCase: context.read<CreateVisitsUseCase>(),
-          calculateBoundUseCase: context.read<CalculateBoundUseCase>()))
+          calculateBoundUseCase: context.read<CalculateBoundUseCase>(),
+          getMyTravelsUseCase: context.read<GetMyTravelsUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [
@@ -158,5 +164,9 @@ List<SingleChildWidget> viewModels = [
           MainViewModel(context.read<StreamController<MainUiEvent>>())),
   ChangeNotifierProvider<SearchViewModel>(
       create: (context) => SearchViewModel(context.read<PlaceRepository>(),
-          context.read<StreamController<MainUiEvent>>()))
+          context.read<StreamController<MainUiEvent>>())),
+  ChangeNotifierProvider<ProfileViewModel>(
+      create: (context) => ProfileViewModel(
+          context.read<StreamController<MainUiEvent>>(),
+          context.read<UseCases>()))
 ];

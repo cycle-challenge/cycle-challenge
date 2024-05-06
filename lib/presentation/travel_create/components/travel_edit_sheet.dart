@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_page.dart';
 
 class TravelEditSheet extends StatelessWidget {
 
