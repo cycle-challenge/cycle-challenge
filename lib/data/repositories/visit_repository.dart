@@ -10,6 +10,10 @@ class VisitRepository {
 
   VisitRepository(this.remoteAPI);
 
+  Future<Result<void, ApiError>> createAll(int travelId, List<Visit> visits) {
+    return remoteAPI.createTravelVisits(travelId, visits);
+  }
+
   Future<Result<List<Visit>, ApiError>> findAllByTravel(int travelId) async {
     return remoteAPI.findTravelVisits(travelId);
   }

@@ -19,6 +19,8 @@ import 'package:yeohaeng_ttukttak/domain/use_case/calculate_distance_use_case.da
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/modify_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_place_use_case.dart';
@@ -95,6 +97,12 @@ List<SingleChildWidget> dependentModules = [
   Provider<CreateTravelUseCase>(
       create: (context) =>
           CreateTravelUseCase(context.read<TravelRepository>())),
+  Provider<ModifyTravelUseCase>(
+      create: (context) =>
+          ModifyTravelUseCase(context.read<TravelRepository>())),
+  Provider<CreateVisitsUseCase>(
+      create: (context) =>
+          CreateVisitsUseCase(context.read<VisitRepository>())),
   Provider<GetTravelVisitsUseCase>(
       create: (context) =>
           GetTravelVisitsUseCase(context.read<VisitRepository>())),
@@ -129,7 +137,9 @@ List<SingleChildWidget> dependentModules = [
               context.read<GetBookmarkedTravelUseCase>(),
           calculateDistanceUseCase: context.read<CalculateDistanceUseCase>(),
           createTravelUseCase: context.read<CreateTravelUseCase>(),
+          modifyTravelUseCase: context.read<ModifyTravelUseCase>(),
           getTravelVisitsUseCase: context.read<GetTravelVisitsUseCase>(),
+          createVisitsUseCase: context.read<CreateVisitsUseCase>(),
           calculateBoundUseCase: context.read<CalculateBoundUseCase>()))
 ];
 

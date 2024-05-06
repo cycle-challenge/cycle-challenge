@@ -240,16 +240,55 @@ class RemoteAPI {
       final response = await dio.get('$remoteUrl/api/v1/travels/$id/visits',
           options: Options(headers: headers));
 
-      return Result.success(List.of(response.data['data']).map((e) => Visit.fromJson(e)).toList());
+      return Result.success(List.of(response.data['data'])
+          .map((e) => Visit.fromJson(e))
+          .toList());
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }
   }
 
-  Future<Result<int, ApiError>> createTravel(
-      Travel travel, List<Visit> visits) async {
+  Future<Result<int, ApiError>> createTravel(Travel travel) async {
     try {
       final response = await dio.post('$remoteUrl/api/v1/travels/',
+          options: Options(headers: headers),
+          data: {
+            'name': travel.name,
+            'startedOn': travel.startedOn?.toIso8601String(),
+            'endedOn': travel.endedOn?.toIso8601String(),
+            'visibility': travel.visibility
+          });
+
+      return Result.success(
+          int.parse(response.headers['location']!.first.split('/').last));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<void, ApiError>> createTravelVisits(
+      int travelId, List<Visit> visits) async {
+    try {
+      await dio.post('$remoteUrl/api/v1/travels/$travelId/visits',
+          options: Options(headers: headers),
+          data: visits
+              .map<Map<String, dynamic>>((visit) => {
+                    'dayOfTravel': visit.dayOfTravel,
+                    'orderOfVisit': visit.orderOfVisit,
+                    'placeId': visit.place.id
+                  })
+              .toList());
+
+      return const Result.success(null);
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<void, ApiError>> modifyTravel(
+      Travel travel, List<Visit> visits) async {
+    try {
+      final response = await dio.patch('$remoteUrl/api/v1/travels/${travel.id}',
           options: Options(headers: headers),
           data: {
             'name': travel.name,
@@ -258,6 +297,7 @@ class RemoteAPI {
             'visibility': travel.visibility,
             'visits': visits
                 .map<Map<String, dynamic>>((visit) => {
+                      'id': visit.id,
                       'dayOfTravel': visit.dayOfTravel,
                       'orderOfVisit': visit.orderOfVisit,
                       'placeId': visit.place.id
@@ -265,8 +305,7 @@ class RemoteAPI {
                 .toList()
           });
 
-      return Result.success(
-          int.parse(response.headers['location']!.first.split('/').last));
+      return Result.success(null);
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }

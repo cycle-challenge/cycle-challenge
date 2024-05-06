@@ -27,15 +27,20 @@ class TravelViewModel with ChangeNotifier {
   TravelState get state => _state;
 
   TravelViewModel(this.useCases, this._mainEventController,
-      {required Travel travel, List<Visit>? visits, bool isModifying = false}) {
+      {required Travel travel, bool isModifying = false}) {
     _state = TravelState(travel: travel, isModifying: isModifying);
 
-    if (visits != null) {
-      _init(visits);
+    // 여행 ID가 없는 경우 생성 모드로 변경
+    if (travel.id == null) {
+      useCases.createTravelUseCase(travel).then((result) => result.when(
+          success: (travel) {
+            _state = _state.copyWith(travel: travel, isModifying: true);
+            return notifyListeners();
+          },
+          error: (message) =>
+              _mainEventController.add(MainUiEvent.showSnackbar(message!))));
       return;
     }
-
-    if (travel.id == null) return;
 
     useCases.getTravelVisitsUseCase(travel.id!).then((result) => result.when(
         success: (visits) {
@@ -66,7 +71,7 @@ class TravelViewModel with ChangeNotifier {
 
   void _onEditComplete() async {
     final result =
-        await useCases.createTravelUseCase(_state.travel, _state.items);
+        await useCases.modifyTravelUseCase(_state.travel, _state.items);
 
     result.when(
         success: (travel) {
@@ -90,15 +95,16 @@ class TravelViewModel with ChangeNotifier {
     _init(visits);
   }
 
-  void _onAddVisit(List<Place> places) {
-    final visits = List.of(_state.items)
-        .map((e) => e.whenOrNull(item: (visit) => visit))
-        .whereType<Visit>()
-        .toList();
+  void _onAddVisit(List<Place> places) async {
+    final visits = places.map((place) => Visit(place: place)).toList();
 
-    visits.addAll(places.map((e) => Visit(place: e)).toList());
+    final result =
+        await useCases.createVisitsUseCase(_state.travel.id!, visits);
 
-    _init(visits);
+    result.when(
+        success: (visits) => _init(visits),
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message!)));
   }
 
   void _onDeleteVisit(int index) {

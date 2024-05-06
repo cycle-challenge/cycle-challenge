@@ -15,28 +15,40 @@ part 'travel.g.dart';
 
 @freezed
 class Travel with _$Travel {
-  factory Travel({
-    required String name,
-    @Default('public') String visibility,
-    @Default({}) Set<TravelPeriod> seasons,
-    @JsonKey(includeIfNull: false, fromJson: Image.fromJson) Image? thumbnail,
-    int? id,
-    @JsonKey(includeIfNull: false, fromJson: TravelMotivation.of) TravelMotivation? motivation,
-    @JsonKey(includeIfNull: false, name: 'accompanyType', fromJson: TravelAccompany.of)
-    TravelAccompany? accompany,
-    @JsonKey(includeIfNull: false, name: 'transportType', fromJson: TravelTransport.of)
-    TravelTransport? transport,
-    @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
-    TravelAgeGroup? ageGroup,
-    @NestedJsonKey(name: 'member/nickname') String? nickname,
-    @Default([]) @JsonKey(includeIfNull: false, fromJson: Travel._placesFromJson) List<Place> places,
-    @JsonKey(fromJson: DateTime.parse) DateTime? startedOn,
-    @JsonKey(fromJson: DateTime.parse) DateTime? endedOn
-  }) = _Travel;
+  factory Travel(
+          {required String name,
+          @Default('public') String visibility,
+          @Default({}) Set<TravelPeriod> seasons,
+          @JsonKey(fromJson: Travel._imageFromJson) Image? thumbnail,
+          int? id,
+          @JsonKey(fromJson: TravelMotivation.of) TravelMotivation? motivation,
+          @JsonKey(name: 'accompanyType', fromJson: TravelAccompany.of)
+          TravelAccompany? accompany,
+          @JsonKey(name: 'transportType', fromJson: TravelTransport.of)
+          TravelTransport? transport,
+          @NestedJsonKey(name: 'member/ageGroup', fromJson: TravelAgeGroup.of)
+          TravelAgeGroup? ageGroup,
+          @NestedJsonKey(defaultValue: null, name: 'member/nickname')
+          String? nickname,
+          @Default([])
+          @JsonKey(disallowNullValue: true, fromJson: Travel._placesFromJson)
+          List<Place> places,
+          @JsonKey(fromJson: Travel._dateTimeFromJson) DateTime? startedOn,
+          @JsonKey(fromJson: Travel._dateTimeFromJson) DateTime? endedOn}) =
+      _Travel;
+
+  static Image? _imageFromJson(Map<String, dynamic>? json) {
+    if (json == null) return null;
+    return Image.fromJson(json);
+  }
+
+  static DateTime? _dateTimeFromJson(String? formattedString) {
+    if (formattedString == null) return null;
+    return DateTime.tryParse(formattedString);
+  }
 
   factory Travel.fromJson(Map<String, dynamic> json) => _$TravelFromJson(json);
 
   static List<Place> _placesFromJson(List<dynamic> json) =>
       json.map((e) => Place.fromJson(e)).toList();
-
 }

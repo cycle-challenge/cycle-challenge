@@ -5,6 +5,8 @@ import 'package:yeohaeng_ttukttak/domain/use_case/calculate_distance_use_case.da
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/modify_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_bookmarked_place_use_case.dart';
@@ -34,6 +36,8 @@ class UseCases {
   final GetBookmarkedTravelUseCase getBookmarkedTravelUseCase;
   final CalculateDistanceUseCase calculateDistanceUseCase;
   final CreateTravelUseCase createTravelUseCase;
+  final ModifyTravelUseCase modifyTravelUseCase;
+  final CreateVisitsUseCase createVisitsUseCase;
   final GetTravelVisitsUseCase getTravelVisitsUseCase;
   final CalculateBoundUseCase calculateBoundUseCase;
 
@@ -54,7 +58,9 @@ class UseCases {
     required this.getBookmarkedTravelUseCase,
     required this.calculateDistanceUseCase,
     required this.createTravelUseCase,
+    required this.modifyTravelUseCase,
     required this.getTravelVisitsUseCase,
+    required this.createVisitsUseCase,
     required this.calculateBoundUseCase
   });
 }

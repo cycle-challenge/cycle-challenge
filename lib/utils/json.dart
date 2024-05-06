@@ -12,7 +12,7 @@ Future<String> getJsonFile(String path) async {
 
 class NestedJsonKey extends JsonKey {
   const NestedJsonKey({
-    required super.name, super.fromJson
+    required super.name, super.fromJson, super.disallowNullValue, super.defaultValue
   }) : super(readValue: nestedReader);
 }
 

@@ -6,18 +6,26 @@ import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/visit_displa
 import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_group_item.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
-class CreateTravelUseCase {
+class ModifyTravelUseCase {
   final TravelRepository _travelRepository;
 
-  CreateTravelUseCase(this._travelRepository);
+  ModifyTravelUseCase(this._travelRepository);
 
-  Future<Result<Travel, String?>> call(Travel travel) async {
+  Future<Result<Travel, String?>> call(Travel travel, List<VisitDisplayType> items) async {
+    final List<Visit> visits = [];
 
-    final result = await _travelRepository.create(travel);
+    // 방문 순서를 다시 계산
+    int orderOfVisit = 0;
+    items.forEach((elm) => elm.whenOrNull(
+        item: (visit) =>
+            visits.add(visit.copyWith(orderOfVisit: orderOfVisit++))));
+
+
+    final result = await _travelRepository.modify(travel, visits);
 
     return result.when(
-        success: (id) async {
-          final result = await _travelRepository.find(id);
+        success: (_) async {
+          final result = await _travelRepository.find(travel.id!);
 
           return result.when(
               success: (travel) => Result.success(travel),

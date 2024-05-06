@@ -32,8 +32,12 @@ class TravelRepository {
     return api.getBookmarkedTravel();
   }
 
-  Future<Result<int, ApiError>> create(Travel travel, List<Visit> visits) {
-    return api.createTravel(travel, visits);
+  Future<Result<int, ApiError>> create(Travel travel) {
+    return api.createTravel(travel);
+  }
+
+  Future<Result<void, ApiError>> modify(Travel travel, List<Visit> visits) {
+    return api.modifyTravel(travel, visits);
   }
 
   Future<Result<Travel, ApiError>> find(int id) {

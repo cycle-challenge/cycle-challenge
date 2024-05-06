@@ -6,53 +6,52 @@ part of 'travel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TravelImpl _$$TravelImplFromJson(Map<String, dynamic> json) => _$TravelImpl(
-      name: json['name'] as String,
-      visibility: json['visibility'] as String? ?? 'public',
-      seasons: (json['seasons'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$TravelPeriodEnumMap, e))
-              .toSet() ??
-          const {},
-      thumbnail: Image.fromJson(json['thumbnail'] as Map<String, dynamic>),
-      id: json['id'] as int?,
-      motivation: TravelMotivation.of(json['motivation'] as String?),
-      accompany: TravelAccompany.of(json['accompanyType'] as String?),
-      transport: TravelTransport.of(json['transportType'] as String?),
-      ageGroup: $enumDecodeNullable(
-          _$TravelAgeGroupEnumMap, nestedReader(json, 'member/ageGroup')),
-      nickname: nestedReader(json, 'member/nickname') as String?,
-      places: json['places'] == null
-          ? const []
-          : Travel._placesFromJson(json['places'] as List),
-      startedOn: DateTime.parse(json['startedOn'] as String),
-      endedOn: DateTime.parse(json['endedOn'] as String),
-    );
-
-Map<String, dynamic> _$$TravelImplToJson(_$TravelImpl instance) {
-  final val = <String, dynamic>{
-    'name': instance.name,
-    'visibility': instance.visibility,
-    'seasons': instance.seasons.map((e) => _$TravelPeriodEnumMap[e]!).toList(),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('thumbnail', instance.thumbnail);
-  val['id'] = instance.id;
-  writeNotNull('motivation', _$TravelMotivationEnumMap[instance.motivation]);
-  writeNotNull('accompanyType', _$TravelAccompanyEnumMap[instance.accompany]);
-  writeNotNull('transportType', _$TravelTransportEnumMap[instance.transport]);
-  val['member/ageGroup'] = _$TravelAgeGroupEnumMap[instance.ageGroup];
-  val['member/nickname'] = instance.nickname;
-  val['places'] = instance.places;
-  val['startedOn'] = instance.startedOn?.toIso8601String();
-  val['endedOn'] = instance.endedOn?.toIso8601String();
-  return val;
+_$TravelImpl _$$TravelImplFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    disallowNullValues: const ['places'],
+  );
+  return _$TravelImpl(
+    name: json['name'] as String,
+    visibility: json['visibility'] as String? ?? 'public',
+    seasons: (json['seasons'] as List<dynamic>?)
+            ?.map((e) => $enumDecode(_$TravelPeriodEnumMap, e))
+            .toSet() ??
+        const {},
+    thumbnail:
+        Travel._imageFromJson(json['thumbnail'] as Map<String, dynamic>?),
+    id: json['id'] as int?,
+    motivation: TravelMotivation.of(json['motivation'] as String?),
+    accompany: TravelAccompany.of(json['accompanyType'] as String?),
+    transport: TravelTransport.of(json['transportType'] as String?),
+    ageGroup: $enumDecodeNullable(
+        _$TravelAgeGroupEnumMap, nestedReader(json, 'member/ageGroup')),
+    nickname: nestedReader(json, 'member/nickname') as String?,
+    places: json['places'] == null
+        ? const []
+        : Travel._placesFromJson(json['places'] as List),
+    startedOn: Travel._dateTimeFromJson(json['startedOn'] as String?),
+    endedOn: Travel._dateTimeFromJson(json['endedOn'] as String?),
+  );
 }
+
+Map<String, dynamic> _$$TravelImplToJson(_$TravelImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'visibility': instance.visibility,
+      'seasons':
+          instance.seasons.map((e) => _$TravelPeriodEnumMap[e]!).toList(),
+      'thumbnail': instance.thumbnail,
+      'id': instance.id,
+      'motivation': _$TravelMotivationEnumMap[instance.motivation],
+      'accompanyType': _$TravelAccompanyEnumMap[instance.accompany],
+      'transportType': _$TravelTransportEnumMap[instance.transport],
+      'member/ageGroup': _$TravelAgeGroupEnumMap[instance.ageGroup],
+      'member/nickname': instance.nickname,
+      'places': instance.places,
+      'startedOn': instance.startedOn?.toIso8601String(),
+      'endedOn': instance.endedOn?.toIso8601String(),
+    };
 
 const _$TravelPeriodEnumMap = {
   TravelPeriod.spring: 'spring',
