@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/components/visit_label_item.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/visit_modify_list_item.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/visit_label_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/visit_modify_list_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_view_model.dart';
 
 class VisitModifyListView extends StatelessWidget {
   final double gapHeight;

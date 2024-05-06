@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_screen.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_view_model.dart';
 
 class TravelPage extends StatelessWidget {
   final Travel travel;

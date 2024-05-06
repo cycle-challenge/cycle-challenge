@@ -12,15 +12,16 @@ import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/travel_modify_bottom_app_bar.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/visit_list_view.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/visit_modify_list_view.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_page.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/travel_modify_bottom_app_bar.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/visit_list_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_page.dart';
 
 import 'package:yeohaeng_ttukttak/utils/function.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
+
+import 'components/visit_modify_list_view.dart';
 
 class TravelScreen extends StatefulWidget {
   const TravelScreen({super.key});
@@ -287,7 +288,7 @@ class _TravelScreenState extends State<TravelScreen> {
               onPressed: () async {
                 final places = await Navigator.of(context).push<List<Place>>(
                     MaterialPageRoute(
-                        builder: (_) => const TravelCreateAddVisitPage()));
+                        builder: (_) => const TravelAddVisitPage()));
 
                 if (places == null) return;
                 viewModel.onEvent(TravelEvent.addVisit(places));

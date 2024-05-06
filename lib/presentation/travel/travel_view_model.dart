@@ -9,10 +9,10 @@ import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/travel_ui_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_state.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/visit_display_type.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/travel_ui_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_state.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/visit_display_type.dart';
 
 class TravelViewModel with ChangeNotifier {
   final UseCases useCases;

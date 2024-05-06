@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_page.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_page.dart';
 
 class CreateTravelSheet extends StatelessWidget {
   CreateTravelSheet({super.key});

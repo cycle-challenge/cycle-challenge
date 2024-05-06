@@ -1,21 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/components/place_selectable_list_item.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/components/place_type_filter_item.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/components/place_selectable_list_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/components/place_type_filter_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_view_model.dart';
 
-class TravelCreateAddVisitScreen extends StatelessWidget {
-  const TravelCreateAddVisitScreen({super.key});
+class TravelAddVisitScreen extends StatelessWidget {
+  const TravelAddVisitScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<TravelCreateAddVisitViewModel>();
+    final viewModel = context.watch<TravelAddVisitViewModel>();
     final state = viewModel.state;
 
     final bookmarkViewModel = context.watch<BookmarkViewModel>();

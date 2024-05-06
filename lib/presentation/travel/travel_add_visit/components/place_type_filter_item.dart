@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_view_model.dart';
 
 class PlaceTypeFilterItem extends StatelessWidget {
   final PlaceType type;
@@ -11,7 +11,7 @@ class PlaceTypeFilterItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<TravelCreateAddVisitViewModel>();
+    final viewModel = context.watch<TravelAddVisitViewModel>();
     final state = viewModel.state;
 
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -30,7 +30,7 @@ class PlaceTypeFilterItem extends StatelessWidget {
           else state.placeFilter.type.remove(type);
 
           viewModel.onEvent(
-              TravelCreateAddVisitEvent.updateFilter(state.placeFilter));
+              TravelAddVisitEvent.updateFilter(state.placeFilter));
         },
         avatar: !state.placeFilter.type.contains(type)
             ? Icon(type.iconData, size: 16)

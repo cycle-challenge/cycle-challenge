@@ -3,10 +3,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/date_label_item.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/components/visit_item.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/date_label_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/visit_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_view_model.dart';
 
 class VisitListView extends StatefulWidget {
   final double gapHeight;

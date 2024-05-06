@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel_create_add_visit/travel_create_add_visit_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_view_model.dart';
 
 class PlaceSelectableListItem extends StatelessWidget {
   final Place place;
@@ -15,7 +15,7 @@ class PlaceSelectableListItem extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    final viewModel = context.watch<TravelCreateAddVisitViewModel>();
+    final viewModel = context.watch<TravelAddVisitViewModel>();
     final state = viewModel.state;
 
     return ListTile(
@@ -36,8 +36,8 @@ class PlaceSelectableListItem extends StatelessWidget {
       trailing: Checkbox(
           value: state.selectedPlaces.contains(place),
           onChanged: (value) => viewModel.onEvent(value!
-              ? TravelCreateAddVisitEvent.select(place)
-              : TravelCreateAddVisitEvent.unselect(place))),
+              ? TravelAddVisitEvent.select(place)
+              : TravelAddVisitEvent.unselect(place))),
     );
   }
 }

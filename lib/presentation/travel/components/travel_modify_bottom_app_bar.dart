@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/components/travel_edit_sheet.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_event.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/components/travel_edit_sheet.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_view_model.dart';
 
 
 class TravelModifyBottomAppBar extends StatelessWidget {

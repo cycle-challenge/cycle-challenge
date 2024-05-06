@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/visit_display_type.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/visit_display_type.dart';
 
 part 'travel_state.freezed.dart';
 

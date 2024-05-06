@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_create/travel/travel_page.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_page.dart';
 
 class TravelBookmarkItem extends StatelessWidget {
   final Travel travel;
