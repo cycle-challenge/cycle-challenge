@@ -44,8 +44,11 @@ class TravelViewModel with ChangeNotifier {
 
     useCases.getTravelVisitsUseCase(travel.id!).then((result) => result.when(
         success: (visits) {
+          final List<int> dayOfTravels =
+              visits.map((e) => e.dayOfTravel).whereType<int>().toList();
+
           final int minDayOfTravel =
-              visits.map((e) => e.dayOfTravel).whereType<int>().reduce(min);
+              dayOfTravels.isNotEmpty ? dayOfTravels.reduce(min) : 0;
 
           _init(visits
               .map((e) => e.copyWith(
