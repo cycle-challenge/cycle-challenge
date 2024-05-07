@@ -198,7 +198,7 @@ class TravelViewModel with ChangeNotifier {
         .whereType<int>()
         .length;
 
-    int visitIndex = max(itemIndex - labelCount, 0);
+    int visitIndex = max(itemIndex - labelCount - 1, 0);
 
     if (_state.visitIndex == visitIndex) return;
     _state = _state.copyWith(visitIndex: visitIndex);
@@ -217,7 +217,7 @@ class TravelViewModel with ChangeNotifier {
     final endedOn = state.travel.endedOn;
 
     final int days = (startedOn != null && endedOn != null)
-        ? endedOn.difference(startedOn).inDays
+        ? endedOn.difference(startedOn).inDays + 1
         : 0;
 
     final Map<int?, List<Visit>> group = {for (var i = 0; i < days; i++) i: []};

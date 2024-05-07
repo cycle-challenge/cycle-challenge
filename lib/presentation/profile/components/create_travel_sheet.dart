@@ -34,7 +34,7 @@ class CreateTravelSheet extends StatelessWidget {
               const SizedBox(height: 18),
               FormBuilder(
                   key: _formKey,
-                  initialValue: const {'public': 0},
+                  initialValue: const {'visibility': 'private'},
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

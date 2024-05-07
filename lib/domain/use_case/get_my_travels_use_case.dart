@@ -14,7 +14,10 @@ class GetMyTravelsUseCase {
     final result = await _travelRepository.findMy();
 
     return result.when(
-        success: (travels) => Result.success(travels),
+        success: (travels) {
+          travels.sort((a, b) => b.id!.compareTo(a.id!));
+          return Result.success(travels);
+        },
         error: (error) => Result.error(
             error.whenOrNull(error: (_, message) => message) ??
                 '서버와 통신 중 오류가 발생했습니다.'));

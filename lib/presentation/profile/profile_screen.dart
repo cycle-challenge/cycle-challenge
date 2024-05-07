@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/profile/components/profile_travel_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/profile/components/my_travel_list_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -42,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
                 const TabBar(
                     tabs: [Tab(child: Text('여행')), Tab(child: Text('리뷰'))]),
                 Expanded(
-                    child: TabBarView(children: [const ProfileTravelView(), Container()]))
+                    child: TabBarView(children: [const MyTravelListView(), Container()]))
               ],
             ),
           ))

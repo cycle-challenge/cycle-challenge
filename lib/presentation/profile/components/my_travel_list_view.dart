@@ -4,8 +4,8 @@ import 'package:yeohaeng_ttukttak/presentation/profile/components/create_travel_
 import 'package:yeohaeng_ttukttak/presentation/profile/components/my_travel_list_item.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
 
-class ProfileTravelView extends StatelessWidget {
-  const ProfileTravelView({super.key});
+class MyTravelListView extends StatelessWidget {
+  const MyTravelListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,6 @@ class ProfileTravelView extends StatelessWidget {
 
     return Scaffold(
       body: ListView.separated(
-        reverse: true,
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         itemCount: state.myTravels.length,
         itemBuilder: (context, index) =>

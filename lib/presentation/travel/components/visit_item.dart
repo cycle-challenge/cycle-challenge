@@ -57,7 +57,7 @@ class VisitItem extends StatelessWidget {
           SizedBox(
               height: 164,
               child: InfiniteCarousel.builder(
-                  itemCount: max(1, visit.images.length),
+                  itemCount: max(1, visit.place.images.length),
                   itemExtent: 167,
                   center: false,
                   itemBuilder: (context, index, _) {
@@ -66,8 +66,8 @@ class VisitItem extends StatelessWidget {
 
                     return Container(
                         margin: const EdgeInsets.symmetric(horizontal: 3),
-                        child: index < visit.images.length
-                            ? Image.network(visit.images[index].medium,
+                        child: index < visit.place.images.length
+                            ? Image.network(visit.place.images[index].medium,
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, exception, trace) =>
                                     defaultImage)
