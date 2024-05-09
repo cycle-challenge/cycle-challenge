@@ -63,17 +63,16 @@ mixin _$TravelAddVisitEvent {
 }
 
 /// @nodoc
-abstract class $TravelCreateAddVisitEventCopyWith<$Res> {
-  factory $TravelCreateAddVisitEventCopyWith(TravelAddVisitEvent value,
-          $Res Function(TravelAddVisitEvent) then) =
-      _$TravelCreateAddVisitEventCopyWithImpl<$Res, TravelAddVisitEvent>;
+abstract class $TravelAddVisitEventCopyWith<$Res> {
+  factory $TravelAddVisitEventCopyWith(
+          TravelAddVisitEvent value, $Res Function(TravelAddVisitEvent) then) =
+      _$TravelAddVisitEventCopyWithImpl<$Res, TravelAddVisitEvent>;
 }
 
 /// @nodoc
-class _$TravelCreateAddVisitEventCopyWithImpl<$Res,
-        $Val extends TravelAddVisitEvent>
-    implements $TravelCreateAddVisitEventCopyWith<$Res> {
-  _$TravelCreateAddVisitEventCopyWithImpl(this._value, this._then);
+class _$TravelAddVisitEventCopyWithImpl<$Res, $Val extends TravelAddVisitEvent>
+    implements $TravelAddVisitEventCopyWith<$Res> {
+  _$TravelAddVisitEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -94,7 +93,7 @@ abstract class _$$SelectImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SelectImplCopyWithImpl<$Res>
-    extends _$TravelCreateAddVisitEventCopyWithImpl<$Res, _$SelectImpl>
+    extends _$TravelAddVisitEventCopyWithImpl<$Res, _$SelectImpl>
     implements _$$SelectImplCopyWith<$Res> {
   __$$SelectImplCopyWithImpl(
       _$SelectImpl _value, $Res Function(_$SelectImpl) _then)
@@ -132,7 +131,7 @@ class _$SelectImpl implements _Select {
 
   @override
   String toString() {
-    return 'TravelCreateAddVisitEvent.select(place: $place)';
+    return 'TravelAddVisitEvent.select(place: $place)';
   }
 
   @override
@@ -243,7 +242,7 @@ abstract class _$$UnselectImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnselectImplCopyWithImpl<$Res>
-    extends _$TravelCreateAddVisitEventCopyWithImpl<$Res, _$UnselectImpl>
+    extends _$TravelAddVisitEventCopyWithImpl<$Res, _$UnselectImpl>
     implements _$$UnselectImplCopyWith<$Res> {
   __$$UnselectImplCopyWithImpl(
       _$UnselectImpl _value, $Res Function(_$UnselectImpl) _then)
@@ -281,7 +280,7 @@ class _$UnselectImpl implements _Unselect {
 
   @override
   String toString() {
-    return 'TravelCreateAddVisitEvent.unselect(place: $place)';
+    return 'TravelAddVisitEvent.unselect(place: $place)';
   }
 
   @override
@@ -390,7 +389,7 @@ abstract class _$$UpdateFilterImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpdateFilterImplCopyWithImpl<$Res>
-    extends _$TravelCreateAddVisitEventCopyWithImpl<$Res, _$UpdateFilterImpl>
+    extends _$TravelAddVisitEventCopyWithImpl<$Res, _$UpdateFilterImpl>
     implements _$$UpdateFilterImplCopyWith<$Res> {
   __$$UpdateFilterImplCopyWithImpl(
       _$UpdateFilterImpl _value, $Res Function(_$UpdateFilterImpl) _then)
@@ -420,7 +419,7 @@ class _$UpdateFilterImpl implements _UpdateFilter {
 
   @override
   String toString() {
-    return 'TravelCreateAddVisitEvent.updateFilter(filter: $filter)';
+    return 'TravelAddVisitEvent.updateFilter(filter: $filter)';
   }
 
   @override

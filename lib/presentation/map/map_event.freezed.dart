@@ -21,8 +21,7 @@ mixin _$MapEvent {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -34,7 +33,7 @@ mixin _$MapEvent {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -46,7 +45,7 @@ mixin _$MapEvent {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -59,8 +58,7 @@ mixin _$MapEvent {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -72,8 +70,7 @@ mixin _$MapEvent {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -85,8 +82,7 @@ mixin _$MapEvent {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -155,8 +151,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -171,7 +166,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -186,7 +181,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -205,8 +200,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -221,8 +215,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -237,8 +230,7 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -334,8 +326,7 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -350,7 +341,7 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -365,7 +356,7 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -384,8 +375,7 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -400,8 +390,7 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -416,8 +405,7 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -523,8 +511,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -539,7 +526,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -554,7 +541,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -573,8 +560,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -589,8 +575,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -605,8 +590,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -630,81 +614,76 @@ abstract class SelectPlaceEvent implements MapEvent {
 }
 
 /// @nodoc
-abstract class _$$SelectPlaceSearchResultEventImplCopyWith<$Res> {
-  factory _$$SelectPlaceSearchResultEventImplCopyWith(
-          _$SelectPlaceSearchResultEventImpl value,
-          $Res Function(_$SelectPlaceSearchResultEventImpl) then) =
-      __$$SelectPlaceSearchResultEventImplCopyWithImpl<$Res>;
+abstract class _$$PlaceSearchResultImplCopyWith<$Res> {
+  factory _$$PlaceSearchResultImplCopyWith(_$PlaceSearchResultImpl value,
+          $Res Function(_$PlaceSearchResultImpl) then) =
+      __$$PlaceSearchResultImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PlaceSearchResult searchResult});
+  $Res call({Place place});
 
-  $PlaceSearchResultCopyWith<$Res> get searchResult;
+  $PlaceCopyWith<$Res> get place;
 }
 
 /// @nodoc
-class __$$SelectPlaceSearchResultEventImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$SelectPlaceSearchResultEventImpl>
-    implements _$$SelectPlaceSearchResultEventImplCopyWith<$Res> {
-  __$$SelectPlaceSearchResultEventImplCopyWithImpl(
-      _$SelectPlaceSearchResultEventImpl _value,
-      $Res Function(_$SelectPlaceSearchResultEventImpl) _then)
+class __$$PlaceSearchResultImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$PlaceSearchResultImpl>
+    implements _$$PlaceSearchResultImplCopyWith<$Res> {
+  __$$PlaceSearchResultImplCopyWithImpl(_$PlaceSearchResultImpl _value,
+      $Res Function(_$PlaceSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchResult = null,
+    Object? place = null,
   }) {
-    return _then(_$SelectPlaceSearchResultEventImpl(
-      null == searchResult
-          ? _value.searchResult
-          : searchResult // ignore: cast_nullable_to_non_nullable
-              as PlaceSearchResult,
+    return _then(_$PlaceSearchResultImpl(
+      null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as Place,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PlaceSearchResultCopyWith<$Res> get searchResult {
-    return $PlaceSearchResultCopyWith<$Res>(_value.searchResult, (value) {
-      return _then(_value.copyWith(searchResult: value));
+  $PlaceCopyWith<$Res> get place {
+    return $PlaceCopyWith<$Res>(_value.place, (value) {
+      return _then(_value.copyWith(place: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$SelectPlaceSearchResultEventImpl
-    implements SelectPlaceSearchResultEvent {
-  const _$SelectPlaceSearchResultEventImpl(this.searchResult);
+class _$PlaceSearchResultImpl implements _PlaceSearchResult {
+  const _$PlaceSearchResultImpl(this.place);
 
   @override
-  final PlaceSearchResult searchResult;
+  final Place place;
 
   @override
   String toString() {
-    return 'MapEvent.selectPlaceSearchResult(searchResult: $searchResult)';
+    return 'MapEvent.selectPlaceSearchResult(place: $place)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectPlaceSearchResultEventImpl &&
-            (identical(other.searchResult, searchResult) ||
-                other.searchResult == searchResult));
+            other is _$PlaceSearchResultImpl &&
+            (identical(other.place, place) || other.place == place));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchResult);
+  int get hashCode => Object.hash(runtimeType, place);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectPlaceSearchResultEventImplCopyWith<
-          _$SelectPlaceSearchResultEventImpl>
-      get copyWith => __$$SelectPlaceSearchResultEventImplCopyWithImpl<
-          _$SelectPlaceSearchResultEventImpl>(this, _$identity);
+  _$$PlaceSearchResultImplCopyWith<_$PlaceSearchResultImpl> get copyWith =>
+      __$$PlaceSearchResultImplCopyWithImpl<_$PlaceSearchResultImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -712,14 +691,13 @@ class _$SelectPlaceSearchResultEventImpl
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
   }) {
-    return selectPlaceSearchResult(searchResult);
+    return selectPlaceSearchResult(place);
   }
 
   @override
@@ -728,13 +706,13 @@ class _$SelectPlaceSearchResultEventImpl
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
   }) {
-    return selectPlaceSearchResult?.call(searchResult);
+    return selectPlaceSearchResult?.call(place);
   }
 
   @override
@@ -743,7 +721,7 @@ class _$SelectPlaceSearchResultEventImpl
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -751,7 +729,7 @@ class _$SelectPlaceSearchResultEventImpl
     required TResult orElse(),
   }) {
     if (selectPlaceSearchResult != null) {
-      return selectPlaceSearchResult(searchResult);
+      return selectPlaceSearchResult(place);
     }
     return orElse();
   }
@@ -762,8 +740,7 @@ class _$SelectPlaceSearchResultEventImpl
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -778,8 +755,7 @@ class _$SelectPlaceSearchResultEventImpl
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -794,8 +770,7 @@ class _$SelectPlaceSearchResultEventImpl
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -809,16 +784,13 @@ class _$SelectPlaceSearchResultEventImpl
   }
 }
 
-abstract class SelectPlaceSearchResultEvent implements MapEvent {
-  const factory SelectPlaceSearchResultEvent(
-          final PlaceSearchResult searchResult) =
-      _$SelectPlaceSearchResultEventImpl;
+abstract class _PlaceSearchResult implements MapEvent {
+  const factory _PlaceSearchResult(final Place place) = _$PlaceSearchResultImpl;
 
-  PlaceSearchResult get searchResult;
+  Place get place;
   @JsonKey(ignore: true)
-  _$$SelectPlaceSearchResultEventImplCopyWith<
-          _$SelectPlaceSearchResultEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$PlaceSearchResultImplCopyWith<_$PlaceSearchResultImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -890,8 +862,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -906,7 +877,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -921,7 +892,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -940,8 +911,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -956,8 +926,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -972,8 +941,7 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -1040,8 +1008,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -1056,7 +1023,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -1071,7 +1038,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -1090,8 +1057,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -1106,8 +1072,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -1122,8 +1087,7 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -1182,8 +1146,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -1198,7 +1161,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -1213,7 +1176,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -1232,8 +1195,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -1248,8 +1210,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -1264,8 +1225,7 @@ class _$ShowSearchButtonImpl implements ShowSearchButton {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,
@@ -1351,8 +1311,7 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function() findNearbyPlace,
     required TResult Function(Place place) getPlaceDetail,
     required TResult Function(Place? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
     required TResult Function() showSearchButton,
@@ -1367,7 +1326,7 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function()? findNearbyPlace,
     TResult? Function(Place place)? getPlaceDetail,
     TResult? Function(Place? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
     TResult? Function()? showSearchButton,
@@ -1382,7 +1341,7 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function()? findNearbyPlace,
     TResult Function(Place place)? getPlaceDetail,
     TResult Function(Place? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
     TResult Function()? showSearchButton,
@@ -1401,8 +1360,7 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
     required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
     required TResult Function(ShowSearchButton value) showSearchButton,
@@ -1417,8 +1375,7 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult? Function(ShowSearchButton value)? showSearchButton,
@@ -1433,8 +1390,7 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
     TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
     TResult Function(ShowSearchButton value)? showSearchButton,

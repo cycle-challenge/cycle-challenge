@@ -8,5 +8,5 @@ part 'search_ui_event.freezed.dart';
 
 @freezed
 abstract class SearchUiEvent with _$SearchUiEvent {
-  const factory SearchUiEvent.searchComplete(PlaceDetail detail, Place? place) = SearchCompleteEvent;
+  const factory SearchUiEvent.searchComplete(Place place) = _SearchComplete;
 }

@@ -20,24 +20,23 @@ mixin _$TravelAddVisitState {
   PlaceFilter get placeFilter => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TravelCreateAddVisitStateCopyWith<TravelCreateAddVisitState> get copyWith =>
+  $TravelAddVisitStateCopyWith<TravelAddVisitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TravelCreateAddVisitStateCopyWith<$Res> {
-  factory $TravelCreateAddVisitStateCopyWith(TravelCreateAddVisitState value,
-          $Res Function(TravelCreateAddVisitState) then) =
-      _$TravelCreateAddVisitStateCopyWithImpl<$Res, TravelCreateAddVisitState>;
+abstract class $TravelAddVisitStateCopyWith<$Res> {
+  factory $TravelAddVisitStateCopyWith(
+          TravelAddVisitState value, $Res Function(TravelAddVisitState) then) =
+      _$TravelAddVisitStateCopyWithImpl<$Res, TravelAddVisitState>;
   @useResult
   $Res call({List<Place> selectedPlaces, PlaceFilter placeFilter});
 }
 
 /// @nodoc
-class _$TravelCreateAddVisitStateCopyWithImpl<$Res,
-        $Val extends TravelCreateAddVisitState>
-    implements $TravelCreateAddVisitStateCopyWith<$Res> {
-  _$TravelCreateAddVisitStateCopyWithImpl(this._value, this._then);
+class _$TravelAddVisitStateCopyWithImpl<$Res, $Val extends TravelAddVisitState>
+    implements $TravelAddVisitStateCopyWith<$Res> {
+  _$TravelAddVisitStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -64,25 +63,22 @@ class _$TravelCreateAddVisitStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$TravelCreateAddVisitStateImplCopyWith<$Res>
-    implements $TravelCreateAddVisitStateCopyWith<$Res> {
-  factory _$$TravelCreateAddVisitStateImplCopyWith(
-          _$TravelCreateAddVisitStateImpl value,
-          $Res Function(_$TravelCreateAddVisitStateImpl) then) =
-      __$$TravelCreateAddVisitStateImplCopyWithImpl<$Res>;
+abstract class _$$TravelAddVisitStateImplCopyWith<$Res>
+    implements $TravelAddVisitStateCopyWith<$Res> {
+  factory _$$TravelAddVisitStateImplCopyWith(_$TravelAddVisitStateImpl value,
+          $Res Function(_$TravelAddVisitStateImpl) then) =
+      __$$TravelAddVisitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Place> selectedPlaces, PlaceFilter placeFilter});
 }
 
 /// @nodoc
-class __$$TravelCreateAddVisitStateImplCopyWithImpl<$Res>
-    extends _$TravelCreateAddVisitStateCopyWithImpl<$Res,
-        _$TravelCreateAddVisitStateImpl>
-    implements _$$TravelCreateAddVisitStateImplCopyWith<$Res> {
-  __$$TravelCreateAddVisitStateImplCopyWithImpl(
-      _$TravelCreateAddVisitStateImpl _value,
-      $Res Function(_$TravelCreateAddVisitStateImpl) _then)
+class __$$TravelAddVisitStateImplCopyWithImpl<$Res>
+    extends _$TravelAddVisitStateCopyWithImpl<$Res, _$TravelAddVisitStateImpl>
+    implements _$$TravelAddVisitStateImplCopyWith<$Res> {
+  __$$TravelAddVisitStateImplCopyWithImpl(_$TravelAddVisitStateImpl _value,
+      $Res Function(_$TravelAddVisitStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -91,7 +87,7 @@ class __$$TravelCreateAddVisitStateImplCopyWithImpl<$Res>
     Object? selectedPlaces = null,
     Object? placeFilter = null,
   }) {
-    return _then(_$TravelCreateAddVisitStateImpl(
+    return _then(_$TravelAddVisitStateImpl(
       selectedPlaces: null == selectedPlaces
           ? _value._selectedPlaces
           : selectedPlaces // ignore: cast_nullable_to_non_nullable
@@ -106,8 +102,8 @@ class __$$TravelCreateAddVisitStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TravelCreateAddVisitStateImpl implements _TravelCreateAddVisitState {
-  _$TravelCreateAddVisitStateImpl(
+class _$TravelAddVisitStateImpl implements _TravelAddVisitState {
+  _$TravelAddVisitStateImpl(
       {final List<Place> selectedPlaces = const [], required this.placeFilter})
       : _selectedPlaces = selectedPlaces;
 
@@ -125,14 +121,14 @@ class _$TravelCreateAddVisitStateImpl implements _TravelCreateAddVisitState {
 
   @override
   String toString() {
-    return 'TravelCreateAddVisitState(selectedPlaces: $selectedPlaces, placeFilter: $placeFilter)';
+    return 'TravelAddVisitState(selectedPlaces: $selectedPlaces, placeFilter: $placeFilter)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TravelCreateAddVisitStateImpl &&
+            other is _$TravelAddVisitStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._selectedPlaces, _selectedPlaces) &&
             (identical(other.placeFilter, placeFilter) ||
@@ -146,16 +142,15 @@ class _$TravelCreateAddVisitStateImpl implements _TravelCreateAddVisitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TravelCreateAddVisitStateImplCopyWith<_$TravelCreateAddVisitStateImpl>
-      get copyWith => __$$TravelCreateAddVisitStateImplCopyWithImpl<
-          _$TravelCreateAddVisitStateImpl>(this, _$identity);
+  _$$TravelAddVisitStateImplCopyWith<_$TravelAddVisitStateImpl> get copyWith =>
+      __$$TravelAddVisitStateImplCopyWithImpl<_$TravelAddVisitStateImpl>(
+          this, _$identity);
 }
 
-abstract class _TravelCreateAddVisitState implements TravelCreateAddVisitState {
-  factory _TravelCreateAddVisitState(
-          {final List<Place> selectedPlaces,
-          required final PlaceFilter placeFilter}) =
-      _$TravelCreateAddVisitStateImpl;
+abstract class _TravelAddVisitState implements TravelAddVisitState {
+  factory _TravelAddVisitState(
+      {final List<Place> selectedPlaces,
+      required final PlaceFilter placeFilter}) = _$TravelAddVisitStateImpl;
 
   @override
   List<Place> get selectedPlaces;
@@ -163,6 +158,6 @@ abstract class _TravelCreateAddVisitState implements TravelCreateAddVisitState {
   PlaceFilter get placeFilter;
   @override
   @JsonKey(ignore: true)
-  _$$TravelCreateAddVisitStateImplCopyWith<_$TravelCreateAddVisitStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$TravelAddVisitStateImplCopyWith<_$TravelAddVisitStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

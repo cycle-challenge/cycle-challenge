@@ -11,7 +11,6 @@ import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
-import 'package:yeohaeng_ttukttak/domain/model/session.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
@@ -58,18 +57,26 @@ class PlaceRepository {
     return api.getBookmarkedPlace();
   }
 
-  Future<Result<List<PlaceSuggestion>, String>> autoComplete(String query, Session session) async {
-    return googleApi.autoComplete(query, session);
+  Future<Result<List<PlaceSuggestion>, String>> autoComplete(String query) async {
+    final result = await api.autocomplete(query);
+
+    return result.when(
+        success: (places) => Result.success(places),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
   }
-  Future<Result<PlaceDetail, String>> getDetail(String googlePlaceId, {Session? session}) async {
-    return googleApi.getDetail(googlePlaceId, session: session);
+
+  Future<Result<PlaceDetail, String>> getDetail(String googlePlaceId) async {
+    return googleApi.getDetail(googlePlaceId);
   }
 
   Future<Result<List<PlaceSuggestion>, String>> getSearchHistory() async {
     return localStorage.getSearchHistory();
   }
 
-  Future<Result<List<PlaceSuggestion>, String>> addSearchHistory(PlaceSuggestion place) async {
+  Future<Result<List<PlaceSuggestion>, String>> addSearchHistory(
+      PlaceSuggestion place) async {
     final result = await localStorage.addSearchHistory(place);
 
     return result.when(
@@ -82,7 +89,8 @@ class PlaceRepository {
         error: (message) => Result.error(message));
   }
 
-  Future<Result<List<PlaceSuggestion>, String>> deleteSearchHistory(PlaceSuggestion place) async {
+  Future<Result<List<PlaceSuggestion>, String>> deleteSearchHistory(
+      PlaceSuggestion place) async {
     final result = await localStorage.deleteSearchHistory(place);
 
     return result.when(
@@ -95,7 +103,13 @@ class PlaceRepository {
         error: (message) => Result.error(message));
   }
 
-  Future<Result<Place, ApiError>> findByGooglePlaceId(String googlePlaceId) async {
-    return api.findByGooglePlaceId(googlePlaceId);
+  Future<Result<Place, String>> find(int id) async {
+    final result = await api.findPlace(id);
+
+    return result.when(
+        success: (places) => Result.success(places),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
   }
 }

@@ -52,7 +52,7 @@ class MapViewModel with ChangeNotifier {
   void onEvent(MapEvent event) {
     event.when(
         findNearbyPlace: _findNearbyPlace,
-        selectPlace: _selectPlace,
+        selectPlace: _onSelectPlace,
         changePosition: _changePosition,
         showSearchButton: _showSearchButton,
         changeToMyPosition: _changeToMyPosition,
@@ -100,30 +100,17 @@ class MapViewModel with ChangeNotifier {
             _mainEventController.add(MainUiEvent.showSnackbar(message)));
   }
 
-  void _selectPlace(Place? place) {
+  void _onSelectPlace(Place? place) {
     _filterDataState = _filterDataState.copyWith(selectedPlace: place);
     notifyListeners();
   }
 
-  void _onSelectPlaceSearchResult(PlaceSearchResult result) async {
-    _state = _state.copyWith(
-        latitude: result.detail.latitude, longitude: result.detail.longitude);
-    await _findNearbyPlace();
+  void _onSelectPlaceSearchResult(Place place) async {
+    _onSelectPlace(place);
 
-    _dataState = _dataState.copyWith(placeDetails: {
-      ..._dataState.placeDetails,
-      result.detail.id: result.detail
-    });
-
-    final selectedPlace = _dataState.travels
-        .expand((e) => e.places)
-        .where((e) => e.id == result.place?.id)
-        .firstOrNull;
-
-    _filterDataState = _filterDataState.copyWith(selectedPlace: selectedPlace);
-
+    // 카메라 위치 이동
     _eventController.add(
-        MapUIEvent.moveCamera(result.detail.latitude, result.detail.longitude));
+        MapUIEvent.moveCamera(place.latitude, place.longitude));
   }
 
   void _filter() {

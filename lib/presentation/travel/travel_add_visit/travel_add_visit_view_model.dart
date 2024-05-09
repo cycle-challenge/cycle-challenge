@@ -5,9 +5,9 @@ import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_ad
 import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_state.dart';
 
 class TravelAddVisitViewModel with ChangeNotifier {
-  TravelCreateAddVisitState _state =
-      TravelCreateAddVisitState(placeFilter: PlaceFilter());
-  TravelCreateAddVisitState get state => _state;
+  TravelAddVisitState _state =
+      TravelAddVisitState(placeFilter: PlaceFilter());
+  TravelAddVisitState get state => _state;
 
   void onEvent(TravelAddVisitEvent event) => event.when(
       select: _onSelect, unselect: _onUnselect, updateFilter: _onUpdateFilter);

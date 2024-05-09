@@ -198,7 +198,7 @@ class TravelViewModel with ChangeNotifier {
         .whereType<int>()
         .length;
 
-    int visitIndex = max(itemIndex - labelCount - 1, 0);
+    int visitIndex = max(itemIndex - labelCount, 0);
 
     if (_state.visitIndex == visitIndex) return;
     _state = _state.copyWith(visitIndex: visitIndex);

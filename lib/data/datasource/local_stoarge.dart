@@ -12,7 +12,7 @@ class LocalStorage {
         final box = Hive.box<PlaceSuggestion>("place_suggestion");
 
         await box.put(
-            place.googlePlaceId, place.copyWith(modifiedAt: DateTime.now()));
+            place.placeId, place.copyWith(modifiedAt: DateTime.now()));
       });
 
   Future<Result<void, String>> deleteSearchHistory(
@@ -21,7 +21,7 @@ class LocalStorage {
         await Hive.openBox<PlaceSuggestion>("place_suggestion");
         final box = Hive.box<PlaceSuggestion>("place_suggestion");
 
-        await box.delete(place.googlePlaceId);
+        await box.delete(place.placeId);
         await box.close();
       });
 

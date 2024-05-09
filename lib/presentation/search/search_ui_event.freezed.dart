@@ -16,37 +16,36 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchUiEvent {
-  PlaceDetail get detail => throw _privateConstructorUsedError;
-  Place? get place => throw _privateConstructorUsedError;
+  Place get place => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceDetail detail, Place? place) searchComplete,
+    required TResult Function(Place place) searchComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceDetail detail, Place? place)? searchComplete,
+    TResult? Function(Place place)? searchComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceDetail detail, Place? place)? searchComplete,
+    TResult Function(Place place)? searchComplete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SearchCompleteEvent value) searchComplete,
+    required TResult Function(_SearchComplete value) searchComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SearchCompleteEvent value)? searchComplete,
+    TResult? Function(_SearchComplete value)? searchComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchCompleteEvent value)? searchComplete,
+    TResult Function(_SearchComplete value)? searchComplete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,9 +61,9 @@ abstract class $SearchUiEventCopyWith<$Res> {
           SearchUiEvent value, $Res Function(SearchUiEvent) then) =
       _$SearchUiEventCopyWithImpl<$Res, SearchUiEvent>;
   @useResult
-  $Res call({PlaceDetail detail, Place? place});
+  $Res call({Place place});
 
-  $PlaceCopyWith<$Res>? get place;
+  $PlaceCopyWith<$Res> get place;
 }
 
 /// @nodoc
@@ -80,133 +79,116 @@ class _$SearchUiEventCopyWithImpl<$Res, $Val extends SearchUiEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? detail = null,
-    Object? place = freezed,
+    Object? place = null,
   }) {
     return _then(_value.copyWith(
-      detail: null == detail
-          ? _value.detail
-          : detail // ignore: cast_nullable_to_non_nullable
-              as PlaceDetail,
-      place: freezed == place
+      place: null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as Place?,
+              as Place,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PlaceCopyWith<$Res>? get place {
-    if (_value.place == null) {
-      return null;
-    }
-
-    return $PlaceCopyWith<$Res>(_value.place!, (value) {
+  $PlaceCopyWith<$Res> get place {
+    return $PlaceCopyWith<$Res>(_value.place, (value) {
       return _then(_value.copyWith(place: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$SearchCompleteEventImplCopyWith<$Res>
+abstract class _$$SearchCompleteImplCopyWith<$Res>
     implements $SearchUiEventCopyWith<$Res> {
-  factory _$$SearchCompleteEventImplCopyWith(_$SearchCompleteEventImpl value,
-          $Res Function(_$SearchCompleteEventImpl) then) =
-      __$$SearchCompleteEventImplCopyWithImpl<$Res>;
+  factory _$$SearchCompleteImplCopyWith(_$SearchCompleteImpl value,
+          $Res Function(_$SearchCompleteImpl) then) =
+      __$$SearchCompleteImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlaceDetail detail, Place? place});
+  $Res call({Place place});
 
   @override
-  $PlaceCopyWith<$Res>? get place;
+  $PlaceCopyWith<$Res> get place;
 }
 
 /// @nodoc
-class __$$SearchCompleteEventImplCopyWithImpl<$Res>
-    extends _$SearchUiEventCopyWithImpl<$Res, _$SearchCompleteEventImpl>
-    implements _$$SearchCompleteEventImplCopyWith<$Res> {
-  __$$SearchCompleteEventImplCopyWithImpl(_$SearchCompleteEventImpl _value,
-      $Res Function(_$SearchCompleteEventImpl) _then)
+class __$$SearchCompleteImplCopyWithImpl<$Res>
+    extends _$SearchUiEventCopyWithImpl<$Res, _$SearchCompleteImpl>
+    implements _$$SearchCompleteImplCopyWith<$Res> {
+  __$$SearchCompleteImplCopyWithImpl(
+      _$SearchCompleteImpl _value, $Res Function(_$SearchCompleteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? detail = null,
-    Object? place = freezed,
+    Object? place = null,
   }) {
-    return _then(_$SearchCompleteEventImpl(
-      null == detail
-          ? _value.detail
-          : detail // ignore: cast_nullable_to_non_nullable
-              as PlaceDetail,
-      freezed == place
+    return _then(_$SearchCompleteImpl(
+      null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as Place?,
+              as Place,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SearchCompleteEventImpl implements SearchCompleteEvent {
-  const _$SearchCompleteEventImpl(this.detail, this.place);
+class _$SearchCompleteImpl implements _SearchComplete {
+  const _$SearchCompleteImpl(this.place);
 
   @override
-  final PlaceDetail detail;
-  @override
-  final Place? place;
+  final Place place;
 
   @override
   String toString() {
-    return 'SearchUiEvent.searchComplete(detail: $detail, place: $place)';
+    return 'SearchUiEvent.searchComplete(place: $place)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchCompleteEventImpl &&
-            (identical(other.detail, detail) || other.detail == detail) &&
+            other is _$SearchCompleteImpl &&
             (identical(other.place, place) || other.place == place));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, detail, place);
+  int get hashCode => Object.hash(runtimeType, place);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchCompleteEventImplCopyWith<_$SearchCompleteEventImpl> get copyWith =>
-      __$$SearchCompleteEventImplCopyWithImpl<_$SearchCompleteEventImpl>(
+  _$$SearchCompleteImplCopyWith<_$SearchCompleteImpl> get copyWith =>
+      __$$SearchCompleteImplCopyWithImpl<_$SearchCompleteImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlaceDetail detail, Place? place) searchComplete,
+    required TResult Function(Place place) searchComplete,
   }) {
-    return searchComplete(detail, place);
+    return searchComplete(place);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlaceDetail detail, Place? place)? searchComplete,
+    TResult? Function(Place place)? searchComplete,
   }) {
-    return searchComplete?.call(detail, place);
+    return searchComplete?.call(place);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlaceDetail detail, Place? place)? searchComplete,
+    TResult Function(Place place)? searchComplete,
     required TResult orElse(),
   }) {
     if (searchComplete != null) {
-      return searchComplete(detail, place);
+      return searchComplete(place);
     }
     return orElse();
   }
@@ -214,7 +196,7 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SearchCompleteEvent value) searchComplete,
+    required TResult Function(_SearchComplete value) searchComplete,
   }) {
     return searchComplete(this);
   }
@@ -222,7 +204,7 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SearchCompleteEvent value)? searchComplete,
+    TResult? Function(_SearchComplete value)? searchComplete,
   }) {
     return searchComplete?.call(this);
   }
@@ -230,7 +212,7 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchCompleteEvent value)? searchComplete,
+    TResult Function(_SearchComplete value)? searchComplete,
     required TResult orElse(),
   }) {
     if (searchComplete != null) {
@@ -240,16 +222,13 @@ class _$SearchCompleteEventImpl implements SearchCompleteEvent {
   }
 }
 
-abstract class SearchCompleteEvent implements SearchUiEvent {
-  const factory SearchCompleteEvent(
-      final PlaceDetail detail, final Place? place) = _$SearchCompleteEventImpl;
+abstract class _SearchComplete implements SearchUiEvent {
+  const factory _SearchComplete(final Place place) = _$SearchCompleteImpl;
 
   @override
-  PlaceDetail get detail;
-  @override
-  Place? get place;
+  Place get place;
   @override
   @JsonKey(ignore: true)
-  _$$SearchCompleteEventImplCopyWith<_$SearchCompleteEventImpl> get copyWith =>
+  _$$SearchCompleteImplCopyWith<_$SearchCompleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

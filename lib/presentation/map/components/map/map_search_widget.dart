@@ -23,8 +23,7 @@ class SearchBarWidget extends StatelessWidget {
               context: context, delegate: Search(), useRootNavigator: true);
           if (result == null) return;
 
-          viewModel.onEvent(
-              MapEvent.selectPlaceSearchResult(result));
+          viewModel.onEvent(MapEvent.selectPlaceSearchResult(result));
         },
         child: Container(
           height: 50,

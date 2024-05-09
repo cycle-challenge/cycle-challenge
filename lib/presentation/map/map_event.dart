@@ -12,7 +12,7 @@ abstract class MapEvent with _$MapEvent {
   const factory MapEvent.findNearbyPlace() = FindNearbyPlaceEvent;
   const factory MapEvent.getPlaceDetail(Place place) = GetPlaceDetailEvent;
   const factory MapEvent.selectPlace(Place? place) = SelectPlaceEvent;
-  const factory MapEvent.selectPlaceSearchResult(PlaceSearchResult searchResult) = SelectPlaceSearchResultEvent;
+  const factory MapEvent.selectPlaceSearchResult(Place place) = _PlaceSearchResult;
   const factory MapEvent.changePosition(CameraPosition position) = ChangePositionEvent;
   const factory MapEvent.changeToMyPosition() = MoveToMyPositionEvent;
   const factory MapEvent.showSearchButton() = ShowSearchButton;

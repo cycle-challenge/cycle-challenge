@@ -9,6 +9,7 @@ import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
@@ -211,11 +212,9 @@ class RemoteAPI {
     }
   }
 
-  Future<Result<Place, ApiError>> findByGooglePlaceId(
-      String googlePlaceId) async {
+  Future<Result<Place, ApiError>> findPlace(int id) async {
     try {
-      final response = await dio.get('$remoteUrl/api/v1/places/',
-          queryParameters: {'googlePlaceId': googlePlaceId},
+      final response = await dio.get('$remoteUrl/api/v1/places/$id',
           options: Options(headers: headers));
 
       return Result.success(Place.fromJson(response.data['data']));
@@ -319,6 +318,21 @@ class RemoteAPI {
           });
 
       return const Result.success(null);
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<List<PlaceSuggestion>, ApiError>> autocomplete(
+      String query) async {
+    try {
+      final response = await dio.get('$remoteUrl/api/v1/places/autocomplete',
+          queryParameters: {'query': query},
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data'])
+          .map((e) => PlaceSuggestion.fromJson(e))
+          .toList());
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }

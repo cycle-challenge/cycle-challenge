@@ -6,10 +6,10 @@ import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 part 'travel_add_visit_state.freezed.dart';
 
 @freezed
-class TravelCreateAddVisitState with _$TravelAddVisitState {
-  factory TravelCreateAddVisitState({
+class TravelAddVisitState with _$TravelAddVisitState {
+  factory TravelAddVisitState({
     @Default([]) List<Place> selectedPlaces,
     required PlaceFilter placeFilter
-  }) = _TravelCreateAddVisitState;
+  }) = _TravelAddVisitState;
 
 }
