@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PlaceDetailState {
   bool get isBusinessHourExpanded => throw _privateConstructorUsedError;
+  int get imageIndex => throw _privateConstructorUsedError;
   List<ImageModel> get placeImages => throw _privateConstructorUsedError;
+  List<PlaceReview> get reviews => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlaceDetailStateCopyWith<PlaceDetailState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $PlaceDetailStateCopyWith<$Res> {
           PlaceDetailState value, $Res Function(PlaceDetailState) then) =
       _$PlaceDetailStateCopyWithImpl<$Res, PlaceDetailState>;
   @useResult
-  $Res call({bool isBusinessHourExpanded, List<ImageModel> placeImages});
+  $Res call(
+      {bool isBusinessHourExpanded,
+      int imageIndex,
+      List<ImageModel> placeImages,
+      List<PlaceReview> reviews});
 }
 
 /// @nodoc
@@ -47,17 +53,27 @@ class _$PlaceDetailStateCopyWithImpl<$Res, $Val extends PlaceDetailState>
   @override
   $Res call({
     Object? isBusinessHourExpanded = null,
+    Object? imageIndex = null,
     Object? placeImages = null,
+    Object? reviews = null,
   }) {
     return _then(_value.copyWith(
       isBusinessHourExpanded: null == isBusinessHourExpanded
           ? _value.isBusinessHourExpanded
           : isBusinessHourExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      imageIndex: null == imageIndex
+          ? _value.imageIndex
+          : imageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       placeImages: null == placeImages
           ? _value.placeImages
           : placeImages // ignore: cast_nullable_to_non_nullable
               as List<ImageModel>,
+      reviews: null == reviews
+          ? _value.reviews
+          : reviews // ignore: cast_nullable_to_non_nullable
+              as List<PlaceReview>,
     ) as $Val);
   }
 }
@@ -70,7 +86,11 @@ abstract class _$$PlaceDetailStateImplCopyWith<$Res>
       __$$PlaceDetailStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isBusinessHourExpanded, List<ImageModel> placeImages});
+  $Res call(
+      {bool isBusinessHourExpanded,
+      int imageIndex,
+      List<ImageModel> placeImages,
+      List<PlaceReview> reviews});
 }
 
 /// @nodoc
@@ -85,17 +105,27 @@ class __$$PlaceDetailStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isBusinessHourExpanded = null,
+    Object? imageIndex = null,
     Object? placeImages = null,
+    Object? reviews = null,
   }) {
     return _then(_$PlaceDetailStateImpl(
       isBusinessHourExpanded: null == isBusinessHourExpanded
           ? _value.isBusinessHourExpanded
           : isBusinessHourExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      imageIndex: null == imageIndex
+          ? _value.imageIndex
+          : imageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       placeImages: null == placeImages
           ? _value._placeImages
           : placeImages // ignore: cast_nullable_to_non_nullable
               as List<ImageModel>,
+      reviews: null == reviews
+          ? _value._reviews
+          : reviews // ignore: cast_nullable_to_non_nullable
+              as List<PlaceReview>,
     ));
   }
 }
@@ -104,23 +134,40 @@ class __$$PlaceDetailStateImplCopyWithImpl<$Res>
 
 class _$PlaceDetailStateImpl implements _PlaceDetailState {
   _$PlaceDetailStateImpl(
-      {required this.isBusinessHourExpanded,
-      required final List<ImageModel> placeImages})
-      : _placeImages = placeImages;
+      {this.isBusinessHourExpanded = false,
+      this.imageIndex = 0,
+      final List<ImageModel> placeImages = const [],
+      final List<PlaceReview> reviews = const []})
+      : _placeImages = placeImages,
+        _reviews = reviews;
 
   @override
+  @JsonKey()
   final bool isBusinessHourExpanded;
+  @override
+  @JsonKey()
+  final int imageIndex;
   final List<ImageModel> _placeImages;
   @override
+  @JsonKey()
   List<ImageModel> get placeImages {
     if (_placeImages is EqualUnmodifiableListView) return _placeImages;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_placeImages);
   }
 
+  final List<PlaceReview> _reviews;
+  @override
+  @JsonKey()
+  List<PlaceReview> get reviews {
+    if (_reviews is EqualUnmodifiableListView) return _reviews;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_reviews);
+  }
+
   @override
   String toString() {
-    return 'PlaceDetailState(isBusinessHourExpanded: $isBusinessHourExpanded, placeImages: $placeImages)';
+    return 'PlaceDetailState(isBusinessHourExpanded: $isBusinessHourExpanded, imageIndex: $imageIndex, placeImages: $placeImages, reviews: $reviews)';
   }
 
   @override
@@ -130,13 +177,20 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
             other is _$PlaceDetailStateImpl &&
             (identical(other.isBusinessHourExpanded, isBusinessHourExpanded) ||
                 other.isBusinessHourExpanded == isBusinessHourExpanded) &&
+            (identical(other.imageIndex, imageIndex) ||
+                other.imageIndex == imageIndex) &&
             const DeepCollectionEquality()
-                .equals(other._placeImages, _placeImages));
+                .equals(other._placeImages, _placeImages) &&
+            const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isBusinessHourExpanded,
-      const DeepCollectionEquality().hash(_placeImages));
+  int get hashCode => Object.hash(
+      runtimeType,
+      isBusinessHourExpanded,
+      imageIndex,
+      const DeepCollectionEquality().hash(_placeImages),
+      const DeepCollectionEquality().hash(_reviews));
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +202,19 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
 
 abstract class _PlaceDetailState implements PlaceDetailState {
   factory _PlaceDetailState(
-      {required final bool isBusinessHourExpanded,
-      required final List<ImageModel> placeImages}) = _$PlaceDetailStateImpl;
+      {final bool isBusinessHourExpanded,
+      final int imageIndex,
+      final List<ImageModel> placeImages,
+      final List<PlaceReview> reviews}) = _$PlaceDetailStateImpl;
 
   @override
   bool get isBusinessHourExpanded;
   @override
+  int get imageIndex;
+  @override
   List<ImageModel> get placeImages;
+  @override
+  List<PlaceReview> get reviews;
   @override
   @JsonKey(ignore: true)
   _$$PlaceDetailStateImplCopyWith<_$PlaceDetailStateImpl> get copyWith =>

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
@@ -18,7 +17,7 @@ class PlaceDetailViewModel with ChangeNotifier {
 
   final StreamController<MainUiEvent> _mainEventController;
 
-  late PlaceDetailState _state;
+  PlaceDetailState _state = PlaceDetailState(placeImages: []);
   PlaceDetailState get state => _state;
 
   final StreamController<PlaceDetailUIEvent> _eventController =
@@ -26,20 +25,27 @@ class PlaceDetailViewModel with ChangeNotifier {
   Stream<PlaceDetailUIEvent> get stream => _eventController.stream;
 
   PlaceDetailViewModel(Place place, this.useCases, this._mainEventController) {
-    _state = PlaceDetailState(
-        isBusinessHourExpanded: false, placeImages: []);
-
+    useCases.findPlaceReviewsUseCase(place.id).then((result) => result.when(
+        success: (reviews) {
+          _state = _state.copyWith(reviews: reviews);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message))));
   }
 
-  void onEvent(PlaceDetailEvent event) {
-    event.when(
-        toggleBusinessHourExpanded: _toggleBusinessHourExpanded,
-        fetchImage: _fetchPlaceImage,
-        callPhone: _callPhone,
-        copyText: _copyText,
-        launchURL: _launchURL);
-  }
+  void onEvent(PlaceDetailEvent event) => event.when(
+      toggleBusinessHourExpanded: _toggleBusinessHourExpanded,
+      fetchImage: _fetchPlaceImage,
+      callPhone: _callPhone,
+      copyText: _copyText,
+      launchURL: _launchURL,
+      changeImageIndex: _onChangeImageIndex);
 
+  void _onChangeImageIndex(int index) {
+    _state = _state.copyWith(imageIndex: index);
+    notifyListeners();
+  }
 
   void _toggleBusinessHourExpanded() {
     _state =

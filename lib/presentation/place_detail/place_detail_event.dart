@@ -12,4 +12,5 @@ abstract class PlaceDetailEvent with _$PlaceDetailEvent {
   const factory PlaceDetailEvent.callPhone(String? phoneNumber) = CallPhoneEvent;
   const factory PlaceDetailEvent.copyText(String? text) = CopyTextEvent;
   const factory PlaceDetailEvent.launchURL(String? url) = LaunchURL;
+  const factory PlaceDetailEvent.changeImageIndex(int index) = _ChangeImageIndex;
 }

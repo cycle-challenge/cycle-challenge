@@ -10,6 +10,7 @@ import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
@@ -105,6 +106,17 @@ class PlaceRepository {
 
   Future<Result<Place, String>> find(int id) async {
     final result = await api.findPlace(id);
+
+    return result.when(
+        success: (places) => Result.success(places),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+
+  Future<Result<List<PlaceReview>, String>> findReviews(int id) async {
+    final result = await api.findPlaceReviews(id);
 
     return result.when(
         success: (places) => Result.success(places),
