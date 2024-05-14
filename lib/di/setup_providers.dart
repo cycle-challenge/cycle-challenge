@@ -21,6 +21,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_reviews_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/find_place_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/modify_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
@@ -85,6 +86,12 @@ List<SingleChildWidget> dependentModules = [
   Provider<FindPlaceReviewsUseCase>(
       create: (context) =>
           FindPlaceReviewsUseCase(context.read<PlaceRepository>())),
+  Provider<FindPlaceTravelsUseCase>(
+      create: (context) =>
+          FindPlaceTravelsUseCase(context.read<PlaceRepository>())),
+  Provider<GetBookmarkedPlaceUseCase>(
+      create: (context) =>
+          GetBookmarkedPlaceUseCase(context.read<PlaceRepository>())),
   Provider<DeletePlaceBookmarkUseCase>(
       create: (context) =>
           DeletePlaceBookmarkUseCase(context.read<PlaceRepository>())),
@@ -94,9 +101,6 @@ List<SingleChildWidget> dependentModules = [
   Provider<DeleteTravelBookmarkUseCase>(
       create: (context) =>
           DeleteTravelBookmarkUseCase(context.read<TravelRepository>())),
-  Provider<GetBookmarkedPlaceUseCase>(
-      create: (context) =>
-          GetBookmarkedPlaceUseCase(context.read<PlaceRepository>())),
   Provider<GetBookmarkedTravelUseCase>(
       create: (context) =>
           GetBookmarkedTravelUseCase(context.read<TravelRepository>())),
@@ -151,7 +155,8 @@ List<SingleChildWidget> dependentModules = [
           createVisitsUseCase: context.read<CreateVisitsUseCase>(),
           calculateBoundUseCase: context.read<CalculateBoundUseCase>(),
           getMyTravelsUseCase: context.read<GetMyTravelsUseCase>(),
-          findPlaceReviewsUseCase: context.read<FindPlaceReviewsUseCase>()))
+          findPlaceReviewsUseCase: context.read<FindPlaceReviewsUseCase>(),
+          findPlaceTravelsUseCase: context.read<FindPlaceTravelsUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [

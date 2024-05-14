@@ -32,6 +32,16 @@ class PlaceDetailViewModel with ChangeNotifier {
         },
         error: (message) =>
             _mainEventController.add(MainUiEvent.showSnackbar(message))));
+
+    useCases.findPlaceTravelsUseCase(place.id).then((result) {
+      result.when(
+        success: (travels) {
+          _state = _state.copyWith(travels: travels);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message)));
+    });
   }
 
   void onEvent(PlaceDetailEvent event) => event.when(

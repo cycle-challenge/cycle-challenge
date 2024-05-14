@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:provider/provider.dart';
@@ -8,10 +7,10 @@ import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
-class PlaceSummaryView extends StatelessWidget {
+class PlaceSummarySection extends StatelessWidget {
   final Place place;
 
-  const PlaceSummaryView({super.key, required this.place});
+  const PlaceSummarySection({super.key, required this.place});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class PlaceSummaryView extends StatelessWidget {
     }
 
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 30.0),
+        padding: const EdgeInsets.only(top: 30.0),
         color: colorScheme.surface,
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -39,7 +38,8 @@ class PlaceSummaryView extends StatelessWidget {
               leading: const Icon(Icons.place_outlined),
               title: Text(detail.address ?? '정보 없음'),
               trailing: TextButton(
-                  onPressed: () => viewModel.onEvent(PlaceDetailEvent.copyText(detail.address)),
+                  onPressed: () => viewModel
+                      .onEvent(PlaceDetailEvent.copyText(detail.address)),
                   child: Text(
                     "복사",
                     style: textTheme.bodyLarge?.copyWith(color: Colors.blue),
@@ -91,10 +91,17 @@ class PlaceSummaryView extends StatelessWidget {
                 )),
           ),
           Container(
-              alignment: Alignment.centerRight,
-              margin: const EdgeInsets.only(top: 16, right: 24),
-              child: Image.asset('assets/image/google_logo_small.png',
-                  width: 64, fit: BoxFit.fitWidth))
+              margin: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset('assets/image/google_logo_small.png',
+                        width: 64, fit: BoxFit.fitWidth),
+                    TextButton.icon(
+                        onPressed: () {},
+                        icon: const Icon(Icons.edit, size: 16),
+                        label: const Text('정보 수정 제안'))
+                  ]))
         ]));
   }
 }

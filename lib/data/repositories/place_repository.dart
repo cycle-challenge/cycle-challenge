@@ -12,6 +12,7 @@ import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
@@ -114,12 +115,21 @@ class PlaceRepository {
             orElse: () => "알 수 없는 오류가 발생했습니다.")));
   }
 
-
   Future<Result<List<PlaceReview>, String>> findReviews(int id) async {
     final result = await api.findPlaceReviews(id);
 
     return result.when(
         success: (places) => Result.success(places),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+  Future<Result<List<Travel>, String>> findTravels(int id) async {
+    final result = await api.findPlaceTravels(id);
+
+    return result.when(
+        success: (travels) => Result.success(travels),
         error: (error) => Result.error(error.maybeWhen(
             error: (_, message) => message,
             orElse: () => "알 수 없는 오류가 발생했습니다.")));
