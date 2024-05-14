@@ -80,18 +80,16 @@ class PlaceSummarySection extends StatelessWidget {
                           color: Colors.blue, decorationColor: Colors.blue))
                   : const Text('정보 없음')),
           ListTile(
-            leading: const Icon(Icons.phone_outlined),
-            title: Text(detail.phoneNumber ?? '제공되지 않음'),
-            trailing: TextButton(
-                onPressed: () => viewModel
-                    .onEvent(PlaceDetailEvent.copyText(detail.phoneNumber)),
-                child: Text(
-                  "복사",
-                  style: textTheme.bodyLarge?.copyWith(color: Colors.blue),
-                )),
-          ),
+              leading: const Icon(Icons.phone_outlined),
+              title: Text(detail.phoneNumber ?? '제공되지 않음'),
+              trailing: TextButton(
+                  onPressed: () => viewModel
+                      .onEvent(PlaceDetailEvent.copyText(detail.phoneNumber)),
+                  child: Text("복사",
+                      style:
+                          textTheme.bodyLarge?.copyWith(color: Colors.blue)))),
           Container(
-              margin: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+              margin: const EdgeInsets.fromLTRB(24, 16, 16, 0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

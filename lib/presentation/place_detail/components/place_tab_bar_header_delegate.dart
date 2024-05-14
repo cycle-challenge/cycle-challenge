@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-class TapBarHeaderDelegate extends SliverPersistentHeaderDelegate {
+class PlaceTapBarHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(context, shrinkOffset, overlapsContent) {
     final colorScheme = Theme.of(context).colorScheme;
