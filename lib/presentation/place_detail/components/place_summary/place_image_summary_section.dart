@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_review_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
 class PlaceImageSummarySection extends StatelessWidget {
