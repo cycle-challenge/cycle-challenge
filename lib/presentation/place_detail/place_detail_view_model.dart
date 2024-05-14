@@ -17,7 +17,7 @@ class PlaceDetailViewModel with ChangeNotifier {
 
   final StreamController<MainUiEvent> _mainEventController;
 
-  PlaceDetailState _state = PlaceDetailState(placeImages: []);
+  PlaceDetailState _state = PlaceDetailState();
   PlaceDetailState get state => _state;
 
   final StreamController<PlaceDetailUIEvent> _eventController =
@@ -33,15 +33,22 @@ class PlaceDetailViewModel with ChangeNotifier {
         error: (message) =>
             _mainEventController.add(MainUiEvent.showSnackbar(message))));
 
-    useCases.findPlaceTravelsUseCase(place.id).then((result) {
-      result.when(
+    useCases.findPlaceTravelsUseCase(place.id).then((result) => result.when(
         success: (travels) {
           _state = _state.copyWith(travels: travels);
           notifyListeners();
         },
         error: (message) =>
-            _mainEventController.add(MainUiEvent.showSnackbar(message)));
-    });
+            _mainEventController.add(MainUiEvent.showSnackbar(message))));
+
+    useCases.findPlaceImagesUseCase(place.id).then((value) => value.when(success: (images) {
+
+      _state = _state.copyWith(images: images);
+      notifyListeners();
+    },
+
+        error: (message) =>
+        _mainEventController.add(MainUiEvent.showSnackbar(message))));
   }
 
   void onEvent(PlaceDetailEvent event) => event.when(

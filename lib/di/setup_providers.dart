@@ -20,6 +20,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/find_place_images_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_reviews_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_travels_use_case.dart';
@@ -92,6 +93,9 @@ List<SingleChildWidget> dependentModules = [
   Provider<GetBookmarkedPlaceUseCase>(
       create: (context) =>
           GetBookmarkedPlaceUseCase(context.read<PlaceRepository>())),
+  Provider<FindPlaceImagesUseCase>(
+      create: (context) =>
+          FindPlaceImagesUseCase(context.read<PlaceRepository>())),
   Provider<DeletePlaceBookmarkUseCase>(
       create: (context) =>
           DeletePlaceBookmarkUseCase(context.read<PlaceRepository>())),
@@ -156,7 +160,8 @@ List<SingleChildWidget> dependentModules = [
           calculateBoundUseCase: context.read<CalculateBoundUseCase>(),
           getMyTravelsUseCase: context.read<GetMyTravelsUseCase>(),
           findPlaceReviewsUseCase: context.read<FindPlaceReviewsUseCase>(),
-          findPlaceTravelsUseCase: context.read<FindPlaceTravelsUseCase>()))
+          findPlaceTravelsUseCase: context.read<FindPlaceTravelsUseCase>(),
+          findPlaceImagesUseCase: context.read<FindPlaceImagesUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [

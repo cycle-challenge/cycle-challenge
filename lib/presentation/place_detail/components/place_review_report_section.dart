@@ -81,7 +81,8 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      height: 150,
+      height: 200,
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
       color: colorScheme.surface,
       child: Row(children: [
         Column(mainAxisAlignment: MainAxisAlignment.center, children: [

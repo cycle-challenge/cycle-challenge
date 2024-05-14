@@ -9,6 +9,7 @@ import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
+import 'package:yeohaeng_ttukttak/domain/model/image.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
@@ -130,6 +131,17 @@ class PlaceRepository {
 
     return result.when(
         success: (travels) => Result.success(travels),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+
+  Future<Result<List<Image>, String>> findImages(int id) async {
+    final result = await api.findPlaceImages(id);
+
+    return result.when(
+        success: (images) => Result.success(images),
         error: (error) => Result.error(error.maybeWhen(
             error: (_, message) => message,
             orElse: () => "알 수 없는 오류가 발생했습니다.")));

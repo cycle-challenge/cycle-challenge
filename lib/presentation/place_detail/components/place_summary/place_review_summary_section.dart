@@ -29,24 +29,18 @@ class PlaceReviewSummarySection extends StatelessWidget {
                     Text('방문자 리뷰',
                         style: textTheme.titleLarge
                             ?.copyWith(fontWeight: FontWeight.w600)),
-                    const SizedBox(height: 16),
                     PlaceReviewReportSection(ratings: ratings),
-                    const SizedBox(height: 12),
-                    ListView.separated(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        primary: false,
-                        itemCount: min(2, reviews.length),
-                        itemBuilder: (context, index) =>
-                            PlaceReviewListItem(review: reviews[index]),
-                        separatorBuilder: (_, __) => const Divider())
+                    for (int index = 0; index < 2; index++) ...[
+                      PlaceReviewListItem(review: reviews[index]),
+                      if (index < 1) const Divider()
+                    ]
                   ])),
           Align(
               alignment: Alignment.centerRight,
               child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () => { DefaultTabController.of(context).index = 2 },
                       icon: const Icon(Icons.chevron_left),
                       label: const Text('리뷰 더보기'))))
         ]));

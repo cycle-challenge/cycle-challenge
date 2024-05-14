@@ -6,6 +6,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/find_place_images_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_reviews_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_travels_use_case.dart';
@@ -46,6 +47,7 @@ class UseCases {
   final GetMyTravelsUseCase getMyTravelsUseCase;
   final FindPlaceReviewsUseCase findPlaceReviewsUseCase;
   final FindPlaceTravelsUseCase findPlaceTravelsUseCase;
+  final FindPlaceImagesUseCase findPlaceImagesUseCase;
 
   UseCases({
     required this.getPlaceDetail,
@@ -70,6 +72,7 @@ class UseCases {
     required this.calculateBoundUseCase,
     required this.getMyTravelsUseCase,
     required this.findPlaceReviewsUseCase,
-    required this.findPlaceTravelsUseCase
+    required this.findPlaceTravelsUseCase,
+    required this.findPlaceImagesUseCase
   });
 }

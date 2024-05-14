@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PlaceDetailState {
   bool get isBusinessHourExpanded => throw _privateConstructorUsedError;
   int get imageIndex => throw _privateConstructorUsedError;
-  List<ImageModel> get placeImages => throw _privateConstructorUsedError;
+  List<Image> get images => throw _privateConstructorUsedError;
   List<PlaceReview> get reviews => throw _privateConstructorUsedError;
   List<Travel> get travels => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $PlaceDetailStateCopyWith<$Res> {
   $Res call(
       {bool isBusinessHourExpanded,
       int imageIndex,
-      List<ImageModel> placeImages,
+      List<Image> images,
       List<PlaceReview> reviews,
       List<Travel> travels});
 }
@@ -56,7 +56,7 @@ class _$PlaceDetailStateCopyWithImpl<$Res, $Val extends PlaceDetailState>
   $Res call({
     Object? isBusinessHourExpanded = null,
     Object? imageIndex = null,
-    Object? placeImages = null,
+    Object? images = null,
     Object? reviews = null,
     Object? travels = null,
   }) {
@@ -69,10 +69,10 @@ class _$PlaceDetailStateCopyWithImpl<$Res, $Val extends PlaceDetailState>
           ? _value.imageIndex
           : imageIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      placeImages: null == placeImages
-          ? _value.placeImages
-          : placeImages // ignore: cast_nullable_to_non_nullable
-              as List<ImageModel>,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>,
       reviews: null == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$$PlaceDetailStateImplCopyWith<$Res>
   $Res call(
       {bool isBusinessHourExpanded,
       int imageIndex,
-      List<ImageModel> placeImages,
+      List<Image> images,
       List<PlaceReview> reviews,
       List<Travel> travels});
 }
@@ -114,7 +114,7 @@ class __$$PlaceDetailStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isBusinessHourExpanded = null,
     Object? imageIndex = null,
-    Object? placeImages = null,
+    Object? images = null,
     Object? reviews = null,
     Object? travels = null,
   }) {
@@ -127,10 +127,10 @@ class __$$PlaceDetailStateImplCopyWithImpl<$Res>
           ? _value.imageIndex
           : imageIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      placeImages: null == placeImages
-          ? _value._placeImages
-          : placeImages // ignore: cast_nullable_to_non_nullable
-              as List<ImageModel>,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>,
       reviews: null == reviews
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -149,10 +149,10 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
   _$PlaceDetailStateImpl(
       {this.isBusinessHourExpanded = false,
       this.imageIndex = 0,
-      final List<ImageModel> placeImages = const [],
+      final List<Image> images = const [],
       final List<PlaceReview> reviews = const [],
       final List<Travel> travels = const []})
-      : _placeImages = placeImages,
+      : _images = images,
         _reviews = reviews,
         _travels = travels;
 
@@ -162,13 +162,13 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
   @override
   @JsonKey()
   final int imageIndex;
-  final List<ImageModel> _placeImages;
+  final List<Image> _images;
   @override
   @JsonKey()
-  List<ImageModel> get placeImages {
-    if (_placeImages is EqualUnmodifiableListView) return _placeImages;
+  List<Image> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_placeImages);
+    return EqualUnmodifiableListView(_images);
   }
 
   final List<PlaceReview> _reviews;
@@ -191,7 +191,7 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
 
   @override
   String toString() {
-    return 'PlaceDetailState(isBusinessHourExpanded: $isBusinessHourExpanded, imageIndex: $imageIndex, placeImages: $placeImages, reviews: $reviews, travels: $travels)';
+    return 'PlaceDetailState(isBusinessHourExpanded: $isBusinessHourExpanded, imageIndex: $imageIndex, images: $images, reviews: $reviews, travels: $travels)';
   }
 
   @override
@@ -203,8 +203,7 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
                 other.isBusinessHourExpanded == isBusinessHourExpanded) &&
             (identical(other.imageIndex, imageIndex) ||
                 other.imageIndex == imageIndex) &&
-            const DeepCollectionEquality()
-                .equals(other._placeImages, _placeImages) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews) &&
             const DeepCollectionEquality().equals(other._travels, _travels));
   }
@@ -214,7 +213,7 @@ class _$PlaceDetailStateImpl implements _PlaceDetailState {
       runtimeType,
       isBusinessHourExpanded,
       imageIndex,
-      const DeepCollectionEquality().hash(_placeImages),
+      const DeepCollectionEquality().hash(_images),
       const DeepCollectionEquality().hash(_reviews),
       const DeepCollectionEquality().hash(_travels));
 
@@ -230,7 +229,7 @@ abstract class _PlaceDetailState implements PlaceDetailState {
   factory _PlaceDetailState(
       {final bool isBusinessHourExpanded,
       final int imageIndex,
-      final List<ImageModel> placeImages,
+      final List<Image> images,
       final List<PlaceReview> reviews,
       final List<Travel> travels}) = _$PlaceDetailStateImpl;
 
@@ -239,7 +238,7 @@ abstract class _PlaceDetailState implements PlaceDetailState {
   @override
   int get imageIndex;
   @override
-  List<ImageModel> get placeImages;
+  List<Image> get images;
   @override
   List<PlaceReview> get reviews;
   @override

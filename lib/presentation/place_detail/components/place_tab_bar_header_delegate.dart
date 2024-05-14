@@ -13,8 +13,8 @@ class PlaceTapBarHeaderDelegate extends SliverPersistentHeaderDelegate {
         color: colorScheme.surface,
         child: const TabBar(indicatorSize: TabBarIndicatorSize.tab, tabs: [
           Tab(text: '메인'),
-          Tab(text: '리뷰'),
           Tab(text: '사진'),
+          Tab(text: '리뷰'),
           Tab(text: '여행')
         ]));
   }

@@ -1,13 +1,11 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
+import 'package:yeohaeng_ttukttak/domain/model/image.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
@@ -362,6 +360,20 @@ class RemoteAPI {
 
       return Result.success(List.of(response.data['data'])
           .map((e) => Travel.fromJson(e))
+          .toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<List<Image>, ApiError>> findPlaceImages(int placeId) async {
+    try {
+      final response = await dio.get(
+          '$remoteUrl/api/v1/places/$placeId/images',
+          options: Options(headers: headers));
+
+      return Result.success(List.of(response.data['data'])
+          .map((e) => Image.fromJson(e))
           .toList());
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));

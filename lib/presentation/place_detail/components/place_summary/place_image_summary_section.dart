@@ -28,6 +28,7 @@ class PlaceImageSummarySection extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final viewModel = context.watch<PlaceDetailViewModel>();
+
     return Container(
         color: colorScheme.surface,
         padding: const EdgeInsets.only(top: 30, bottom: 15),
@@ -76,12 +77,7 @@ class PlaceImageSummarySection extends StatelessWidget {
                 child: Directionality(
                     textDirection: TextDirection.rtl,
                     child: TextButton.icon(
-                        onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => ChangeNotifierProvider<
-                                        PlaceDetailViewModel>.value(
-                                    value: viewModel,
-                                    child: PlaceReviewScreen(place: place)))),
+                        onPressed: () => { DefaultTabController.of(context).index = 1 },
                         icon: const Icon(Icons.chevron_left),
                         label: const Text('사진 더보기'))))
           ],

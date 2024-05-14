@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
-import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_travel_list_item.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_travel_preview_item.dart';
 
 class PlaceTravelSummarySection extends StatelessWidget {
   final List<Travel> travels;
@@ -36,14 +36,14 @@ class PlaceTravelSummarySection extends StatelessWidget {
                         separatorBuilder: (_, __) =>
                             const SizedBox(width: 8),
                         itemBuilder: (context, index) =>
-                            PlaceTravelListItem(travel: travels[index])))
+                            PlaceTravelPreviewItem(travel: travels[index])))
               ]),
           Align(
               alignment: Alignment.centerRight,
               child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () => { DefaultTabController.of(context).index = 3 },
                       icon: const Icon(Icons.chevron_left),
                       label: const Text('여행 더보기'))))
         ]));
