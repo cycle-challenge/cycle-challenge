@@ -22,6 +22,7 @@ PlaceReview _$PlaceReviewFromJson(Map<String, dynamic> json) {
 mixin _$PlaceReview {
   double get rating => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
+  bool get wantsToRevisit => throw _privateConstructorUsedError;
   @JsonKey(fromJson: DateTime.parse)
   DateTime get createdAt => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $PlaceReviewCopyWith<$Res> {
   $Res call(
       {double rating,
       String nickname,
+      bool wantsToRevisit,
       @JsonKey(fromJson: DateTime.parse) DateTime createdAt,
       String? comment});
 }
@@ -60,6 +62,7 @@ class _$PlaceReviewCopyWithImpl<$Res, $Val extends PlaceReview>
   $Res call({
     Object? rating = null,
     Object? nickname = null,
+    Object? wantsToRevisit = null,
     Object? createdAt = null,
     Object? comment = freezed,
   }) {
@@ -72,6 +75,10 @@ class _$PlaceReviewCopyWithImpl<$Res, $Val extends PlaceReview>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
+      wantsToRevisit: null == wantsToRevisit
+          ? _value.wantsToRevisit
+          : wantsToRevisit // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -95,6 +102,7 @@ abstract class _$$PlaceReviewImplCopyWith<$Res>
   $Res call(
       {double rating,
       String nickname,
+      bool wantsToRevisit,
       @JsonKey(fromJson: DateTime.parse) DateTime createdAt,
       String? comment});
 }
@@ -112,6 +120,7 @@ class __$$PlaceReviewImplCopyWithImpl<$Res>
   $Res call({
     Object? rating = null,
     Object? nickname = null,
+    Object? wantsToRevisit = null,
     Object? createdAt = null,
     Object? comment = freezed,
   }) {
@@ -124,6 +133,10 @@ class __$$PlaceReviewImplCopyWithImpl<$Res>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
+      wantsToRevisit: null == wantsToRevisit
+          ? _value.wantsToRevisit
+          : wantsToRevisit // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -142,6 +155,7 @@ class _$PlaceReviewImpl implements _PlaceReview {
   _$PlaceReviewImpl(
       {required this.rating,
       required this.nickname,
+      required this.wantsToRevisit,
       @JsonKey(fromJson: DateTime.parse) required this.createdAt,
       this.comment});
 
@@ -153,6 +167,8 @@ class _$PlaceReviewImpl implements _PlaceReview {
   @override
   final String nickname;
   @override
+  final bool wantsToRevisit;
+  @override
   @JsonKey(fromJson: DateTime.parse)
   final DateTime createdAt;
   @override
@@ -160,7 +176,7 @@ class _$PlaceReviewImpl implements _PlaceReview {
 
   @override
   String toString() {
-    return 'PlaceReview(rating: $rating, nickname: $nickname, createdAt: $createdAt, comment: $comment)';
+    return 'PlaceReview(rating: $rating, nickname: $nickname, wantsToRevisit: $wantsToRevisit, createdAt: $createdAt, comment: $comment)';
   }
 
   @override
@@ -171,6 +187,8 @@ class _$PlaceReviewImpl implements _PlaceReview {
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.nickname, nickname) ||
                 other.nickname == nickname) &&
+            (identical(other.wantsToRevisit, wantsToRevisit) ||
+                other.wantsToRevisit == wantsToRevisit) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.comment, comment) || other.comment == comment));
@@ -178,8 +196,8 @@ class _$PlaceReviewImpl implements _PlaceReview {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, rating, nickname, createdAt, comment);
+  int get hashCode => Object.hash(
+      runtimeType, rating, nickname, wantsToRevisit, createdAt, comment);
 
   @JsonKey(ignore: true)
   @override
@@ -199,6 +217,7 @@ abstract class _PlaceReview implements PlaceReview {
   factory _PlaceReview(
       {required final double rating,
       required final String nickname,
+      required final bool wantsToRevisit,
       @JsonKey(fromJson: DateTime.parse) required final DateTime createdAt,
       final String? comment}) = _$PlaceReviewImpl;
 
@@ -209,6 +228,8 @@ abstract class _PlaceReview implements PlaceReview {
   double get rating;
   @override
   String get nickname;
+  @override
+  bool get wantsToRevisit;
   @override
   @JsonKey(fromJson: DateTime.parse)
   DateTime get createdAt;

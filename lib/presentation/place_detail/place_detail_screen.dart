@@ -66,75 +66,65 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
         bookmarkViewModel.state.placeIdSet.contains(widget.place.id);
 
     return Scaffold(
-      body: DefaultTabController(
-          length: 4,
-          child: NestedScrollView(
-              headerSliverBuilder: (_, __) => [
-                    SliverAppBar(
-                        pinned: true,
-                        expandedHeight: 244.0,
-                        surfaceTintColor: colorScheme.surface,
-                        flexibleSpace: FlexibleSpaceBar(
-                            expandedTitleScale: 1.1,
-                            title: Text(widget.place.name,
-                                style: textTheme.titleLarge
-                                    ?.copyWith(fontWeight: FontWeight.w600)),
-                            centerTitle: false,
-                            background: PlacePreviewImageHeaderSection(
-                                place: widget.place))),
-                    SliverToBoxAdapter(
-                        child: PlaceSummarySection(place: widget.place)),
-                    SliverPersistentHeader(
-                        pinned: true, delegate: PlaceTapBarHeaderDelegate())
-                  ],
-              physics: const ClampingScrollPhysics(),
-              body: TabBarView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    PlaceMainTabView(
-                        reviews: state.reviews,
-                        ratings: ratings,
-                        place: widget.place,
-                        travels: state.travels),
-                    PlaceImageTabView(images: state.images),
-                    PlaceReviewTabView(
-                        place: widget.place,
-                        ratings: ratings,
-                        reviews: state.reviews),
-                    PlaceTravelTabView(travels: state.travels)
-                  ]))),
-      floatingActionButton: FloatingActionButton(
-          onPressed: isBookmarked
-              ? () => bookmarkViewModel
-                  .onEvent(BookmarkEvent.deletePlace(widget.place))
-              : () => bookmarkViewModel
-                  .onEvent(BookmarkEvent.addPlace(widget.place)),
-          elevation: 0,
-          backgroundColor: colorScheme.secondaryContainer,
-          child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
-              color: colorScheme.onSurface)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      bottomNavigationBar: BottomAppBar(
-        surfaceTintColor: colorScheme.surface,
-        child: Row(
-          children: [
-            IconButton(icon: const Icon(Icons.share), onPressed: () {}),
-            IconButton(
-                icon: const Icon(Icons.phone),
-                onPressed: () => viewModel
-                    .onEvent(PlaceDetailEvent.callPhone(detail.phoneNumber))),
-            IconButton(
-                onPressed: () => showModalBottomSheet(
-                    enableDrag: false,
-                    isScrollControlled: true,
-                    useSafeArea: true,
-                    context: context,
-                    builder: (_) => PlaceReviewCreateSheet(
-                        place: widget.place, initialRating: 3.0)),
-                icon: const Icon(Icons.add_comment))
-          ],
-        ),
-      ),
-    );
+        body: DefaultTabController(
+            length: 4,
+            child: NestedScrollView(
+                headerSliverBuilder: (_, __) => [
+                      SliverAppBar(
+                          pinned: true,
+                          expandedHeight: 244.0,
+                          surfaceTintColor: colorScheme.surface,
+                          flexibleSpace: FlexibleSpaceBar(
+                              expandedTitleScale: 1.1,
+                              title: Text(widget.place.name,
+                                  style: textTheme.titleLarge
+                                      ?.copyWith(fontWeight: FontWeight.w600)),
+                              centerTitle: false,
+                              background: PlacePreviewImageHeaderSection(
+                                  place: widget.place))),
+                      SliverToBoxAdapter(
+                          child: PlaceSummarySection(place: widget.place)),
+                      SliverPersistentHeader(
+                          pinned: true, delegate: PlaceTapBarHeaderDelegate())
+                    ],
+                physics: const ClampingScrollPhysics(),
+                body: TabBarView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      PlaceMainTabView(
+                          reviews: state.reviews,
+                          ratings: ratings,
+                          place: widget.place,
+                          travels: state.travels),
+                      PlaceImageTabView(images: state.images),
+                      PlaceReviewTabView(
+                          place: widget.place,
+                          ratings: ratings,
+                          reviews: state.reviews),
+                      PlaceTravelTabView(travels: state.travels)
+                    ]))),
+        floatingActionButton: FloatingActionButton(
+            onPressed: isBookmarked
+                ? () => bookmarkViewModel
+                    .onEvent(BookmarkEvent.deletePlace(widget.place))
+                : () => bookmarkViewModel
+                    .onEvent(BookmarkEvent.addPlace(widget.place)),
+            elevation: 0,
+            backgroundColor: colorScheme.secondaryContainer,
+            child: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+                color: colorScheme.onSurface)),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+        bottomNavigationBar: BottomAppBar(
+            surfaceTintColor: colorScheme.surface,
+            child: Row(children: [
+              IconButton(icon: const Icon(Icons.share), onPressed: () {}),
+              IconButton(
+                  icon: const Icon(Icons.phone),
+                  onPressed: () => viewModel
+                      .onEvent(PlaceDetailEvent.callPhone(detail.phoneNumber))),
+              IconButton(
+                  icon: const Icon(Icons.add_comment),
+                  onPressed: () => showPlaceReviewCreateSheet(context, place: widget.place))
+            ])));
   }
 }

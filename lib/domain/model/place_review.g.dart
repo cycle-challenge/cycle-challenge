@@ -10,6 +10,7 @@ _$PlaceReviewImpl _$$PlaceReviewImplFromJson(Map<String, dynamic> json) =>
     _$PlaceReviewImpl(
       rating: (json['rating'] as num).toDouble(),
       nickname: json['nickname'] as String,
+      wantsToRevisit: json['wantsToRevisit'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       comment: json['comment'] as String?,
     );
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$PlaceReviewImplToJson(_$PlaceReviewImpl instance) =>
     <String, dynamic>{
       'rating': instance.rating,
       'nickname': instance.nickname,
+      'wantsToRevisit': instance.wantsToRevisit,
       'createdAt': instance.createdAt.toIso8601String(),
       'comment': instance.comment,
     };

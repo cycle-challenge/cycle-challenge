@@ -60,7 +60,8 @@ class PlaceRepository {
     return api.getBookmarkedPlace();
   }
 
-  Future<Result<List<PlaceSuggestion>, String>> autoComplete(String query) async {
+  Future<Result<List<PlaceSuggestion>, String>> autoComplete(
+      String query) async {
     final result = await api.autocomplete(query);
 
     return result.when(
@@ -136,12 +137,22 @@ class PlaceRepository {
             orElse: () => "알 수 없는 오류가 발생했습니다.")));
   }
 
-
   Future<Result<List<Image>, String>> findImages(int id) async {
     final result = await api.findPlaceImages(id);
 
     return result.when(
         success: (images) => Result.success(images),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+  Future<Result<void, String>> createReview(
+      int placeId, double rating, bool wantsToRevisit, String? comment) async {
+    final result = await api.createPlaceReview(placeId, rating, wantsToRevisit, comment);
+
+    return result.when(
+        success: (_) => const Result.success(null),
         error: (error) => Result.error(error.maybeWhen(
             error: (_, message) => message,
             orElse: () => "알 수 없는 오류가 발생했습니다.")));

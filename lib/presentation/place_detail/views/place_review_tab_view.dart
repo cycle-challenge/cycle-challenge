@@ -49,13 +49,10 @@ class PlaceReviewTabView extends StatelessWidget {
                               Icons.star,
                               color: Colors.amber,
                             ),
-                        onRatingUpdate: (rating) => showModalBottomSheet(
-                            enableDrag: false,
-                            isScrollControlled: true,
-                            useSafeArea: true,
-                            context: context,
-                            builder: (_) => PlaceReviewCreateSheet(
-                                place: place, initialRating: rating)))
+                        onRatingUpdate: (rating) => showPlaceReviewCreateSheet(
+                            context,
+                            place: place,
+                            initialRating: rating))
                   ])),
           Container(height: 1, color: colorScheme.secondaryContainer),
           PlaceReviewReportSection(ratings: ratings),

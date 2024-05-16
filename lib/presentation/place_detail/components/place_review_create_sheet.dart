@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 
 class PlaceReviewCreateSheet extends StatefulWidget {
   final Place place;
@@ -20,7 +24,9 @@ class PlaceReviewCreateSheet extends StatefulWidget {
 class _PlaceReviewCreateSheetState extends State<PlaceReviewCreateSheet> {
   late double _rating;
 
-  bool _isRecommended = true;
+  final TextEditingController _commentController = TextEditingController();
+
+  bool _wantsToRevisit = true;
 
   @override
   void initState() {
@@ -35,9 +41,6 @@ class _PlaceReviewCreateSheetState extends State<PlaceReviewCreateSheet> {
 
     final authViewModel = context.watch<AuthViewModel>();
     final profile = authViewModel.state.member;
-
-    final _formKey = GlobalKey<FormBuilderState>();
-    final _nameFieldKey = GlobalKey<FormBuilderFieldState>();
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -100,19 +103,21 @@ class _PlaceReviewCreateSheetState extends State<PlaceReviewCreateSheet> {
                             child: Wrap(spacing: 8.0, children: [
                               ChoiceChip(
                                   label: const Text('예'),
-                                  selected: _isRecommended,
+                                  selected: _wantsToRevisit,
                                   onSelected: (selected) => setState(
-                                      () => _isRecommended = selected)),
+                                      () => _wantsToRevisit = selected)),
                               ChoiceChip(
                                   label: const Text('아니요'),
-                                  selected: !_isRecommended,
+                                  selected: !_wantsToRevisit,
                                   onSelected: (selected) => setState(
-                                      () => _isRecommended = !selected)),
+                                      () => _wantsToRevisit = !selected)),
                             ]),
                           )
                         ]),
                     const SizedBox(height: 24),
                     TextField(
+                        controller: _commentController,
+                        textInputAction: TextInputAction.done,
                         scrollPadding: const EdgeInsets.only(bottom: 220),
                         maxLines: 8,
                         onTapOutside: (_) =>
@@ -136,9 +141,32 @@ class _PlaceReviewCreateSheetState extends State<PlaceReviewCreateSheet> {
                 foregroundColor: colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0))),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(context).pop((
+                  rating: _rating,
+                  wantsToRevisit: _wantsToRevisit,
+                  comment: _commentController.text
+                )),
             child: Text('작성하기')),
       )),
     );
   }
+}
+
+void showPlaceReviewCreateSheet(BuildContext context,
+    {required Place place, double initialRating = 3.0}) async {
+  final viewModel = context.read<PlaceDetailViewModel>();
+
+  final review = await showModalBottomSheet<
+          ({double rating, bool wantsToRevisit, String? comment})?>(
+      enableDrag: false,
+      isScrollControlled: true,
+      useSafeArea: true,
+      context: context,
+      builder: (_) =>
+          PlaceReviewCreateSheet(place: place, initialRating: initialRating));
+
+  if (review == null) return;
+
+  viewModel.onEvent(PlaceDetailEvent.createReview(
+      review.rating, review.wantsToRevisit, review.comment));
 }

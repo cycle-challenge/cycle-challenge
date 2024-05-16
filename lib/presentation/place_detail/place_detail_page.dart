@@ -27,10 +27,9 @@ class PlaceDetailPage extends StatelessWidget {
     }
 
     return ChangeNotifierProvider(
-      create: (context) => PlaceDetailViewModel(
-          place,
-          context.read<UseCases>(),
-          context.read<StreamController<MainUiEvent>>()),
+      create: (context) => PlaceDetailViewModel(context.read<UseCases>(),
+          context.read<StreamController<MainUiEvent>>(),
+          place: place),
       child: PlaceDetailScreen(place: place),
     );
   }

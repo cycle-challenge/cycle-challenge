@@ -12,6 +12,7 @@ class PlaceReview with _$PlaceReview {
   factory PlaceReview({
     required double rating,
     required String nickname,
+    required bool wantsToRevisit,
     @JsonKey(fromJson: DateTime.parse) required DateTime createdAt,
     String? comment
   }) = _PlaceReview;

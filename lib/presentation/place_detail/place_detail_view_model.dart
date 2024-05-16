@@ -17,6 +17,8 @@ class PlaceDetailViewModel with ChangeNotifier {
 
   final StreamController<MainUiEvent> _mainEventController;
 
+  final Place place;
+
   PlaceDetailState _state = PlaceDetailState();
   PlaceDetailState get state => _state;
 
@@ -24,7 +26,8 @@ class PlaceDetailViewModel with ChangeNotifier {
       StreamController.broadcast();
   Stream<PlaceDetailUIEvent> get stream => _eventController.stream;
 
-  PlaceDetailViewModel(Place place, this.useCases, this._mainEventController) {
+  PlaceDetailViewModel(this.useCases, this._mainEventController,
+      {required this.place}) {
     useCases.findPlaceReviewsUseCase(place.id).then((result) => result.when(
         success: (reviews) {
           _state = _state.copyWith(reviews: reviews);
@@ -41,14 +44,13 @@ class PlaceDetailViewModel with ChangeNotifier {
         error: (message) =>
             _mainEventController.add(MainUiEvent.showSnackbar(message))));
 
-    useCases.findPlaceImagesUseCase(place.id).then((value) => value.when(success: (images) {
-
-      _state = _state.copyWith(images: images);
-      notifyListeners();
-    },
-
+    useCases.findPlaceImagesUseCase(place.id).then((value) => value.when(
+        success: (images) {
+          _state = _state.copyWith(images: images);
+          notifyListeners();
+        },
         error: (message) =>
-        _mainEventController.add(MainUiEvent.showSnackbar(message))));
+            _mainEventController.add(MainUiEvent.showSnackbar(message))));
   }
 
   void onEvent(PlaceDetailEvent event) => event.when(
@@ -57,7 +59,31 @@ class PlaceDetailViewModel with ChangeNotifier {
       callPhone: _callPhone,
       copyText: _copyText,
       launchURL: _launchURL,
-      changeImageIndex: _onChangeImageIndex);
+      changeImageIndex: _onChangeImageIndex,
+      createReview: _onCreateReview);
+
+  void _onCreateReview(
+      double rating, bool wantsToRevisit, String? comment) async {
+    final result = await useCases.createPlaceReviewUseCase(
+        place.id, rating, wantsToRevisit, comment);
+
+    result.when(
+        success: (_) async {
+          _mainEventController
+              .add(const MainUiEvent.showSnackbar('리뷰 등록이 완료되었습니다.'));
+
+          final result = await useCases.findPlaceReviewsUseCase(place.id);
+          result.when(
+              success: (reviews) {
+                _state = _state.copyWith(reviews: reviews);
+                notifyListeners();
+              },
+              error: (message) =>
+                  _mainEventController.add(MainUiEvent.showSnackbar(message)));
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message)));
+  }
 
   void _onChangeImageIndex(int index) {
     _state = _state.copyWith(imageIndex: index);

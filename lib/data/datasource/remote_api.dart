@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
 import 'package:yeohaeng_ttukttak/data/models/visit_model.dart';
@@ -368,13 +370,29 @@ class RemoteAPI {
 
   Future<Result<List<Image>, ApiError>> findPlaceImages(int placeId) async {
     try {
-      final response = await dio.get(
-          '$remoteUrl/api/v1/places/$placeId/images',
+      final response = await dio.get('$remoteUrl/api/v1/places/$placeId/images',
           options: Options(headers: headers));
 
       return Result.success(List.of(response.data['data'])
           .map((e) => Image.fromJson(e))
           .toList());
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<void, ApiError>> createPlaceReview(int placeId, double rating, bool wantsToRevisit, String? comment) async {
+    try {
+       await dio.post(
+          '$remoteUrl/api/v1/places/$placeId/reviews',
+          options: Options(headers: headers),
+          data: {
+            'rating': rating,
+            'wantsToRevisit': wantsToRevisit,
+            'comment' : comment
+          });
+
+      return const Result.success(null);
     } on DioException catch (e) {
       return Result.error(ApiError.fromResponse(e.response));
     }
