@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +7,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
-
+import 'package:yeohaeng_ttukttak/presentation/map/components/place_list_item.dart';
 
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_page.dart';
 
@@ -19,9 +19,13 @@ class PlaceListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     final viewModel = context.watch<MainViewModel>();
-    final bookmarkViewModel = context.watch<BookmarkViewModel>();
     final state = viewModel.state;
+
+    final bookmarkViewModel = context.watch<BookmarkViewModel>();
 
     _controller.addListener(() {
       bool canScrollUp = _controller.offset > 0;
@@ -38,7 +42,7 @@ class PlaceListView extends StatelessWidget {
               width: 25,
               height: 4,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.outline,
+                color: colorScheme.outline,
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
             ),
@@ -49,87 +53,24 @@ class PlaceListView extends StatelessWidget {
             controller: _controller,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
-            itemBuilder: (BuildContext context, int index) {
-              String distance =
-                  places[index].distance?.toStringAsFixed(1).toString() ??
-                      "0.0";
-              String type = places[index].type.label;
-
-              bool isBookmarked =
+            itemBuilder: (context, index) {
+              final isBookmarked =
                   bookmarkViewModel.state.placeIdSet.contains(places[index].id);
 
               return GestureDetector(
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => PlaceDetailPage(place: places[index]))),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 230),
-                                child: Text(places[index].name,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge),
-                              ),
-                              Text('$distance km · $type',
-                                  style: Theme.of(context).textTheme.labelLarge)
-                            ],
-                          ),
-                          IconButton(
-                            onPressed: isBookmarked
-                                ? () => bookmarkViewModel
-                                    .onEvent(BookmarkEvent.deletePlace(places[index]))
-                                : () => bookmarkViewModel
-                                    .onEvent(BookmarkEvent.addPlace(places[index])),
-                            icon: Icon(
-                                isBookmarked
-                                    ? Icons.bookmark
-                                    : Icons.bookmark_outline,
-                                size: 20),
-                          ),
-                        ],
-                      ),
-                      Container(
-                          height: 144,
-                          margin: const EdgeInsets.only(top: 10.0),
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            primary: false,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(width: 8),
-                            itemBuilder: (BuildContext context, int imageIndex) {
-                              return ClipRRect(
-                                child: imageIndex < places[index].images.length
-                                    ? Image.network(
-                                  places[index].images[imageIndex].small,
-                                        width: 144,
-                                        height: 144,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : Container(
-                                        width: 144,
-                                        height: 144,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondaryContainer,
-                                      ),
-                              );
-                            },
-                          )),
-                    ],
-                  ),
-                ),
-              );
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => PlaceDetailPage(place: places[index]))),
+                  child: PlaceListItem(
+                      place: places[index],
+                      trailing: IconButton(
+                          onPressed: isBookmarked
+                              ? () => bookmarkViewModel.onEvent(
+                                  BookmarkEvent.deletePlace(places[index]))
+                              : () => bookmarkViewModel.onEvent(
+                                  BookmarkEvent.addPlace(places[index])),
+                          icon: Icon(isBookmarked
+                              ? Icons.bookmark
+                              : Icons.bookmark_outline))));
             },
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(height: 32),

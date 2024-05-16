@@ -26,6 +26,10 @@ mixin _$Place {
   double get latitude => throw _privateConstructorUsedError;
   @NestedJsonKey(name: 'location/longitude')
   double get longitude => throw _privateConstructorUsedError;
+  @NestedJsonKey(name: 'reviewReport/count')
+  int get reviewCount => throw _privateConstructorUsedError;
+  @NestedJsonKey(name: 'reviewReport/ratingAvg')
+  double get reviewAvg => throw _privateConstructorUsedError;
   String get googlePlaceId => throw _privateConstructorUsedError;
   @JsonKey(name: 'localAddress')
   String? get localAddr => throw _privateConstructorUsedError;
@@ -53,6 +57,8 @@ abstract class $PlaceCopyWith<$Res> {
       String name,
       @NestedJsonKey(name: 'location/latitude') double latitude,
       @NestedJsonKey(name: 'location/longitude') double longitude,
+      @NestedJsonKey(name: 'reviewReport/count') int reviewCount,
+      @NestedJsonKey(name: 'reviewReport/ratingAvg') double reviewAvg,
       String googlePlaceId,
       @JsonKey(name: 'localAddress') String? localAddr,
       @JsonKey(name: 'roadAddress') String? roadAddr,
@@ -79,6 +85,8 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
+    Object? reviewCount = null,
+    Object? reviewAvg = null,
     Object? googlePlaceId = null,
     Object? localAddr = freezed,
     Object? roadAddr = freezed,
@@ -102,6 +110,14 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      reviewCount: null == reviewCount
+          ? _value.reviewCount
+          : reviewCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      reviewAvg: null == reviewAvg
+          ? _value.reviewAvg
+          : reviewAvg // ignore: cast_nullable_to_non_nullable
               as double,
       googlePlaceId: null == googlePlaceId
           ? _value.googlePlaceId
@@ -143,6 +159,8 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
       String name,
       @NestedJsonKey(name: 'location/latitude') double latitude,
       @NestedJsonKey(name: 'location/longitude') double longitude,
+      @NestedJsonKey(name: 'reviewReport/count') int reviewCount,
+      @NestedJsonKey(name: 'reviewReport/ratingAvg') double reviewAvg,
       String googlePlaceId,
       @JsonKey(name: 'localAddress') String? localAddr,
       @JsonKey(name: 'roadAddress') String? roadAddr,
@@ -167,6 +185,8 @@ class __$$PlaceImplCopyWithImpl<$Res>
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
+    Object? reviewCount = null,
+    Object? reviewAvg = null,
     Object? googlePlaceId = null,
     Object? localAddr = freezed,
     Object? roadAddr = freezed,
@@ -190,6 +210,14 @@ class __$$PlaceImplCopyWithImpl<$Res>
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      reviewCount: null == reviewCount
+          ? _value.reviewCount
+          : reviewCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      reviewAvg: null == reviewAvg
+          ? _value.reviewAvg
+          : reviewAvg // ignore: cast_nullable_to_non_nullable
               as double,
       googlePlaceId: null == googlePlaceId
           ? _value.googlePlaceId
@@ -227,6 +255,8 @@ class _$PlaceImpl implements _Place {
       required this.name,
       @NestedJsonKey(name: 'location/latitude') required this.latitude,
       @NestedJsonKey(name: 'location/longitude') required this.longitude,
+      @NestedJsonKey(name: 'reviewReport/count') required this.reviewCount,
+      @NestedJsonKey(name: 'reviewReport/ratingAvg') required this.reviewAvg,
       required this.googlePlaceId,
       @JsonKey(name: 'localAddress') this.localAddr,
       @JsonKey(name: 'roadAddress') this.roadAddr,
@@ -249,6 +279,12 @@ class _$PlaceImpl implements _Place {
   @override
   @NestedJsonKey(name: 'location/longitude')
   final double longitude;
+  @override
+  @NestedJsonKey(name: 'reviewReport/count')
+  final int reviewCount;
+  @override
+  @NestedJsonKey(name: 'reviewReport/ratingAvg')
+  final double reviewAvg;
   @override
   final String googlePlaceId;
   @override
@@ -275,7 +311,7 @@ class _$PlaceImpl implements _Place {
 
   @override
   String toString() {
-    return 'Place(id: $id, name: $name, latitude: $latitude, longitude: $longitude, googlePlaceId: $googlePlaceId, localAddr: $localAddr, roadAddr: $roadAddr, type: $type, images: $images, distance: $distance)';
+    return 'Place(id: $id, name: $name, latitude: $latitude, longitude: $longitude, reviewCount: $reviewCount, reviewAvg: $reviewAvg, googlePlaceId: $googlePlaceId, localAddr: $localAddr, roadAddr: $roadAddr, type: $type, images: $images, distance: $distance)';
   }
 
   @override
@@ -289,6 +325,10 @@ class _$PlaceImpl implements _Place {
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
+            (identical(other.reviewCount, reviewCount) ||
+                other.reviewCount == reviewCount) &&
+            (identical(other.reviewAvg, reviewAvg) ||
+                other.reviewAvg == reviewAvg) &&
             (identical(other.googlePlaceId, googlePlaceId) ||
                 other.googlePlaceId == googlePlaceId) &&
             (identical(other.localAddr, localAddr) ||
@@ -309,6 +349,8 @@ class _$PlaceImpl implements _Place {
       name,
       latitude,
       longitude,
+      reviewCount,
+      reviewAvg,
       googlePlaceId,
       localAddr,
       roadAddr,
@@ -337,6 +379,9 @@ abstract class _Place implements Place {
       @NestedJsonKey(name: 'location/latitude') required final double latitude,
       @NestedJsonKey(name: 'location/longitude')
       required final double longitude,
+      @NestedJsonKey(name: 'reviewReport/count') required final int reviewCount,
+      @NestedJsonKey(name: 'reviewReport/ratingAvg')
+      required final double reviewAvg,
       required final String googlePlaceId,
       @JsonKey(name: 'localAddress') final String? localAddr,
       @JsonKey(name: 'roadAddress') final String? roadAddr,
@@ -357,6 +402,12 @@ abstract class _Place implements Place {
   @override
   @NestedJsonKey(name: 'location/longitude')
   double get longitude;
+  @override
+  @NestedJsonKey(name: 'reviewReport/count')
+  int get reviewCount;
+  @override
+  @NestedJsonKey(name: 'reviewReport/ratingAvg')
+  double get reviewAvg;
   @override
   String get googlePlaceId;
   @override

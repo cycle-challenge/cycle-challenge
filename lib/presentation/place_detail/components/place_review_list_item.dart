@@ -23,7 +23,7 @@ class PlaceReviewListItem extends StatelessWidget {
               titleTextStyle: textTheme.titleMedium,
               subtitle: Row(children: [
                 RatingBarIndicator(
-                    rating: review.rating / 2,
+                    rating: review.rating,
                     itemSize: 18,
                     itemBuilder: (context, _) => const Icon(
                           Icons.star,

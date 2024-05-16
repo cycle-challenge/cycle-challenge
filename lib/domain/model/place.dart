@@ -16,6 +16,8 @@ class Place with _$Place {
       required String name,
       @NestedJsonKey(name: 'location/latitude') required double latitude,
       @NestedJsonKey(name: 'location/longitude') required double longitude,
+      @NestedJsonKey(name: 'reviewReport/count') required int reviewCount,
+      @NestedJsonKey(name: 'reviewReport/ratingAvg') required double reviewAvg,
       required String googlePlaceId,
       @JsonKey(name: 'localAddress') String? localAddr,
       @JsonKey(name: 'roadAddress') String? roadAddr,
