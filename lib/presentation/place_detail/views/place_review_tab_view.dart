@@ -57,9 +57,9 @@ class PlaceReviewTabView extends StatelessWidget {
                             builder: (_) => PlaceReviewCreateSheet(
                                 place: place, initialRating: rating)))
                   ])),
-          const SizedBox(height: 1),
+          Container(height: 1, color: colorScheme.secondaryContainer),
           PlaceReviewReportSection(ratings: ratings),
-          const SizedBox(height: 16),
+          Container(height: 16, color: colorScheme.secondaryContainer),
           Container(
               width: double.maxFinite,
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),

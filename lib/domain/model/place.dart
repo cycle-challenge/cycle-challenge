@@ -17,6 +17,8 @@ class Place with _$Place {
       @NestedJsonKey(name: 'location/latitude') required double latitude,
       @NestedJsonKey(name: 'location/longitude') required double longitude,
       required String googlePlaceId,
+      @JsonKey(name: 'localAddress') String? localAddr,
+      @JsonKey(name: 'roadAddress') String? roadAddr,
       @JsonKey(fromJson: PlaceType.of) required PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson) @Default([]) List<Image> images,
       @JsonKey(includeFromJson: false) double? distance}) = _Place;

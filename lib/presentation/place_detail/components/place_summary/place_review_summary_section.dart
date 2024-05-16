@@ -17,6 +17,8 @@ class PlaceReviewSummarySection extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
+    final int reviewCount = min(2, reviews.length);
+
     return Container(
         color: colorScheme.surface,
         padding: const EdgeInsets.only(top: 30, bottom: 15),
@@ -30,9 +32,9 @@ class PlaceReviewSummarySection extends StatelessWidget {
                         style: textTheme.titleLarge
                             ?.copyWith(fontWeight: FontWeight.w600)),
                     PlaceReviewReportSection(ratings: ratings),
-                    for (int index = 0; index < 2; index++) ...[
+                    for (int index = 0; index < reviewCount; index++) ...[
                       PlaceReviewListItem(review: reviews[index]),
-                      if (index < 1) const Divider()
+                      if (index < (reviewCount - 1)) const Divider()
                     ]
                   ])),
           Align(
@@ -40,7 +42,8 @@ class PlaceReviewSummarySection extends StatelessWidget {
               child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: TextButton.icon(
-                      onPressed: () => { DefaultTabController.of(context).index = 2 },
+                      onPressed: () =>
+                          {DefaultTabController.of(context).index = 2},
                       icon: const Icon(Icons.chevron_left),
                       label: const Text('리뷰 더보기'))))
         ]));

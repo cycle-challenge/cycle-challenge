@@ -29,24 +29,24 @@ class PlaceSummarySection extends StatelessWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return Container(
-        padding: const EdgeInsets.only(top: 30.0),
-        color: colorScheme.surface,
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          ListTile(
-              leading: const Icon(Icons.place_outlined),
-              title: Text(detail.address ?? '정보 없음'),
-              trailing: TextButton(
-                  onPressed: () => viewModel
-                      .onEvent(PlaceDetailEvent.copyText(detail.address)),
-                  child: Text(
-                    "복사",
-                    style: textTheme.bodyLarge?.copyWith(color: Colors.blue),
-                  ))),
-          Theme(
-            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            child: ExpansionTile(
+    return Theme(
+      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+      child: Container(
+          padding: const EdgeInsets.only(top: 30.0),
+          color: colorScheme.surface,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            ListTile(
+                leading: const Icon(Icons.place_outlined),
+                title: Text(place.roadAddr ?? '정보 없음'),
+                trailing: TextButton(
+                    onPressed: () => viewModel
+                        .onEvent(PlaceDetailEvent.copyText(place.roadAddr)),
+                    child: Text(
+                      "복사",
+                      style: textTheme.bodyLarge?.copyWith(color: Colors.blue),
+                    ))),
+            ExpansionTile(
                 childrenPadding: const EdgeInsets.symmetric(horizontal: 30),
                 expandedAlignment: Alignment.centerLeft,
                 leading: const Icon(Icons.access_time_outlined),
@@ -68,38 +68,38 @@ class PlaceSummarySection extends StatelessWidget {
                     const SizedBox(height: 12),
                   ],
                 ]),
-          ),
-          ListTile(
-              leading: const Icon(Icons.language_outlined),
-              title: (detail.siteURL != null)
-                  ? Linkify(
-                      onOpen: (link) => viewModel
-                          .onEvent(PlaceDetailEvent.launchURL(link.url)),
-                      text: detail.siteURL!,
-                      style: textTheme.bodyLarge?.copyWith(
-                          color: Colors.blue, decorationColor: Colors.blue))
-                  : const Text('정보 없음')),
-          ListTile(
-              leading: const Icon(Icons.phone_outlined),
-              title: Text(detail.phoneNumber ?? '제공되지 않음'),
-              trailing: TextButton(
-                  onPressed: () => viewModel
-                      .onEvent(PlaceDetailEvent.copyText(detail.phoneNumber)),
-                  child: Text("복사",
-                      style:
-                          textTheme.bodyLarge?.copyWith(color: Colors.blue)))),
-          Container(
-              margin: const EdgeInsets.fromLTRB(24, 16, 16, 0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset('assets/image/google_logo_small.png',
-                        width: 64, fit: BoxFit.fitWidth),
-                    TextButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(Icons.edit, size: 16),
-                        label: const Text('정보 수정 제안'))
-                  ]))
-        ]));
+            ListTile(
+                leading: const Icon(Icons.language_outlined),
+                title: (detail.siteURL != null)
+                    ? Linkify(
+                        onOpen: (link) => viewModel
+                            .onEvent(PlaceDetailEvent.launchURL(link.url)),
+                        text: detail.siteURL!,
+                        style: textTheme.bodyLarge?.copyWith(
+                            color: Colors.blue, decorationColor: Colors.blue))
+                    : const Text('정보 없음')),
+            ListTile(
+                leading: const Icon(Icons.phone_outlined),
+                title: Text(detail.phoneNumber ?? '제공되지 않음'),
+                trailing: TextButton(
+                    onPressed: () => viewModel
+                        .onEvent(PlaceDetailEvent.copyText(detail.phoneNumber)),
+                    child: Text("복사",
+                        style: textTheme.bodyLarge
+                            ?.copyWith(color: Colors.blue)))),
+            Container(
+                margin: const EdgeInsets.fromLTRB(24, 16, 16, 0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset('assets/image/google_logo_small.png',
+                          width: 64, fit: BoxFit.fitWidth),
+                      TextButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit, size: 16),
+                          label: const Text('정보 수정 제안'))
+                    ]))
+          ])),
+    );
   }
 }

@@ -16,7 +16,7 @@ class GoogleApi {
           'https://places.googleapis.com/v1/places/$googlePlaceId',
           queryParameters: {
             'fields':
-                'id,formattedAddress,nationalPhoneNumber,regularOpeningHours,websiteUri,location',
+                'id,nationalPhoneNumber,regularOpeningHours,websiteUri',
             'key': apiKey
           },
           options: Options(headers: headers));

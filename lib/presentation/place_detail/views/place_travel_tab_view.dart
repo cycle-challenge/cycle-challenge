@@ -14,10 +14,11 @@ class PlaceTravelTabView extends StatelessWidget {
 
     return Container(
         color: colorScheme.surface,
-        child: ListView.builder(
+        child: ListView.separated(
             itemCount: travels.length,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
             itemBuilder: (_, index) =>
-                PlaceTravelListItem(travel: travels[index])));
+                PlaceTravelListItem(travel: travels[index]),
+            separatorBuilder: (_, __) => const SizedBox(height: 16)));
   }
 }

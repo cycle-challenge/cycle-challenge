@@ -28,6 +28,6 @@ class PlaceImageTabView extends StatelessWidget {
                     context,
                     useSafeArea: true,
                     MultiImageProvider(networkImages, initialIndex: index)),
-                child: Image(image: networkImages[index]))));
+                child: Image(image: networkImages[index], fit: BoxFit.cover))));
   }
 }

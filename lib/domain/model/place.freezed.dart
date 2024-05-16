@@ -27,6 +27,10 @@ mixin _$Place {
   @NestedJsonKey(name: 'location/longitude')
   double get longitude => throw _privateConstructorUsedError;
   String get googlePlaceId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'localAddress')
+  String? get localAddr => throw _privateConstructorUsedError;
+  @JsonKey(name: 'roadAddress')
+  String? get roadAddr => throw _privateConstructorUsedError;
   @JsonKey(fromJson: PlaceType.of)
   PlaceType get type => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
@@ -50,6 +54,8 @@ abstract class $PlaceCopyWith<$Res> {
       @NestedJsonKey(name: 'location/latitude') double latitude,
       @NestedJsonKey(name: 'location/longitude') double longitude,
       String googlePlaceId,
+      @JsonKey(name: 'localAddress') String? localAddr,
+      @JsonKey(name: 'roadAddress') String? roadAddr,
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       List<Image> images,
@@ -74,6 +80,8 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
     Object? latitude = null,
     Object? longitude = null,
     Object? googlePlaceId = null,
+    Object? localAddr = freezed,
+    Object? roadAddr = freezed,
     Object? type = null,
     Object? images = null,
     Object? distance = freezed,
@@ -99,6 +107,14 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
           ? _value.googlePlaceId
           : googlePlaceId // ignore: cast_nullable_to_non_nullable
               as String,
+      localAddr: freezed == localAddr
+          ? _value.localAddr
+          : localAddr // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roadAddr: freezed == roadAddr
+          ? _value.roadAddr
+          : roadAddr // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -128,6 +144,8 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
       @NestedJsonKey(name: 'location/latitude') double latitude,
       @NestedJsonKey(name: 'location/longitude') double longitude,
       String googlePlaceId,
+      @JsonKey(name: 'localAddress') String? localAddr,
+      @JsonKey(name: 'roadAddress') String? roadAddr,
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       List<Image> images,
@@ -150,6 +168,8 @@ class __$$PlaceImplCopyWithImpl<$Res>
     Object? latitude = null,
     Object? longitude = null,
     Object? googlePlaceId = null,
+    Object? localAddr = freezed,
+    Object? roadAddr = freezed,
     Object? type = null,
     Object? images = null,
     Object? distance = freezed,
@@ -175,6 +195,14 @@ class __$$PlaceImplCopyWithImpl<$Res>
           ? _value.googlePlaceId
           : googlePlaceId // ignore: cast_nullable_to_non_nullable
               as String,
+      localAddr: freezed == localAddr
+          ? _value.localAddr
+          : localAddr // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roadAddr: freezed == roadAddr
+          ? _value.roadAddr
+          : roadAddr // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -200,6 +228,8 @@ class _$PlaceImpl implements _Place {
       @NestedJsonKey(name: 'location/latitude') required this.latitude,
       @NestedJsonKey(name: 'location/longitude') required this.longitude,
       required this.googlePlaceId,
+      @JsonKey(name: 'localAddress') this.localAddr,
+      @JsonKey(name: 'roadAddress') this.roadAddr,
       @JsonKey(fromJson: PlaceType.of) required this.type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       final List<Image> images = const [],
@@ -222,6 +252,12 @@ class _$PlaceImpl implements _Place {
   @override
   final String googlePlaceId;
   @override
+  @JsonKey(name: 'localAddress')
+  final String? localAddr;
+  @override
+  @JsonKey(name: 'roadAddress')
+  final String? roadAddr;
+  @override
   @JsonKey(fromJson: PlaceType.of)
   final PlaceType type;
   final List<Image> _images;
@@ -239,7 +275,7 @@ class _$PlaceImpl implements _Place {
 
   @override
   String toString() {
-    return 'Place(id: $id, name: $name, latitude: $latitude, longitude: $longitude, googlePlaceId: $googlePlaceId, type: $type, images: $images, distance: $distance)';
+    return 'Place(id: $id, name: $name, latitude: $latitude, longitude: $longitude, googlePlaceId: $googlePlaceId, localAddr: $localAddr, roadAddr: $roadAddr, type: $type, images: $images, distance: $distance)';
   }
 
   @override
@@ -255,6 +291,10 @@ class _$PlaceImpl implements _Place {
                 other.longitude == longitude) &&
             (identical(other.googlePlaceId, googlePlaceId) ||
                 other.googlePlaceId == googlePlaceId) &&
+            (identical(other.localAddr, localAddr) ||
+                other.localAddr == localAddr) &&
+            (identical(other.roadAddr, roadAddr) ||
+                other.roadAddr == roadAddr) &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.distance, distance) ||
@@ -270,6 +310,8 @@ class _$PlaceImpl implements _Place {
       latitude,
       longitude,
       googlePlaceId,
+      localAddr,
+      roadAddr,
       type,
       const DeepCollectionEquality().hash(_images),
       distance);
@@ -296,6 +338,8 @@ abstract class _Place implements Place {
       @NestedJsonKey(name: 'location/longitude')
       required final double longitude,
       required final String googlePlaceId,
+      @JsonKey(name: 'localAddress') final String? localAddr,
+      @JsonKey(name: 'roadAddress') final String? roadAddr,
       @JsonKey(fromJson: PlaceType.of) required final PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       final List<Image> images,
@@ -315,6 +359,12 @@ abstract class _Place implements Place {
   double get longitude;
   @override
   String get googlePlaceId;
+  @override
+  @JsonKey(name: 'localAddress')
+  String? get localAddr;
+  @override
+  @JsonKey(name: 'roadAddress')
+  String? get roadAddr;
   @override
   @JsonKey(fromJson: PlaceType.of)
   PlaceType get type;

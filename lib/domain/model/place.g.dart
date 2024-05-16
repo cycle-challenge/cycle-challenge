@@ -12,6 +12,8 @@ _$PlaceImpl _$$PlaceImplFromJson(Map<String, dynamic> json) => _$PlaceImpl(
       latitude: (nestedReader(json, 'location/latitude') as num).toDouble(),
       longitude: (nestedReader(json, 'location/longitude') as num).toDouble(),
       googlePlaceId: json['googlePlaceId'] as String,
+      localAddr: json['localAddress'] as String?,
+      roadAddr: json['roadAddress'] as String?,
       type: PlaceType.of(json['type'] as String),
       images: json['images'] == null
           ? const []
@@ -25,6 +27,8 @@ Map<String, dynamic> _$$PlaceImplToJson(_$PlaceImpl instance) =>
       'location/latitude': instance.latitude,
       'location/longitude': instance.longitude,
       'googlePlaceId': instance.googlePlaceId,
+      'localAddress': instance.localAddr,
+      'roadAddress': instance.roadAddr,
       'type': _$PlaceTypeEnumMap[instance.type]!,
       'images': instance.images,
     };

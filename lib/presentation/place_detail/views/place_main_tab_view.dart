@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
@@ -27,11 +28,10 @@ class PlaceMainTabView extends StatelessWidget {
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Column(children: [
-        const SizedBox(height: 8),
         PlaceImageSummarySection(place: place),
-        const SizedBox(height: 8),
+        Container(height: 8, color: colorScheme.secondaryContainer),
         PlaceReviewSummarySection(reviews: reviews, ratings: ratings),
-        const SizedBox(height: 8),
+        Container(height: 8, color: colorScheme.secondaryContainer),
         PlaceTravelSummarySection(travels: travels),
         Container(height: 20, color: colorScheme.surface)
       ]),
