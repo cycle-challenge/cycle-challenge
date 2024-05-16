@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
-import 'package:yeohaeng_ttukttak/presentation/search/place_search_result.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/components/place_sort_option.dart';
 
 part 'map_event.freezed.dart';
 
@@ -17,4 +17,5 @@ abstract class MapEvent with _$MapEvent {
   const factory MapEvent.changeToMyPosition() = MoveToMyPositionEvent;
   const factory MapEvent.showSearchButton() = ShowSearchButton;
   const factory MapEvent.updateFilter(Filter filter) = UpdateFilterEvent;
+  const factory MapEvent.sortPlace(PlaceSortOption option) = _SortPlace;
 }

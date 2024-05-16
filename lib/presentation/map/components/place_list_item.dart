@@ -17,17 +17,15 @@ class PlaceListItem extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    final bookmarkViewModel = context.watch<BookmarkViewModel>();
-
-    final distance = place.distance?.toStringAsFixed(1).toString() ?? "0.0";
+    final distance = place.distance?.toStringAsFixed(1) ?? "0.0";
     final type = place.type.label;
-
-    final isBookmarked = bookmarkViewModel.state.placeIdSet.contains(place.id);
 
     return Column(children: [
       ListTile(
           title: Row(children: [
-            Text(place.name, style: textTheme.titleLarge),
+            Text(place.name,
+                style: textTheme.bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.w600)),
             Text(' $type',
                 style:
                     textTheme.bodyMedium?.copyWith(color: colorScheme.outline))

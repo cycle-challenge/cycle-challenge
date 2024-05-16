@@ -23,7 +23,7 @@ class Place with _$Place {
       @JsonKey(name: 'roadAddress') String? roadAddr,
       @JsonKey(fromJson: PlaceType.of) required PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson) @Default([]) List<Image> images,
-      @JsonKey(includeFromJson: false) double? distance}) = _Place;
+      @Default(0) @JsonKey(includeFromJson: false) double distance}) = _Place;
 
   factory Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);
 

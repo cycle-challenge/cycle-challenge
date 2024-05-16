@@ -40,7 +40,7 @@ mixin _$Place {
   @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
   List<Image> get images => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
-  double? get distance => throw _privateConstructorUsedError;
+  double get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +65,7 @@ abstract class $PlaceCopyWith<$Res> {
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       List<Image> images,
-      @JsonKey(includeFromJson: false) double? distance});
+      @JsonKey(includeFromJson: false) double distance});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
     Object? roadAddr = freezed,
     Object? type = null,
     Object? images = null,
-    Object? distance = freezed,
+    Object? distance = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -139,10 +139,10 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Image>,
-      distance: freezed == distance
+      distance: null == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
     ) as $Val);
   }
 }
@@ -167,7 +167,7 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
       @JsonKey(fromJson: PlaceType.of) PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       List<Image> images,
-      @JsonKey(includeFromJson: false) double? distance});
+      @JsonKey(includeFromJson: false) double distance});
 }
 
 /// @nodoc
@@ -192,7 +192,7 @@ class __$$PlaceImplCopyWithImpl<$Res>
     Object? roadAddr = freezed,
     Object? type = null,
     Object? images = null,
-    Object? distance = freezed,
+    Object? distance = null,
   }) {
     return _then(_$PlaceImpl(
       id: null == id
@@ -239,10 +239,10 @@ class __$$PlaceImplCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Image>,
-      distance: freezed == distance
+      distance: null == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
     ));
   }
 }
@@ -263,7 +263,7 @@ class _$PlaceImpl implements _Place {
       @JsonKey(fromJson: PlaceType.of) required this.type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       final List<Image> images = const [],
-      @JsonKey(includeFromJson: false) this.distance})
+      @JsonKey(includeFromJson: false) this.distance = 0})
       : _images = images;
 
   factory _$PlaceImpl.fromJson(Map<String, dynamic> json) =>
@@ -307,7 +307,7 @@ class _$PlaceImpl implements _Place {
 
   @override
   @JsonKey(includeFromJson: false)
-  final double? distance;
+  final double distance;
 
   @override
   String toString() {
@@ -388,7 +388,7 @@ abstract class _Place implements Place {
       @JsonKey(fromJson: PlaceType.of) required final PlaceType type,
       @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson)
       final List<Image> images,
-      @JsonKey(includeFromJson: false) final double? distance}) = _$PlaceImpl;
+      @JsonKey(includeFromJson: false) final double distance}) = _$PlaceImpl;
 
   factory _Place.fromJson(Map<String, dynamic> json) = _$PlaceImpl.fromJson;
 
@@ -424,7 +424,7 @@ abstract class _Place implements Place {
   List<Image> get images;
   @override
   @JsonKey(includeFromJson: false)
-  double? get distance;
+  double get distance;
   @override
   @JsonKey(ignore: true)
   _$$PlaceImplCopyWith<_$PlaceImpl> get copyWith =>
