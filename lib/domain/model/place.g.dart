@@ -11,9 +11,10 @@ _$PlaceImpl _$$PlaceImplFromJson(Map<String, dynamic> json) => _$PlaceImpl(
       name: json['name'] as String,
       latitude: (nestedReader(json, 'location/latitude') as num).toDouble(),
       longitude: (nestedReader(json, 'location/longitude') as num).toDouble(),
-      reviewCount: nestedReader(json, 'reviewReport/count') as int,
+      reviewCount: nestedReader(json, 'reviewReport/count') as int? ?? 0,
       reviewAvg:
-          (nestedReader(json, 'reviewReport/ratingAvg') as num).toDouble(),
+          (nestedReader(json, 'reviewReport/ratingAvg') as num?)?.toDouble() ??
+              0,
       googlePlaceId: json['googlePlaceId'] as String,
       localAddr: json['localAddress'] as String?,
       roadAddr: json['roadAddress'] as String?,

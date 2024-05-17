@@ -255,8 +255,8 @@ class _$PlaceImpl implements _Place {
       required this.name,
       @NestedJsonKey(name: 'location/latitude') required this.latitude,
       @NestedJsonKey(name: 'location/longitude') required this.longitude,
-      @NestedJsonKey(name: 'reviewReport/count') required this.reviewCount,
-      @NestedJsonKey(name: 'reviewReport/ratingAvg') required this.reviewAvg,
+      @NestedJsonKey(name: 'reviewReport/count') this.reviewCount = 0,
+      @NestedJsonKey(name: 'reviewReport/ratingAvg') this.reviewAvg = 0,
       required this.googlePlaceId,
       @JsonKey(name: 'localAddress') this.localAddr,
       @JsonKey(name: 'roadAddress') this.roadAddr,
@@ -379,9 +379,8 @@ abstract class _Place implements Place {
       @NestedJsonKey(name: 'location/latitude') required final double latitude,
       @NestedJsonKey(name: 'location/longitude')
       required final double longitude,
-      @NestedJsonKey(name: 'reviewReport/count') required final int reviewCount,
-      @NestedJsonKey(name: 'reviewReport/ratingAvg')
-      required final double reviewAvg,
+      @NestedJsonKey(name: 'reviewReport/count') final int reviewCount,
+      @NestedJsonKey(name: 'reviewReport/ratingAvg') final double reviewAvg,
       required final String googlePlaceId,
       @JsonKey(name: 'localAddress') final String? localAddr,
       @JsonKey(name: 'roadAddress') final String? roadAddr,

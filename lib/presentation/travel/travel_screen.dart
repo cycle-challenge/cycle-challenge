@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:custom_map_markers/custom_map_markers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_ad
 
 import 'package:yeohaeng_ttukttak/utils/function.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
+import 'package:yeohaeng_ttukttak/utils/marker.dart';
 
 import 'components/visit_modify_list_view.dart';
 
@@ -42,6 +44,8 @@ class _TravelScreenState extends State<TravelScreen> {
 
   // top padding + drag handle
   final double panelHeaderHeight = 50;
+
+  Set<Marker> prevMarkers = {};
 
   @override
   void initState() {
@@ -80,15 +84,16 @@ class _TravelScreenState extends State<TravelScreen> {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     final viewModel = context.watch<TravelViewModel>();
-    final mapViewModel = context.watch<MapViewModel>();
 
     final state = viewModel.state;
-    final mapState = mapViewModel.state;
 
     final List<Visit> visits = state.items
         .map((e) => e.whenOrNull(item: (visit) => visit))
         .whereType<Visit>()
         .toList();
+
+    final Iterable<Place> places = visits.map((visit) => visit.place);
+    final Place? selectedPlace = visits.elementAtOrNull(state.visitIndex)?.place;
 
     final bool isPanelExpanded =
         _panelController.isAttached && _panelController.panelPosition == 1.0;
@@ -205,47 +210,41 @@ class _TravelScreenState extends State<TravelScreen> {
                     ? VisitModifyListView(gapHeight: gapHeight)
                     : VisitListView(gapHeight: gapHeight)),
             body: Stack(children: [
-              Positioned.fill(
-                  child: GoogleMap(
-                      padding: EdgeInsets.only(
-                          top: mediaQuery.padding.top,
-                          bottom: state.panelHeight + 185),
-                      myLocationButtonEnabled: false,
-                      initialCameraPosition: const CameraPosition(
-                        target: LatLng(36.6272, 127.4987),
-                        zoom: 13,
-                      ),
-                      onCameraMoveStarted: () {
-                        if (_isCameraMovingProgrammatically) return;
-                        viewModel
-                            .onEvent(const TravelEvent.setIsCameraMoved(true));
-                      },
-                      onMapCreated: (GoogleMapController controller) async {
-                        bool isDarkMode =
-                            MediaQuery.platformBrightnessOf(context) ==
-                                Brightness.dark;
+              CustomGoogleMapMarkerBuilder(
+                  customMarkers: buildMarker(context,
+                      places: places,
+                      selectedPlace: selectedPlace,
+                      onTap: (place) => {}),
+                  builder: (context, markers) {
+                    if (markers != null) prevMarkers = markers;
 
-                        String path = isDarkMode
-                            ? "assets/map/map_style_dark.json"
-                            : "assets/map/map_style.json";
-                        controller.setMapStyle(await getJsonFile(path));
-                        _controller = controller;
-                      },
-                      markers: Set.of(visits.mapWithIndex((visit, index) =>
-                          Marker(
-                              markerId: MarkerId(visit.id.toString()),
-                              draggable: true,
-                              zIndex: index == state.visitIndex ? 2 : 1,
-                              anchor: const Offset(0.5, 0.5),
-                              icon: (index == state.visitIndex &&
-                                          !state.isModifying
-                                      ? mapState.selectedMarkerIcon[
-                                          visit.place.type.name]
-                                      : mapState
-                                          .markerIcon[visit.place.type.name]) ??
-                                  BitmapDescriptor.defaultMarker,
-                              position: LatLng(visit.place.latitude,
-                                  visit.place.longitude)))))),
+                    return GoogleMap(
+                        padding: EdgeInsets.only(
+                            top: mediaQuery.padding.top,
+                            bottom: state.panelHeight + 185),
+                        myLocationButtonEnabled: false,
+                        initialCameraPosition: const CameraPosition(
+                          target: LatLng(36.6272, 127.4987),
+                          zoom: 13,
+                        ),
+                        onCameraMoveStarted: () {
+                          if (_isCameraMovingProgrammatically) return;
+                          viewModel.onEvent(
+                              const TravelEvent.setIsCameraMoved(true));
+                        },
+                        onMapCreated: (GoogleMapController controller) async {
+                          bool isDarkMode =
+                              MediaQuery.platformBrightnessOf(context) ==
+                                  Brightness.dark;
+
+                          String path = isDarkMode
+                              ? "assets/map/map_style_dark.json"
+                              : "assets/map/map_style.json";
+                          controller.setMapStyle(await getJsonFile(path));
+                          _controller = controller;
+                        },
+                        markers: markers ?? prevMarkers);
+                  }),
               Positioned(
                 left: 0,
                 right: 0,
