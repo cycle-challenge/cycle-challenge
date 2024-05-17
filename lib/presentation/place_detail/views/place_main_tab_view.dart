@@ -9,14 +9,12 @@ import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_sum
 
 class PlaceMainTabView extends StatelessWidget {
   final List<PlaceReview> reviews;
-  final List<double> ratings;
   final List<Travel> travels;
   final Place place;
 
   const PlaceMainTabView(
       {super.key,
       required this.reviews,
-      required this.ratings,
       required this.place,
       required this.travels});
 
@@ -30,7 +28,7 @@ class PlaceMainTabView extends StatelessWidget {
       child: Column(children: [
         PlaceImageSummarySection(place: place),
         Container(height: 8, color: colorScheme.secondaryContainer),
-        PlaceReviewSummarySection(reviews: reviews, ratings: ratings),
+        PlaceReviewSummarySection(reviews: reviews),
         Container(height: 8, color: colorScheme.secondaryContainer),
         PlaceTravelSummarySection(travels: travels),
         Container(height: 20, color: colorScheme.surface)

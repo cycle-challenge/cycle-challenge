@@ -93,7 +93,6 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
                     children: [
                       PlaceMainTabView(
                           reviews: state.reviews,
-                          ratings: ratings,
                           place: widget.place,
                           travels: state.travels),
                       PlaceImageTabView(images: state.images),

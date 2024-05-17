@@ -7,10 +7,9 @@ import 'package:yeohaeng_ttukttak/presentation/place_detail/components/place_rev
 
 class PlaceReviewSummarySection extends StatelessWidget {
   final List<PlaceReview> reviews;
-  final List<double> ratings;
 
   const PlaceReviewSummarySection(
-      {super.key, required this.reviews, required this.ratings});
+      {super.key, required this.reviews});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class PlaceReviewSummarySection extends StatelessWidget {
                     Text('방문자 리뷰',
                         style: textTheme.titleLarge
                             ?.copyWith(fontWeight: FontWeight.w600)),
-                    PlaceReviewReportSection(ratings: ratings),
+                    PlaceReviewReportSection(reviews: reviews),
                     for (int index = 0; index < reviewCount; index++) ...[
                       PlaceReviewListItem(review: reviews[index]),
                       if (index < (reviewCount - 1)) const Divider()

@@ -55,7 +55,7 @@ class PlaceReviewTabView extends StatelessWidget {
                             initialRating: rating))
                   ])),
           Container(height: 1, color: colorScheme.secondaryContainer),
-          PlaceReviewReportSection(ratings: ratings),
+          PlaceReviewReportSection(reviews: reviews),
           Container(height: 16, color: colorScheme.secondaryContainer),
           Container(
               width: double.maxFinite,

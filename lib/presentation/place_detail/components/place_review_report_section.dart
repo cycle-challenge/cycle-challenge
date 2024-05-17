@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 
 class PlaceReviewReportSection extends StatefulWidget {
-  final List<double> ratings;
+  final List<PlaceReview> reviews;
 
-  const PlaceReviewReportSection({super.key, required this.ratings});
+  const PlaceReviewReportSection({super.key, required this.reviews});
 
   @override
   State<PlaceReviewReportSection> createState() =>
@@ -17,7 +18,15 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    final int reviewCounts = widget.ratings.reduce((a, b) => a + b).toInt();
+    final int reviewCounts = widget.reviews.length;
+    final List<int> ratings = List.generate(
+        5,
+        (index) =>
+            widget.reviews.where((element) => element.rating == index).length);
+
+    final double ratingAvg =
+        widget.reviews.map((e) => e.rating).reduce((a, b) => a + b) /
+            reviewCounts;
 
     return Container(
       height: 200,
@@ -25,19 +34,19 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
       color: colorScheme.surface,
       child: Row(children: [
         Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('2.0',
+          Text(ratingAvg.toStringAsFixed(2),
               style: textTheme.headlineLarge
                   ?.copyWith(fontWeight: FontWeight.w600)),
           const SizedBox(height: 6),
           RatingBarIndicator(
-              rating: 2,
+              rating: ratingAvg,
               itemSize: 18,
               itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   )),
           const SizedBox(height: 8),
-          const Text('리뷰 3개')
+          Text('리뷰 $reviewCounts개')
         ]),
         const SizedBox(width: 10),
         const VerticalDivider(),
@@ -45,7 +54,7 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
             child: Column(children: [
           for (int score = 5; score >= 1; score--) ...[
             Builder(builder: (context) {
-              final double rating = widget.ratings[score - 1] / reviewCounts;
+              final double rating = ratings[score - 1] / reviewCounts;
 
               return Row(children: [
                 SizedBox(
@@ -60,7 +69,7 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
                 SizedBox(
                     width: 36,
                     child: Center(
-                        child: Text('${widget.ratings[score - 1].toInt()}개',
+                        child: Text('${ratings[score - 1].toInt()}개',
                             style: textTheme.bodyMedium
                                 ?.copyWith(color: colorScheme.outline))))
               ]);
