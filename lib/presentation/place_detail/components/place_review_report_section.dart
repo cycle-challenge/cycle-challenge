@@ -20,7 +20,7 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
 
     final int reviewCounts = widget.reviews.length;
     final List<int> ratings = List.generate(
-        5,
+        6,
         (index) =>
             widget.reviews.where((element) => element.rating == index).length);
 
@@ -54,7 +54,7 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
             child: Column(children: [
           for (int score = 5; score >= 1; score--) ...[
             Builder(builder: (context) {
-              final double rating = ratings[score - 1] / reviewCounts;
+              final double rating = ratings[score] / reviewCounts;
 
               return Row(children: [
                 SizedBox(
@@ -69,7 +69,7 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
                 SizedBox(
                     width: 36,
                     child: Center(
-                        child: Text('${ratings[score - 1].toInt()}개',
+                        child: Text('${ratings[score].toInt()}개',
                             style: textTheme.bodyMedium
                                 ?.copyWith(color: colorScheme.outline))))
               ]);

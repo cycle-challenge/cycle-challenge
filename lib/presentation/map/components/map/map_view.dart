@@ -44,9 +44,7 @@ class _MapViewState extends State<MapView> {
 
           return GoogleMap(
             initialCameraPosition: const CameraPosition(
-              target: LatLng(36.6272, 127.4987),
-              zoom: 13,
-            ),
+                target: LatLng(36.6272, 127.4987), zoom: 13),
             onMapCreated: (controller) => widget.onMapCreated(controller),
             onCameraMoveStarted: () =>
                 viewModel.onEvent(const MapEvent.showSearchButton()),
