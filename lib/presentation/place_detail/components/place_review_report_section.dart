@@ -19,14 +19,12 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
     final colorScheme = Theme.of(context).colorScheme;
 
     final int reviewCounts = widget.reviews.length;
-    final List<int> ratings = List.generate(
-        6,
-        (index) =>
-            widget.reviews.where((element) => element.rating == index).length);
+    final List<int> ratings = List.generate(6,
+        (index) => widget.reviews.where((elm) => elm.rating == index).length);
 
-    final double ratingAvg =
+    final double ratingAvg = widget.reviews.length > 0 ?
         widget.reviews.map((e) => e.rating).reduce((a, b) => a + b) /
-            reviewCounts;
+            reviewCounts : 0.0;
 
     return Container(
       height: 200,
@@ -65,7 +63,7 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: LinearProgressIndicator(
-                            color: Colors.amber, minHeight: 8, value: rating))),
+                            color: Colors.amber, minHeight: 8, value: 0.0 <= rating && rating <= 1.0 ? rating : 0.0))),
                 SizedBox(
                     width: 36,
                     child: Center(

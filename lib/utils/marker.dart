@@ -15,6 +15,7 @@ List<MarkerData> buildMarker(BuildContext context,
 
     return MarkerData(
         marker: Marker(
+            zIndex: isSelected ? 2 : 1,
             markerId: MarkerId('${place.id}'),
             anchor: const Offset(0.5, 0),
             onTap: () => onTap(place),
