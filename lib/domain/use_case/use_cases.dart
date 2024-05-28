@@ -11,6 +11,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/find_place_images_use_case.dar
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_reviews_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_travels_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/get_my_travels_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/google_sign_in_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/modify_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/delete_travel_bookmark_use_case.dart';
@@ -50,6 +51,7 @@ class UseCases {
   final FindPlaceTravelsUseCase findPlaceTravelsUseCase;
   final FindPlaceImagesUseCase findPlaceImagesUseCase;
   final CreatePlaceReviewUseCase createPlaceReviewUseCase;
+  final GoogleSignInUseCase googleSignInUseCase;
 
   UseCases({
     required this.getPlaceDetail,
@@ -76,6 +78,7 @@ class UseCases {
     required this.findPlaceReviewsUseCase,
     required this.findPlaceTravelsUseCase,
     required this.findPlaceImagesUseCase,
-    required this.createPlaceReviewUseCase
+    required this.createPlaceReviewUseCase,
+    required this.googleSignInUseCase
   });
 }

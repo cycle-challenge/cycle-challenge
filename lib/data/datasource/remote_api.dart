@@ -11,6 +11,7 @@ import 'package:yeohaeng_ttukttak/domain/model/image.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
+import 'package:yeohaeng_ttukttak/domain/model/profile.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/model/visit.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
@@ -397,4 +398,26 @@ class RemoteAPI {
       return Result.error(ApiError.fromResponse(e.response));
     }
   }
+
+  Future<Result<Auth, ApiError>> googleSignIn(Profile profile, String idToken) async {
+    try {
+      final response = await dio.post(
+          '$remoteUrl/api/v1/members/sign-in/google',
+          options: Options(headers: headers),
+          data: {
+            'nickname': profile.name,
+            'email': profile.email,
+            'ageGroup': profile.ageGroup,
+            'gender': profile.gender,
+            'idToken': idToken
+          });
+
+      return Result.success(Auth.fromJson(response.data['data']));
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+
+
 }

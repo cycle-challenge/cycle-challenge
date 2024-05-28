@@ -20,18 +20,21 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Member member) signIn,
     required TResult Function() signOut,
+    required TResult Function() googleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Member member)? signIn,
     TResult? Function()? signOut,
+    TResult? Function()? googleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Member member)? signIn,
     TResult Function()? signOut,
+    TResult Function()? googleSignIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$AuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
+    required TResult Function(_GoogleSignIn value) googleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
+    TResult? Function(_GoogleSignIn value)? googleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
+    TResult Function(_GoogleSignIn value)? googleSignIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +156,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Member member) signIn,
     required TResult Function() signOut,
+    required TResult Function() googleSignIn,
   }) {
     return signIn(member);
   }
@@ -159,6 +166,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Member member)? signIn,
     TResult? Function()? signOut,
+    TResult? Function()? googleSignIn,
   }) {
     return signIn?.call(member);
   }
@@ -168,6 +176,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Member member)? signIn,
     TResult Function()? signOut,
+    TResult Function()? googleSignIn,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -181,6 +190,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
+    required TResult Function(_GoogleSignIn value) googleSignIn,
   }) {
     return signIn(this);
   }
@@ -190,6 +200,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
+    TResult? Function(_GoogleSignIn value)? googleSignIn,
   }) {
     return signIn?.call(this);
   }
@@ -199,6 +210,7 @@ class _$AuthSignInEventImpl implements AuthSignInEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
+    TResult Function(_GoogleSignIn value)? googleSignIn,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -257,6 +269,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Member member) signIn,
     required TResult Function() signOut,
+    required TResult Function() googleSignIn,
   }) {
     return signOut();
   }
@@ -266,6 +279,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Member member)? signIn,
     TResult? Function()? signOut,
+    TResult? Function()? googleSignIn,
   }) {
     return signOut?.call();
   }
@@ -275,6 +289,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Member member)? signIn,
     TResult Function()? signOut,
+    TResult Function()? googleSignIn,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -288,6 +303,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
+    required TResult Function(_GoogleSignIn value) googleSignIn,
   }) {
     return signOut(this);
   }
@@ -297,6 +313,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
+    TResult? Function(_GoogleSignIn value)? googleSignIn,
   }) {
     return signOut?.call(this);
   }
@@ -306,6 +323,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
+    TResult Function(_GoogleSignIn value)? googleSignIn,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -317,4 +335,112 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
 
 abstract class AuthSignOutEvent implements AuthEvent {
   const factory AuthSignOutEvent() = _$AuthSignOutEventImpl;
+}
+
+/// @nodoc
+abstract class _$$GoogleSignInImplCopyWith<$Res> {
+  factory _$$GoogleSignInImplCopyWith(
+          _$GoogleSignInImpl value, $Res Function(_$GoogleSignInImpl) then) =
+      __$$GoogleSignInImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GoogleSignInImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$GoogleSignInImpl>
+    implements _$$GoogleSignInImplCopyWith<$Res> {
+  __$$GoogleSignInImplCopyWithImpl(
+      _$GoogleSignInImpl _value, $Res Function(_$GoogleSignInImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GoogleSignInImpl implements _GoogleSignIn {
+  const _$GoogleSignInImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.googleSignIn()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GoogleSignInImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Member member) signIn,
+    required TResult Function() signOut,
+    required TResult Function() googleSignIn,
+  }) {
+    return googleSignIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Member member)? signIn,
+    TResult? Function()? signOut,
+    TResult? Function()? googleSignIn,
+  }) {
+    return googleSignIn?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Member member)? signIn,
+    TResult Function()? signOut,
+    TResult Function()? googleSignIn,
+    required TResult orElse(),
+  }) {
+    if (googleSignIn != null) {
+      return googleSignIn();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInEvent value) signIn,
+    required TResult Function(AuthSignOutEvent value) signOut,
+    required TResult Function(_GoogleSignIn value) googleSignIn,
+  }) {
+    return googleSignIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthSignInEvent value)? signIn,
+    TResult? Function(AuthSignOutEvent value)? signOut,
+    TResult? Function(_GoogleSignIn value)? googleSignIn,
+  }) {
+    return googleSignIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInEvent value)? signIn,
+    TResult Function(AuthSignOutEvent value)? signOut,
+    TResult Function(_GoogleSignIn value)? googleSignIn,
+    required TResult orElse(),
+  }) {
+    if (googleSignIn != null) {
+      return googleSignIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GoogleSignIn implements AuthEvent {
+  const factory _GoogleSignIn() = _$GoogleSignInImpl;
 }

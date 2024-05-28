@@ -55,7 +55,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.ttukttak.yeohaeng.yeohaeng_ttukttak"
+        applicationId "com.yeohaeng.ttukttak.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 20
@@ -63,6 +63,9 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         resValue "string", "mapApiKey", dartEnvironmentVariables.ANDROID_MAP_API_KEY
+        manifestPlaceholders += [
+                "appAuthRedirectScheme": "com.yeohaeng.ttukttak.app"
+        ]
     }
 
     buildTypes {

@@ -44,6 +44,7 @@ class AuthInterceptor extends Interceptor {
     String? errorCode = err.response?.data['code'];
 
     if (errorCode == null || errorCode != 'INVALID_AUTHORIZATION') {
+      if (_mutex.isLocked) _mutex.unlock();
       return handler.reject(err);
     }
 
