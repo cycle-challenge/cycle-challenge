@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
+import 'package:yeohaeng_ttukttak/utils/oauth_client_id.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class GoogleSignInUseCase {
@@ -11,18 +12,7 @@ class GoogleSignInUseCase {
 
   GoogleSignInUseCase(this.authRepository);
 
-
-  final String apiKey = const String.fromEnvironment('IOS_CLIENT_ID');
-
-  static const _IOS_CLIENT_ID = String.fromEnvironment('IOS_CLIENT_ID');
-  static const _ANDROID_CLIENT_ID = String.fromEnvironment('ANDROID_CLIENT_ID');
-
-  String? get _CLIENT_ID {
-    if (Platform.isIOS) return _IOS_CLIENT_ID;
-    if (Platform.isAndroid) return _ANDROID_CLIENT_ID;
-
-    return null;
-  }
+  final _CLIENT_ID = OAuthClientId.CLIENT_ID;
 
   Future<Result<Member, String>> call() async {
     if (_CLIENT_ID == null) return const Result.error('지원하지 않는 플랫폼입니다.');
@@ -43,9 +33,9 @@ class GoogleSignInUseCase {
       return const Result.error('소셜 로그인에 실패했습니다.');
     }
 
-    final AuthorizationTokenResponse(:idToken, :accessToken) = response;
+    final AuthorizationTokenResponse(:idToken, :accessToken, :refreshToken) = response;
 
-    if (accessToken == null || idToken == null) {
+    if (accessToken == null || idToken == null || refreshToken == null) {
       return const Result.error('소셜 로그인에 실패했습니다.');
     }
 
@@ -53,7 +43,7 @@ class GoogleSignInUseCase {
 
     return result.when(
         success: (profile) async {
-          final result = await authRepository.googleSignIn(profile, idToken);
+          final result = await authRepository.googleSignIn(profile, idToken, refreshToken);
 
           return result.when(
               success: (success) => Result.success(success),

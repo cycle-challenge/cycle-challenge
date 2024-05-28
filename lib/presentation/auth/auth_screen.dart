@@ -85,32 +85,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               child: Center(child: Text("Google로 계속하기"))),
                         ],
                       ),
-                    )),
-                const SizedBox(height: 12),
-                OutlinedButton(
-                    onPressed: () => showModalBottomSheet(
-                          isScrollControlled: true,
-                          useSafeArea: true,
-                          context: context,
-                          builder: (BuildContext context) =>
-                              ChangeNotifierProvider(
-                                  create: (context) => LocalSignInViewModel(
-                                      context.read<AuthRepository>()),
-                                  child: const LocalSignInSheet()),
-                        ),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      constraints:
-                          const BoxConstraints(minWidth: 180, maxWidth: 280),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.email_outlined),
-                          Flexible(child: Center(child: Text("이메일로 로그인"))),
-                        ],
-                      ),
-                    )),
+                    ))
               ])
             ],
           ),

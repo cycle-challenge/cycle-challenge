@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
@@ -35,13 +37,32 @@ class GoogleApi {
         'Authorization': 'Bearer $accessToken'
       };
 
-      final response = await dio.get('https://people.googleapis.com/v1/people/me',
+      final response = await dio.get(
+          'https://people.googleapis.com/v1/people/me',
           options: Options(headers: headers),
           queryParameters: {
             'personFields': 'emailAddresses,birthdays,genders,names,photos'
           });
 
       return Result.success(Profile.fromJson(response.data));
+    } on DioException catch (e) {
+      debugPrint(e.response?.data);
+      return const Result.error('서버와 통신 중 오류가 발생했습니다.');
+    }
+  }
+
+  Future<Result<void, String>> revokeAccount(String accessToken) async {
+    try {
+      final headers = {
+        'Accept-Language': 'ko',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+
+      await dio.post('https://oauth2.googleapis.com/revoke',
+          options: Options(headers: headers),
+          queryParameters: {'token': accessToken});
+
+      return const Result.success(null);
     } on DioException catch (e) {
       debugPrint(e.response?.data);
       return const Result.error('서버와 통신 중 오류가 발생했습니다.');

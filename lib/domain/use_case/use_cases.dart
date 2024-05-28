@@ -24,6 +24,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/get_place_image_use_case.dart'
 import 'package:yeohaeng_ttukttak/domain/use_case/get_travel_visits_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/launch_url_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/load_marker_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/revoke_google_account_use_case.dart';
 
 class UseCases {
   final GetPlaceDetailUseCase getPlaceDetail;
@@ -52,6 +53,7 @@ class UseCases {
   final FindPlaceImagesUseCase findPlaceImagesUseCase;
   final CreatePlaceReviewUseCase createPlaceReviewUseCase;
   final GoogleSignInUseCase googleSignInUseCase;
+  final DeleteGoogleAccountUseCase revokeGoogleAccountUseCase;
 
   UseCases({
     required this.getPlaceDetail,
@@ -79,6 +81,7 @@ class UseCases {
     required this.findPlaceTravelsUseCase,
     required this.findPlaceImagesUseCase,
     required this.createPlaceReviewUseCase,
-    required this.googleSignInUseCase
+    required this.googleSignInUseCase,
+    required this.revokeGoogleAccountUseCase
   });
 }

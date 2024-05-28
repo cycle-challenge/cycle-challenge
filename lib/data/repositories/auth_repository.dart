@@ -64,14 +64,27 @@ class AuthRepository {
   }
 
   Future<Result<Member, ApiError>> googleSignIn(
-      Profile profile, String idToken) async {
+      Profile profile, String idToken, String refreshToken) async {
     final result = await api.googleSignIn(profile, idToken);
 
     return result.when(
         success: (auth) async {
+          await secureStorage.saveOauthToken(refreshToken);
           await secureStorage.saveAuth(auth);
           return api.findProfile();
         },
         error: (error) => Result.error(error));
+  }
+
+  Future<Result<void, String>> revokeGoogleAccount() async {
+    final result = await secureStorage.findOAuthToken();
+
+    return result.when(
+        success: (token) => googleApi.revokeAccount(token),
+        error: (_) => const Result.error('인증 정보가 없거나 잘못 되었습니다. 다시 로그인해 주세요.'));
+  }
+
+  Future<Result<void, ApiError>> deleteAccount() async {
+    return api.deleteAccount();
   }
 }

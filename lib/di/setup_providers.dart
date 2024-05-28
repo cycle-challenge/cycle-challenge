@@ -38,6 +38,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/get_place_image_use_case.dart'
 import 'package:yeohaeng_ttukttak/domain/use_case/get_travel_visits_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/launch_url_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/load_marker_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/revoke_google_account_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
@@ -83,6 +84,9 @@ List<SingleChildWidget> dependentModules = [
       create: (context) => TravelRepository(context.read<RemoteAPI>())),
   Provider<VisitRepository>(
       create: (context) => VisitRepository(context.read<RemoteAPI>())),
+  Provider<AuthRepository>(
+      create: (context) => AuthRepository(context.read<RemoteAPI>(),
+          context.read<SecureStorage>(), context.read<GoogleApi>())),
   Provider<AddPlaceBookmarkUseCase>(
       create: (context) =>
           AddPlaceBookmarkUseCase(context.read<PlaceRepository>())),
@@ -128,9 +132,9 @@ List<SingleChildWidget> dependentModules = [
   Provider<GetTravelVisitsUseCase>(
       create: (context) =>
           GetTravelVisitsUseCase(context.read<VisitRepository>())),
-  Provider<AuthRepository>(
-      create: (context) => AuthRepository(
-          context.read<RemoteAPI>(), context.read<SecureStorage>(), context.read<GoogleApi>())),
+  Provider<DeleteGoogleAccountUseCase>(
+      create: (context) =>
+          DeleteGoogleAccountUseCase(context.read<AuthRepository>())),
   ProxyProvider<PlaceRepository, GetPlaceDetailUseCase>(
       update: (context, repository, _) => GetPlaceDetailUseCase(repository)),
   ProxyProvider<PlaceRepository, GetPlaceImageUseCase>(
@@ -170,7 +174,9 @@ List<SingleChildWidget> dependentModules = [
           findPlaceTravelsUseCase: context.read<FindPlaceTravelsUseCase>(),
           findPlaceImagesUseCase: context.read<FindPlaceImagesUseCase>(),
           createPlaceReviewUseCase: context.read<CreatePlaceReviewUseCase>(),
-          googleSignInUseCase: context.read<GoogleSignInUseCase>()))
+          googleSignInUseCase: context.read<GoogleSignInUseCase>(),
+          revokeGoogleAccountUseCase:
+              context.read<DeleteGoogleAccountUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [

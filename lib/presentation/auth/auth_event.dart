@@ -9,4 +9,5 @@ abstract class AuthEvent with _$AuthEvent {
   const factory AuthEvent.signIn(Member member) = AuthSignInEvent;
   const factory AuthEvent.signOut() = AuthSignOutEvent;
   const factory AuthEvent.googleSignIn() = _GoogleSignIn;
+  const factory AuthEvent.deleteGoogleAccount() = _DeleteGoogleAccount;
 }

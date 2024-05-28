@@ -37,7 +37,10 @@ class AuthViewModel with ChangeNotifier {
   }
 
   void onEvent(AuthEvent event) => event.when(
-      signOut: _onSignOut, signIn: _onSignIn, googleSignIn: _onGoogleSignIn);
+      signOut: _onSignOut,
+      signIn: _onSignIn,
+      googleSignIn: _onGoogleSignIn,
+      deleteGoogleAccount: _onDeleteGoogleAccount);
 
   void _onSignOut() async {
     await authRepository.signOut();
@@ -57,5 +60,17 @@ class AuthViewModel with ChangeNotifier {
         success: (member) => _onSignIn(member),
         error: (message) =>
             _mainEventController.add(MainUiEvent.showSnackbar(message)));
+  }
+
+  void _onDeleteGoogleAccount() async {
+    final result = await useCases.revokeGoogleAccountUseCase();
+
+    await authRepository.signOut();
+    _state = _state.copyWith(member: null);
+
+    _mainEventController.add(MainUiEvent.showSnackbar(result.when(
+        success: (_) => '회원 탈퇴가 완료 되었습니다.', error: (message) => message)));
+
+    notifyListeners();
   }
 }
