@@ -24,6 +24,7 @@ mixin _$MainEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$MainEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$MainEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +62,7 @@ mixin _$MainEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +74,7 @@ mixin _$MainEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +86,7 @@ mixin _$MainEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -176,6 +182,7 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
   }) {
     return changeNavigation(index);
   }
@@ -189,6 +196,7 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
   }) {
     return changeNavigation?.call(index);
   }
@@ -202,6 +210,7 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -223,6 +232,7 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
   }) {
     return changeNavigation(this);
   }
@@ -237,6 +247,7 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
   }) {
     return changeNavigation?.call(this);
   }
@@ -251,6 +262,7 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -344,6 +356,7 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
   }) {
     return initBottomSheet(maxHeight);
   }
@@ -357,6 +370,7 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
   }) {
     return initBottomSheet?.call(maxHeight);
   }
@@ -370,6 +384,7 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -391,6 +406,7 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
   }) {
     return initBottomSheet(this);
   }
@@ -405,6 +421,7 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
   }) {
     return initBottomSheet?.call(this);
   }
@@ -419,6 +436,7 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -485,6 +503,7 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
   }) {
     return expandBottomSheet();
   }
@@ -498,6 +517,7 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
   }) {
     return expandBottomSheet?.call();
   }
@@ -511,6 +531,7 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -532,6 +553,7 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
   }) {
     return expandBottomSheet(this);
   }
@@ -546,6 +568,7 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
   }) {
     return expandBottomSheet?.call(this);
   }
@@ -560,6 +583,7 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -621,6 +645,7 @@ class _$MainContractBottomSheetEventImpl
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
   }) {
     return contractBottomSheet();
   }
@@ -634,6 +659,7 @@ class _$MainContractBottomSheetEventImpl
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
   }) {
     return contractBottomSheet?.call();
   }
@@ -647,6 +673,7 @@ class _$MainContractBottomSheetEventImpl
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -668,6 +695,7 @@ class _$MainContractBottomSheetEventImpl
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
   }) {
     return contractBottomSheet(this);
   }
@@ -682,6 +710,7 @@ class _$MainContractBottomSheetEventImpl
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
   }) {
     return contractBottomSheet?.call(this);
   }
@@ -696,6 +725,7 @@ class _$MainContractBottomSheetEventImpl
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -786,6 +816,7 @@ class _$MainCanViewScrollUpEventEventImpl
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
   }) {
     return setCanViewScrollUp(canViewScrollUp);
   }
@@ -799,6 +830,7 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
   }) {
     return setCanViewScrollUp?.call(canViewScrollUp);
   }
@@ -812,6 +844,7 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -833,6 +866,7 @@ class _$MainCanViewScrollUpEventEventImpl
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
   }) {
     return setCanViewScrollUp(this);
   }
@@ -847,6 +881,7 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
   }) {
     return setCanViewScrollUp?.call(this);
   }
@@ -861,6 +896,7 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -930,6 +966,7 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
   }) {
     return stopBottomSheetAnimation();
   }
@@ -943,6 +980,7 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
   }) {
     return stopBottomSheetAnimation?.call();
   }
@@ -956,6 +994,7 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -977,6 +1016,7 @@ class _$MainStopBottomSheetAnimationEventEventImpl
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
   }) {
     return stopBottomSheetAnimation(this);
   }
@@ -991,6 +1031,7 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
   }) {
     return stopBottomSheetAnimation?.call(this);
   }
@@ -1005,6 +1046,7 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -1017,4 +1059,177 @@ class _$MainStopBottomSheetAnimationEventEventImpl
 abstract class MainStopBottomSheetAnimationEventEvent implements MainEvent {
   const factory MainStopBottomSheetAnimationEventEvent() =
       _$MainStopBottomSheetAnimationEventEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeHasAgreedTermsImplCopyWith<$Res> {
+  factory _$$ChangeHasAgreedTermsImplCopyWith(_$ChangeHasAgreedTermsImpl value,
+          $Res Function(_$ChangeHasAgreedTermsImpl) then) =
+      __$$ChangeHasAgreedTermsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool hasAgreedTerms});
+}
+
+/// @nodoc
+class __$$ChangeHasAgreedTermsImplCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$ChangeHasAgreedTermsImpl>
+    implements _$$ChangeHasAgreedTermsImplCopyWith<$Res> {
+  __$$ChangeHasAgreedTermsImplCopyWithImpl(_$ChangeHasAgreedTermsImpl _value,
+      $Res Function(_$ChangeHasAgreedTermsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? hasAgreedTerms = null,
+  }) {
+    return _then(_$ChangeHasAgreedTermsImpl(
+      null == hasAgreedTerms
+          ? _value.hasAgreedTerms
+          : hasAgreedTerms // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeHasAgreedTermsImpl implements _ChangeHasAgreedTerms {
+  const _$ChangeHasAgreedTermsImpl(this.hasAgreedTerms);
+
+  @override
+  final bool hasAgreedTerms;
+
+  @override
+  String toString() {
+    return 'MainEvent.changeHasAgreedTerms(hasAgreedTerms: $hasAgreedTerms)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeHasAgreedTermsImpl &&
+            (identical(other.hasAgreedTerms, hasAgreedTerms) ||
+                other.hasAgreedTerms == hasAgreedTerms));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, hasAgreedTerms);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeHasAgreedTermsImplCopyWith<_$ChangeHasAgreedTermsImpl>
+      get copyWith =>
+          __$$ChangeHasAgreedTermsImplCopyWithImpl<_$ChangeHasAgreedTermsImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+  }) {
+    return changeHasAgreedTerms(hasAgreedTerms);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+  }) {
+    return changeHasAgreedTerms?.call(hasAgreedTerms);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int index)? changeNavigation,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    required TResult orElse(),
+  }) {
+    if (changeHasAgreedTerms != null) {
+      return changeHasAgreedTerms(hasAgreedTerms);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainChangeNavigationEvent value) changeNavigation,
+    required TResult Function(MainInitBottomSheetEvent value) initBottomSheet,
+    required TResult Function(MainExpandBottomSheetEvent value)
+        expandBottomSheet,
+    required TResult Function(MainContractBottomSheetEvent value)
+        contractBottomSheet,
+    required TResult Function(MainCanViewScrollUpEventEvent value)
+        setCanViewScrollUp,
+    required TResult Function(MainStopBottomSheetAnimationEventEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+  }) {
+    return changeHasAgreedTerms(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult? Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult? Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+  }) {
+    return changeHasAgreedTerms?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    required TResult orElse(),
+  }) {
+    if (changeHasAgreedTerms != null) {
+      return changeHasAgreedTerms(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeHasAgreedTerms implements MainEvent {
+  const factory _ChangeHasAgreedTerms(final bool hasAgreedTerms) =
+      _$ChangeHasAgreedTermsImpl;
+
+  bool get hasAgreedTerms;
+  @JsonKey(ignore: true)
+  _$$ChangeHasAgreedTermsImplCopyWith<_$ChangeHasAgreedTermsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

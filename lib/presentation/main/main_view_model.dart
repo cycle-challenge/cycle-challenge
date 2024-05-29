@@ -15,13 +15,18 @@ class MainViewModel with ChangeNotifier {
   MainViewModel(this._eventController);
 
   void onEvent(MainEvent event) => event.when(
-        changeNavigation: _onChangeNavigation,
-        initBottomSheet: _initBottomSheet,
-        expandBottomSheet: _expandBottomSheet,
-        contractBottomSheet: _contractBottomSheet,
-        setCanViewScrollUp: _setCanViewScrollUp,
-        stopBottomSheetAnimation: _stopBottomSheetAnimation,
-      );
+      changeNavigation: _onChangeNavigation,
+      initBottomSheet: _initBottomSheet,
+      expandBottomSheet: _expandBottomSheet,
+      contractBottomSheet: _contractBottomSheet,
+      setCanViewScrollUp: _setCanViewScrollUp,
+      stopBottomSheetAnimation: _stopBottomSheetAnimation,
+      changeHasAgreedTerms: _onChangeHasAgreedTerms);
+
+  void _onChangeHasAgreedTerms(bool hasAgreedTerms) {
+    _state = _state.copyWith(hasAgreedTerms: hasAgreedTerms);
+    notifyListeners();
+  }
 
   void _onChangeNavigation(int index) {
     _state = _state.copyWith(navigationIndex: index);

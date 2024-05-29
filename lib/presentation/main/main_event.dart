@@ -10,4 +10,5 @@ abstract class MainEvent with _$MainEvent {
   const factory MainEvent.contractBottomSheet() = MainContractBottomSheetEvent;
   const factory MainEvent.setCanViewScrollUp(bool canViewScrollUp) = MainCanViewScrollUpEventEvent;
   const factory MainEvent.stopBottomSheetAnimation() = MainStopBottomSheetAnimationEventEvent;
+  const factory MainEvent.changeHasAgreedTerms(bool hasAgreedTerms) = _ChangeHasAgreedTerms;
 }

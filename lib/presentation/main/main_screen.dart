@@ -8,11 +8,13 @@ import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/components/background_image_slider.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/components/terms_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -33,6 +35,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+
     Future.microtask(() {
       final viewModel = context.read<MainViewModel>();
 
@@ -70,12 +73,18 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final authViewModel = context.watch<AuthViewModel>();
 
+    final viewModel = context.watch<MainViewModel>();
+    final mapViewModel = context.watch<MapViewModel>();
+
+    const slider = BackgroundImageSlider();
+
+    if (!viewModel.state.hasAgreedTerms) {
+      return const TermsScreen(slider: slider);
+    }
+
     if (authViewModel.state.member == null) {
       return const AuthScreen();
     }
-
-    final viewModel = context.watch<MainViewModel>();
-    final mapViewModel = context.watch<MapViewModel>();
 
     final isPlaceSelected = mapViewModel.filterState.selectedPlace != null;
 
