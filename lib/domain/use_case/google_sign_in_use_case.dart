@@ -46,7 +46,7 @@ class GoogleSignInUseCase {
           final result = await authRepository.googleSignIn(profile, idToken, refreshToken);
 
           return result.when(
-              success: (success) => Result.success(success),
+              success: (member) => Result.success(member.copyWith()),
               error: (error) => error.maybeWhen(
                   error: (_, message) => Result.error(message),
                   orElse: () => const Result.error('알 수 없는 오류가 발생했습니다.')));

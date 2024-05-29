@@ -47,7 +47,7 @@ class _TermsScreenState extends State<TermsScreen> {
           ),
           SafeArea(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 48),
               child: Theme(
                 data: Theme.of(context).copyWith(
                     splashColor: Colors.transparent,

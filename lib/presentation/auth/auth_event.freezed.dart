@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Member member) signIn,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
@@ -26,7 +25,6 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Member member)? signIn,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
@@ -34,7 +32,6 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Member member)? signIn,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
@@ -43,7 +40,6 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
@@ -51,7 +47,6 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
@@ -59,7 +54,6 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
@@ -83,162 +77,6 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$AuthSignInEventImplCopyWith<$Res> {
-  factory _$$AuthSignInEventImplCopyWith(_$AuthSignInEventImpl value,
-          $Res Function(_$AuthSignInEventImpl) then) =
-      __$$AuthSignInEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Member member});
-
-  $MemberCopyWith<$Res> get member;
-}
-
-/// @nodoc
-class __$$AuthSignInEventImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthSignInEventImpl>
-    implements _$$AuthSignInEventImplCopyWith<$Res> {
-  __$$AuthSignInEventImplCopyWithImpl(
-      _$AuthSignInEventImpl _value, $Res Function(_$AuthSignInEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? member = null,
-  }) {
-    return _then(_$AuthSignInEventImpl(
-      null == member
-          ? _value.member
-          : member // ignore: cast_nullable_to_non_nullable
-              as Member,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MemberCopyWith<$Res> get member {
-    return $MemberCopyWith<$Res>(_value.member, (value) {
-      return _then(_value.copyWith(member: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$AuthSignInEventImpl implements AuthSignInEvent {
-  const _$AuthSignInEventImpl(this.member);
-
-  @override
-  final Member member;
-
-  @override
-  String toString() {
-    return 'AuthEvent.signIn(member: $member)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthSignInEventImpl &&
-            (identical(other.member, member) || other.member == member));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, member);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthSignInEventImplCopyWith<_$AuthSignInEventImpl> get copyWith =>
-      __$$AuthSignInEventImplCopyWithImpl<_$AuthSignInEventImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Member member) signIn,
-    required TResult Function() signOut,
-    required TResult Function() googleSignIn,
-    required TResult Function() deleteGoogleAccount,
-  }) {
-    return signIn(member);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Member member)? signIn,
-    TResult? Function()? signOut,
-    TResult? Function()? googleSignIn,
-    TResult? Function()? deleteGoogleAccount,
-  }) {
-    return signIn?.call(member);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Member member)? signIn,
-    TResult Function()? signOut,
-    TResult Function()? googleSignIn,
-    TResult Function()? deleteGoogleAccount,
-    required TResult orElse(),
-  }) {
-    if (signIn != null) {
-      return signIn(member);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthSignInEvent value) signIn,
-    required TResult Function(AuthSignOutEvent value) signOut,
-    required TResult Function(_GoogleSignIn value) googleSignIn,
-    required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
-  }) {
-    return signIn(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthSignInEvent value)? signIn,
-    TResult? Function(AuthSignOutEvent value)? signOut,
-    TResult? Function(_GoogleSignIn value)? googleSignIn,
-    TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
-  }) {
-    return signIn?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthSignInEvent value)? signIn,
-    TResult Function(AuthSignOutEvent value)? signOut,
-    TResult Function(_GoogleSignIn value)? googleSignIn,
-    TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
-    required TResult orElse(),
-  }) {
-    if (signIn != null) {
-      return signIn(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthSignInEvent implements AuthEvent {
-  const factory AuthSignInEvent(final Member member) = _$AuthSignInEventImpl;
-
-  Member get member;
-  @JsonKey(ignore: true)
-  _$$AuthSignInEventImplCopyWith<_$AuthSignInEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -279,7 +117,6 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Member member) signIn,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
@@ -290,7 +127,6 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Member member)? signIn,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
@@ -301,7 +137,6 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Member member)? signIn,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
@@ -316,7 +151,6 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
@@ -327,7 +161,6 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
@@ -338,7 +171,6 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
@@ -393,7 +225,6 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Member member) signIn,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
@@ -404,7 +235,6 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Member member)? signIn,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
@@ -415,7 +245,6 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Member member)? signIn,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
@@ -430,7 +259,6 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
@@ -441,7 +269,6 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
@@ -452,7 +279,6 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
@@ -508,7 +334,6 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Member member) signIn,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
@@ -519,7 +344,6 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Member member)? signIn,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
@@ -530,7 +354,6 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Member member)? signIn,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
@@ -545,7 +368,6 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthSignInEvent value) signIn,
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
@@ -556,7 +378,6 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthSignInEvent value)? signIn,
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
@@ -567,7 +388,6 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthSignInEvent value)? signIn,
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,

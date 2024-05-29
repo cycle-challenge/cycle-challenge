@@ -26,7 +26,9 @@ class AuthViewModel with ChangeNotifier {
     authRepository.findProfile().then((result) {
       result.when(
           success: (member) {
-            _onSignIn(member);
+            _state = _state.copyWith(member: member);
+            notifyListeners();
+
             _mainEventController.add(MainUiEvent.autoSignIn(member.nickname));
           },
           error: (errors) => errors.when(
@@ -38,7 +40,6 @@ class AuthViewModel with ChangeNotifier {
 
   void onEvent(AuthEvent event) => event.when(
       signOut: _onSignOut,
-      signIn: _onSignIn,
       googleSignIn: _onGoogleSignIn,
       deleteGoogleAccount: _onDeleteGoogleAccount);
 
@@ -48,16 +49,15 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void _onSignIn(Member member) {
-    _state = _state.copyWith(member: member);
-    notifyListeners();
-  }
 
   void _onGoogleSignIn() async {
     final result = await useCases.googleSignInUseCase();
 
     result.when(
-        success: (member) => _onSignIn(member),
+        success: (member) {
+          _state = _state.copyWith(member: member);
+          notifyListeners();
+        },
         error: (message) =>
             _mainEventController.add(MainUiEvent.showSnackbar(message)));
   }

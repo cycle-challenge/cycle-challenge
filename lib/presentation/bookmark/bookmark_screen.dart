@@ -32,15 +32,15 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                   ?.copyWith(fontWeight: FontWeight.w600)),
           scrolledUnderElevation: 0,
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: IconButton(
-                  onPressed: () {},
-                  icon: const Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: Icon(Icons.copy),
-                  )),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 12.0),
+            //   child: IconButton(
+            //       onPressed: () {},
+            //       icon: const Padding(
+            //         padding: EdgeInsets.all(4.0),
+            //         child: Icon(Icons.copy),
+            //       ))
+            // ),
           ],
         ),
         floatingActionButton: FloatingActionButton(

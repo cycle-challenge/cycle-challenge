@@ -83,7 +83,7 @@ class _MainScreenState extends State<MainScreen> {
     }
 
     if (authViewModel.state.member == null) {
-      return const AuthScreen();
+      return const AuthScreen(slider: slider);
     }
 
     final isPlaceSelected = mapViewModel.filterState.selectedPlace != null;
