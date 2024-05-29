@@ -12,6 +12,7 @@ import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/place_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/travel_repository.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/visit_repository.dart';
+import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_travel_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/calculate_bound_use_case.dart';
@@ -85,8 +86,11 @@ List<SingleChildWidget> dependentModules = [
   Provider<VisitRepository>(
       create: (context) => VisitRepository(context.read<RemoteAPI>())),
   Provider<AuthRepository>(
-      create: (context) => AuthRepository(context.read<RemoteAPI>(),
-          context.read<SecureStorage>(), context.read<GoogleApi>())),
+      create: (context) => AuthRepository(
+          context.read<RemoteAPI>(),
+          context.read<SecureStorage>(),
+          context.read<GoogleApi>(),
+          context.read<LocalStorage>())),
   Provider<AddPlaceBookmarkUseCase>(
       create: (context) =>
           AddPlaceBookmarkUseCase(context.read<PlaceRepository>())),
@@ -193,7 +197,7 @@ List<SingleChildWidget> viewModels = [
           context.read<StreamController<MainUiEvent>>())),
   ChangeNotifierProvider<MainViewModel>(
       create: (context) =>
-          MainViewModel(context.read<StreamController<MainUiEvent>>())),
+          MainViewModel(context.read<StreamController<MainUiEvent>>(), context.read<AuthRepository>())),
   ChangeNotifierProvider<SearchViewModel>(
       create: (context) => SearchViewModel(context.read<PlaceRepository>(),
           context.read<StreamController<MainUiEvent>>())),

@@ -35,6 +35,28 @@ class LocalStorage {
         return places.length > 20 ? places.sublist(0, 20) : places;
       });
 
+  Future<Result<bool, String>> getHasAcceptedTerms() async =>
+      _execute(() async {
+        await Hive.openBox<bool>('state');
+        final box = Hive.box<bool>('state');
+
+        final hasAcceptedTerms = box.get('has_accepted_terms');
+
+        if (hasAcceptedTerms == null) return false;
+
+        return hasAcceptedTerms;
+      });
+
+
+  Future<Result<void, String>> setHasAcceptedTerms(bool hasAcceptedTerms) async =>
+      _execute(() async {
+        await Hive.openBox<bool>('state');
+        final box = Hive.box<bool>('state');
+
+        await box.put('has_accepted_terms', hasAcceptedTerms);
+      });
+
+
   FutureOr<Result<T, String>> _execute<T>(
       FutureOr<T> Function() operation) async {
     try {

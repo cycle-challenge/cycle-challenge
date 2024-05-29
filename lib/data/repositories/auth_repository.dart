@@ -1,4 +1,5 @@
 import 'package:yeohaeng_ttukttak/data/datasource/google_api.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/local_stoarge.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
@@ -10,11 +11,12 @@ import 'package:yeohaeng_ttukttak/utils/result.dart';
 class AuthRepository {
   final RemoteAPI api;
 
+  final LocalStorage localStorage;
   final SecureStorage secureStorage;
 
   final GoogleApi googleApi;
 
-  AuthRepository(this.api, this.secureStorage, this.googleApi);
+  AuthRepository(this.api, this.secureStorage, this.googleApi, this.localStorage);
 
   Future<Result<Member, ApiError>> signIn(String email, String password) async {
     final result = await api.signIn(email, password);
@@ -86,5 +88,13 @@ class AuthRepository {
 
   Future<Result<void, ApiError>> deleteAccount() async {
     return api.deleteAccount();
+  }
+
+  Future<Result<bool, String>> getHasAcceptedTerms() {
+    return localStorage.getHasAcceptedTerms();
+  }
+
+  Future<Result<void, String>> setHasAcceptedTerms(bool hasAcceptedTerms) {
+    return localStorage.setHasAcceptedTerms(hasAcceptedTerms);
   }
 }
