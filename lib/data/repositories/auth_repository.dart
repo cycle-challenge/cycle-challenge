@@ -97,4 +97,9 @@ class AuthRepository {
   Future<Result<void, String>> setHasAcceptedTerms(bool hasAcceptedTerms) {
     return localStorage.setHasAcceptedTerms(hasAcceptedTerms);
   }
+
+  Future<void> saveAuth(Auth auth) {
+    return secureStorage.saveAuth(auth);
+
+  }
 }

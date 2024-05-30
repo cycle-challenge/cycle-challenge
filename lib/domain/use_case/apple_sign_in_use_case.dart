@@ -1,36 +1,35 @@
 import 'dart:io';
 
+import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
+import 'package:yeohaeng_ttukttak/utils/oauth_client_id.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
-class GoogleSignInUseCase {
-
+class AppleSignInUseCase {
   final AuthRepository authRepository;
 
-  GoogleSignInUseCase(this.authRepository);
+  AppleSignInUseCase(this.authRepository);
 
   Future<Result<Member, String>> call() async {
-
-    final uri = Uri.https('accounts.google.com', '/o/oauth2/v2/auth', {
-      'client_id':
-          '951324022006-eigc5h6tj71rm2v31eqr5u0v07cbmpn1.apps.googleusercontent.com',
+    final uri = Uri.https('appleid.apple.com', '/auth/authorize', {
+      'client_id': 'app.yeohaeng.ttukttak.com',
+      'response_mode': 'form_post',
       'response_type': 'code',
-      'access_type': 'offline',
       'redirect_uri':
-          'http://172.30.1.25.nip.io:8080/api/v1/members/sign-in/google',
-      'scope': [
-        'https://www.googleapis.com/auth/userinfo.profile',
-        'https://www.googleapis.com/auth/userinfo.email'
-      ].join(' ')
+          'https://50e6-222-116-206-156.ngrok-free.app/api/v1/members/sign-in/apple',
+      'scope': ['name', 'email'].join(' ')
     });
 
     final response = await FlutterWebAuth2.authenticate(
         url: uri.toString(), callbackUrlScheme: 'com.yeohaeng.ttukttak.app');
 
     final params = Uri.parse(response).queryParameters;
+
+    print(params);
 
     if (params['status'] == 'fail') return Result.error(params['message']!);
 

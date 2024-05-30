@@ -1,5 +1,6 @@
 import 'package:yeohaeng_ttukttak/domain/use_case/add_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_travel_bookmark_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/apple_sign_in_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/calculate_bound_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/calculate_distance_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
@@ -54,6 +55,7 @@ class UseCases {
   final CreatePlaceReviewUseCase createPlaceReviewUseCase;
   final GoogleSignInUseCase googleSignInUseCase;
   final DeleteGoogleAccountUseCase revokeGoogleAccountUseCase;
+  final AppleSignInUseCase appleSignInUseCase;
 
   UseCases({
     required this.getPlaceDetail,
@@ -82,6 +84,7 @@ class UseCases {
     required this.findPlaceImagesUseCase,
     required this.createPlaceReviewUseCase,
     required this.googleSignInUseCase,
-    required this.revokeGoogleAccountUseCase
+    required this.revokeGoogleAccountUseCase,
+    required this.appleSignInUseCase
   });
 }

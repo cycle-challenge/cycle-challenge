@@ -63,9 +63,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         resValue "string", "mapApiKey", dartEnvironmentVariables.ANDROID_MAP_API_KEY
-        manifestPlaceholders += [
-                "appAuthRedirectScheme": "com.yeohaeng.ttukttak.app"
-        ]
     }
 
     buildTypes {

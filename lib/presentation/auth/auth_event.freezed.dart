@@ -21,6 +21,7 @@ mixin _$AuthEvent {
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
+    required TResult Function() appleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AuthEvent {
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
+    TResult? Function()? appleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AuthEvent {
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
+    TResult Function()? appleSignIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$AuthEvent {
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
+    required TResult Function(_AppleSignIn value) appleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$AuthEvent {
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult? Function(_AppleSignIn value)? appleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$AuthEvent {
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult Function(_AppleSignIn value)? appleSignIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
+    required TResult Function() appleSignIn,
   }) {
     return signOut();
   }
@@ -130,6 +137,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
+    TResult? Function()? appleSignIn,
   }) {
     return signOut?.call();
   }
@@ -140,6 +148,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
+    TResult Function()? appleSignIn,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -154,6 +163,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
+    required TResult Function(_AppleSignIn value) appleSignIn,
   }) {
     return signOut(this);
   }
@@ -164,6 +174,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult? Function(_AppleSignIn value)? appleSignIn,
   }) {
     return signOut?.call(this);
   }
@@ -174,6 +185,7 @@ class _$AuthSignOutEventImpl implements AuthSignOutEvent {
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult Function(_AppleSignIn value)? appleSignIn,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -228,6 +240,7 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
+    required TResult Function() appleSignIn,
   }) {
     return googleSignIn();
   }
@@ -238,6 +251,7 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
+    TResult? Function()? appleSignIn,
   }) {
     return googleSignIn?.call();
   }
@@ -248,6 +262,7 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
+    TResult Function()? appleSignIn,
     required TResult orElse(),
   }) {
     if (googleSignIn != null) {
@@ -262,6 +277,7 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
+    required TResult Function(_AppleSignIn value) appleSignIn,
   }) {
     return googleSignIn(this);
   }
@@ -272,6 +288,7 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult? Function(_AppleSignIn value)? appleSignIn,
   }) {
     return googleSignIn?.call(this);
   }
@@ -282,6 +299,7 @@ class _$GoogleSignInImpl implements _GoogleSignIn {
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult Function(_AppleSignIn value)? appleSignIn,
     required TResult orElse(),
   }) {
     if (googleSignIn != null) {
@@ -337,6 +355,7 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
     required TResult Function() deleteGoogleAccount,
+    required TResult Function() appleSignIn,
   }) {
     return deleteGoogleAccount();
   }
@@ -347,6 +366,7 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
     TResult? Function()? deleteGoogleAccount,
+    TResult? Function()? appleSignIn,
   }) {
     return deleteGoogleAccount?.call();
   }
@@ -357,6 +377,7 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
     TResult Function()? deleteGoogleAccount,
+    TResult Function()? appleSignIn,
     required TResult orElse(),
   }) {
     if (deleteGoogleAccount != null) {
@@ -371,6 +392,7 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
     required TResult Function(AuthSignOutEvent value) signOut,
     required TResult Function(_GoogleSignIn value) googleSignIn,
     required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
+    required TResult Function(_AppleSignIn value) appleSignIn,
   }) {
     return deleteGoogleAccount(this);
   }
@@ -381,6 +403,7 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
     TResult? Function(AuthSignOutEvent value)? signOut,
     TResult? Function(_GoogleSignIn value)? googleSignIn,
     TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult? Function(_AppleSignIn value)? appleSignIn,
   }) {
     return deleteGoogleAccount?.call(this);
   }
@@ -391,6 +414,7 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
     TResult Function(AuthSignOutEvent value)? signOut,
     TResult Function(_GoogleSignIn value)? googleSignIn,
     TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult Function(_AppleSignIn value)? appleSignIn,
     required TResult orElse(),
   }) {
     if (deleteGoogleAccount != null) {
@@ -402,4 +426,118 @@ class _$DeleteGoogleAccountImpl implements _DeleteGoogleAccount {
 
 abstract class _DeleteGoogleAccount implements AuthEvent {
   const factory _DeleteGoogleAccount() = _$DeleteGoogleAccountImpl;
+}
+
+/// @nodoc
+abstract class _$$AppleSignInImplCopyWith<$Res> {
+  factory _$$AppleSignInImplCopyWith(
+          _$AppleSignInImpl value, $Res Function(_$AppleSignInImpl) then) =
+      __$$AppleSignInImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppleSignInImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$AppleSignInImpl>
+    implements _$$AppleSignInImplCopyWith<$Res> {
+  __$$AppleSignInImplCopyWithImpl(
+      _$AppleSignInImpl _value, $Res Function(_$AppleSignInImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AppleSignInImpl implements _AppleSignIn {
+  const _$AppleSignInImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.appleSignIn()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AppleSignInImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() signOut,
+    required TResult Function() googleSignIn,
+    required TResult Function() deleteGoogleAccount,
+    required TResult Function() appleSignIn,
+  }) {
+    return appleSignIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? signOut,
+    TResult? Function()? googleSignIn,
+    TResult? Function()? deleteGoogleAccount,
+    TResult? Function()? appleSignIn,
+  }) {
+    return appleSignIn?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? signOut,
+    TResult Function()? googleSignIn,
+    TResult Function()? deleteGoogleAccount,
+    TResult Function()? appleSignIn,
+    required TResult orElse(),
+  }) {
+    if (appleSignIn != null) {
+      return appleSignIn();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignOutEvent value) signOut,
+    required TResult Function(_GoogleSignIn value) googleSignIn,
+    required TResult Function(_DeleteGoogleAccount value) deleteGoogleAccount,
+    required TResult Function(_AppleSignIn value) appleSignIn,
+  }) {
+    return appleSignIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthSignOutEvent value)? signOut,
+    TResult? Function(_GoogleSignIn value)? googleSignIn,
+    TResult? Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult? Function(_AppleSignIn value)? appleSignIn,
+  }) {
+    return appleSignIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignOutEvent value)? signOut,
+    TResult Function(_GoogleSignIn value)? googleSignIn,
+    TResult Function(_DeleteGoogleAccount value)? deleteGoogleAccount,
+    TResult Function(_AppleSignIn value)? appleSignIn,
+    required TResult orElse(),
+  }) {
+    if (appleSignIn != null) {
+      return appleSignIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppleSignIn implements AuthEvent {
+  const factory _AppleSignIn() = _$AppleSignInImpl;
 }

@@ -71,7 +71,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   Column(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Text("여행뚝딱.",
                     style: textTheme.headlineLarge?.copyWith(
-                      fontFamily: 'Jalnan_2',
+                      fontFamily: 'Jalnan_2'
                     )),
                 const SizedBox(height: 12),
                 Text('으로 계속하기',
@@ -80,51 +80,35 @@ class _AuthScreenState extends State<AuthScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      children: [
-                        IconButton(
-                            padding: const EdgeInsets.all(16),
-                            style: IconButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                side: BorderSide(color: colorScheme.onSurface)),
-                            onPressed: () => viewModel
-                                .onEvent(const AuthEvent.googleSignIn()),
-                            icon: Column(
-                              children: [
-                                Image.asset("assets/image/google_logo.png",
-                                    width: 24, height: 24),
-                              ],
-                            ))
-                      ],
-                    ),
+                    IconButton(
+                        padding: const EdgeInsets.all(16),
+                        style: IconButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side: BorderSide(color: colorScheme.onSurface)),
+                        onPressed: () => viewModel
+                            .onEvent(const AuthEvent.googleSignIn()),
+                        icon: Image.asset("assets/image/google_logo.png",
+                            width: 24, height: 24)),
                     const SizedBox(width: 24),
-                    Column(
-                      children: [
-                        IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () => viewModel
-                                .onEvent(const AuthEvent.googleSignIn()),
-                            icon: Image.asset("assets/image/apple_logo.png",
-                                width: 56, height: 56))
-                      ],
-                    ),
-                    const SizedBox(width: 24),
-                    Column(
-                      children: [
-                        IconButton(
-                            padding: const EdgeInsets.all(16),
-                            style: IconButton.styleFrom(
-                                backgroundColor: Colors.yellow),
-                            onPressed: () => viewModel
-                                .onEvent(const AuthEvent.googleSignIn()),
-                            icon: Column(
-                              children: [
-                                Image.asset("assets/image/kakao_logo.png",
-                                    width: 24, height: 24),
-                              ],
-                            ))
-                      ],
-                    ),
+                    IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () => viewModel
+                            .onEvent(const AuthEvent.appleSignIn()),
+                        icon: Image.asset("assets/image/apple_logo.png",
+                            width: 56, height: 56)),
+                    // const SizedBox(width: 24),
+                    // IconButton(
+                    //     padding: const EdgeInsets.all(16),
+                    //     style: IconButton.styleFrom(
+                    //         backgroundColor: Colors.yellow),
+                    //     onPressed: () => viewModel
+                    //         .onEvent(const AuthEvent.googleSignIn()),
+                    //     icon: Column(
+                    //       children: [
+                    //         Image.asset("assets/image/kakao_logo.png",
+                    //             width: 24, height: 24),
+                    //       ],
+                    //     )),
                   ],
                 ),
                 const SizedBox(height: 64),

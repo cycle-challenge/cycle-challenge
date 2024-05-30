@@ -15,6 +15,7 @@ import 'package:yeohaeng_ttukttak/data/repositories/visit_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_place_bookmark_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/add_travel_bookmark_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/apple_sign_in_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/calculate_bound_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/calculate_distance_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/call_phone_use_case.dart';
@@ -43,6 +44,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/revoke_google_account_use_case
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/google_map/google_map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -139,6 +141,9 @@ List<SingleChildWidget> dependentModules = [
   Provider<DeleteGoogleAccountUseCase>(
       create: (context) =>
           DeleteGoogleAccountUseCase(context.read<AuthRepository>())),
+  Provider<AppleSignInUseCase>(
+      create: (context) =>
+         AppleSignInUseCase(context.read<AuthRepository>())),
   ProxyProvider<PlaceRepository, GetPlaceDetailUseCase>(
       update: (context, repository, _) => GetPlaceDetailUseCase(repository)),
   ProxyProvider<PlaceRepository, GetPlaceImageUseCase>(
@@ -180,7 +185,8 @@ List<SingleChildWidget> dependentModules = [
           createPlaceReviewUseCase: context.read<CreatePlaceReviewUseCase>(),
           googleSignInUseCase: context.read<GoogleSignInUseCase>(),
           revokeGoogleAccountUseCase:
-              context.read<DeleteGoogleAccountUseCase>()))
+              context.read<DeleteGoogleAccountUseCase>(),
+          appleSignInUseCase: context.read<AppleSignInUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [
@@ -196,8 +202,9 @@ List<SingleChildWidget> viewModels = [
       create: (context) => BookmarkViewModel(context.read<UseCases>(),
           context.read<StreamController<MainUiEvent>>())),
   ChangeNotifierProvider<MainViewModel>(
-      create: (context) =>
-          MainViewModel(context.read<StreamController<MainUiEvent>>(), context.read<AuthRepository>())),
+      create: (context) => MainViewModel(
+          context.read<StreamController<MainUiEvent>>(),
+          context.read<AuthRepository>())),
   ChangeNotifierProvider<SearchViewModel>(
       create: (context) => SearchViewModel(context.read<PlaceRepository>(),
           context.read<StreamController<MainUiEvent>>())),

@@ -41,7 +41,8 @@ class AuthViewModel with ChangeNotifier {
   void onEvent(AuthEvent event) => event.when(
       signOut: _onSignOut,
       googleSignIn: _onGoogleSignIn,
-      deleteGoogleAccount: _onDeleteGoogleAccount);
+      deleteGoogleAccount: _onDeleteGoogleAccount,
+      appleSignIn: _onAppleSignIn);
 
   void _onSignOut() async {
     await authRepository.signOut();
@@ -49,9 +50,20 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-
   void _onGoogleSignIn() async {
     final result = await useCases.googleSignInUseCase();
+
+    result.when(
+        success: (member) {
+          _state = _state.copyWith(member: member);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message)));
+  }
+
+  void _onAppleSignIn() async {
+    final result = await useCases.appleSignInUseCase();
 
     result.when(
         success: (member) {
