@@ -72,6 +72,7 @@ dependencies:
   carousel_slider: ^4.2.1
   custom_map_markers: ^0.0.2+1
   flutter_appauth: ^6.0.6
+  flutter_web_auth_2: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -125,6 +126,26 @@ flutter:
      fonts:
        - asset: assets/font/Jalnan_2/Jalnan2TTF.ttf
          weight: 400
+   - family: Pretendard
+     fonts:
+       - asset: assets/font/Pretendard/Pretendard-Thin.otf
+         weight: 100
+       - asset: assets/font/Pretendard/Pretendard-ExtraLight.otf
+         weight: 200
+       - asset: assets/font/Pretendard/Pretendard-Light.otf
+         weight: 300
+       - asset: assets/font/Pretendard/Pretendard-Regular.otf
+         weight: 400
+       - asset: assets/font/Pretendard/Pretendard-Medium.otf
+         weight: 500
+       - asset: assets/font/Pretendard/Pretendard-SemiBold.otf
+         weight: 600
+       - asset: assets/font/Pretendard/Pretendard-Bold.otf
+         weight: 700
+       - asset: assets/font/Pretendard/Pretendard-ExtraBold.otf
+         weight: 800
+       - asset: assets/font/Pretendard/Pretendard-Black.otf
+         weight: 900
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  # see https://flutter.dev/custom-font/#from-packages

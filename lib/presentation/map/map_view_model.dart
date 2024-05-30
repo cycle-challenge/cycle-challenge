@@ -53,7 +53,6 @@ class MapViewModel with ChangeNotifier {
       findNearbyPlace: _findNearbyPlace,
       selectPlace: _onSelectPlace,
       changePosition: _changePosition,
-      showSearchButton: _showSearchButton,
       changeToMyPosition: _changeToMyPosition,
       updateFilter: _updateFilter,
       selectPlaceSearchResult: _onSelectPlaceSearchResult,
@@ -147,13 +146,16 @@ class MapViewModel with ChangeNotifier {
   }
 
   void _changePosition(CameraPosition position) {
-    double latitude = position.target.latitude;
-    double longitude = position.target.longitude;
+    final latitude = position.target.latitude;
+    final longitude = position.target.longitude;
 
+    final distance = useCases.calculateDistanceUseCase(
+        state.latitude, state.longitude, latitude, longitude);
+
+    if (distance < 3.0) return;
     _state = _state.copyWith(latitude: latitude, longitude: longitude);
-  }
 
-  void _showSearchButton() {
+    if (_state.isShownSearchButton) return;
     _state = _state.copyWith(isShownSearchButton: true);
     notifyListeners();
   }

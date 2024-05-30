@@ -110,43 +110,38 @@ class _MainScreenState extends State<MainScreen> {
         body = const ProfileScreen();
     }
 
-    return Scaffold(
-      body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
-          transitionBuilder: (Widget child, Animation<double> animation) =>
-              FadeTransition(opacity: animation, child: child),
-          child: body),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      floatingActionButton: isPlaceSelected
-          ? FloatingActionButton(
-              onPressed: isBookmarked
-                  ? () => bookmarkViewModel.onEvent(BookmarkEvent.deletePlace(
-                      mapViewModel.filterState.selectedPlace!))
-                  : () => bookmarkViewModel.onEvent(BookmarkEvent.addPlace(
-                      mapViewModel.filterState.selectedPlace!)),
-              elevation: 0,
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(
-                  isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
-                  color: Theme.of(context).colorScheme.onSurface),
-            )
-          : null,
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            border: Border(
-                top: BorderSide(
-                    color: Theme.of(context).colorScheme.outlineVariant,
-                    width: 1))),
-        child: isPlaceSelected
-            ? BottomAppBar(
-                surfaceTintColor: Theme.of(context).colorScheme.surface)
+    return Theme(
+      data: Theme.of(context).copyWith(
+          textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Pretendard')),
+      child: Scaffold(
+        body: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (Widget child, Animation<double> animation) =>
+                FadeTransition(opacity: animation, child: child),
+            child: body),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+        floatingActionButton: isPlaceSelected
+            ? FloatingActionButton(
+                onPressed: isBookmarked
+                    ? () => bookmarkViewModel.onEvent(BookmarkEvent.deletePlace(
+                        mapViewModel.filterState.selectedPlace!))
+                    : () => bookmarkViewModel.onEvent(BookmarkEvent.addPlace(
+                        mapViewModel.filterState.selectedPlace!)),
+                elevation: 0,
+                backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+                child: Icon(
+                    isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+                    color: Theme.of(context).colorScheme.onSurface),
+              )
+            : null,
+        bottomNavigationBar: isPlaceSelected
+            ? const BottomAppBar()
             : NavigationBar(
                 onDestinationSelected: (index) {
                   viewModel.onEvent(const MainEvent.initBottomSheet(null));
                   viewModel.onEvent(MainEvent.changeNavigation(index));
                 },
                 selectedIndex: state.navigationIndex,
-                surfaceTintColor: Theme.of(context).colorScheme.surface,
                 destinations: const [
                   NavigationDestination(
                     icon: Icon(Icons.map),

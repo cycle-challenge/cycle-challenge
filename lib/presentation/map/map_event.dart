@@ -15,7 +15,6 @@ abstract class MapEvent with _$MapEvent {
   const factory MapEvent.selectPlaceSearchResult(Place place) = _PlaceSearchResult;
   const factory MapEvent.changePosition(CameraPosition position) = ChangePositionEvent;
   const factory MapEvent.changeToMyPosition() = MoveToMyPositionEvent;
-  const factory MapEvent.showSearchButton() = ShowSearchButton;
   const factory MapEvent.updateFilter(Filter filter) = UpdateFilterEvent;
   const factory MapEvent.sortPlace(PlaceSortOption option) = _SortPlace;
 }

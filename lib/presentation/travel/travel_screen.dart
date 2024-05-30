@@ -12,14 +12,14 @@ import 'package:yeohaeng_ttukttak/domain/model/visit_area.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/google_map/google_map_page.dart';
+import 'package:yeohaeng_ttukttak/presentation/google_map/google_map_section.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel/components/travel_modify_bottom_app_bar.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel/components/visit_list_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel/travel_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel/travel_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_add_visit_page.dart';
 
-import 'package:yeohaeng_ttukttak/utils/function.dart';
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 import 'package:yeohaeng_ttukttak/utils/marker.dart';
 
@@ -34,6 +34,7 @@ class TravelScreen extends StatefulWidget {
 
 class _TravelScreenState extends State<TravelScreen> {
   GoogleMapController? _controller;
+  final Completer<GoogleMapController> _mapCompleter = Completer();
   final PanelController _panelController = PanelController();
 
   StreamSubscription? _subscription;
@@ -53,6 +54,7 @@ class _TravelScreenState extends State<TravelScreen> {
 
     Future.microtask(() {
       final viewModel = context.read<TravelViewModel>();
+
       _subscription =
           viewModel.stream.listen((event) => event.when(moveArea: _moveArea));
     });
@@ -69,12 +71,14 @@ class _TravelScreenState extends State<TravelScreen> {
   }
 
   void _moveArea(VisitArea area) async {
+    final controller = await _mapCompleter.future;
+
     LatLngBounds bounds = LatLngBounds(
         southwest: LatLng(area.swLat, area.swLon),
         northeast: LatLng(area.neLat, area.neLon));
 
     _isCameraMovingProgrammatically = true;
-    await _controller?.moveCamera(CameraUpdate.newLatLngBounds(bounds, 50));
+    await controller.moveCamera(CameraUpdate.newLatLngBounds(bounds, 50));
     _isCameraMovingProgrammatically = false;
   }
 
@@ -92,7 +96,7 @@ class _TravelScreenState extends State<TravelScreen> {
         .whereType<Visit>()
         .toList();
 
-    final Iterable<Place> places = visits.map((visit) => visit.place);
+    final List<Place> places = visits.map((visit) => visit.place).toList();
     final Place? selectedPlace = visits.elementAtOrNull(state.visitIndex)?.place;
 
     final bool isPanelExpanded =
@@ -210,41 +214,18 @@ class _TravelScreenState extends State<TravelScreen> {
                     ? VisitModifyListView(gapHeight: gapHeight)
                     : VisitListView(gapHeight: gapHeight)),
             body: Stack(children: [
-              CustomGoogleMapMarkerBuilder(
-                  customMarkers: buildMarker(context,
-                      places: places,
-                      selectedPlace: selectedPlace,
-                      onTap: (place) => {}),
-                  builder: (context, markers) {
-                    if (markers != null) prevMarkers = markers;
-
-                    return GoogleMap(
-                        padding: EdgeInsets.only(
-                            top: mediaQuery.padding.top,
-                            bottom: state.panelHeight + 185),
-                        myLocationButtonEnabled: false,
-                        initialCameraPosition: const CameraPosition(
-                          target: LatLng(36.6272, 127.4987),
-                          zoom: 13,
-                        ),
-                        onCameraMoveStarted: () {
-                          if (_isCameraMovingProgrammatically) return;
-                          viewModel.onEvent(
-                              const TravelEvent.setIsCameraMoved(true));
-                        },
-                        onMapCreated: (GoogleMapController controller) async {
-                          bool isDarkMode =
-                              MediaQuery.platformBrightnessOf(context) ==
-                                  Brightness.dark;
-
-                          String path = isDarkMode
-                              ? "assets/map/map_style_dark.json"
-                              : "assets/map/map_style.json";
-                          controller.setMapStyle(await getJsonFile(path));
-                          _controller = controller;
-                        },
-                        markers: markers ?? prevMarkers);
-                  }),
+              GoogleMapPage(mapCompleter: _mapCompleter,
+                padding: EdgeInsets.only(
+                    top: mediaQuery.padding.top,
+                    bottom: state.panelHeight + 185),
+                places: places,
+                selectedPlace: selectedPlace,
+                onCameraMoveStarted: () {
+                  if (_isCameraMovingProgrammatically) return;
+                  viewModel.onEvent(
+                      const TravelEvent.setIsCameraMoved(true));
+                },
+              ),
               Positioned(
                 left: 0,
                 right: 0,

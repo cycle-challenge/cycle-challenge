@@ -24,7 +24,6 @@ mixin _$MapEvent {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) =>
@@ -37,7 +36,6 @@ mixin _$MapEvent {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) =>
@@ -50,7 +48,6 @@ mixin _$MapEvent {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -64,7 +61,6 @@ mixin _$MapEvent {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) =>
@@ -77,7 +73,6 @@ mixin _$MapEvent {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) =>
@@ -90,7 +85,6 @@ mixin _$MapEvent {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -160,7 +154,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -176,7 +169,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -192,7 +184,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -212,7 +203,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -228,7 +218,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -244,7 +233,6 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -341,7 +329,6 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -357,7 +344,6 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -373,7 +359,6 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -393,7 +378,6 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -409,7 +393,6 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -425,7 +408,6 @@ class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -532,7 +514,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -548,7 +529,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -564,7 +544,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -584,7 +563,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -600,7 +578,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -616,7 +593,6 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -718,7 +694,6 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -734,7 +709,6 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -750,7 +724,6 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -770,7 +743,6 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -786,7 +758,6 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -802,7 +773,6 @@ class _$PlaceSearchResultImpl implements _PlaceSearchResult {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -895,7 +865,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -911,7 +880,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -927,7 +895,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -947,7 +914,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -963,7 +929,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -979,7 +944,6 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -1047,7 +1011,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -1063,7 +1026,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -1079,7 +1041,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -1099,7 +1060,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -1115,7 +1075,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -1131,7 +1090,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -1145,150 +1103,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
 
 abstract class MoveToMyPositionEvent implements MapEvent {
   const factory MoveToMyPositionEvent() = _$MoveToMyPositionEventImpl;
-}
-
-/// @nodoc
-abstract class _$$ShowSearchButtonImplCopyWith<$Res> {
-  factory _$$ShowSearchButtonImplCopyWith(_$ShowSearchButtonImpl value,
-          $Res Function(_$ShowSearchButtonImpl) then) =
-      __$$ShowSearchButtonImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ShowSearchButtonImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$ShowSearchButtonImpl>
-    implements _$$ShowSearchButtonImplCopyWith<$Res> {
-  __$$ShowSearchButtonImplCopyWithImpl(_$ShowSearchButtonImpl _value,
-      $Res Function(_$ShowSearchButtonImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ShowSearchButtonImpl implements ShowSearchButton {
-  const _$ShowSearchButtonImpl();
-
-  @override
-  String toString() {
-    return 'MapEvent.showSearchButton()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ShowSearchButtonImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(Place place) getPlaceDetail,
-    required TResult Function(Place? place) selectPlace,
-    required TResult Function(Place place) selectPlaceSearchResult,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-    required TResult Function(PlaceSortOption option) sortPlace,
-  }) {
-    return showSearchButton();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(Place place)? getPlaceDetail,
-    TResult? Function(Place? place)? selectPlace,
-    TResult? Function(Place place)? selectPlaceSearchResult,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-    TResult? Function(PlaceSortOption option)? sortPlace,
-  }) {
-    return showSearchButton?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(Place place)? getPlaceDetail,
-    TResult Function(Place? place)? selectPlace,
-    TResult Function(Place place)? selectPlaceSearchResult,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    TResult Function(PlaceSortOption option)? sortPlace,
-    required TResult orElse(),
-  }) {
-    if (showSearchButton != null) {
-      return showSearchButton();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-    required TResult Function(_SortPlace value) sortPlace,
-  }) {
-    return showSearchButton(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-    TResult? Function(_SortPlace value)? sortPlace,
-  }) {
-    return showSearchButton?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    TResult Function(_SortPlace value)? sortPlace,
-    required TResult orElse(),
-  }) {
-    if (showSearchButton != null) {
-      return showSearchButton(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ShowSearchButton implements MapEvent {
-  const factory ShowSearchButton() = _$ShowSearchButtonImpl;
 }
 
 /// @nodoc
@@ -1362,7 +1176,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -1378,7 +1191,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -1394,7 +1206,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -1414,7 +1225,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -1430,7 +1240,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -1446,7 +1255,6 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
@@ -1548,7 +1356,6 @@ class _$SortPlaceImpl implements _SortPlace {
     required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
     required TResult Function(PlaceSortOption option) sortPlace,
   }) {
@@ -1564,7 +1371,6 @@ class _$SortPlaceImpl implements _SortPlace {
     TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
     TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
@@ -1580,7 +1386,6 @@ class _$SortPlaceImpl implements _SortPlace {
     TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
     TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
@@ -1600,7 +1405,6 @@ class _$SortPlaceImpl implements _SortPlace {
     required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
     required TResult Function(_SortPlace value) sortPlace,
   }) {
@@ -1616,7 +1420,6 @@ class _$SortPlaceImpl implements _SortPlace {
     TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
     TResult? Function(_SortPlace value)? sortPlace,
   }) {
@@ -1632,7 +1435,6 @@ class _$SortPlaceImpl implements _SortPlace {
     TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
     TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),

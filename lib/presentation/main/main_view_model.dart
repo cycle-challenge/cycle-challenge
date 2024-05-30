@@ -16,14 +16,12 @@ class MainViewModel with ChangeNotifier {
   MainState get state => _state;
 
   MainViewModel(this._eventController, this._authRepository) {
-
-    _authRepository.getHasAcceptedTerms().then((result) => result.whenOrNull(
-      success: (bool hasAgreedTerms) {
-        _state = _state.copyWith(hasAgreedTerms: hasAgreedTerms);
-        notifyListeners();
-      }
-    ));
-
+    _authRepository
+        .getHasAcceptedTerms()
+        .then((result) => result.whenOrNull(success: (bool hasAgreedTerms) {
+              _state = _state.copyWith(hasAgreedTerms: hasAgreedTerms);
+              notifyListeners();
+            }));
   }
 
   void onEvent(MainEvent event) => event.when(
@@ -49,7 +47,8 @@ class MainViewModel with ChangeNotifier {
 
   void _initBottomSheet(double? maxHeight) {
     if (maxHeight == null) {
-      _state = MainState(maxHeight: _state.maxHeight);
+      _state = MainState(
+          maxHeight: _state.maxHeight, hasAgreedTerms: _state.hasAgreedTerms);
       return;
     }
     _state = _state.copyWith(maxHeight: maxHeight);

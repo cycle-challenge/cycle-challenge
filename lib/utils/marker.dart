@@ -29,7 +29,7 @@ List<MarkerData> buildMarker(BuildContext context,
                       ? Border.all(color: colorScheme.onSurface, width: 2)
                       : null,
                   color: isSelected ? Colors.red : place.type.backgroundColor),
-              child: Icon(place.type.iconData, size: 14)),
+              child: Icon(place.type.iconData, size: 14, color: Colors.white)),
           Container(
               height: 21,
               padding: const EdgeInsets.symmetric(horizontal: 6),
