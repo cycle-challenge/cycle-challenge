@@ -16,6 +16,7 @@ import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/components/terms_screen.dart';
+import 'package:yeohaeng_ttukttak/utils/widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -116,73 +117,65 @@ class _MainScreenState extends State<MainScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      extendBody: true,
-      body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
-          transitionBuilder: (Widget child, Animation<double> animation) =>
-              FadeTransition(opacity: animation, child: child),
-          child: body),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      floatingActionButton: isPlaceSelected
-          ? FloatingActionButton(
-              onPressed: isBookmarked
-                  ? () => bookmarkViewModel.onEvent(BookmarkEvent.deletePlace(
-                      mapViewModel.filterState.selectedPlace!))
-                  : () => bookmarkViewModel.onEvent(BookmarkEvent.addPlace(
-                      mapViewModel.filterState.selectedPlace!)),
-              elevation: 0,
-              child: Icon(
-                  isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
-                  color: colorScheme.onSurface),
-            )
-          : null,
-      bottomNavigationBar: ClipRRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-          child: isPlaceSelected
-              ? const BottomAppBar()
-              : Theme(
-                  data: theme.copyWith(splashColor: Colors.transparent),
-                  child: NavigationBar(
-                    onDestinationSelected: (index) {
-                      viewModel
-                          .onEvent(const MainEvent.initBottomSheet(null));
-                      viewModel.onEvent(MainEvent.changeNavigation(index));
-                    },
-                    selectedIndex: state.navigationIndex,
-                    indicatorColor: Colors.transparent,
-                    elevation: 0,
-                    destinations: const [
-                      NavigationDestination(
-                        icon: Icon(Icons.map_outlined),
-                        selectedIcon: Icon(Icons.map),
-                        label: '주변',
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.place_outlined),
-                        selectedIcon: Icon(Icons.place),
-                        label: '관광지',
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.explore_outlined),
-                        selectedIcon: Icon(Icons.explore),
-                        label: '여행',
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.bookmark_outline),
-                        selectedIcon: Icon(Icons.bookmark),
-                        label: '저장',
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.account_circle_outlined),
-                        selectedIcon: Icon(Icons.account_circle),
-                        label: '프로필',
-                      ),
-                    ],
-                  ),
+        extendBody: true,
+        body: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (Widget child, Animation<double> animation) =>
+                FadeTransition(opacity: animation, child: child),
+            child: body),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+        floatingActionButton: isPlaceSelected
+            ? FloatingActionButton(
+                onPressed: isBookmarked
+                    ? () => bookmarkViewModel.onEvent(BookmarkEvent.deletePlace(
+                        mapViewModel.filterState.selectedPlace!))
+                    : () => bookmarkViewModel.onEvent(BookmarkEvent.addPlace(
+                        mapViewModel.filterState.selectedPlace!)),
+                child: Icon(
+                    isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+                    color: colorScheme.onSurface),
+              )
+            : null,
+        bottomNavigationBar: isPlaceSelected
+            ? const BottomAppBar().blur()
+            : Theme(
+                data: theme.copyWith(splashColor: Colors.transparent),
+                child: NavigationBar(
+                  onDestinationSelected: (index) {
+                    viewModel.onEvent(const MainEvent.initBottomSheet(null));
+                    viewModel.onEvent(MainEvent.changeNavigation(index));
+                  },
+                  selectedIndex: state.navigationIndex,
+                  indicatorColor: Colors.transparent,
+                  elevation: 0,
+                  destinations: const [
+                    NavigationDestination(
+                      icon: Icon(Icons.map_outlined),
+                      selectedIcon: Icon(Icons.map),
+                      label: '주변',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.place_outlined),
+                      selectedIcon: Icon(Icons.place),
+                      label: '관광지',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.explore_outlined),
+                      selectedIcon: Icon(Icons.explore),
+                      label: '여행',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.bookmark_outline),
+                      selectedIcon: Icon(Icons.bookmark),
+                      label: '저장',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.account_circle_outlined),
+                      selectedIcon: Icon(Icons.account_circle),
+                      label: '프로필',
+                    ),
+                  ],
                 ),
-        ),
-      ),
-    );
+              ).blur());
   }
 }

@@ -22,6 +22,7 @@ class GoogleMapSection extends StatefulWidget {
   final void Function()? onCameraMoveStarted;
   final void Function(Place place)? onTapMarker;
   final EdgeInsets? padding;
+  final CameraPosition? initialPosition;
 
   GoogleMapSection(
       {super.key,
@@ -32,7 +33,8 @@ class GoogleMapSection extends StatefulWidget {
       this.onCameraMove,
       this.onTapMarker,
       this.onCameraMoveStarted,
-      this.padding})
+      this.padding,
+      this.initialPosition})
       : places = places ?? [];
 
   @override
@@ -99,8 +101,9 @@ class _GoogleMapSectionState extends State<GoogleMapSection> {
           if (markers != null) prevMarkers = markers;
 
           return GoogleMap(
-            initialCameraPosition: const CameraPosition(
-                target: LatLng(36.6272, 127.4987), zoom: 13),
+            initialCameraPosition:widget.initialPosition ??  CameraPosition(
+                target: const LatLng(36.6272, 127.4987),
+                zoom: 13),
             markers: markers ?? prevMarkers,
             zoomControlsEnabled: false,
             mapToolbarEnabled: false,

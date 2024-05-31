@@ -21,7 +21,7 @@ class SearchBarWidget extends StatelessWidget {
     return Container(
       width: double.maxFinite,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: FilledButton.icon(
+      child: OutlinedButton.icon(
           style: FilledButton.styleFrom(
             alignment: Alignment.centerLeft,
             textStyle: textTheme.labelLarge

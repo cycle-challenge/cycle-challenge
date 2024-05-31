@@ -20,18 +20,22 @@ class PlaceMainTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final TextTheme textTheme = Theme.of(context).textTheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    final themeData = Theme.of(context);
 
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Column(children: [
-        PlaceImageSummarySection(place: place),
-        Container(height: 8, color: colorScheme.secondaryContainer),
+        const SizedBox(height: 24),
         PlaceReviewSummarySection(reviews: reviews),
-        Container(height: 8, color: colorScheme.secondaryContainer),
+        const SizedBox(height: 48),
+        PlaceImageSummarySection(place: place),
+        const SizedBox(height: 48),
         PlaceTravelSummarySection(travels: travels),
-        Container(height: 20, color: colorScheme.surface)
+        const SizedBox(height: 48),
+        SizedBox(height: MediaQuery.of(context).padding.bottom)
       ]),
     );
   }

@@ -13,21 +13,21 @@ class PlaceImageTabView extends StatelessWidget {
 
     final networkImages = images.map((e) => NetworkImage(e.large)).toList();
 
-    return Container(
-        color: colorScheme.surface,
-        child: GridView.builder(
-            itemCount: images.length,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                childAspectRatio: 1 / 1),
-            itemBuilder: (_, index) => InkWell(
-                onTap: () => showImageViewerPager(
-                    context,
-                    useSafeArea: true,
-                    MultiImageProvider(networkImages, initialIndex: index)),
-                child: Image(image: networkImages[index], fit: BoxFit.cover))));
+    return GridView.builder(
+        itemCount: images.length,
+        physics: const ClampingScrollPhysics(),
+        padding: EdgeInsets.fromLTRB(
+            12, 24, 12, MediaQuery.of(context).padding.bottom + 24),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            childAspectRatio: 1 / 1),
+        itemBuilder: (_, index) => InkWell(
+            onTap: () => showImageViewerPager(
+                context,
+                useSafeArea: true,
+                MultiImageProvider(networkImages, initialIndex: index)),
+            child: Image(image: networkImages[index], fit: BoxFit.cover)));
   }
 }

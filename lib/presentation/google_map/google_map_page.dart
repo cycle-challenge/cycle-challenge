@@ -10,7 +10,7 @@ import 'package:yeohaeng_ttukttak/presentation/google_map/google_map_view_model.
 class GoogleMapPage extends StatelessWidget {
   final Completer<GoogleMapController> mapCompleter;
 
-  final List<Place> places;
+  final List<Place>? places;
 
   final Place? selectedPlace;
 
@@ -19,17 +19,19 @@ class GoogleMapPage extends StatelessWidget {
   final void Function()? onCameraMoveStarted;
   final void Function(Place place)? onTapMarker;
   final EdgeInsets? padding;
+  final CameraPosition? initialPosition;
 
   const GoogleMapPage(
       {super.key,
       required this.mapCompleter,
-      required this.places,
+      this.places,
       this.selectedPlace,
       this.onTap,
       this.onCameraMove,
       this.onCameraMoveStarted,
       this.onTapMarker,
-      this.padding});
+      this.padding,
+      this.initialPosition});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class GoogleMapPage extends StatelessWidget {
             onCameraMove: onCameraMove,
             onCameraMoveStarted: onCameraMoveStarted,
             onTapMarker: onTapMarker,
-            padding: padding));
+            padding: padding,
+            initialPosition: initialPosition));
   }
 }

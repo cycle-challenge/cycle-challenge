@@ -18,7 +18,7 @@ class PlaceSimpleView extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place))),
+            MaterialPageRoute(builder: (context) => PlaceDetailPage(place: place))),
       child: Container(
         margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
         padding: const EdgeInsets.fromLTRB(16, 14, 16, 28),

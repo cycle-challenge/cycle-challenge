@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/travel/travel_page.dart';
@@ -16,10 +17,10 @@ class PlaceTravelPreviewItem extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final viewModel = context.watch<ProfileViewModel>();
 
-    return Container(
-      width: 240,
-      height: 240,
-      constraints: const BoxConstraints(maxWidth: 480),
+    final colorTheme = Theme.of(context).colorTheme;
+
+    return SizedBox(
+      width: 220,
       child: GestureDetector(
         onTap: () async {
             await Navigator.of(context).push(MaterialPageRoute(
@@ -55,17 +56,23 @@ class PlaceTravelPreviewItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
+                        RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                  text: travel.nickname,
+                                  style: textTheme.bodyMedium?.copyWith(
+                                      color: Colors.white,
+                                  fontWeight: FontWeight.w600
+                                  ))
+                            ])),
                         Text(
                           travel.name,
                           style: textTheme.bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.w600),
-                        ),
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                              text: travel.nickname,
-                              style: textTheme.bodyMedium)
-                        ]))
+                              ?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        )
                       ]))
             ]),
       ),

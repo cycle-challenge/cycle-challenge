@@ -42,7 +42,7 @@ class PlaceListView extends StatelessWidget {
 
     return ListView.separated(
         controller: _controller,
-        padding: EdgeInsets.zero,
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
         itemCount: places.length,
         itemBuilder: (context, index) {
           final isBookmarked =

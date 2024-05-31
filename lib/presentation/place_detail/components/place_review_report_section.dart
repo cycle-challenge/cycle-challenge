@@ -22,14 +22,13 @@ class _PlaceReviewReportSectionState extends State<PlaceReviewReportSection> {
     final List<int> ratings = List.generate(6,
         (index) => widget.reviews.where((elm) => elm.rating == index).length);
 
-    final double ratingAvg = widget.reviews.length > 0 ?
+    final double ratingAvg = widget.reviews.isNotEmpty ?
         widget.reviews.map((e) => e.rating).reduce((a, b) => a + b) /
             reviewCounts : 0.0;
 
     return Container(
       height: 200,
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-      color: colorScheme.surface,
       child: Row(children: [
         Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(ratingAvg.toStringAsFixed(2),

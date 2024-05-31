@@ -26,60 +26,41 @@ class PlaceImageSummarySection extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    final viewModel = context.watch<PlaceDetailViewModel>();
-
     return Container(
-        color: colorScheme.surface,
-        padding: const EdgeInsets.only(top: 30, bottom: 15),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('관광지 사진',
-                        style: textTheme.titleLarge
-                            ?.copyWith(fontWeight: FontWeight.w600)),
-                    const SizedBox(height: 16),
-                    StaggeredGrid.count(
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 4,
-                        crossAxisSpacing: 4,
-                        children: [
-                          StaggeredGridTile.count(
-                              crossAxisCellCount: 2,
-                              mainAxisCellCount: 2,
-                              child: getPlaceImage(place, 0)),
-                          StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: getPlaceImage(place, 1)),
-                          StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: getPlaceImage(place, 2)),
-                          StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: getPlaceImage(place, 3)),
-                          StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: getPlaceImage(place, 4)),
-                        ])
-                  ]),
-            ),
-            const SizedBox(height: 12),
-            Align(
-                alignment: Alignment.centerRight,
-                child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: TextButton.icon(
-                        onPressed: () => { DefaultTabController.of(context).index = 1 },
-                        icon: const Icon(Icons.chevron_left),
-                        label: const Text('사진 더보기'))))
-          ],
-        ));
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('관광지 사진'),
+              trailing: TextButton(
+                  onPressed: () => {DefaultTabController.of(context).index = 1},
+                  child: const Text('더보기'))),
+          StaggeredGrid.count(
+              crossAxisCount: 4,
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
+              children: [
+                StaggeredGridTile.count(
+                    crossAxisCellCount: 2,
+                    mainAxisCellCount: 2,
+                    child: getPlaceImage(place, 0)),
+                StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: getPlaceImage(place, 1)),
+                StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: getPlaceImage(place, 2)),
+                StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: getPlaceImage(place, 3)),
+                StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: getPlaceImage(place, 4)),
+              ])
+        ]));
   }
 }
