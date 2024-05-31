@@ -66,6 +66,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
         bookmarkViewModel.state.placeIdSet.contains(widget.place.id);
 
     return Scaffold(
+        extendBody: true,
         body: DefaultTabController(
             length: 4,
             child: NestedScrollView(

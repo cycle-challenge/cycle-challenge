@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -75,6 +76,8 @@ class _MainScreenState extends State<MainScreen> {
 
     final viewModel = context.watch<MainViewModel>();
     final mapViewModel = context.watch<MapViewModel>();
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     const slider = BackgroundImageSlider();
 
@@ -110,63 +113,75 @@ class _MainScreenState extends State<MainScreen> {
         body = const ProfileScreen();
     }
 
-    return Theme(
-      data: Theme.of(context).copyWith(
-          textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Pretendard')),
-      child: Scaffold(
-        body: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 200),
-            transitionBuilder: (Widget child, Animation<double> animation) =>
-                FadeTransition(opacity: animation, child: child),
-            child: body),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-        floatingActionButton: isPlaceSelected
-            ? FloatingActionButton(
-                onPressed: isBookmarked
-                    ? () => bookmarkViewModel.onEvent(BookmarkEvent.deletePlace(
-                        mapViewModel.filterState.selectedPlace!))
-                    : () => bookmarkViewModel.onEvent(BookmarkEvent.addPlace(
-                        mapViewModel.filterState.selectedPlace!)),
-                elevation: 0,
-                backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-                child: Icon(
-                    isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
-                    color: Theme.of(context).colorScheme.onSurface),
-              )
-            : null,
-        bottomNavigationBar: isPlaceSelected
-            ? const BottomAppBar()
-            : NavigationBar(
-                onDestinationSelected: (index) {
-                  viewModel.onEvent(const MainEvent.initBottomSheet(null));
-                  viewModel.onEvent(MainEvent.changeNavigation(index));
-                },
-                selectedIndex: state.navigationIndex,
-                destinations: const [
-                  NavigationDestination(
-                    icon: Icon(Icons.map),
-                    label: '주변',
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      extendBody: true,
+      body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          transitionBuilder: (Widget child, Animation<double> animation) =>
+              FadeTransition(opacity: animation, child: child),
+          child: body),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      floatingActionButton: isPlaceSelected
+          ? FloatingActionButton(
+              onPressed: isBookmarked
+                  ? () => bookmarkViewModel.onEvent(BookmarkEvent.deletePlace(
+                      mapViewModel.filterState.selectedPlace!))
+                  : () => bookmarkViewModel.onEvent(BookmarkEvent.addPlace(
+                      mapViewModel.filterState.selectedPlace!)),
+              elevation: 0,
+              child: Icon(
+                  isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+                  color: colorScheme.onSurface),
+            )
+          : null,
+      bottomNavigationBar: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+          child: isPlaceSelected
+              ? const BottomAppBar()
+              : Theme(
+                  data: theme.copyWith(splashColor: Colors.transparent),
+                  child: NavigationBar(
+                    onDestinationSelected: (index) {
+                      viewModel
+                          .onEvent(const MainEvent.initBottomSheet(null));
+                      viewModel.onEvent(MainEvent.changeNavigation(index));
+                    },
+                    selectedIndex: state.navigationIndex,
+                    indicatorColor: Colors.transparent,
+                    elevation: 0,
+                    destinations: const [
+                      NavigationDestination(
+                        icon: Icon(Icons.map_outlined),
+                        selectedIcon: Icon(Icons.map),
+                        label: '주변',
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.place_outlined),
+                        selectedIcon: Icon(Icons.place),
+                        label: '관광지',
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.explore_outlined),
+                        selectedIcon: Icon(Icons.explore),
+                        label: '여행',
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.bookmark_outline),
+                        selectedIcon: Icon(Icons.bookmark),
+                        label: '저장',
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.account_circle_outlined),
+                        selectedIcon: Icon(Icons.account_circle),
+                        label: '프로필',
+                      ),
+                    ],
                   ),
-                  NavigationDestination(
-                    icon: Icon(Icons.place),
-                    label: '관광지',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.flight),
-                    label: '여행',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(
-                      Icons.bookmark,
-                    ),
-                    label: '저장',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.account_circle),
-                    label: '프로필',
-                  ),
-                ],
-              ),
+                ),
+        ),
       ),
     );
   }

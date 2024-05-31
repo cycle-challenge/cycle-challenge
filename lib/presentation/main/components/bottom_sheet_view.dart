@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -26,6 +27,7 @@ class BottomSheetView extends StatelessWidget {
         : (viewModel.state.navigationIndex == 2)
             ? TravelListView(travels: travels)
             : null;
+    final colorTheme = Theme.of(context).colorTheme;
 
     return Listener(
       onPointerMove: (event) {
@@ -51,7 +53,7 @@ class BottomSheetView extends StatelessWidget {
             viewModel.onEvent(const MainEvent.stopBottomSheetAnimation()),
         curve: Curves.fastOutSlowIn,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: colorTheme.background,
             borderRadius: state.isExpanded
                 ? null
                 : const BorderRadius.vertical(top: Radius.circular(20))),

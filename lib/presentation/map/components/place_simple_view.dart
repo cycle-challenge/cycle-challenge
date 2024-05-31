@@ -17,18 +17,18 @@ class PlaceSimpleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place)));
-      },
+      onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place))),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 28),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(30))),
+                const BorderRadius.all(Radius.circular(16))),
         child: PlaceListItem(
           place: place,
+          contentPadding: EdgeInsets.zero,
           trailing: IconButton(
             onPressed: () {
               final viewModel = context.read<MapViewModel>();

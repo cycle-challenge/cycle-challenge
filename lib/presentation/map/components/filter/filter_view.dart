@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/components/filter/filter_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/filter/travel_filter_view.dart';
+import 'package:yeohaeng_ttukttak/presentation/map/components/icon_choice_chip.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 
@@ -21,60 +21,39 @@ class FilterView extends StatelessWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          const SizedBox(
-            width: 32.0,
-          ),
-          ChoiceChip(
-              showCheckmark: false,
-              label: Text(
-                "필터",
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: travelFilter.hasAnyFilter
-                        ? Theme.of(context).colorScheme.onPrimary
-                        : Theme.of(context).colorScheme.onSurface),
-              ),
-              selectedColor: Theme.of(context).colorScheme.primary,
-              avatar: Icon(
-                Icons.filter_alt,
-                size: 16,
-                color: travelFilter.hasAnyFilter
-                    ? Theme.of(context).colorScheme.onPrimary
-                    : null,
-              ),
-              shape: StadiumBorder(
-                  side: BorderSide(
-                      color: travelFilter.hasAnyFilter
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.outlineVariant)),
-              selected: travelFilter.hasAnyFilter,
-              onSelected: (_) => showModalBottomSheet(
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (context) => Container(
-                      height: filterSheetHeight,
-                      constraints: const BoxConstraints(maxHeight: 772),
-                      child: const TravelFilterBottomSheetWidget()))),
-          for (int index = 0; index < PlaceType.values.length; index++)
-            Container(
-              margin: const EdgeInsets.only(left: 8.0),
-              child: FilterWidget(
-                label: PlaceType.values[index].label,
-                isSelected: placeFilter.type.contains(PlaceType.values[index]),
-                iconData: PlaceType.values[index].iconData,
-                onSelected: (bool isSelected) {
-                  if (isSelected) {
-                    placeFilter.type.add(PlaceType.values[index]);
-                  } else {
-                    placeFilter.type.remove(PlaceType.values[index]);
-                  }
-
-                  viewModel.onEvent(MapEvent.updateFilter(placeFilter));
-                },
-              ),
-            )
-        ],
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        child: Row(
+          children: [
+            const SizedBox(width: 32.0),
+            IconChoiceChip(
+                label: const Text("필터"),
+                icon: const Icon(Icons.filter_alt),
+                selected: travelFilter.hasAnyFilter,
+                onSelected: (_) => showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => Container(
+                        height: filterSheetHeight,
+                        constraints: const BoxConstraints(maxHeight: 772),
+                        child: const TravelFilterBottomSheetWidget()))),
+            for (PlaceType type in PlaceType.values) ...[
+              const SizedBox(width: 8),
+              IconChoiceChip(
+                  label: Text(type.label),
+                  icon: Icon(type.iconData),
+                  selected: placeFilter.type.contains(type),
+                  onSelected: (bool isSelected) {
+                    if (isSelected) {
+                      placeFilter.type.add(type);
+                    } else {
+                      placeFilter.type.remove(type);
+                    }
+                    viewModel.onEvent(MapEvent.updateFilter(placeFilter));
+                  })
+            ]
+          ],
+        ),
       ),
     );
   }

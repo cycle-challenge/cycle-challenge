@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/google_map/google_map_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/map/my_location_button_widget.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
@@ -77,29 +80,34 @@ class _MapScreenState extends State<MapScreen> {
         (mainState.navigationIndex == 1 || mainState.navigationIndex == 2) &&
             !isPlaceSelected;
 
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    final isAppBarExpanded =
+        (isSheetShown && mainState.isExpanded && !mainState.isAnimating);
+    final colorTheme = Theme.of(context).colorTheme;
+
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(115),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 150),
-            decoration: BoxDecoration(
-              color: (isSheetShown &&
-                      mainState.isExpanded &&
-                      !mainState.isAnimating)
-                  ? Theme.of(context).colorScheme.surface
-                  : Theme.of(context).colorScheme.surface.withOpacity(0.0),
-            ),
-            child: AppBar(
-              title: SearchBarWidget(),
-              backgroundColor:
-                  Theme.of(context).colorScheme.surface.withOpacity(0.0),
-              scrolledUnderElevation: 0,
-              bottom: const PreferredSize(
-                preferredSize: Size.fromHeight(51.0),
-                child: FilterView(),
-              ),
-            ),
+        appBar: AppBar(
+          title: SearchBarWidget(),
+          backgroundColor: colorScheme.surface.withOpacity(0.0),
+          scrolledUnderElevation: 0,
+          flexibleSpace: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                    colorTheme.background.withOpacity(isAppBarExpanded ? 1 : 0.75),
+                    colorTheme.background.withOpacity(isAppBarExpanded ? 1 : 0)
+                  ]))),
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(60.0),
+            child: FilterView(),
           ),
         ),
         body: LayoutBuilder(
@@ -113,6 +121,7 @@ class _MapScreenState extends State<MapScreen> {
                     mapCompleter: _mapCompleter,
                     places: filterState.filteredPlaces,
                     selectedPlace: filterState.selectedPlace,
+                    padding: MediaQuery.of(context).padding,
                     onTap: () =>
                         viewModel.onEvent(const MapEvent.selectPlace(null)),
                     onTapMarker: (place) =>
@@ -121,28 +130,23 @@ class _MapScreenState extends State<MapScreen> {
                         viewModel.onEvent(MapEvent.changePosition(position))),
                 const SafeArea(
                     child: SizedBox(
-                  width: double.maxFinite,
-                  child: Column(
-                    children: [
-                      SearchButtonWidget(),
-                    ],
-                  ),
-                )),
+                        width: double.maxFinite,
+                        child: Column(children: [SearchButtonWidget()]))),
                 SizedBox(
                     width: double.maxFinite,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          MyLocationButtonWidget(
-                              onTap: () => viewModel.onEvent(
-                                  const MapEvent.changeToMyPosition())),
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          if (!isPlaceSelected)
+                            MyLocationButtonWidget(
+                                onTap: () => viewModel.onEvent(
+                                    const MapEvent.changeToMyPosition())),
+                          const SizedBox(height: 20),
                           if (isPlaceSelected)
                             PlaceSimpleView(place: filterState.selectedPlace!),
                           if (isSheetShown) const BottomSheetView(),
+                          if (!isSheetShown) SizedBox(height: bottomPadding),
                         ]))
               ]);
             }));
