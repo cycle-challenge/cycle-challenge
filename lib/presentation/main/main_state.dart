@@ -14,6 +14,7 @@ class MainState with _$MainState {
       @Default(false) bool isExpanded,
       @Default(false) bool isAnimating,
       @Default(false) bool canViewScrollUp,
-      @Default(false) bool hasAgreedTerms}) = _MainState;
+      @Default(false) bool hasAgreedTerms,
+      @Default(false) bool hasCheckedPermissions}) = _MainState;
 
 }

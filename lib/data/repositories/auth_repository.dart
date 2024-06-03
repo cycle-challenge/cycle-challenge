@@ -3,6 +3,7 @@ import 'package:yeohaeng_ttukttak/data/datasource/local_stoarge.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
+import 'package:yeohaeng_ttukttak/domain/model/global_state.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 import 'package:yeohaeng_ttukttak/domain/model/profile.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
@@ -90,12 +91,12 @@ class AuthRepository {
     return api.deleteAccount();
   }
 
-  Future<Result<bool, String>> getHasAcceptedTerms() {
-    return localStorage.getHasAcceptedTerms();
+  Future<Result<GlobalState, String>> getGlobalState() {
+    return localStorage.getGlobalState();
   }
 
-  Future<Result<void, String>> setHasAcceptedTerms(bool hasAcceptedTerms) {
-    return localStorage.setHasAcceptedTerms(hasAcceptedTerms);
+  Future<Result<void, String>> saveGlobalState(GlobalState state) {
+    return localStorage.saveGlobalState(state);
   }
 
   Future<void> saveAuth(Auth auth) {

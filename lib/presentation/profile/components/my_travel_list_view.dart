@@ -23,18 +23,19 @@ class MyTravelListView extends StatelessWidget {
             MyTravelListItem(travel: state.myTravels[index]),
         separatorBuilder: (_, __) => const SizedBox(height: 16),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => showModalBottomSheet(
-          context: context,
-          builder: (context) => CreateTravelSheet(),
-          isScrollControlled: true,
-          useSafeArea: true,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
+        child: FloatingActionButton.extended(
+          onPressed: () => showModalBottomSheet(
+            context: context,
+            builder: (context) => CreateTravelSheet(),
+            isScrollControlled: true,
+            useSafeArea: true,
+          ),
+          elevation: 0,
+          icon: const Icon(Icons.edit),
+          label: const Text('여행 만들기')
         ),
-        elevation: 0,
-        icon: const Icon(Icons.edit),
-        label: const Text('여행 만들기'),
-        backgroundColor: colorScheme.secondaryContainer,
-        foregroundColor: colorScheme.onSecondaryContainer,
       ),
     );
   }

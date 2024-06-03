@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
+import 'package:yeohaeng_ttukttak/domain/model/global_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
@@ -17,9 +18,11 @@ class MainViewModel with ChangeNotifier {
 
   MainViewModel(this._eventController, this._authRepository) {
     _authRepository
-        .getHasAcceptedTerms()
-        .then((result) => result.whenOrNull(success: (bool hasAgreedTerms) {
-              _state = _state.copyWith(hasAgreedTerms: hasAgreedTerms);
+        .getGlobalState()
+        .then((result) => result.whenOrNull(success: (GlobalState state) {
+              _state = _state.copyWith(
+                  hasAgreedTerms: state.hasAgreedTerms,
+                  hasCheckedPermissions: state.hasCheckedPermissions);
               notifyListeners();
             }));
   }
@@ -31,13 +34,25 @@ class MainViewModel with ChangeNotifier {
       contractBottomSheet: _contractBottomSheet,
       setCanViewScrollUp: _setCanViewScrollUp,
       stopBottomSheetAnimation: _stopBottomSheetAnimation,
-      changeHasAgreedTerms: _onChangeHasAgreedTerms);
+      changeHasAgreedTerms: _onChangeHasAgreedTerms,
+      changeHasCheckedPermissions: _onChangeHasCheckedPermissions);
+
+  void _onChangeHasCheckedPermissions(bool hasCheckedPermissions) {
+    _state = _state.copyWith(hasCheckedPermissions: hasCheckedPermissions);
+    notifyListeners();
+
+    _authRepository.saveGlobalState(GlobalState(
+        hasAgreedTerms: _state.hasAgreedTerms,
+        hasCheckedPermissions: _state.hasCheckedPermissions));
+  }
 
   void _onChangeHasAgreedTerms(bool hasAgreedTerms) {
     _state = _state.copyWith(hasAgreedTerms: hasAgreedTerms);
-    _authRepository.setHasAcceptedTerms(_state.hasAgreedTerms);
-
     notifyListeners();
+
+    _authRepository.saveGlobalState(GlobalState(
+        hasAgreedTerms: _state.hasAgreedTerms,
+        hasCheckedPermissions: _state.hasCheckedPermissions));
   }
 
   void _onChangeNavigation(int index) {
@@ -48,7 +63,10 @@ class MainViewModel with ChangeNotifier {
   void _initBottomSheet(double? maxHeight) {
     if (maxHeight == null) {
       _state = MainState(
-          maxHeight: _state.maxHeight, hasAgreedTerms: _state.hasAgreedTerms);
+          maxHeight: _state.maxHeight,
+          hasAgreedTerms: _state.hasAgreedTerms,
+          hasCheckedPermissions: _state.hasCheckedPermissions);
+
       return;
     }
     _state = _state.copyWith(maxHeight: maxHeight);

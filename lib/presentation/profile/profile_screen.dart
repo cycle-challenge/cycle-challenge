@@ -1,10 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:random_avatar/random_avatar.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/components/my_travel_list_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/profile_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/profile/setting_screen.dart';
+import 'package:yeohaeng_ttukttak/utils/widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -19,40 +24,41 @@ class ProfileScreen extends StatelessWidget {
 
     if (member == null) return const SizedBox();
 
+    final textTheme = Theme.of(context).textTheme;
+    final colorTheme = Theme.of(context).colorTheme;
     return Scaffold(
-      appBar: AppBar(actions: [
-        IconButton(
-            onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const SettingScreen())),
-            icon: const Icon(Icons.settings)),
-        const SizedBox(width: 8)
-      ]),
-      body: Column(
-        children: [
+        appBar: AppBar(actions: [
+          IconButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const SettingScreen())),
+              icon: const Icon(Icons.settings)),
+          const SizedBox(width: 8)
+        ]),
+        body: Column(children: [
           ListTile(
-              leading: const CircleAvatar(
-                  radius: 28,
-                  backgroundImage: AssetImage('assets/image/default.png')),
-              title: Text(member.nickname,
-                  style: Theme.of(context).textTheme.titleLarge),
-              subtitle: Text('여행 ${state.myTravels.length}개 • 리뷰 0건',
-                  style: Theme.of(context).textTheme.bodyMedium)),
+              leading: RandomAvatar(member.nickname, width: 48, height: 48),
+              title: Text(member.nickname),
+              subtitle: RichText(
+                  text: TextSpan(style: textTheme.labelLarge, children: [
+                const TextSpan(text: '여행 '),
+                TextSpan(text: '${state.myTravels.length}').bold(),
+                const TextSpan(text: ' • 리뷰 '),
+                const TextSpan(text: '0').bold()
+              ]))),
           const SizedBox(height: 8),
           Expanded(
               child: DefaultTabController(
-            length: 2,
-            child: Column(
-              children: [
-                const TabBar(
-                    tabs: [Tab(child: Text('여행')), Tab(child: Text('리뷰'))]),
-                Expanded(
-                    child: TabBarView(
-                        children: [const MyTravelListView(), Container()]))
-              ],
-            ),
-          ))
-        ],
-      ),
-    );
+                  length: 2,
+                  child: Column(children: [
+                    const TabBar(
+                      isScrollable: true,
+                      tabAlignment: TabAlignment.start,
+                        tabs: [Tab(child: Text('여행')), Tab(child: Text('리뷰'))]),
+                    Expanded(
+                      child: FadeTabBarView(
+                          children: [const MyTravelListView(), Container()]),
+                    )
+                  ])))
+        ]));
   }
 }

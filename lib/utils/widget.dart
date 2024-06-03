@@ -17,9 +17,17 @@ extension InvertColorTheme on Widget {
 
 extension BlurWidget on Widget {
   Widget blur({double sigmaX = 3.0, double sigmaY = 3.0}) {
+
     return ClipRRect(
         child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
             child: this));
+  }
+}
+
+extension TextSpanBold on TextSpan {
+  TextSpan bold() {
+    return TextSpan(
+        children: [this], style: const TextStyle(fontWeight: FontWeight.w600));
   }
 }

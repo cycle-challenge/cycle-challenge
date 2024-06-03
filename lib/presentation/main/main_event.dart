@@ -11,4 +11,5 @@ abstract class MainEvent with _$MainEvent {
   const factory MainEvent.setCanViewScrollUp(bool canViewScrollUp) = MainCanViewScrollUpEventEvent;
   const factory MainEvent.stopBottomSheetAnimation() = MainStopBottomSheetAnimationEventEvent;
   const factory MainEvent.changeHasAgreedTerms(bool hasAgreedTerms) = _ChangeHasAgreedTerms;
+  const factory MainEvent.changeHasCheckedPermissions(bool hasCheckedPermissions) = _ChangeHasCheckedPermissions;
 }

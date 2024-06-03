@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
+import 'package:yeohaeng_ttukttak/domain/model/global_state.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
@@ -12,6 +13,7 @@ import 'package:yeohaeng_ttukttak/theme.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(PlaceSuggestionAdapter());
+  Hive.registerAdapter(GlobalStateAdapter());
 
   setLocaleMessages('ko', KoMessages());
 
@@ -67,15 +69,18 @@ ThemeData buildCustomTheme(ThemeData themeData) {
   return themeData.copyWith(
     textTheme: typography.apply(
         fontFamily: 'Pretendard', displayColor: colorTheme.foreground),
-
+    scaffoldBackgroundColor: colorTheme.background,
     colorScheme: colorScheme.copyWith(background: colorTheme.background),
     // [Bar Themes] ----------------------------------------------------------
-    appBarTheme: AppBarTheme(backgroundColor: colorTheme.background),
+    appBarTheme: AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: colorTheme.background),
     bottomAppBarTheme: BottomAppBarTheme(
         elevation: 0, color: colorTheme.backgroundDark.withOpacity(0.9)),
     tabBarTheme: themeData.tabBarTheme.copyWith(
       indicatorSize: TabBarIndicatorSize.tab,
-      labelPadding: const EdgeInsets.symmetric(horizontal: 18),
+      labelPadding: const EdgeInsets.symmetric(horizontal: 24),
       labelStyle: const TextStyle(fontWeight: FontWeight.w600),
       unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
     ),
@@ -135,7 +140,8 @@ ThemeData buildCustomTheme(ThemeData themeData) {
             fontWeight: FontWeight.w600,
             fontSize: 16,
             color: colorTheme.foreground),
-        subtitleTextStyle: const TextStyle(fontSize: 14)),
+        subtitleTextStyle:
+            TextStyle(fontSize: 14, color: colorTheme.foreground)),
   );
 }
 

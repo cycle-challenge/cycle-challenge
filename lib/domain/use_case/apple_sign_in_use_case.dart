@@ -20,7 +20,7 @@ class AppleSignInUseCase {
       'response_mode': 'form_post',
       'response_type': 'code',
       'redirect_uri':
-          'https://50e6-222-116-206-156.ngrok-free.app/api/v1/members/sign-in/apple',
+          'https://fffe-221-160-191-58.ngrok-free.app/api/v1/members/sign-in/apple',
       'scope': ['name', 'email'].join(' ')
     });
 

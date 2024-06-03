@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
+import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/google_map/google_map_page.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -131,24 +132,16 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
                           pinned: true, delegate: PlaceTapBarHeaderDelegate())
                     ],
                 body: Builder(builder: (context) {
-                  return ChangeNotifierProvider.value(
-                    value: DefaultTabController.of(context),
-                    child: Builder(builder: (context) {
-                      return AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 100),
-                          child: switch (context.watch<TabController>().index) {
-                            0 => PlaceMainTabView(
-                                reviews: state.reviews,
-                                place: widget.place,
-                                travels: state.travels),
-                            1 => PlaceImageTabView(images: state.images),
-                            2 => PlaceReviewTabView(
-                                place: widget.place, reviews: state.reviews),
-                            3 => PlaceTravelTabView(travels: state.travels),
-                            int() => throw UnimplementedError(),
-                          });
-                    }),
-                  );
+                  return FadeTabBarView(children: [
+                    PlaceMainTabView(
+                        reviews: state.reviews,
+                        place: widget.place,
+                        travels: state.travels),
+                    PlaceImageTabView(images: state.images),
+                    PlaceReviewTabView(
+                        place: widget.place, reviews: state.reviews),
+                    PlaceTravelTabView(travels: state.travels)
+                  ]);
                 }))),
         floatingActionButton: FloatingActionButton(
             onPressed: isBookmarked

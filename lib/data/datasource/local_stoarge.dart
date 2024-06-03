@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
+import 'package:yeohaeng_ttukttak/domain/model/global_state.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_state.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class LocalStorage {
@@ -35,25 +37,25 @@ class LocalStorage {
         return places.length > 20 ? places.sublist(0, 20) : places;
       });
 
-  Future<Result<bool, String>> getHasAcceptedTerms() async =>
+  Future<Result<GlobalState, String>> getGlobalState() async =>
       _execute(() async {
-        await Hive.openBox<bool>('state');
-        final box = Hive.box<bool>('state');
+        await Hive.openBox<GlobalState>('state');
+        final box = Hive.box<GlobalState>('state');
 
-        final hasAcceptedTerms = box.get('has_accepted_terms');
+        final state = box.get('global_state');
 
-        if (hasAcceptedTerms == null) return false;
+        if (state == null) return GlobalState();
 
-        return hasAcceptedTerms;
+        return state;
       });
 
 
-  Future<Result<void, String>> setHasAcceptedTerms(bool hasAcceptedTerms) async =>
+  Future<Result<void, String>> saveGlobalState(GlobalState state) async =>
       _execute(() async {
-        await Hive.openBox<bool>('state');
-        final box = Hive.box<bool>('state');
+        await Hive.openBox<GlobalState>('state');
+        final box = Hive.box<GlobalState>('state');
 
-        await box.put('has_accepted_terms', hasAcceptedTerms);
+        await box.put('global_state', state);
       });
 
 

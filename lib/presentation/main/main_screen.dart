@@ -10,6 +10,7 @@ import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/components/background_image_slider.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/components/permission_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_screen.dart';
@@ -64,9 +65,12 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onShowSnackBar(String message) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     final snackBar = SnackBar(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        content: Text(message, style: Theme.of(context).textTheme.bodyLarge));
+        content: Text(message,
+
+            style: const TextStyle(fontWeight: FontWeight.w600)));
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -75,15 +79,21 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final authViewModel = context.watch<AuthViewModel>();
 
-    final viewModel = context.watch<MainViewModel>();
     final mapViewModel = context.watch<MapViewModel>();
+    final viewModel = context.watch<MainViewModel>();
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
     const slider = BackgroundImageSlider();
 
-    if (!viewModel.state.hasAgreedTerms) {
-      return const TermsScreen(slider: slider);
+    final state = viewModel.state;
+
+    if (!state.hasCheckedPermissions) {
+      return const PermissionScreen();
+    }
+
+    if (!state.hasAgreedTerms) {
+      return const TermsScreen();
     }
 
     if (authViewModel.state.member == null) {
@@ -96,8 +106,6 @@ class _MainScreenState extends State<MainScreen> {
 
     bool isBookmarked = bookmarkViewModel.state.placeIdSet
         .contains(mapViewModel.filterState.selectedPlace?.id);
-
-    final state = viewModel.state;
 
     Widget body = Container();
 
