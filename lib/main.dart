@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart';
 import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
@@ -10,6 +11,9 @@ import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('ko_KR', null);
+
   await Hive.initFlutter();
   Hive.registerAdapter(PlaceSuggestionAdapter());
   Hive.registerAdapter(GlobalStateAdapter());

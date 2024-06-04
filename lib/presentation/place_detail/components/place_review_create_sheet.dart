@@ -135,10 +135,8 @@ class _PlaceReviewCreateSheetState extends State<PlaceReviewCreateSheet> {
       bottomNavigationBar: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
+        child: FilledButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: colorScheme.primary,
-                foregroundColor: colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0))),
             onPressed: () => Navigator.of(context).pop((
@@ -146,7 +144,7 @@ class _PlaceReviewCreateSheetState extends State<PlaceReviewCreateSheet> {
                   wantsToRevisit: _wantsToRevisit,
                   comment: _commentController.text
                 )),
-            child: Text('작성하기')),
+            child: const Text('작성하기')),
       )),
     );
   }
