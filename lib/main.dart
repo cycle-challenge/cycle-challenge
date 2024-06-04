@@ -37,10 +37,6 @@ class _MainAppState extends State<MainApp> {
     final viewModel = context.watch<MainViewModel>();
 
     return MaterialApp(
-        supportedLocales: const [
-          Locale("ko"),
-          Locale("en")
-        ],
         debugShowCheckedModeBanner: false,
         theme: buildCustomTheme(materialTheme.light()),
         darkTheme: buildCustomTheme(materialTheme.dark()),
