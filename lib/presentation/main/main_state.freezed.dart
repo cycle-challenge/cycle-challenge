@@ -25,6 +25,7 @@ mixin _$MainState {
   bool get canViewScrollUp => throw _privateConstructorUsedError;
   bool get hasAgreedTerms => throw _privateConstructorUsedError;
   bool get hasCheckedPermissions => throw _privateConstructorUsedError;
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MainStateCopyWith<MainState> get copyWith =>
@@ -45,7 +46,8 @@ abstract class $MainStateCopyWith<$Res> {
       bool isAnimating,
       bool canViewScrollUp,
       bool hasAgreedTerms,
-      bool hasCheckedPermissions});
+      bool hasCheckedPermissions,
+      ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
     Object? canViewScrollUp = null,
     Object? hasAgreedTerms = null,
     Object? hasCheckedPermissions = null,
+    Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
       navigationIndex: null == navigationIndex
@@ -108,6 +111,10 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
           ? _value.hasCheckedPermissions
           : hasCheckedPermissions // ignore: cast_nullable_to_non_nullable
               as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ) as $Val);
   }
 }
@@ -129,7 +136,8 @@ abstract class _$$MainStateImplCopyWith<$Res>
       bool isAnimating,
       bool canViewScrollUp,
       bool hasAgreedTerms,
-      bool hasCheckedPermissions});
+      bool hasCheckedPermissions,
+      ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -152,6 +160,7 @@ class __$$MainStateImplCopyWithImpl<$Res>
     Object? canViewScrollUp = null,
     Object? hasAgreedTerms = null,
     Object? hasCheckedPermissions = null,
+    Object? themeMode = null,
   }) {
     return _then(_$MainStateImpl(
       navigationIndex: null == navigationIndex
@@ -190,6 +199,10 @@ class __$$MainStateImplCopyWithImpl<$Res>
           ? _value.hasCheckedPermissions
           : hasCheckedPermissions // ignore: cast_nullable_to_non_nullable
               as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
@@ -206,7 +219,8 @@ class _$MainStateImpl implements _MainState {
       this.isAnimating = false,
       this.canViewScrollUp = false,
       this.hasAgreedTerms = false,
-      this.hasCheckedPermissions = false});
+      this.hasCheckedPermissions = false,
+      this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
@@ -235,10 +249,13 @@ class _$MainStateImpl implements _MainState {
   @override
   @JsonKey()
   final bool hasCheckedPermissions;
+  @override
+  @JsonKey()
+  final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'MainState(navigationIndex: $navigationIndex, height: $height, minHeight: $minHeight, maxHeight: $maxHeight, isExpanded: $isExpanded, isAnimating: $isAnimating, canViewScrollUp: $canViewScrollUp, hasAgreedTerms: $hasAgreedTerms, hasCheckedPermissions: $hasCheckedPermissions)';
+    return 'MainState(navigationIndex: $navigationIndex, height: $height, minHeight: $minHeight, maxHeight: $maxHeight, isExpanded: $isExpanded, isAnimating: $isAnimating, canViewScrollUp: $canViewScrollUp, hasAgreedTerms: $hasAgreedTerms, hasCheckedPermissions: $hasCheckedPermissions, themeMode: $themeMode)';
   }
 
   @override
@@ -262,7 +279,9 @@ class _$MainStateImpl implements _MainState {
             (identical(other.hasAgreedTerms, hasAgreedTerms) ||
                 other.hasAgreedTerms == hasAgreedTerms) &&
             (identical(other.hasCheckedPermissions, hasCheckedPermissions) ||
-                other.hasCheckedPermissions == hasCheckedPermissions));
+                other.hasCheckedPermissions == hasCheckedPermissions) &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
   }
 
   @override
@@ -276,7 +295,8 @@ class _$MainStateImpl implements _MainState {
       isAnimating,
       canViewScrollUp,
       hasAgreedTerms,
-      hasCheckedPermissions);
+      hasCheckedPermissions,
+      themeMode);
 
   @JsonKey(ignore: true)
   @override
@@ -295,7 +315,8 @@ abstract class _MainState implements MainState {
       final bool isAnimating,
       final bool canViewScrollUp,
       final bool hasAgreedTerms,
-      final bool hasCheckedPermissions}) = _$MainStateImpl;
+      final bool hasCheckedPermissions,
+      final ThemeMode themeMode}) = _$MainStateImpl;
 
   @override
   int get navigationIndex;
@@ -315,6 +336,8 @@ abstract class _MainState implements MainState {
   bool get hasAgreedTerms;
   @override
   bool get hasCheckedPermissions;
+  @override
+  ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
   _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>

@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_screen.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_view_model.dart';
@@ -42,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
     Future.microtask(() {
       final viewModel = context.read<MainViewModel>();
 
-      _subscription = viewModel.stream.listen((event) => event.when(
+      _subscription = viewModel.stream.listen((event) => event.whenOrNull(
           showSnackbar: _onShowSnackBar,
           autoSignIn: _onAutoSignIn,
           authorizationExpired: _onAuthorizationExpired));
@@ -65,11 +66,9 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onShowSnackBar(String message) {
-    final colorScheme = Theme.of(context).colorScheme;
 
     final snackBar = SnackBar(
         content: Text(message,
-
             style: const TextStyle(fontWeight: FontWeight.w600)));
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);

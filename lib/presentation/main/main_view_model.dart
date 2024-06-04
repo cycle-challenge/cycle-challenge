@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/global_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
@@ -8,6 +10,7 @@ import 'package:yeohaeng_ttukttak/presentation/main/main_state.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 
 class MainViewModel with ChangeNotifier {
+
   final StreamController<MainUiEvent> _eventController;
   final AuthRepository _authRepository;
 
@@ -20,7 +23,10 @@ class MainViewModel with ChangeNotifier {
     _authRepository
         .getGlobalState()
         .then((result) => result.whenOrNull(success: (GlobalState state) {
+              final themeMode = ThemeMode.values.byName(state.themeMode);
+
               _state = _state.copyWith(
+                  themeMode: themeMode,
                   hasAgreedTerms: state.hasAgreedTerms,
                   hasCheckedPermissions: state.hasCheckedPermissions);
               notifyListeners();
@@ -35,7 +41,18 @@ class MainViewModel with ChangeNotifier {
       setCanViewScrollUp: _setCanViewScrollUp,
       stopBottomSheetAnimation: _stopBottomSheetAnimation,
       changeHasAgreedTerms: _onChangeHasAgreedTerms,
-      changeHasCheckedPermissions: _onChangeHasCheckedPermissions);
+      changeHasCheckedPermissions: _onChangeHasCheckedPermissions, changeThemeMode: _onChangeThemeMode);
+
+  void _onChangeThemeMode(ThemeMode themeMode) {
+    _state = _state.copyWith(themeMode: themeMode);
+
+    notifyListeners();
+
+    _authRepository.saveGlobalState(GlobalState(
+        hasAgreedTerms: _state.hasAgreedTerms,
+        hasCheckedPermissions: _state.hasCheckedPermissions,
+        themeMode: _state.themeMode.name));
+  }
 
   void _onChangeHasCheckedPermissions(bool hasCheckedPermissions) {
     _state = _state.copyWith(hasCheckedPermissions: hasCheckedPermissions);
@@ -43,7 +60,8 @@ class MainViewModel with ChangeNotifier {
 
     _authRepository.saveGlobalState(GlobalState(
         hasAgreedTerms: _state.hasAgreedTerms,
-        hasCheckedPermissions: _state.hasCheckedPermissions));
+        hasCheckedPermissions: _state.hasCheckedPermissions,
+        themeMode: _state.themeMode.name));
   }
 
   void _onChangeHasAgreedTerms(bool hasAgreedTerms) {
@@ -52,7 +70,8 @@ class MainViewModel with ChangeNotifier {
 
     _authRepository.saveGlobalState(GlobalState(
         hasAgreedTerms: _state.hasAgreedTerms,
-        hasCheckedPermissions: _state.hasCheckedPermissions));
+        hasCheckedPermissions: _state.hasCheckedPermissions,
+        themeMode: _state.themeMode.name));
   }
 
   void _onChangeNavigation(int index) {
@@ -65,7 +84,8 @@ class MainViewModel with ChangeNotifier {
       _state = MainState(
           maxHeight: _state.maxHeight,
           hasAgreedTerms: _state.hasAgreedTerms,
-          hasCheckedPermissions: _state.hasCheckedPermissions);
+          hasCheckedPermissions: _state.hasCheckedPermissions,
+          themeMode: _state.themeMode);
 
       return;
     }

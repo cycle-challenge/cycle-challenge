@@ -8,6 +8,7 @@ import 'package:yeohaeng_ttukttak/di/setup_providers.dart';
 import 'package:yeohaeng_ttukttak/domain/model/global_state.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_screen.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
 import 'package:yeohaeng_ttukttak/theme.dart';
 
 void main() async {
@@ -35,6 +36,8 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     const materialTheme = MaterialTheme(TextTheme());
 
+    final viewModel = context.watch<MainViewModel>();
+
     return MaterialApp(
         supportedLocales: const [
           Locale("ko"),
@@ -48,7 +51,7 @@ class _MainAppState extends State<MainApp> {
         debugShowCheckedModeBanner: false,
         theme: buildCustomTheme(materialTheme.light()),
         darkTheme: buildCustomTheme(materialTheme.dark()),
-        themeMode: ThemeMode.system,
+        themeMode: viewModel.state.themeMode,
         title: 'Flutter Maps Demo',
         home: Builder(builder: (context) {
           return const MainScreen();
@@ -71,13 +74,20 @@ ThemeData buildCustomTheme(ThemeData themeData) {
         fontFamily: 'Pretendard', displayColor: colorTheme.foreground),
     scaffoldBackgroundColor: colorTheme.background,
     colorScheme: colorScheme.copyWith(background: colorTheme.background),
+    iconTheme: IconThemeData(color: colorTheme.foreground),
     // [Bar Themes] ----------------------------------------------------------
     appBarTheme: AppBarTheme(
         elevation: 0,
+        centerTitle: false,
+        titleTextStyle: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: colorTheme.foreground),
+        iconTheme: const IconThemeData(size: 18),
         scrolledUnderElevation: 0,
         backgroundColor: colorTheme.background),
     bottomAppBarTheme: BottomAppBarTheme(
-        elevation: 0, color: colorTheme.backgroundDark.withOpacity(0.9)),
+        elevation: 0, color: colorTheme.backgroundDark.withOpacity(0.8)),
     tabBarTheme: themeData.tabBarTheme.copyWith(
       indicatorSize: TabBarIndicatorSize.tab,
       labelPadding: const EdgeInsets.symmetric(horizontal: 24),
@@ -87,12 +97,9 @@ ThemeData buildCustomTheme(ThemeData themeData) {
     navigationBarTheme: themeData.navigationBarTheme.copyWith(
         elevation: 0,
         indicatorColor: Colors.transparent,
-        backgroundColor: colorTheme.backgroundDark.withOpacity(0.9),
+        backgroundColor: colorTheme.backgroundDark.withOpacity(0.8),
         labelTextStyle: MaterialStateTextStyle.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
-            return const TextStyle(fontWeight: FontWeight.w600, fontSize: 12);
-          }
-          return const TextStyle(fontSize: 12);
+          return const TextStyle(fontWeight: FontWeight.w600, fontSize: 12);
         })),
     // [Button Themes] -------------------------------------------------------
     textButtonTheme: TextButtonThemeData(

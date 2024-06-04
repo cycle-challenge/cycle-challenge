@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'main_state.freezed.dart';
@@ -15,6 +16,7 @@ class MainState with _$MainState {
       @Default(false) bool isAnimating,
       @Default(false) bool canViewScrollUp,
       @Default(false) bool hasAgreedTerms,
-      @Default(false) bool hasCheckedPermissions}) = _MainState;
+      @Default(false) bool hasCheckedPermissions,
+      @Default(ThemeMode.system) ThemeMode themeMode}) = _MainState;
 
 }

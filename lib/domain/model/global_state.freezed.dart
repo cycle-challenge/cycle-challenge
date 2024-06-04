@@ -24,6 +24,8 @@ mixin _$GlobalState {
   bool get hasAgreedTerms => throw _privateConstructorUsedError;
   @HiveField(1, defaultValue: false)
   bool get hasCheckedPermissions => throw _privateConstructorUsedError;
+  @HiveField(2, defaultValue: 'system')
+  String get themeMode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +41,8 @@ abstract class $GlobalStateCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0, defaultValue: false) bool hasAgreedTerms,
-      @HiveField(1, defaultValue: false) bool hasCheckedPermissions});
+      @HiveField(1, defaultValue: false) bool hasCheckedPermissions,
+      @HiveField(2, defaultValue: 'system') String themeMode});
 }
 
 /// @nodoc
@@ -57,6 +60,7 @@ class _$GlobalStateCopyWithImpl<$Res, $Val extends GlobalState>
   $Res call({
     Object? hasAgreedTerms = null,
     Object? hasCheckedPermissions = null,
+    Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
       hasAgreedTerms: null == hasAgreedTerms
@@ -67,6 +71,10 @@ class _$GlobalStateCopyWithImpl<$Res, $Val extends GlobalState>
           ? _value.hasCheckedPermissions
           : hasCheckedPermissions // ignore: cast_nullable_to_non_nullable
               as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +89,8 @@ abstract class _$$MainStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {@HiveField(0, defaultValue: false) bool hasAgreedTerms,
-      @HiveField(1, defaultValue: false) bool hasCheckedPermissions});
+      @HiveField(1, defaultValue: false) bool hasCheckedPermissions,
+      @HiveField(2, defaultValue: 'system') String themeMode});
 }
 
 /// @nodoc
@@ -97,6 +106,7 @@ class __$$MainStateImplCopyWithImpl<$Res>
   $Res call({
     Object? hasAgreedTerms = null,
     Object? hasCheckedPermissions = null,
+    Object? themeMode = null,
   }) {
     return _then(_$MainStateImpl(
       hasAgreedTerms: null == hasAgreedTerms
@@ -107,6 +117,10 @@ class __$$MainStateImplCopyWithImpl<$Res>
           ? _value.hasCheckedPermissions
           : hasCheckedPermissions // ignore: cast_nullable_to_non_nullable
               as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -116,7 +130,8 @@ class __$$MainStateImplCopyWithImpl<$Res>
 class _$MainStateImpl implements _MainState {
   _$MainStateImpl(
       {@HiveField(0, defaultValue: false) this.hasAgreedTerms = false,
-      @HiveField(1, defaultValue: false) this.hasCheckedPermissions = false});
+      @HiveField(1, defaultValue: false) this.hasCheckedPermissions = false,
+      @HiveField(2, defaultValue: 'system') this.themeMode = 'system'});
 
   factory _$MainStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$MainStateImplFromJson(json);
@@ -129,10 +144,14 @@ class _$MainStateImpl implements _MainState {
   @JsonKey()
   @HiveField(1, defaultValue: false)
   final bool hasCheckedPermissions;
+  @override
+  @JsonKey()
+  @HiveField(2, defaultValue: 'system')
+  final String themeMode;
 
   @override
   String toString() {
-    return 'GlobalState(hasAgreedTerms: $hasAgreedTerms, hasCheckedPermissions: $hasCheckedPermissions)';
+    return 'GlobalState(hasAgreedTerms: $hasAgreedTerms, hasCheckedPermissions: $hasCheckedPermissions, themeMode: $themeMode)';
   }
 
   @override
@@ -143,13 +162,15 @@ class _$MainStateImpl implements _MainState {
             (identical(other.hasAgreedTerms, hasAgreedTerms) ||
                 other.hasAgreedTerms == hasAgreedTerms) &&
             (identical(other.hasCheckedPermissions, hasCheckedPermissions) ||
-                other.hasCheckedPermissions == hasCheckedPermissions));
+                other.hasCheckedPermissions == hasCheckedPermissions) &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, hasAgreedTerms, hasCheckedPermissions);
+  int get hashCode => Object.hash(
+      runtimeType, hasAgreedTerms, hasCheckedPermissions, themeMode);
 
   @JsonKey(ignore: true)
   @override
@@ -167,9 +188,10 @@ class _$MainStateImpl implements _MainState {
 
 abstract class _MainState implements GlobalState {
   factory _MainState(
-      {@HiveField(0, defaultValue: false) final bool hasAgreedTerms,
-      @HiveField(1, defaultValue: false)
-      final bool hasCheckedPermissions}) = _$MainStateImpl;
+          {@HiveField(0, defaultValue: false) final bool hasAgreedTerms,
+          @HiveField(1, defaultValue: false) final bool hasCheckedPermissions,
+          @HiveField(2, defaultValue: 'system') final String themeMode}) =
+      _$MainStateImpl;
 
   factory _MainState.fromJson(Map<String, dynamic> json) =
       _$MainStateImpl.fromJson;
@@ -180,6 +202,9 @@ abstract class _MainState implements GlobalState {
   @override
   @HiveField(1, defaultValue: false)
   bool get hasCheckedPermissions;
+  @override
+  @HiveField(2, defaultValue: 'system')
+  String get themeMode;
   @override
   @JsonKey(ignore: true)
   _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>

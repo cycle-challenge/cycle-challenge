@@ -19,17 +19,20 @@ class GlobalStateAdapter extends TypeAdapter<GlobalState> {
     return GlobalState(
       hasAgreedTerms: fields[0] == null ? false : fields[0] as bool,
       hasCheckedPermissions: fields[1] == null ? false : fields[1] as bool,
+      themeMode: fields[2] == null ? 'system' : fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, GlobalState obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.hasAgreedTerms)
       ..writeByte(1)
-      ..write(obj.hasCheckedPermissions);
+      ..write(obj.hasCheckedPermissions)
+      ..writeByte(2)
+      ..write(obj.themeMode);
   }
 
   @override
@@ -51,10 +54,12 @@ _$MainStateImpl _$$MainStateImplFromJson(Map<String, dynamic> json) =>
     _$MainStateImpl(
       hasAgreedTerms: json['hasAgreedTerms'] as bool? ?? false,
       hasCheckedPermissions: json['hasCheckedPermissions'] as bool? ?? false,
+      themeMode: json['themeMode'] as String? ?? 'system',
     );
 
 Map<String, dynamic> _$$MainStateImplToJson(_$MainStateImpl instance) =>
     <String, dynamic>{
       'hasAgreedTerms': instance.hasAgreedTerms,
       'hasCheckedPermissions': instance.hasCheckedPermissions,
+      'themeMode': instance.themeMode,
     };

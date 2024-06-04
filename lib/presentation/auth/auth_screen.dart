@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yeohaeng_ttukttak/presentation/auth/auth_event.dart';
@@ -69,11 +70,8 @@ class _AuthScreenState extends State<AuthScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 48),
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Text("여행뚝딱.",
-                    style: textTheme.headlineLarge?.copyWith(
-                      fontFamily: 'Jalnan_2'
-                    )),
-                const SizedBox(height: 12),
+                SvgPicture.asset('assets/image/logo.svg', width: 96),
+                const SizedBox(height: 24),
                 Text('으로 계속하기',
                     style: textTheme.bodyMedium?.copyWith(color: Colors.grey)),
                 const SizedBox(height: 36),

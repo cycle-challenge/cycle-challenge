@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,7 +17,12 @@ class GlobalState with _$GlobalState {
 
       @HiveField(1, defaultValue: false)
       @Default(false)
-      bool hasCheckedPermissions}) = _MainState;
+      bool hasCheckedPermissions,
+
+      @HiveField(2, defaultValue: 'system')
+      @Default('system')
+      String themeMode
+  }) = _MainState;
 
   factory GlobalState.fromJson(Map<String, dynamic> json) =>
       _$GlobalStateFromJson(json);
