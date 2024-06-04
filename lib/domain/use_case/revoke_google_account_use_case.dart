@@ -1,9 +1,7 @@
-import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class DeleteGoogleAccountUseCase {
-  final appAuth = const FlutterAppAuth();
   final AuthRepository authRepository;
 
   DeleteGoogleAccountUseCase(this.authRepository);

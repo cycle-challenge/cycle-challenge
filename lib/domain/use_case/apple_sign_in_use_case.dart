@@ -1,12 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
-import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/data/repositories/auth_repository.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/domain/model/member.dart';
-import 'package:yeohaeng_ttukttak/utils/oauth_client_id.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class AppleSignInUseCase {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart';
@@ -42,11 +40,6 @@ class _MainAppState extends State<MainApp> {
         supportedLocales: const [
           Locale("ko"),
           Locale("en")
-        ],
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          FormBuilderLocalizations.delegate,
         ],
         debugShowCheckedModeBanner: false,
         theme: buildCustomTheme(materialTheme.light()),
