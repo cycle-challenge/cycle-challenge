@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
+import 'package:yeohaeng_ttukttak/domain/model/global_state.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
+import 'package:yeohaeng_ttukttak/presentation/main/main_state.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class LocalStorage {
@@ -12,7 +14,7 @@ class LocalStorage {
         final box = Hive.box<PlaceSuggestion>("place_suggestion");
 
         await box.put(
-            place.googlePlaceId, place.copyWith(modifiedAt: DateTime.now()));
+            place.placeId, place.copyWith(modifiedAt: DateTime.now()));
       });
 
   Future<Result<void, String>> deleteSearchHistory(
@@ -21,7 +23,7 @@ class LocalStorage {
         await Hive.openBox<PlaceSuggestion>("place_suggestion");
         final box = Hive.box<PlaceSuggestion>("place_suggestion");
 
-        await box.delete(place.googlePlaceId);
+        await box.delete(place.placeId);
         await box.close();
       });
 
@@ -34,6 +36,28 @@ class LocalStorage {
         places.sort((a, b) => b.modifiedAt!.compareTo(a.modifiedAt!));
         return places.length > 20 ? places.sublist(0, 20) : places;
       });
+
+  Future<Result<GlobalState, String>> getGlobalState() async =>
+      _execute(() async {
+        await Hive.openBox<GlobalState>('state');
+        final box = Hive.box<GlobalState>('state');
+
+        final state = box.get('global_state');
+
+        if (state == null) return GlobalState();
+
+        return state;
+      });
+
+
+  Future<Result<void, String>> saveGlobalState(GlobalState state) async =>
+      _execute(() async {
+        await Hive.openBox<GlobalState>('state');
+        final box = Hive.box<GlobalState>('state');
+
+        await box.put('global_state', state);
+      });
+
 
   FutureOr<Result<T, String>> _execute<T>(
       FutureOr<T> Function() operation) async {

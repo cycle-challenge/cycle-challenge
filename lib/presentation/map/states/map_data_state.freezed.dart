@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MapDataState {
-  List<PlaceModel> get places => throw _privateConstructorUsedError;
-  List<TravelModel> get travels => throw _privateConstructorUsedError;
+  List<Travel> get travels => throw _privateConstructorUsedError;
+  Map<String, PlaceDetail> get placeDetails =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MapDataStateCopyWith<MapDataState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $MapDataStateCopyWith<$Res> {
           MapDataState value, $Res Function(MapDataState) then) =
       _$MapDataStateCopyWithImpl<$Res, MapDataState>;
   @useResult
-  $Res call({List<PlaceModel> places, List<TravelModel> travels});
+  $Res call({List<Travel> travels, Map<String, PlaceDetail> placeDetails});
 }
 
 /// @nodoc
@@ -46,18 +47,18 @@ class _$MapDataStateCopyWithImpl<$Res, $Val extends MapDataState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? places = null,
     Object? travels = null,
+    Object? placeDetails = null,
   }) {
     return _then(_value.copyWith(
-      places: null == places
-          ? _value.places
-          : places // ignore: cast_nullable_to_non_nullable
-              as List<PlaceModel>,
       travels: null == travels
           ? _value.travels
           : travels // ignore: cast_nullable_to_non_nullable
-              as List<TravelModel>,
+              as List<Travel>,
+      placeDetails: null == placeDetails
+          ? _value.placeDetails
+          : placeDetails // ignore: cast_nullable_to_non_nullable
+              as Map<String, PlaceDetail>,
     ) as $Val);
   }
 }
@@ -70,7 +71,7 @@ abstract class _$$MapDataStateImplCopyWith<$Res>
       __$$MapDataStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<PlaceModel> places, List<TravelModel> travels});
+  $Res call({List<Travel> travels, Map<String, PlaceDetail> placeDetails});
 }
 
 /// @nodoc
@@ -84,18 +85,18 @@ class __$$MapDataStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? places = null,
     Object? travels = null,
+    Object? placeDetails = null,
   }) {
     return _then(_$MapDataStateImpl(
-      places: null == places
-          ? _value._places
-          : places // ignore: cast_nullable_to_non_nullable
-              as List<PlaceModel>,
       travels: null == travels
           ? _value._travels
           : travels // ignore: cast_nullable_to_non_nullable
-              as List<TravelModel>,
+              as List<Travel>,
+      placeDetails: null == placeDetails
+          ? _value._placeDetails
+          : placeDetails // ignore: cast_nullable_to_non_nullable
+              as Map<String, PlaceDetail>,
     ));
   }
 }
@@ -104,32 +105,32 @@ class __$$MapDataStateImplCopyWithImpl<$Res>
 
 class _$MapDataStateImpl implements _MapDataState {
   _$MapDataStateImpl(
-      {final List<PlaceModel> places = const [],
-      final List<TravelModel> travels = const []})
-      : _places = places,
-        _travels = travels;
+      {final List<Travel> travels = const [],
+      final Map<String, PlaceDetail> placeDetails = const {}})
+      : _travels = travels,
+        _placeDetails = placeDetails;
 
-  final List<PlaceModel> _places;
+  final List<Travel> _travels;
   @override
   @JsonKey()
-  List<PlaceModel> get places {
-    if (_places is EqualUnmodifiableListView) return _places;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_places);
-  }
-
-  final List<TravelModel> _travels;
-  @override
-  @JsonKey()
-  List<TravelModel> get travels {
+  List<Travel> get travels {
     if (_travels is EqualUnmodifiableListView) return _travels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_travels);
   }
 
+  final Map<String, PlaceDetail> _placeDetails;
+  @override
+  @JsonKey()
+  Map<String, PlaceDetail> get placeDetails {
+    if (_placeDetails is EqualUnmodifiableMapView) return _placeDetails;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_placeDetails);
+  }
+
   @override
   String toString() {
-    return 'MapDataState(places: $places, travels: $travels)';
+    return 'MapDataState(travels: $travels, placeDetails: $placeDetails)';
   }
 
   @override
@@ -137,15 +138,16 @@ class _$MapDataStateImpl implements _MapDataState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MapDataStateImpl &&
-            const DeepCollectionEquality().equals(other._places, _places) &&
-            const DeepCollectionEquality().equals(other._travels, _travels));
+            const DeepCollectionEquality().equals(other._travels, _travels) &&
+            const DeepCollectionEquality()
+                .equals(other._placeDetails, _placeDetails));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_places),
-      const DeepCollectionEquality().hash(_travels));
+      const DeepCollectionEquality().hash(_travels),
+      const DeepCollectionEquality().hash(_placeDetails));
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +158,13 @@ class _$MapDataStateImpl implements _MapDataState {
 
 abstract class _MapDataState implements MapDataState {
   factory _MapDataState(
-      {final List<PlaceModel> places,
-      final List<TravelModel> travels}) = _$MapDataStateImpl;
+      {final List<Travel> travels,
+      final Map<String, PlaceDetail> placeDetails}) = _$MapDataStateImpl;
 
   @override
-  List<PlaceModel> get places;
+  List<Travel> get travels;
   @override
-  List<TravelModel> get travels;
+  Map<String, PlaceDetail> get placeDetails;
   @override
   @JsonKey(ignore: true)
   _$$MapDataStateImplCopyWith<_$MapDataStateImpl> get copyWith =>

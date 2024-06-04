@@ -18,7 +18,7 @@ enum TravelAccompany {
       {required this.label, required this.iconData });
 
 
-  factory TravelAccompany.of(String value) {
+  factory TravelAccompany.of(String? value) {
 
     for (TravelAccompany element in TravelAccompany.values) {
       if (element.name == value) {
@@ -26,7 +26,7 @@ enum TravelAccompany {
       }
     }
 
-    throw Exception("$value를 찾을 수 없습니댜.");
+    return TravelAccompany.others;
   }
 
 }

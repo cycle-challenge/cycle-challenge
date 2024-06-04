@@ -21,6 +21,7 @@ mixin _$MainUiEvent {
     required TResult Function() authorizationExpired,
     required TResult Function(String nickname) autoSignIn,
     required TResult Function(String message) showSnackbar,
+    required TResult Function(ThemeMode themeMode) themeModeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$MainUiEvent {
     TResult? Function()? authorizationExpired,
     TResult? Function(String nickname)? autoSignIn,
     TResult? Function(String message)? showSnackbar,
+    TResult? Function(ThemeMode themeMode)? themeModeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$MainUiEvent {
     TResult Function()? authorizationExpired,
     TResult Function(String nickname)? autoSignIn,
     TResult Function(String message)? showSnackbar,
+    TResult Function(ThemeMode themeMode)? themeModeChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +47,7 @@ mixin _$MainUiEvent {
         authorizationExpired,
     required TResult Function(MainAutoSignInEvent value) autoSignIn,
     required TResult Function(MainShowSnackbarEvent value) showSnackbar,
+    required TResult Function(_ThemeModeChanged value) themeModeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +56,7 @@ mixin _$MainUiEvent {
         authorizationExpired,
     TResult? Function(MainAutoSignInEvent value)? autoSignIn,
     TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult? Function(_ThemeModeChanged value)? themeModeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +64,7 @@ mixin _$MainUiEvent {
     TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
     TResult Function(MainAutoSignInEvent value)? autoSignIn,
     TResult Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult Function(_ThemeModeChanged value)? themeModeChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,6 +133,7 @@ class _$MainAuthorizationExpiredEventImpl
     required TResult Function() authorizationExpired,
     required TResult Function(String nickname) autoSignIn,
     required TResult Function(String message) showSnackbar,
+    required TResult Function(ThemeMode themeMode) themeModeChanged,
   }) {
     return authorizationExpired();
   }
@@ -137,6 +144,7 @@ class _$MainAuthorizationExpiredEventImpl
     TResult? Function()? authorizationExpired,
     TResult? Function(String nickname)? autoSignIn,
     TResult? Function(String message)? showSnackbar,
+    TResult? Function(ThemeMode themeMode)? themeModeChanged,
   }) {
     return authorizationExpired?.call();
   }
@@ -147,6 +155,7 @@ class _$MainAuthorizationExpiredEventImpl
     TResult Function()? authorizationExpired,
     TResult Function(String nickname)? autoSignIn,
     TResult Function(String message)? showSnackbar,
+    TResult Function(ThemeMode themeMode)? themeModeChanged,
     required TResult orElse(),
   }) {
     if (authorizationExpired != null) {
@@ -162,6 +171,7 @@ class _$MainAuthorizationExpiredEventImpl
         authorizationExpired,
     required TResult Function(MainAutoSignInEvent value) autoSignIn,
     required TResult Function(MainShowSnackbarEvent value) showSnackbar,
+    required TResult Function(_ThemeModeChanged value) themeModeChanged,
   }) {
     return authorizationExpired(this);
   }
@@ -173,6 +183,7 @@ class _$MainAuthorizationExpiredEventImpl
         authorizationExpired,
     TResult? Function(MainAutoSignInEvent value)? autoSignIn,
     TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult? Function(_ThemeModeChanged value)? themeModeChanged,
   }) {
     return authorizationExpired?.call(this);
   }
@@ -183,6 +194,7 @@ class _$MainAuthorizationExpiredEventImpl
     TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
     TResult Function(MainAutoSignInEvent value)? autoSignIn,
     TResult Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult Function(_ThemeModeChanged value)? themeModeChanged,
     required TResult orElse(),
   }) {
     if (authorizationExpired != null) {
@@ -266,6 +278,7 @@ class _$MainAutoSignInEventImpl implements MainAutoSignInEvent {
     required TResult Function() authorizationExpired,
     required TResult Function(String nickname) autoSignIn,
     required TResult Function(String message) showSnackbar,
+    required TResult Function(ThemeMode themeMode) themeModeChanged,
   }) {
     return autoSignIn(nickname);
   }
@@ -276,6 +289,7 @@ class _$MainAutoSignInEventImpl implements MainAutoSignInEvent {
     TResult? Function()? authorizationExpired,
     TResult? Function(String nickname)? autoSignIn,
     TResult? Function(String message)? showSnackbar,
+    TResult? Function(ThemeMode themeMode)? themeModeChanged,
   }) {
     return autoSignIn?.call(nickname);
   }
@@ -286,6 +300,7 @@ class _$MainAutoSignInEventImpl implements MainAutoSignInEvent {
     TResult Function()? authorizationExpired,
     TResult Function(String nickname)? autoSignIn,
     TResult Function(String message)? showSnackbar,
+    TResult Function(ThemeMode themeMode)? themeModeChanged,
     required TResult orElse(),
   }) {
     if (autoSignIn != null) {
@@ -301,6 +316,7 @@ class _$MainAutoSignInEventImpl implements MainAutoSignInEvent {
         authorizationExpired,
     required TResult Function(MainAutoSignInEvent value) autoSignIn,
     required TResult Function(MainShowSnackbarEvent value) showSnackbar,
+    required TResult Function(_ThemeModeChanged value) themeModeChanged,
   }) {
     return autoSignIn(this);
   }
@@ -312,6 +328,7 @@ class _$MainAutoSignInEventImpl implements MainAutoSignInEvent {
         authorizationExpired,
     TResult? Function(MainAutoSignInEvent value)? autoSignIn,
     TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult? Function(_ThemeModeChanged value)? themeModeChanged,
   }) {
     return autoSignIn?.call(this);
   }
@@ -322,6 +339,7 @@ class _$MainAutoSignInEventImpl implements MainAutoSignInEvent {
     TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
     TResult Function(MainAutoSignInEvent value)? autoSignIn,
     TResult Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult Function(_ThemeModeChanged value)? themeModeChanged,
     required TResult orElse(),
   }) {
     if (autoSignIn != null) {
@@ -410,6 +428,7 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
     required TResult Function() authorizationExpired,
     required TResult Function(String nickname) autoSignIn,
     required TResult Function(String message) showSnackbar,
+    required TResult Function(ThemeMode themeMode) themeModeChanged,
   }) {
     return showSnackbar(message);
   }
@@ -420,6 +439,7 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
     TResult? Function()? authorizationExpired,
     TResult? Function(String nickname)? autoSignIn,
     TResult? Function(String message)? showSnackbar,
+    TResult? Function(ThemeMode themeMode)? themeModeChanged,
   }) {
     return showSnackbar?.call(message);
   }
@@ -430,6 +450,7 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
     TResult Function()? authorizationExpired,
     TResult Function(String nickname)? autoSignIn,
     TResult Function(String message)? showSnackbar,
+    TResult Function(ThemeMode themeMode)? themeModeChanged,
     required TResult orElse(),
   }) {
     if (showSnackbar != null) {
@@ -445,6 +466,7 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
         authorizationExpired,
     required TResult Function(MainAutoSignInEvent value) autoSignIn,
     required TResult Function(MainShowSnackbarEvent value) showSnackbar,
+    required TResult Function(_ThemeModeChanged value) themeModeChanged,
   }) {
     return showSnackbar(this);
   }
@@ -456,6 +478,7 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
         authorizationExpired,
     TResult? Function(MainAutoSignInEvent value)? autoSignIn,
     TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult? Function(_ThemeModeChanged value)? themeModeChanged,
   }) {
     return showSnackbar?.call(this);
   }
@@ -466,6 +489,7 @@ class _$MainShowSnackbarEventImpl implements MainShowSnackbarEvent {
     TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
     TResult Function(MainAutoSignInEvent value)? autoSignIn,
     TResult Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult Function(_ThemeModeChanged value)? themeModeChanged,
     required TResult orElse(),
   }) {
     if (showSnackbar != null) {
@@ -483,4 +507,154 @@ abstract class MainShowSnackbarEvent implements MainUiEvent {
   @JsonKey(ignore: true)
   _$$MainShowSnackbarEventImplCopyWith<_$MainShowSnackbarEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ThemeModeChangedImplCopyWith<$Res> {
+  factory _$$ThemeModeChangedImplCopyWith(_$ThemeModeChangedImpl value,
+          $Res Function(_$ThemeModeChangedImpl) then) =
+      __$$ThemeModeChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ThemeMode themeMode});
+}
+
+/// @nodoc
+class __$$ThemeModeChangedImplCopyWithImpl<$Res>
+    extends _$MainUiEventCopyWithImpl<$Res, _$ThemeModeChangedImpl>
+    implements _$$ThemeModeChangedImplCopyWith<$Res> {
+  __$$ThemeModeChangedImplCopyWithImpl(_$ThemeModeChangedImpl _value,
+      $Res Function(_$ThemeModeChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeMode = null,
+  }) {
+    return _then(_$ThemeModeChangedImpl(
+      null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ThemeModeChangedImpl implements _ThemeModeChanged {
+  const _$ThemeModeChangedImpl(this.themeMode);
+
+  @override
+  final ThemeMode themeMode;
+
+  @override
+  String toString() {
+    return 'MainUiEvent.themeModeChanged(themeMode: $themeMode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ThemeModeChangedImpl &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, themeMode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThemeModeChangedImplCopyWith<_$ThemeModeChangedImpl> get copyWith =>
+      __$$ThemeModeChangedImplCopyWithImpl<_$ThemeModeChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authorizationExpired,
+    required TResult Function(String nickname) autoSignIn,
+    required TResult Function(String message) showSnackbar,
+    required TResult Function(ThemeMode themeMode) themeModeChanged,
+  }) {
+    return themeModeChanged(themeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authorizationExpired,
+    TResult? Function(String nickname)? autoSignIn,
+    TResult? Function(String message)? showSnackbar,
+    TResult? Function(ThemeMode themeMode)? themeModeChanged,
+  }) {
+    return themeModeChanged?.call(themeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authorizationExpired,
+    TResult Function(String nickname)? autoSignIn,
+    TResult Function(String message)? showSnackbar,
+    TResult Function(ThemeMode themeMode)? themeModeChanged,
+    required TResult orElse(),
+  }) {
+    if (themeModeChanged != null) {
+      return themeModeChanged(themeMode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainAuthorizationExpiredEvent value)
+        authorizationExpired,
+    required TResult Function(MainAutoSignInEvent value) autoSignIn,
+    required TResult Function(MainShowSnackbarEvent value) showSnackbar,
+    required TResult Function(_ThemeModeChanged value) themeModeChanged,
+  }) {
+    return themeModeChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainAuthorizationExpiredEvent value)?
+        authorizationExpired,
+    TResult? Function(MainAutoSignInEvent value)? autoSignIn,
+    TResult? Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult? Function(_ThemeModeChanged value)? themeModeChanged,
+  }) {
+    return themeModeChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainAuthorizationExpiredEvent value)? authorizationExpired,
+    TResult Function(MainAutoSignInEvent value)? autoSignIn,
+    TResult Function(MainShowSnackbarEvent value)? showSnackbar,
+    TResult Function(_ThemeModeChanged value)? themeModeChanged,
+    required TResult orElse(),
+  }) {
+    if (themeModeChanged != null) {
+      return themeModeChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ThemeModeChanged implements MainUiEvent {
+  const factory _ThemeModeChanged(final ThemeMode themeMode) =
+      _$ThemeModeChangedImpl;
+
+  ThemeMode get themeMode;
+  @JsonKey(ignore: true)
+  _$$ThemeModeChangedImplCopyWith<_$ThemeModeChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

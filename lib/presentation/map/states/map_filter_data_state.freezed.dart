@@ -16,11 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MapFilterDataState {
-  List<PlaceModel> get filteredPlaces => throw _privateConstructorUsedError;
-  List<TravelModel> get filteredTravels => throw _privateConstructorUsedError;
+  List<Place> get filteredPlaces => throw _privateConstructorUsedError;
+  List<Travel> get filteredTravels => throw _privateConstructorUsedError;
+  PlaceSortOption get placeSortOption => throw _privateConstructorUsedError;
   PlaceFilter get placeFilter => throw _privateConstructorUsedError;
   TravelFilter get travelFilter => throw _privateConstructorUsedError;
-  PlaceModel? get selectedPlace => throw _privateConstructorUsedError;
+  Place? get selectedPlace => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MapFilterDataStateCopyWith<MapFilterDataState> get copyWith =>
@@ -34,11 +35,15 @@ abstract class $MapFilterDataStateCopyWith<$Res> {
       _$MapFilterDataStateCopyWithImpl<$Res, MapFilterDataState>;
   @useResult
   $Res call(
-      {List<PlaceModel> filteredPlaces,
-      List<TravelModel> filteredTravels,
+      {List<Place> filteredPlaces,
+      List<Travel> filteredTravels,
+      PlaceSortOption placeSortOption,
       PlaceFilter placeFilter,
       TravelFilter travelFilter,
-      PlaceModel? selectedPlace});
+      Place? selectedPlace});
+
+  $PlaceSortOptionCopyWith<$Res> get placeSortOption;
+  $PlaceCopyWith<$Res>? get selectedPlace;
 }
 
 /// @nodoc
@@ -56,6 +61,7 @@ class _$MapFilterDataStateCopyWithImpl<$Res, $Val extends MapFilterDataState>
   $Res call({
     Object? filteredPlaces = null,
     Object? filteredTravels = null,
+    Object? placeSortOption = null,
     Object? placeFilter = null,
     Object? travelFilter = null,
     Object? selectedPlace = freezed,
@@ -64,11 +70,15 @@ class _$MapFilterDataStateCopyWithImpl<$Res, $Val extends MapFilterDataState>
       filteredPlaces: null == filteredPlaces
           ? _value.filteredPlaces
           : filteredPlaces // ignore: cast_nullable_to_non_nullable
-              as List<PlaceModel>,
+              as List<Place>,
       filteredTravels: null == filteredTravels
           ? _value.filteredTravels
           : filteredTravels // ignore: cast_nullable_to_non_nullable
-              as List<TravelModel>,
+              as List<Travel>,
+      placeSortOption: null == placeSortOption
+          ? _value.placeSortOption
+          : placeSortOption // ignore: cast_nullable_to_non_nullable
+              as PlaceSortOption,
       placeFilter: null == placeFilter
           ? _value.placeFilter
           : placeFilter // ignore: cast_nullable_to_non_nullable
@@ -80,8 +90,28 @@ class _$MapFilterDataStateCopyWithImpl<$Res, $Val extends MapFilterDataState>
       selectedPlace: freezed == selectedPlace
           ? _value.selectedPlace
           : selectedPlace // ignore: cast_nullable_to_non_nullable
-              as PlaceModel?,
+              as Place?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceSortOptionCopyWith<$Res> get placeSortOption {
+    return $PlaceSortOptionCopyWith<$Res>(_value.placeSortOption, (value) {
+      return _then(_value.copyWith(placeSortOption: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceCopyWith<$Res>? get selectedPlace {
+    if (_value.selectedPlace == null) {
+      return null;
+    }
+
+    return $PlaceCopyWith<$Res>(_value.selectedPlace!, (value) {
+      return _then(_value.copyWith(selectedPlace: value) as $Val);
+    });
   }
 }
 
@@ -94,11 +124,17 @@ abstract class _$$MapFilterDataStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<PlaceModel> filteredPlaces,
-      List<TravelModel> filteredTravels,
+      {List<Place> filteredPlaces,
+      List<Travel> filteredTravels,
+      PlaceSortOption placeSortOption,
       PlaceFilter placeFilter,
       TravelFilter travelFilter,
-      PlaceModel? selectedPlace});
+      Place? selectedPlace});
+
+  @override
+  $PlaceSortOptionCopyWith<$Res> get placeSortOption;
+  @override
+  $PlaceCopyWith<$Res>? get selectedPlace;
 }
 
 /// @nodoc
@@ -114,6 +150,7 @@ class __$$MapFilterDataStateImplCopyWithImpl<$Res>
   $Res call({
     Object? filteredPlaces = null,
     Object? filteredTravels = null,
+    Object? placeSortOption = null,
     Object? placeFilter = null,
     Object? travelFilter = null,
     Object? selectedPlace = freezed,
@@ -122,11 +159,15 @@ class __$$MapFilterDataStateImplCopyWithImpl<$Res>
       filteredPlaces: null == filteredPlaces
           ? _value._filteredPlaces
           : filteredPlaces // ignore: cast_nullable_to_non_nullable
-              as List<PlaceModel>,
+              as List<Place>,
       filteredTravels: null == filteredTravels
           ? _value._filteredTravels
           : filteredTravels // ignore: cast_nullable_to_non_nullable
-              as List<TravelModel>,
+              as List<Travel>,
+      placeSortOption: null == placeSortOption
+          ? _value.placeSortOption
+          : placeSortOption // ignore: cast_nullable_to_non_nullable
+              as PlaceSortOption,
       placeFilter: null == placeFilter
           ? _value.placeFilter
           : placeFilter // ignore: cast_nullable_to_non_nullable
@@ -138,7 +179,7 @@ class __$$MapFilterDataStateImplCopyWithImpl<$Res>
       selectedPlace: freezed == selectedPlace
           ? _value.selectedPlace
           : selectedPlace // ignore: cast_nullable_to_non_nullable
-              as PlaceModel?,
+              as Place?,
     ));
   }
 }
@@ -147,42 +188,46 @@ class __$$MapFilterDataStateImplCopyWithImpl<$Res>
 
 class _$MapFilterDataStateImpl implements _MapFilterDataState {
   _$MapFilterDataStateImpl(
-      {final List<PlaceModel> filteredPlaces = const [],
-      final List<TravelModel> filteredTravels = const [],
+      {final List<Place> filteredPlaces = const [],
+      final List<Travel> filteredTravels = const [],
+      this.placeSortOption = const PlaceSortOption.highestRated(),
       required this.placeFilter,
       required this.travelFilter,
       this.selectedPlace})
       : _filteredPlaces = filteredPlaces,
         _filteredTravels = filteredTravels;
 
-  final List<PlaceModel> _filteredPlaces;
+  final List<Place> _filteredPlaces;
   @override
   @JsonKey()
-  List<PlaceModel> get filteredPlaces {
+  List<Place> get filteredPlaces {
     if (_filteredPlaces is EqualUnmodifiableListView) return _filteredPlaces;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_filteredPlaces);
   }
 
-  final List<TravelModel> _filteredTravels;
+  final List<Travel> _filteredTravels;
   @override
   @JsonKey()
-  List<TravelModel> get filteredTravels {
+  List<Travel> get filteredTravels {
     if (_filteredTravels is EqualUnmodifiableListView) return _filteredTravels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_filteredTravels);
   }
 
   @override
+  @JsonKey()
+  final PlaceSortOption placeSortOption;
+  @override
   final PlaceFilter placeFilter;
   @override
   final TravelFilter travelFilter;
   @override
-  final PlaceModel? selectedPlace;
+  final Place? selectedPlace;
 
   @override
   String toString() {
-    return 'MapFilterDataState(filteredPlaces: $filteredPlaces, filteredTravels: $filteredTravels, placeFilter: $placeFilter, travelFilter: $travelFilter, selectedPlace: $selectedPlace)';
+    return 'MapFilterDataState(filteredPlaces: $filteredPlaces, filteredTravels: $filteredTravels, placeSortOption: $placeSortOption, placeFilter: $placeFilter, travelFilter: $travelFilter, selectedPlace: $selectedPlace)';
   }
 
   @override
@@ -194,6 +239,8 @@ class _$MapFilterDataStateImpl implements _MapFilterDataState {
                 .equals(other._filteredPlaces, _filteredPlaces) &&
             const DeepCollectionEquality()
                 .equals(other._filteredTravels, _filteredTravels) &&
+            (identical(other.placeSortOption, placeSortOption) ||
+                other.placeSortOption == placeSortOption) &&
             (identical(other.placeFilter, placeFilter) ||
                 other.placeFilter == placeFilter) &&
             (identical(other.travelFilter, travelFilter) ||
@@ -207,6 +254,7 @@ class _$MapFilterDataStateImpl implements _MapFilterDataState {
       runtimeType,
       const DeepCollectionEquality().hash(_filteredPlaces),
       const DeepCollectionEquality().hash(_filteredTravels),
+      placeSortOption,
       placeFilter,
       travelFilter,
       selectedPlace);
@@ -221,22 +269,25 @@ class _$MapFilterDataStateImpl implements _MapFilterDataState {
 
 abstract class _MapFilterDataState implements MapFilterDataState {
   factory _MapFilterDataState(
-      {final List<PlaceModel> filteredPlaces,
-      final List<TravelModel> filteredTravels,
+      {final List<Place> filteredPlaces,
+      final List<Travel> filteredTravels,
+      final PlaceSortOption placeSortOption,
       required final PlaceFilter placeFilter,
       required final TravelFilter travelFilter,
-      final PlaceModel? selectedPlace}) = _$MapFilterDataStateImpl;
+      final Place? selectedPlace}) = _$MapFilterDataStateImpl;
 
   @override
-  List<PlaceModel> get filteredPlaces;
+  List<Place> get filteredPlaces;
   @override
-  List<TravelModel> get filteredTravels;
+  List<Travel> get filteredTravels;
+  @override
+  PlaceSortOption get placeSortOption;
   @override
   PlaceFilter get placeFilter;
   @override
   TravelFilter get travelFilter;
   @override
-  PlaceModel? get selectedPlace;
+  Place? get selectedPlace;
   @override
   @JsonKey(ignore: true)
   _$$MapFilterDataStateImplCopyWith<_$MapFilterDataStateImpl> get copyWith =>

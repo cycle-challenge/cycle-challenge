@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/travel_detail/travel_detail_page.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/presentation/travel/travel_page.dart';
 
 class TravelBookmarkItem extends StatelessWidget {
-  final TravelModel travel;
+  final Travel travel;
 
   const TravelBookmarkItem({super.key, required this.travel});
 
@@ -14,15 +14,11 @@ class TravelBookmarkItem extends StatelessWidget {
         .titleLarge
         ?.copyWith(color: Colors.white, fontSize: 20);
     TextStyle? bodyMedium =
-    Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
+        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TravelDetailPage(
-              travel: travel,
-            )));
-      },
+      onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => TravelPage(travel: travel))),
       child: Container(
         width: double.infinity,
         height: 240,
@@ -33,7 +29,7 @@ class TravelBookmarkItem extends StatelessWidget {
               child: Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(travel.thumbnail.medium),
+                          image: NetworkImage(travel.thumbnail!.medium),
                           fit: BoxFit.cover))),
             ),
             Positioned.fill(
@@ -64,14 +60,14 @@ class TravelBookmarkItem extends StatelessWidget {
                     ),
                     RichText(
                         text: TextSpan(children: [
-                          TextSpan(
-                              text: travel.nickname,
-                              style: bodyMedium?.copyWith(
-                                  fontWeight: FontWeight.w600)),
-                          TextSpan(
-                              text:
-                              " · ${travel.ageGroup.label} · ${travel.transport.label}")
-                        ]))
+                      TextSpan(
+                          text: travel.nickname,
+                          style: bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600)),
+                      TextSpan(
+                          text:
+                              " · ${travel.ageGroup!.label} · ${travel.transport!.label}")
+                    ]))
                   ],
                 ),
               ),

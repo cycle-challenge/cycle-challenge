@@ -1,9 +1,9 @@
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/filter.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 
 
-class PlaceFilter implements Filter<PlaceModel> {
+class PlaceFilter implements Filter<Place> {
   final Set<PlaceType> _type = <PlaceType>{};
 
   Set<PlaceType> get type => _type;
@@ -22,7 +22,7 @@ class PlaceFilter implements Filter<PlaceModel> {
   }
 
   @override
-  List<PlaceModel> apply(List<PlaceModel> places) {
+  List<Place> apply(List<Place> places) {
     if (!hasAnyFilter) return places;
 
     return places

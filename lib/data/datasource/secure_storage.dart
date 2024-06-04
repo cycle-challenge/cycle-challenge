@@ -29,4 +29,15 @@ class SecureStorage {
     await storage.delete(key: 'auth');
   }
 
+  Future<void> saveOauthToken(String token) async {
+    await storage.write(key: 'oauth_token', value: token);
+  }
+
+  Future<Result<String, void>> findOAuthToken() async {
+    final value = await storage.read(key: 'oauth_token');
+
+    if (value == null) return const Result.error(null);
+    return Result.success(value);
+  }
+
 }

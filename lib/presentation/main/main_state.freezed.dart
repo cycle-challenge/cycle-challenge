@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-MainState _$MainStateFromJson(Map<String, dynamic> json) {
-  return _MainState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MainState {
   int get navigationIndex => throw _privateConstructorUsedError;
@@ -27,8 +23,10 @@ mixin _$MainState {
   bool get isExpanded => throw _privateConstructorUsedError;
   bool get isAnimating => throw _privateConstructorUsedError;
   bool get canViewScrollUp => throw _privateConstructorUsedError;
+  bool get hasAgreedTerms => throw _privateConstructorUsedError;
+  bool get hasCheckedPermissions => throw _privateConstructorUsedError;
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MainStateCopyWith<MainState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -46,7 +44,10 @@ abstract class $MainStateCopyWith<$Res> {
       double maxHeight,
       bool isExpanded,
       bool isAnimating,
-      bool canViewScrollUp});
+      bool canViewScrollUp,
+      bool hasAgreedTerms,
+      bool hasCheckedPermissions,
+      ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -69,6 +70,9 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
     Object? isExpanded = null,
     Object? isAnimating = null,
     Object? canViewScrollUp = null,
+    Object? hasAgreedTerms = null,
+    Object? hasCheckedPermissions = null,
+    Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
       navigationIndex: null == navigationIndex
@@ -99,6 +103,18 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
           ? _value.canViewScrollUp
           : canViewScrollUp // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasAgreedTerms: null == hasAgreedTerms
+          ? _value.hasAgreedTerms
+          : hasAgreedTerms // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasCheckedPermissions: null == hasCheckedPermissions
+          ? _value.hasCheckedPermissions
+          : hasCheckedPermissions // ignore: cast_nullable_to_non_nullable
+              as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ) as $Val);
   }
 }
@@ -118,7 +134,10 @@ abstract class _$$MainStateImplCopyWith<$Res>
       double maxHeight,
       bool isExpanded,
       bool isAnimating,
-      bool canViewScrollUp});
+      bool canViewScrollUp,
+      bool hasAgreedTerms,
+      bool hasCheckedPermissions,
+      ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -139,6 +158,9 @@ class __$$MainStateImplCopyWithImpl<$Res>
     Object? isExpanded = null,
     Object? isAnimating = null,
     Object? canViewScrollUp = null,
+    Object? hasAgreedTerms = null,
+    Object? hasCheckedPermissions = null,
+    Object? themeMode = null,
   }) {
     return _then(_$MainStateImpl(
       navigationIndex: null == navigationIndex
@@ -169,12 +191,24 @@ class __$$MainStateImplCopyWithImpl<$Res>
           ? _value.canViewScrollUp
           : canViewScrollUp // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasAgreedTerms: null == hasAgreedTerms
+          ? _value.hasAgreedTerms
+          : hasAgreedTerms // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasCheckedPermissions: null == hasCheckedPermissions
+          ? _value.hasCheckedPermissions
+          : hasCheckedPermissions // ignore: cast_nullable_to_non_nullable
+              as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$MainStateImpl implements _MainState {
   _$MainStateImpl(
       {this.navigationIndex = 0,
@@ -183,10 +217,10 @@ class _$MainStateImpl implements _MainState {
       this.maxHeight = 0.0,
       this.isExpanded = false,
       this.isAnimating = false,
-      this.canViewScrollUp = false});
-
-  factory _$MainStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MainStateImplFromJson(json);
+      this.canViewScrollUp = false,
+      this.hasAgreedTerms = false,
+      this.hasCheckedPermissions = false,
+      this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
@@ -209,10 +243,19 @@ class _$MainStateImpl implements _MainState {
   @override
   @JsonKey()
   final bool canViewScrollUp;
+  @override
+  @JsonKey()
+  final bool hasAgreedTerms;
+  @override
+  @JsonKey()
+  final bool hasCheckedPermissions;
+  @override
+  @JsonKey()
+  final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'MainState(navigationIndex: $navigationIndex, height: $height, minHeight: $minHeight, maxHeight: $maxHeight, isExpanded: $isExpanded, isAnimating: $isAnimating, canViewScrollUp: $canViewScrollUp)';
+    return 'MainState(navigationIndex: $navigationIndex, height: $height, minHeight: $minHeight, maxHeight: $maxHeight, isExpanded: $isExpanded, isAnimating: $isAnimating, canViewScrollUp: $canViewScrollUp, hasAgreedTerms: $hasAgreedTerms, hasCheckedPermissions: $hasCheckedPermissions, themeMode: $themeMode)';
   }
 
   @override
@@ -232,26 +275,34 @@ class _$MainStateImpl implements _MainState {
             (identical(other.isAnimating, isAnimating) ||
                 other.isAnimating == isAnimating) &&
             (identical(other.canViewScrollUp, canViewScrollUp) ||
-                other.canViewScrollUp == canViewScrollUp));
+                other.canViewScrollUp == canViewScrollUp) &&
+            (identical(other.hasAgreedTerms, hasAgreedTerms) ||
+                other.hasAgreedTerms == hasAgreedTerms) &&
+            (identical(other.hasCheckedPermissions, hasCheckedPermissions) ||
+                other.hasCheckedPermissions == hasCheckedPermissions) &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, navigationIndex, height,
-      minHeight, maxHeight, isExpanded, isAnimating, canViewScrollUp);
+  int get hashCode => Object.hash(
+      runtimeType,
+      navigationIndex,
+      height,
+      minHeight,
+      maxHeight,
+      isExpanded,
+      isAnimating,
+      canViewScrollUp,
+      hasAgreedTerms,
+      hasCheckedPermissions,
+      themeMode);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>
       __$$MainStateImplCopyWithImpl<_$MainStateImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MainStateImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _MainState implements MainState {
@@ -262,10 +313,10 @@ abstract class _MainState implements MainState {
       final double maxHeight,
       final bool isExpanded,
       final bool isAnimating,
-      final bool canViewScrollUp}) = _$MainStateImpl;
-
-  factory _MainState.fromJson(Map<String, dynamic> json) =
-      _$MainStateImpl.fromJson;
+      final bool canViewScrollUp,
+      final bool hasAgreedTerms,
+      final bool hasCheckedPermissions,
+      final ThemeMode themeMode}) = _$MainStateImpl;
 
   @override
   int get navigationIndex;
@@ -281,6 +332,12 @@ abstract class _MainState implements MainState {
   bool get isAnimating;
   @override
   bool get canViewScrollUp;
+  @override
+  bool get hasAgreedTerms;
+  @override
+  bool get hasCheckedPermissions;
+  @override
+  ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
   _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>

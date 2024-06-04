@@ -5,14 +5,15 @@ import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_view_model.dart';
 import 'package:yeohaeng_ttukttak/utils/snackbar.dart';
 
 class PlaceImageView extends StatefulWidget {
-  final PlaceModel place;
+  final Place place;
 
   const PlaceImageView({super.key, required this.place});
 

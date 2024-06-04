@@ -6,12 +6,14 @@ import 'package:yeohaeng_ttukttak/data/datasource/google_api.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/local_stoarge.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/remote_api.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
 import 'package:yeohaeng_ttukttak/domain/model/bookmark.dart';
+import 'package:yeohaeng_ttukttak/domain/model/image.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place_review.dart';
 import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
-import 'package:yeohaeng_ttukttak/domain/model/session.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/utils/api_error.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
@@ -25,38 +27,6 @@ class PlaceRepository {
 
   final String apiKey = const String.fromEnvironment("PLACE_API_KEY");
   final String remoteUrl = const String.fromEnvironment("REMOTE_HOST");
-
-  Future<Result<List<PlaceModel>, ApiError>> findNearby(
-      double latitude, double longitude, int radius) {
-    return api.findNearby(latitude, longitude, radius);
-  }
-
-  Future<PlaceDetail> getDetailInfo(String googlePlaceId) async {
-
-    Map<String, String> params = {
-      'fields':
-          'id,formattedAddress,nationalPhoneNumber,regularOpeningHours,websiteUri,location',
-      'key': apiKey,
-      'languageCode': 'ko'
-    };
-
-    Uri uri =
-        Uri.https('places.googleapis.com', '/v1/places/$googlePlaceId', params);
-
-    Response response = await get(uri,
-        headers: {'Content-type': 'application/json; charset=UTF-8'});
-
-
-    if (response.statusCode == HttpStatus.ok) {
-      Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
-
-
-      print(json);
-      return PlaceDetail.of(json);
-    } else {
-      throw Exception(response.body);
-    }
-  }
 
   Future<PageModel<ImageModel>> getImages(
       int id, int page, int pageSize) async {
@@ -86,22 +56,31 @@ class PlaceRepository {
     return api.deletePlaceBookmark(id);
   }
 
-  Future<Result<List<PlaceModel>, ApiError>> getBookmarkedPlace() async {
+  Future<Result<List<Place>, ApiError>> getBookmarkedPlace() async {
     return api.getBookmarkedPlace();
   }
 
-  Future<Result<List<PlaceSuggestion>, String>> autoComplete(String query, Session session) async {
-    return googleApi.autoComplete(query, session);
+  Future<Result<List<PlaceSuggestion>, String>> autoComplete(
+      String query) async {
+    final result = await api.autocomplete(query);
+
+    return result.when(
+        success: (places) => Result.success(places),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
   }
-  Future<Result<PlaceDetail, String>> getDetail(String googlePlaceId, {Session? session}) async {
-    return googleApi.getDetail(googlePlaceId, session: session);
+
+  Future<Result<PlaceDetail, String>> getDetail(String googlePlaceId) async {
+    return googleApi.getDetail(googlePlaceId);
   }
 
   Future<Result<List<PlaceSuggestion>, String>> getSearchHistory() async {
     return localStorage.getSearchHistory();
   }
 
-  Future<Result<List<PlaceSuggestion>, String>> addSearchHistory(PlaceSuggestion place) async {
+  Future<Result<List<PlaceSuggestion>, String>> addSearchHistory(
+      PlaceSuggestion place) async {
     final result = await localStorage.addSearchHistory(place);
 
     return result.when(
@@ -114,7 +93,8 @@ class PlaceRepository {
         error: (message) => Result.error(message));
   }
 
-  Future<Result<List<PlaceSuggestion>, String>> deleteSearchHistory(PlaceSuggestion place) async {
+  Future<Result<List<PlaceSuggestion>, String>> deleteSearchHistory(
+      PlaceSuggestion place) async {
     final result = await localStorage.deleteSearchHistory(place);
 
     return result.when(
@@ -127,7 +107,54 @@ class PlaceRepository {
         error: (message) => Result.error(message));
   }
 
-  Future<Result<PlaceModel, ApiError>> findByGooglePlaceId(String googlePlaceId) async {
-    return api.findByGooglePlaceId(googlePlaceId);
+  Future<Result<Place, String>> find(int id) async {
+    final result = await api.findPlace(id);
+
+    return result.when(
+        success: (places) => Result.success(places),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+  Future<Result<List<PlaceReview>, String>> findReviews(int id) async {
+    final result = await api.findPlaceReviews(id);
+
+    return result.when(
+        success: (places) => Result.success(places),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+  Future<Result<List<Travel>, String>> findTravels(int id) async {
+    final result = await api.findPlaceTravels(id);
+
+    return result.when(
+        success: (travels) => Result.success(travels),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+  Future<Result<List<Image>, String>> findImages(int id) async {
+    final result = await api.findPlaceImages(id);
+
+    return result.when(
+        success: (images) => Result.success(images),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
+  }
+
+  Future<Result<void, String>> createReview(
+      int placeId, double rating, bool wantsToRevisit, String? comment) async {
+    final result = await api.createPlaceReview(placeId, rating, wantsToRevisit, comment);
+
+    return result.when(
+        success: (_) => const Result.success(null),
+        error: (error) => Result.error(error.maybeWhen(
+            error: (_, message) => message,
+            orElse: () => "알 수 없는 오류가 발생했습니다.")));
   }
 }

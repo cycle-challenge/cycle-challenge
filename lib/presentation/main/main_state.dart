@@ -1,10 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:yeohaeng_ttukttak/domain/model/member.dart';
 
 part 'main_state.freezed.dart';
-
-part 'main_state.g.dart';
 
 @freezed
 class MainState with _$MainState {
@@ -15,8 +14,9 @@ class MainState with _$MainState {
       @Default(0.0) double maxHeight,
       @Default(false) bool isExpanded,
       @Default(false) bool isAnimating,
-      @Default(false) bool canViewScrollUp}) = _MainState;
+      @Default(false) bool canViewScrollUp,
+      @Default(false) bool hasAgreedTerms,
+      @Default(false) bool hasCheckedPermissions,
+      @Default(ThemeMode.system) ThemeMode themeMode}) = _MainState;
 
-  factory MainState.fromJson(Map<String, dynamic> json) =>
-      _$MainStateFromJson(json);
 }

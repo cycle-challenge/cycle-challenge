@@ -19,72 +19,74 @@ mixin _$MapEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,13 +149,13 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
   }) {
     return findNearbyPlace();
   }
@@ -162,12 +164,13 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
     return findNearbyPlace?.call();
   }
@@ -176,12 +179,13 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -194,13 +198,13 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
   }) {
     return findNearbyPlace(this);
   }
@@ -209,13 +213,13 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
   }) {
     return findNearbyPlace?.call(this);
   }
@@ -224,13 +228,13 @@ class _$FindNearbyPlaceEventImpl implements FindNearbyPlaceEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
   }) {
     if (findNearbyPlace != null) {
@@ -245,12 +249,195 @@ abstract class FindNearbyPlaceEvent implements MapEvent {
 }
 
 /// @nodoc
+abstract class _$$GetPlaceDetailEventImplCopyWith<$Res> {
+  factory _$$GetPlaceDetailEventImplCopyWith(_$GetPlaceDetailEventImpl value,
+          $Res Function(_$GetPlaceDetailEventImpl) then) =
+      __$$GetPlaceDetailEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Place place});
+
+  $PlaceCopyWith<$Res> get place;
+}
+
+/// @nodoc
+class __$$GetPlaceDetailEventImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$GetPlaceDetailEventImpl>
+    implements _$$GetPlaceDetailEventImplCopyWith<$Res> {
+  __$$GetPlaceDetailEventImplCopyWithImpl(_$GetPlaceDetailEventImpl _value,
+      $Res Function(_$GetPlaceDetailEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? place = null,
+  }) {
+    return _then(_$GetPlaceDetailEventImpl(
+      null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as Place,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceCopyWith<$Res> get place {
+    return $PlaceCopyWith<$Res>(_value.place, (value) {
+      return _then(_value.copyWith(place: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$GetPlaceDetailEventImpl implements GetPlaceDetailEvent {
+  const _$GetPlaceDetailEventImpl(this.place);
+
+  @override
+  final Place place;
+
+  @override
+  String toString() {
+    return 'MapEvent.getPlaceDetail(place: $place)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlaceDetailEventImpl &&
+            (identical(other.place, place) || other.place == place));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, place);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlaceDetailEventImplCopyWith<_$GetPlaceDetailEventImpl> get copyWith =>
+      __$$GetPlaceDetailEventImplCopyWithImpl<_$GetPlaceDetailEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() findNearbyPlace,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
+    required TResult Function(CameraPosition position) changePosition,
+    required TResult Function() changeToMyPosition,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
+  }) {
+    return getPlaceDetail(place);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? findNearbyPlace,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
+    TResult? Function(CameraPosition position)? changePosition,
+    TResult? Function()? changeToMyPosition,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
+  }) {
+    return getPlaceDetail?.call(place);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? findNearbyPlace,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
+    TResult Function(CameraPosition position)? changePosition,
+    TResult Function()? changeToMyPosition,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
+    required TResult orElse(),
+  }) {
+    if (getPlaceDetail != null) {
+      return getPlaceDetail(place);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
+    required TResult Function(SelectPlaceEvent value) selectPlace,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
+    required TResult Function(ChangePositionEvent value) changePosition,
+    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
+  }) {
+    return getPlaceDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
+    TResult? Function(SelectPlaceEvent value)? selectPlace,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
+    TResult? Function(ChangePositionEvent value)? changePosition,
+    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
+  }) {
+    return getPlaceDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
+    TResult Function(SelectPlaceEvent value)? selectPlace,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
+    TResult Function(ChangePositionEvent value)? changePosition,
+    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
+    required TResult orElse(),
+  }) {
+    if (getPlaceDetail != null) {
+      return getPlaceDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlaceDetailEvent implements MapEvent {
+  const factory GetPlaceDetailEvent(final Place place) =
+      _$GetPlaceDetailEventImpl;
+
+  Place get place;
+  @JsonKey(ignore: true)
+  _$$GetPlaceDetailEventImplCopyWith<_$GetPlaceDetailEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$SelectPlaceEventImplCopyWith<$Res> {
   factory _$$SelectPlaceEventImplCopyWith(_$SelectPlaceEventImpl value,
           $Res Function(_$SelectPlaceEventImpl) then) =
       __$$SelectPlaceEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PlaceModel? place});
+  $Res call({Place? place});
+
+  $PlaceCopyWith<$Res>? get place;
 }
 
 /// @nodoc
@@ -270,8 +457,20 @@ class __$$SelectPlaceEventImplCopyWithImpl<$Res>
       freezed == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel?,
+              as Place?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceCopyWith<$Res>? get place {
+    if (_value.place == null) {
+      return null;
+    }
+
+    return $PlaceCopyWith<$Res>(_value.place!, (value) {
+      return _then(_value.copyWith(place: value));
+    });
   }
 }
 
@@ -281,7 +480,7 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   const _$SelectPlaceEventImpl(this.place);
 
   @override
-  final PlaceModel? place;
+  final Place? place;
 
   @override
   String toString() {
@@ -310,13 +509,13 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
   }) {
     return selectPlace(place);
   }
@@ -325,12 +524,13 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
     return selectPlace?.call(place);
   }
@@ -339,12 +539,13 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -357,13 +558,13 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
   }) {
     return selectPlace(this);
   }
@@ -372,13 +573,13 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
   }) {
     return selectPlace?.call(this);
   }
@@ -387,13 +588,13 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
   }) {
     if (selectPlace != null) {
@@ -404,135 +605,131 @@ class _$SelectPlaceEventImpl implements SelectPlaceEvent {
 }
 
 abstract class SelectPlaceEvent implements MapEvent {
-  const factory SelectPlaceEvent(final PlaceModel? place) =
-      _$SelectPlaceEventImpl;
+  const factory SelectPlaceEvent(final Place? place) = _$SelectPlaceEventImpl;
 
-  PlaceModel? get place;
+  Place? get place;
   @JsonKey(ignore: true)
   _$$SelectPlaceEventImplCopyWith<_$SelectPlaceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectPlaceSearchResultEventImplCopyWith<$Res> {
-  factory _$$SelectPlaceSearchResultEventImplCopyWith(
-          _$SelectPlaceSearchResultEventImpl value,
-          $Res Function(_$SelectPlaceSearchResultEventImpl) then) =
-      __$$SelectPlaceSearchResultEventImplCopyWithImpl<$Res>;
+abstract class _$$PlaceSearchResultImplCopyWith<$Res> {
+  factory _$$PlaceSearchResultImplCopyWith(_$PlaceSearchResultImpl value,
+          $Res Function(_$PlaceSearchResultImpl) then) =
+      __$$PlaceSearchResultImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PlaceSearchResult searchResult});
+  $Res call({Place place});
 
-  $PlaceSearchResultCopyWith<$Res> get searchResult;
+  $PlaceCopyWith<$Res> get place;
 }
 
 /// @nodoc
-class __$$SelectPlaceSearchResultEventImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$SelectPlaceSearchResultEventImpl>
-    implements _$$SelectPlaceSearchResultEventImplCopyWith<$Res> {
-  __$$SelectPlaceSearchResultEventImplCopyWithImpl(
-      _$SelectPlaceSearchResultEventImpl _value,
-      $Res Function(_$SelectPlaceSearchResultEventImpl) _then)
+class __$$PlaceSearchResultImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$PlaceSearchResultImpl>
+    implements _$$PlaceSearchResultImplCopyWith<$Res> {
+  __$$PlaceSearchResultImplCopyWithImpl(_$PlaceSearchResultImpl _value,
+      $Res Function(_$PlaceSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchResult = null,
+    Object? place = null,
   }) {
-    return _then(_$SelectPlaceSearchResultEventImpl(
-      null == searchResult
-          ? _value.searchResult
-          : searchResult // ignore: cast_nullable_to_non_nullable
-              as PlaceSearchResult,
+    return _then(_$PlaceSearchResultImpl(
+      null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as Place,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PlaceSearchResultCopyWith<$Res> get searchResult {
-    return $PlaceSearchResultCopyWith<$Res>(_value.searchResult, (value) {
-      return _then(_value.copyWith(searchResult: value));
+  $PlaceCopyWith<$Res> get place {
+    return $PlaceCopyWith<$Res>(_value.place, (value) {
+      return _then(_value.copyWith(place: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$SelectPlaceSearchResultEventImpl
-    implements SelectPlaceSearchResultEvent {
-  const _$SelectPlaceSearchResultEventImpl(this.searchResult);
+class _$PlaceSearchResultImpl implements _PlaceSearchResult {
+  const _$PlaceSearchResultImpl(this.place);
 
   @override
-  final PlaceSearchResult searchResult;
+  final Place place;
 
   @override
   String toString() {
-    return 'MapEvent.selectPlaceSearchResult(searchResult: $searchResult)';
+    return 'MapEvent.selectPlaceSearchResult(place: $place)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectPlaceSearchResultEventImpl &&
-            (identical(other.searchResult, searchResult) ||
-                other.searchResult == searchResult));
+            other is _$PlaceSearchResultImpl &&
+            (identical(other.place, place) || other.place == place));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchResult);
+  int get hashCode => Object.hash(runtimeType, place);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectPlaceSearchResultEventImplCopyWith<
-          _$SelectPlaceSearchResultEventImpl>
-      get copyWith => __$$SelectPlaceSearchResultEventImplCopyWithImpl<
-          _$SelectPlaceSearchResultEventImpl>(this, _$identity);
+  _$$PlaceSearchResultImplCopyWith<_$PlaceSearchResultImpl> get copyWith =>
+      __$$PlaceSearchResultImplCopyWithImpl<_$PlaceSearchResultImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
   }) {
-    return selectPlaceSearchResult(searchResult);
+    return selectPlaceSearchResult(place);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
-    return selectPlaceSearchResult?.call(searchResult);
+    return selectPlaceSearchResult?.call(place);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
   }) {
     if (selectPlaceSearchResult != null) {
-      return selectPlaceSearchResult(searchResult);
+      return selectPlaceSearchResult(place);
     }
     return orElse();
   }
@@ -541,13 +738,13 @@ class _$SelectPlaceSearchResultEventImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
   }) {
     return selectPlaceSearchResult(this);
   }
@@ -556,13 +753,13 @@ class _$SelectPlaceSearchResultEventImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
   }) {
     return selectPlaceSearchResult?.call(this);
   }
@@ -571,13 +768,13 @@ class _$SelectPlaceSearchResultEventImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
   }) {
     if (selectPlaceSearchResult != null) {
@@ -587,16 +784,13 @@ class _$SelectPlaceSearchResultEventImpl
   }
 }
 
-abstract class SelectPlaceSearchResultEvent implements MapEvent {
-  const factory SelectPlaceSearchResultEvent(
-          final PlaceSearchResult searchResult) =
-      _$SelectPlaceSearchResultEventImpl;
+abstract class _PlaceSearchResult implements MapEvent {
+  const factory _PlaceSearchResult(final Place place) = _$PlaceSearchResultImpl;
 
-  PlaceSearchResult get searchResult;
+  Place get place;
   @JsonKey(ignore: true)
-  _$$SelectPlaceSearchResultEventImplCopyWith<
-          _$SelectPlaceSearchResultEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$PlaceSearchResultImplCopyWith<_$PlaceSearchResultImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -666,13 +860,13 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
   }) {
     return changePosition(position);
   }
@@ -681,12 +875,13 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
     return changePosition?.call(position);
   }
@@ -695,12 +890,13 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -713,13 +909,13 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
   }) {
     return changePosition(this);
   }
@@ -728,13 +924,13 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
   }) {
     return changePosition?.call(this);
   }
@@ -743,13 +939,13 @@ class _$ChangePositionEventImpl implements ChangePositionEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
   }) {
     if (changePosition != null) {
@@ -810,13 +1006,13 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
   }) {
     return changeToMyPosition();
   }
@@ -825,12 +1021,13 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
     return changeToMyPosition?.call();
   }
@@ -839,12 +1036,13 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -857,13 +1055,13 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
   }) {
     return changeToMyPosition(this);
   }
@@ -872,13 +1070,13 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
   }) {
     return changeToMyPosition?.call(this);
   }
@@ -887,13 +1085,13 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
   }) {
     if (changeToMyPosition != null) {
@@ -905,142 +1103,6 @@ class _$MoveToMyPositionEventImpl implements MoveToMyPositionEvent {
 
 abstract class MoveToMyPositionEvent implements MapEvent {
   const factory MoveToMyPositionEvent() = _$MoveToMyPositionEventImpl;
-}
-
-/// @nodoc
-abstract class _$$ShowSearchButtonImplCopyWith<$Res> {
-  factory _$$ShowSearchButtonImplCopyWith(_$ShowSearchButtonImpl value,
-          $Res Function(_$ShowSearchButtonImpl) then) =
-      __$$ShowSearchButtonImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ShowSearchButtonImplCopyWithImpl<$Res>
-    extends _$MapEventCopyWithImpl<$Res, _$ShowSearchButtonImpl>
-    implements _$$ShowSearchButtonImplCopyWith<$Res> {
-  __$$ShowSearchButtonImplCopyWithImpl(_$ShowSearchButtonImpl _value,
-      $Res Function(_$ShowSearchButtonImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ShowSearchButtonImpl implements ShowSearchButton {
-  const _$ShowSearchButtonImpl();
-
-  @override
-  String toString() {
-    return 'MapEvent.showSearchButton()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ShowSearchButtonImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
-    required TResult Function(CameraPosition position) changePosition,
-    required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
-    required TResult Function(Filter<dynamic> filter) updateFilter,
-  }) {
-    return showSearchButton();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
-    TResult? Function(CameraPosition position)? changePosition,
-    TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
-    TResult? Function(Filter<dynamic> filter)? updateFilter,
-  }) {
-    return showSearchButton?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
-    TResult Function(CameraPosition position)? changePosition,
-    TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
-    TResult Function(Filter<dynamic> filter)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (showSearchButton != null) {
-      return showSearchButton();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
-    required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
-    required TResult Function(ChangePositionEvent value) changePosition,
-    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
-    required TResult Function(UpdateFilterEvent value) updateFilter,
-  }) {
-    return showSearchButton(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
-    TResult? Function(ChangePositionEvent value)? changePosition,
-    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
-    TResult? Function(UpdateFilterEvent value)? updateFilter,
-  }) {
-    return showSearchButton?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
-    TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
-    TResult Function(ChangePositionEvent value)? changePosition,
-    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
-    TResult Function(UpdateFilterEvent value)? updateFilter,
-    required TResult orElse(),
-  }) {
-    if (showSearchButton != null) {
-      return showSearchButton(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ShowSearchButton implements MapEvent {
-  const factory ShowSearchButton() = _$ShowSearchButtonImpl;
 }
 
 /// @nodoc
@@ -1109,13 +1171,13 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() findNearbyPlace,
-    required TResult Function(PlaceModel? place) selectPlace,
-    required TResult Function(PlaceSearchResult searchResult)
-        selectPlaceSearchResult,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
     required TResult Function(CameraPosition position) changePosition,
     required TResult Function() changeToMyPosition,
-    required TResult Function() showSearchButton,
     required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
   }) {
     return updateFilter(filter);
   }
@@ -1124,12 +1186,13 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? findNearbyPlace,
-    TResult? Function(PlaceModel? place)? selectPlace,
-    TResult? Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
     TResult? Function(CameraPosition position)? changePosition,
     TResult? Function()? changeToMyPosition,
-    TResult? Function()? showSearchButton,
     TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
   }) {
     return updateFilter?.call(filter);
   }
@@ -1138,12 +1201,13 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? findNearbyPlace,
-    TResult Function(PlaceModel? place)? selectPlace,
-    TResult Function(PlaceSearchResult searchResult)? selectPlaceSearchResult,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
     TResult Function(CameraPosition position)? changePosition,
     TResult Function()? changeToMyPosition,
-    TResult Function()? showSearchButton,
     TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
     required TResult orElse(),
   }) {
     if (updateFilter != null) {
@@ -1156,13 +1220,13 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
     required TResult Function(SelectPlaceEvent value) selectPlace,
-    required TResult Function(SelectPlaceSearchResultEvent value)
-        selectPlaceSearchResult,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
     required TResult Function(ChangePositionEvent value) changePosition,
     required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
-    required TResult Function(ShowSearchButton value) showSearchButton,
     required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
   }) {
     return updateFilter(this);
   }
@@ -1171,13 +1235,13 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult? Function(SelectPlaceEvent value)? selectPlace,
-    TResult? Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult? Function(ChangePositionEvent value)? changePosition,
     TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult? Function(ShowSearchButton value)? showSearchButton,
     TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
   }) {
     return updateFilter?.call(this);
   }
@@ -1186,13 +1250,13 @@ class _$UpdateFilterEventImpl implements UpdateFilterEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
     TResult Function(SelectPlaceEvent value)? selectPlace,
-    TResult Function(SelectPlaceSearchResultEvent value)?
-        selectPlaceSearchResult,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
     TResult Function(ChangePositionEvent value)? changePosition,
     TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
-    TResult Function(ShowSearchButton value)? showSearchButton,
     TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
     required TResult orElse(),
   }) {
     if (updateFilter != null) {
@@ -1209,5 +1273,184 @@ abstract class UpdateFilterEvent implements MapEvent {
   Filter<dynamic> get filter;
   @JsonKey(ignore: true)
   _$$UpdateFilterEventImplCopyWith<_$UpdateFilterEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SortPlaceImplCopyWith<$Res> {
+  factory _$$SortPlaceImplCopyWith(
+          _$SortPlaceImpl value, $Res Function(_$SortPlaceImpl) then) =
+      __$$SortPlaceImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PlaceSortOption option});
+
+  $PlaceSortOptionCopyWith<$Res> get option;
+}
+
+/// @nodoc
+class __$$SortPlaceImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$SortPlaceImpl>
+    implements _$$SortPlaceImplCopyWith<$Res> {
+  __$$SortPlaceImplCopyWithImpl(
+      _$SortPlaceImpl _value, $Res Function(_$SortPlaceImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? option = null,
+  }) {
+    return _then(_$SortPlaceImpl(
+      null == option
+          ? _value.option
+          : option // ignore: cast_nullable_to_non_nullable
+              as PlaceSortOption,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceSortOptionCopyWith<$Res> get option {
+    return $PlaceSortOptionCopyWith<$Res>(_value.option, (value) {
+      return _then(_value.copyWith(option: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SortPlaceImpl implements _SortPlace {
+  const _$SortPlaceImpl(this.option);
+
+  @override
+  final PlaceSortOption option;
+
+  @override
+  String toString() {
+    return 'MapEvent.sortPlace(option: $option)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SortPlaceImpl &&
+            (identical(other.option, option) || other.option == option));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, option);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SortPlaceImplCopyWith<_$SortPlaceImpl> get copyWith =>
+      __$$SortPlaceImplCopyWithImpl<_$SortPlaceImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() findNearbyPlace,
+    required TResult Function(Place place) getPlaceDetail,
+    required TResult Function(Place? place) selectPlace,
+    required TResult Function(Place place) selectPlaceSearchResult,
+    required TResult Function(CameraPosition position) changePosition,
+    required TResult Function() changeToMyPosition,
+    required TResult Function(Filter<dynamic> filter) updateFilter,
+    required TResult Function(PlaceSortOption option) sortPlace,
+  }) {
+    return sortPlace(option);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? findNearbyPlace,
+    TResult? Function(Place place)? getPlaceDetail,
+    TResult? Function(Place? place)? selectPlace,
+    TResult? Function(Place place)? selectPlaceSearchResult,
+    TResult? Function(CameraPosition position)? changePosition,
+    TResult? Function()? changeToMyPosition,
+    TResult? Function(Filter<dynamic> filter)? updateFilter,
+    TResult? Function(PlaceSortOption option)? sortPlace,
+  }) {
+    return sortPlace?.call(option);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? findNearbyPlace,
+    TResult Function(Place place)? getPlaceDetail,
+    TResult Function(Place? place)? selectPlace,
+    TResult Function(Place place)? selectPlaceSearchResult,
+    TResult Function(CameraPosition position)? changePosition,
+    TResult Function()? changeToMyPosition,
+    TResult Function(Filter<dynamic> filter)? updateFilter,
+    TResult Function(PlaceSortOption option)? sortPlace,
+    required TResult orElse(),
+  }) {
+    if (sortPlace != null) {
+      return sortPlace(option);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FindNearbyPlaceEvent value) findNearbyPlace,
+    required TResult Function(GetPlaceDetailEvent value) getPlaceDetail,
+    required TResult Function(SelectPlaceEvent value) selectPlace,
+    required TResult Function(_PlaceSearchResult value) selectPlaceSearchResult,
+    required TResult Function(ChangePositionEvent value) changePosition,
+    required TResult Function(MoveToMyPositionEvent value) changeToMyPosition,
+    required TResult Function(UpdateFilterEvent value) updateFilter,
+    required TResult Function(_SortPlace value) sortPlace,
+  }) {
+    return sortPlace(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult? Function(GetPlaceDetailEvent value)? getPlaceDetail,
+    TResult? Function(SelectPlaceEvent value)? selectPlace,
+    TResult? Function(_PlaceSearchResult value)? selectPlaceSearchResult,
+    TResult? Function(ChangePositionEvent value)? changePosition,
+    TResult? Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult? Function(UpdateFilterEvent value)? updateFilter,
+    TResult? Function(_SortPlace value)? sortPlace,
+  }) {
+    return sortPlace?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FindNearbyPlaceEvent value)? findNearbyPlace,
+    TResult Function(GetPlaceDetailEvent value)? getPlaceDetail,
+    TResult Function(SelectPlaceEvent value)? selectPlace,
+    TResult Function(_PlaceSearchResult value)? selectPlaceSearchResult,
+    TResult Function(ChangePositionEvent value)? changePosition,
+    TResult Function(MoveToMyPositionEvent value)? changeToMyPosition,
+    TResult Function(UpdateFilterEvent value)? updateFilter,
+    TResult Function(_SortPlace value)? sortPlace,
+    required TResult orElse(),
+  }) {
+    if (sortPlace != null) {
+      return sortPlace(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SortPlace implements MapEvent {
+  const factory _SortPlace(final PlaceSortOption option) = _$SortPlaceImpl;
+
+  PlaceSortOption get option;
+  @JsonKey(ignore: true)
+  _$$SortPlaceImplCopyWith<_$SortPlaceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

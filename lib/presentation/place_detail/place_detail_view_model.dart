@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/models/page_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
+
 import 'package:yeohaeng_ttukttak/data/vo/image_model.dart';
-import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/place_detail/place_detail_event.dart';
@@ -17,34 +17,78 @@ class PlaceDetailViewModel with ChangeNotifier {
 
   final StreamController<MainUiEvent> _mainEventController;
 
-  late PlaceDetailState _state;
+  final Place place;
+
+  PlaceDetailState _state = PlaceDetailState();
   PlaceDetailState get state => _state;
 
   final StreamController<PlaceDetailUIEvent> _eventController =
       StreamController.broadcast();
   Stream<PlaceDetailUIEvent> get stream => _eventController.stream;
 
-  PlaceDetailViewModel(PlaceModel place, this.useCases, this._mainEventController) {
-    _state = PlaceDetailState(
-        isBusinessHourExpanded: false, placeImages: []);
+  PlaceDetailViewModel(this.useCases, this._mainEventController,
+      {required this.place}) {
+    useCases.findPlaceReviewsUseCase(place.id).then((result) => result.when(
+        success: (reviews) {
+          _state = _state.copyWith(reviews: reviews);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message))));
 
-    if (place.detail == null) {
-      useCases.getPlaceDetail(place.googlePlaceId).then((detail) {
-        place.detail = detail;
-        notifyListeners();
-      });
-    }
+    useCases.findPlaceTravelsUseCase(place.id).then((result) => result.when(
+        success: (travels) {
+          _state = _state.copyWith(travels: travels);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message))));
+
+    useCases.findPlaceImagesUseCase(place.id).then((value) => value.when(
+        success: (images) {
+          _state = _state.copyWith(images: images);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message))));
   }
 
-  void onEvent(PlaceDetailEvent event) {
-    event.when(
-        toggleBusinessHourExpanded: _toggleBusinessHourExpanded,
-        fetchImage: _fetchPlaceImage,
-        callPhone: _callPhone,
-        copyText: _copyText,
-        launchURL: _launchURL);
+  void onEvent(PlaceDetailEvent event) => event.when(
+      toggleBusinessHourExpanded: _toggleBusinessHourExpanded,
+      fetchImage: _fetchPlaceImage,
+      callPhone: _callPhone,
+      copyText: _copyText,
+      launchURL: _launchURL,
+      changeImageIndex: _onChangeImageIndex,
+      createReview: _onCreateReview);
+
+  void _onCreateReview(
+      double rating, bool wantsToRevisit, String? comment) async {
+    final result = await useCases.createPlaceReviewUseCase(
+        place.id, rating, wantsToRevisit, comment);
+
+    result.when(
+        success: (_) async {
+          _mainEventController
+              .add(const MainUiEvent.showSnackbar('리뷰 등록이 완료되었습니다.'));
+
+          final result = await useCases.findPlaceReviewsUseCase(place.id);
+          result.when(
+              success: (reviews) {
+                _state = _state.copyWith(reviews: reviews);
+                notifyListeners();
+              },
+              error: (message) =>
+                  _mainEventController.add(MainUiEvent.showSnackbar(message)));
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message)));
   }
 
+  void _onChangeImageIndex(int index) {
+    _state = _state.copyWith(imageIndex: index);
+    notifyListeners();
+  }
 
   void _toggleBusinessHourExpanded() {
     _state =

@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/datasource/secure_storage.dart';
 import 'package:yeohaeng_ttukttak/domain/model/auth.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_ui_event.dart';
-import 'package:yeohaeng_ttukttak/utils/auth_interceptor_event.dart';
+
+import 'mutex.dart';
 
 class AuthInterceptor extends Interceptor {
   final SecureStorage secureStorage;
@@ -14,18 +15,28 @@ class AuthInterceptor extends Interceptor {
 
   final StreamController<MainUiEvent> _eventController;
 
+  static final AsyncMutex _mutex = AsyncMutex();
+
   AuthInterceptor(this.secureStorage, this._eventController);
 
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
+    debugPrint('[REQ] wait ${options.uri}');
+    await _mutex.lock();
+    debugPrint('[REQ] end ${options.uri}');
     final result = await secureStorage.findAuth();
-    result.when(
+    result.whenOrNull(
         success: (auth) => options.headers
-            .addAll({'Authorization': 'Bearer ${auth.accessToken}'}),
-        error: (_) {});
+            .addAll({'Authorization': 'Bearer ${auth.accessToken}'}));
 
     super.onRequest(options, handler);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (_mutex.isLocked) _mutex.unlock();
+    super.onResponse(response, handler);
   }
 
   @override
@@ -33,9 +44,11 @@ class AuthInterceptor extends Interceptor {
     String? errorCode = err.response?.data['code'];
 
     if (errorCode == null || errorCode != 'INVALID_AUTHORIZATION') {
+      if (_mutex.isLocked) _mutex.unlock();
       return handler.reject(err);
     }
 
+    debugPrint('[ERR] ${err.requestOptions.uri}');
     final result = await secureStorage.findAuth();
 
     result.when(success: (auth) async {
@@ -50,19 +63,20 @@ class AuthInterceptor extends Interceptor {
         final retriedResponse = await dio.fetch(err.requestOptions);
 
         return handler.resolve(retriedResponse);
-
       } on DioException catch (e) {
         signOut();
         return handler.reject(err);
+      } finally {
+        if (_mutex.isLocked) _mutex.unlock();
       }
     }, error: (_) {
+      if (_mutex.isLocked) _mutex.unlock();
       signOut();
       return handler.reject(err);
     });
   }
 
   void signOut() {
-    secureStorage.deleteAuth();
     // 서버 로그 아웃 API 호출 하기
     _eventController.add(const MainUiEvent.authorizationExpired());
   }

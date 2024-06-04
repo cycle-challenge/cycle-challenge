@@ -6,6 +6,7 @@ import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_period.dar
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_age_group.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_motivation.dart';
 import 'package:yeohaeng_ttukttak/data/vo/travel/travel_filter/travel_transport.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/filter/filter_widget_group.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
@@ -17,6 +18,8 @@ class TravelFilterBottomSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.watch<MapViewModel>();
     final travelFilter = viewModel.filterState.travelFilter;
+
+    final colorTheme = Theme.of(context).colorTheme;
 
     return Padding(
       padding: const EdgeInsets.all(32.0),
@@ -62,17 +65,12 @@ class TravelFilterBottomSheetWidget extends StatelessWidget {
                       child: const Text("초기화"))),
               const SizedBox(width: 16),
               Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary),
-                    child: Text(
-                      "적용",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary),
-                    ),
+                  child: FilledButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: FilledButton.styleFrom(
+                      foregroundColor: colorTheme.background,
+                      backgroundColor: colorTheme.foreground),
+                    child: const Text("적용"),
                   ))
             ],
           )

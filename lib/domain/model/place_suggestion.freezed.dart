@@ -14,17 +14,24 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+PlaceSuggestion _$PlaceSuggestionFromJson(Map<String, dynamic> json) {
+  return _PlaceSuggestion.fromJson(json);
+}
+
 /// @nodoc
 mixin _$PlaceSuggestion {
   @HiveField(0)
-  String get googlePlaceId => throw _privateConstructorUsedError;
+  int get placeId => throw _privateConstructorUsedError;
   @HiveField(1)
   String get name => throw _privateConstructorUsedError;
   @HiveField(2)
-  String get address => throw _privateConstructorUsedError;
+  String get localAddr => throw _privateConstructorUsedError;
   @HiveField(3)
+  String get roadAddr => throw _privateConstructorUsedError;
+  @HiveField(4)
   DateTime? get modifiedAt => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlaceSuggestionCopyWith<PlaceSuggestion> get copyWith =>
       throw _privateConstructorUsedError;
@@ -37,10 +44,11 @@ abstract class $PlaceSuggestionCopyWith<$Res> {
       _$PlaceSuggestionCopyWithImpl<$Res, PlaceSuggestion>;
   @useResult
   $Res call(
-      {@HiveField(0) String googlePlaceId,
+      {@HiveField(0) int placeId,
       @HiveField(1) String name,
-      @HiveField(2) String address,
-      @HiveField(3) DateTime? modifiedAt});
+      @HiveField(2) String localAddr,
+      @HiveField(3) String roadAddr,
+      @HiveField(4) DateTime? modifiedAt});
 }
 
 /// @nodoc
@@ -56,23 +64,28 @@ class _$PlaceSuggestionCopyWithImpl<$Res, $Val extends PlaceSuggestion>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? googlePlaceId = null,
+    Object? placeId = null,
     Object? name = null,
-    Object? address = null,
+    Object? localAddr = null,
+    Object? roadAddr = null,
     Object? modifiedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      googlePlaceId: null == googlePlaceId
-          ? _value.googlePlaceId
-          : googlePlaceId // ignore: cast_nullable_to_non_nullable
-              as String,
+      placeId: null == placeId
+          ? _value.placeId
+          : placeId // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      localAddr: null == localAddr
+          ? _value.localAddr
+          : localAddr // ignore: cast_nullable_to_non_nullable
+              as String,
+      roadAddr: null == roadAddr
+          ? _value.roadAddr
+          : roadAddr // ignore: cast_nullable_to_non_nullable
               as String,
       modifiedAt: freezed == modifiedAt
           ? _value.modifiedAt
@@ -91,10 +104,11 @@ abstract class _$$PlaceSuggestionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String googlePlaceId,
+      {@HiveField(0) int placeId,
       @HiveField(1) String name,
-      @HiveField(2) String address,
-      @HiveField(3) DateTime? modifiedAt});
+      @HiveField(2) String localAddr,
+      @HiveField(3) String roadAddr,
+      @HiveField(4) DateTime? modifiedAt});
 }
 
 /// @nodoc
@@ -108,23 +122,28 @@ class __$$PlaceSuggestionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? googlePlaceId = null,
+    Object? placeId = null,
     Object? name = null,
-    Object? address = null,
+    Object? localAddr = null,
+    Object? roadAddr = null,
     Object? modifiedAt = freezed,
   }) {
     return _then(_$PlaceSuggestionImpl(
-      googlePlaceId: null == googlePlaceId
-          ? _value.googlePlaceId
-          : googlePlaceId // ignore: cast_nullable_to_non_nullable
-              as String,
+      placeId: null == placeId
+          ? _value.placeId
+          : placeId // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      localAddr: null == localAddr
+          ? _value.localAddr
+          : localAddr // ignore: cast_nullable_to_non_nullable
+              as String,
+      roadAddr: null == roadAddr
+          ? _value.roadAddr
+          : roadAddr // ignore: cast_nullable_to_non_nullable
               as String,
       modifiedAt: freezed == modifiedAt
           ? _value.modifiedAt
@@ -135,30 +154,37 @@ class __$$PlaceSuggestionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PlaceSuggestionImpl implements _PlaceSuggestion {
   _$PlaceSuggestionImpl(
-      {@HiveField(0) required this.googlePlaceId,
+      {@HiveField(0) required this.placeId,
       @HiveField(1) required this.name,
-      @HiveField(2) required this.address,
-      @HiveField(3) this.modifiedAt});
+      @HiveField(2) required this.localAddr,
+      @HiveField(3) required this.roadAddr,
+      @HiveField(4) this.modifiedAt});
+
+  factory _$PlaceSuggestionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlaceSuggestionImplFromJson(json);
 
   @override
   @HiveField(0)
-  final String googlePlaceId;
+  final int placeId;
   @override
   @HiveField(1)
   final String name;
   @override
   @HiveField(2)
-  final String address;
+  final String localAddr;
   @override
   @HiveField(3)
+  final String roadAddr;
+  @override
+  @HiveField(4)
   final DateTime? modifiedAt;
 
   @override
   String toString() {
-    return 'PlaceSuggestion(googlePlaceId: $googlePlaceId, name: $name, address: $address, modifiedAt: $modifiedAt)';
+    return 'PlaceSuggestion(placeId: $placeId, name: $name, localAddr: $localAddr, roadAddr: $roadAddr, modifiedAt: $modifiedAt)';
   }
 
   @override
@@ -166,17 +192,20 @@ class _$PlaceSuggestionImpl implements _PlaceSuggestion {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlaceSuggestionImpl &&
-            (identical(other.googlePlaceId, googlePlaceId) ||
-                other.googlePlaceId == googlePlaceId) &&
+            (identical(other.placeId, placeId) || other.placeId == placeId) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.localAddr, localAddr) ||
+                other.localAddr == localAddr) &&
+            (identical(other.roadAddr, roadAddr) ||
+                other.roadAddr == roadAddr) &&
             (identical(other.modifiedAt, modifiedAt) ||
                 other.modifiedAt == modifiedAt));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, googlePlaceId, name, address, modifiedAt);
+      Object.hash(runtimeType, placeId, name, localAddr, roadAddr, modifiedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -184,26 +213,40 @@ class _$PlaceSuggestionImpl implements _PlaceSuggestion {
   _$$PlaceSuggestionImplCopyWith<_$PlaceSuggestionImpl> get copyWith =>
       __$$PlaceSuggestionImplCopyWithImpl<_$PlaceSuggestionImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PlaceSuggestionImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _PlaceSuggestion implements PlaceSuggestion {
   factory _PlaceSuggestion(
-      {@HiveField(0) required final String googlePlaceId,
+      {@HiveField(0) required final int placeId,
       @HiveField(1) required final String name,
-      @HiveField(2) required final String address,
-      @HiveField(3) final DateTime? modifiedAt}) = _$PlaceSuggestionImpl;
+      @HiveField(2) required final String localAddr,
+      @HiveField(3) required final String roadAddr,
+      @HiveField(4) final DateTime? modifiedAt}) = _$PlaceSuggestionImpl;
+
+  factory _PlaceSuggestion.fromJson(Map<String, dynamic> json) =
+      _$PlaceSuggestionImpl.fromJson;
 
   @override
   @HiveField(0)
-  String get googlePlaceId;
+  int get placeId;
   @override
   @HiveField(1)
   String get name;
   @override
   @HiveField(2)
-  String get address;
+  String get localAddr;
   @override
   @HiveField(3)
+  String get roadAddr;
+  @override
+  @HiveField(4)
   DateTime? get modifiedAt;
   @override
   @JsonKey(ignore: true)

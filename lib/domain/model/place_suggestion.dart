@@ -8,15 +8,11 @@ part 'place_suggestion.g.dart';
 @HiveType(typeId: 1)
 class PlaceSuggestion with _$PlaceSuggestion {
   factory PlaceSuggestion(
-      {@HiveField(0) required String googlePlaceId,
+      {@HiveField(0) required int placeId,
       @HiveField(1) required String name,
-      @HiveField(2) required String address,
-      @HiveField(3) DateTime? modifiedAt}) = _PlaceSuggestion;
+      @HiveField(2) required String localAddr,
+      @HiveField(3) required String roadAddr,
+      @HiveField(4) DateTime? modifiedAt}) = _PlaceSuggestion;
 
-  factory PlaceSuggestion.fromJson(Map<String, dynamic> json) {
-    return PlaceSuggestion(
-        googlePlaceId: json['placePrediction']['placeId'] as String,
-        name: json['placePrediction']['structuredFormat']['mainText']['text'] as String,
-        address: json['placePrediction']['structuredFormat']['secondaryText']['text'] as String);
-  }
+  factory PlaceSuggestion.fromJson(Map<String, dynamic> json) => _$PlaceSuggestionFromJson(json);
 }

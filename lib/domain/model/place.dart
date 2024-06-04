@@ -1,35 +1,32 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
+import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
+import 'package:yeohaeng_ttukttak/domain/model/image.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/utils/json.dart';
 
 part 'place.freezed.dart';
+
 part 'place.g.dart';
 
 @freezed
-@HiveType(typeId: 1)
 class Place with _$Place {
   factory Place(
-      {
-        @HiveField(0) required String name,
-        @HiveField(1) required double latitude,
-        @HiveField(2) required double longitude,
-        @HiveField(3) required int kakaoId,
-        @HiveField(4, defaultValue: -1) int? id,
-        @HiveField(5, defaultValue: 0.0) double? distance,
-        @HiveField(6, defaultValue: '') String? phone,
-        @HiveField(7, defaultValue: '') String? address,
-        @HiveField(8, defaultValue: '') String? roadAddress,
-        @HiveField(9, defaultValue: '') String? detailUrl}) = _Place;
+      {required int id,
+      required String name,
+      @NestedJsonKey(name: 'location/latitude') required double latitude,
+      @NestedJsonKey(name: 'location/longitude') required double longitude,
+      @Default(0) @NestedJsonKey(name: 'reviewReport/count') int reviewCount,
+      @Default(0) @NestedJsonKey(name: 'reviewReport/ratingAvg') double reviewAvg,
+      required String googlePlaceId,
+      @JsonKey(name: 'localAddress') String? localAddr,
+      @JsonKey(name: 'roadAddress') String? roadAddr,
+      @JsonKey(fromJson: PlaceType.of) required PlaceType type,
+      @JsonKey(includeIfNull: false, fromJson: Place._imagesFromJson) @Default([]) List<Image> images,
+      @Default(0) @JsonKey(includeFromJson: false) double distance}) = _Place;
 
-  factory Place.fromKakaoJson(Map<String, dynamic> json) {
-    return Place(
-        name: json['place_name'] as String,
-        latitude: double.parse(json['y']),
-        longitude: double.parse(json['x']),
-        kakaoId: int.parse(json['id']),
-        address: json['address_name'],
-        roadAddress: json['road_address_name'],
-        distance: json['distance'] != '' ? double.parse(json['distance']) : null,
-        detailUrl: json['place_url'] as String);
-  }
+  factory Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);
+
+  static List<Image> _imagesFromJson(List<dynamic> json) =>
+      json.map((e) => Image.fromJson(e)).toList();
 }
-

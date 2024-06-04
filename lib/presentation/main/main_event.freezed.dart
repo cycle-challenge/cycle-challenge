@@ -24,6 +24,10 @@ mixin _$MainEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +38,9 @@ mixin _$MainEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +51,9 @@ mixin _$MainEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +69,10 @@ mixin _$MainEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +84,10 @@ mixin _$MainEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +99,10 @@ mixin _$MainEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -176,6 +198,10 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
   }) {
     return changeNavigation(index);
   }
@@ -189,6 +215,9 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
   }) {
     return changeNavigation?.call(index);
   }
@@ -202,6 +231,9 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -223,6 +255,10 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
   }) {
     return changeNavigation(this);
   }
@@ -237,6 +273,10 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
   }) {
     return changeNavigation?.call(this);
   }
@@ -251,6 +291,10 @@ class _$MainChangeNavigationEventImpl implements MainChangeNavigationEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (changeNavigation != null) {
@@ -344,6 +388,10 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
   }) {
     return initBottomSheet(maxHeight);
   }
@@ -357,6 +405,9 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
   }) {
     return initBottomSheet?.call(maxHeight);
   }
@@ -370,6 +421,9 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -391,6 +445,10 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
   }) {
     return initBottomSheet(this);
   }
@@ -405,6 +463,10 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
   }) {
     return initBottomSheet?.call(this);
   }
@@ -419,6 +481,10 @@ class _$MainInitBottomSheetEventImpl implements MainInitBottomSheetEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (initBottomSheet != null) {
@@ -485,6 +551,10 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
   }) {
     return expandBottomSheet();
   }
@@ -498,6 +568,9 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
   }) {
     return expandBottomSheet?.call();
   }
@@ -511,6 +584,9 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -532,6 +608,10 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
   }) {
     return expandBottomSheet(this);
   }
@@ -546,6 +626,10 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
   }) {
     return expandBottomSheet?.call(this);
   }
@@ -560,6 +644,10 @@ class _$MainExpandBottomSheetEventImpl implements MainExpandBottomSheetEvent {
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (expandBottomSheet != null) {
@@ -621,6 +709,10 @@ class _$MainContractBottomSheetEventImpl
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
   }) {
     return contractBottomSheet();
   }
@@ -634,6 +726,9 @@ class _$MainContractBottomSheetEventImpl
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
   }) {
     return contractBottomSheet?.call();
   }
@@ -647,6 +742,9 @@ class _$MainContractBottomSheetEventImpl
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -668,6 +766,10 @@ class _$MainContractBottomSheetEventImpl
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
   }) {
     return contractBottomSheet(this);
   }
@@ -682,6 +784,10 @@ class _$MainContractBottomSheetEventImpl
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
   }) {
     return contractBottomSheet?.call(this);
   }
@@ -696,6 +802,10 @@ class _$MainContractBottomSheetEventImpl
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (contractBottomSheet != null) {
@@ -786,6 +896,10 @@ class _$MainCanViewScrollUpEventEventImpl
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
   }) {
     return setCanViewScrollUp(canViewScrollUp);
   }
@@ -799,6 +913,9 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
   }) {
     return setCanViewScrollUp?.call(canViewScrollUp);
   }
@@ -812,6 +929,9 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -833,6 +953,10 @@ class _$MainCanViewScrollUpEventEventImpl
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
   }) {
     return setCanViewScrollUp(this);
   }
@@ -847,6 +971,10 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
   }) {
     return setCanViewScrollUp?.call(this);
   }
@@ -861,6 +989,10 @@ class _$MainCanViewScrollUpEventEventImpl
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (setCanViewScrollUp != null) {
@@ -930,6 +1062,10 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     required TResult Function() contractBottomSheet,
     required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
     required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
   }) {
     return stopBottomSheetAnimation();
   }
@@ -943,6 +1079,9 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult? Function()? contractBottomSheet,
     TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
   }) {
     return stopBottomSheetAnimation?.call();
   }
@@ -956,6 +1095,9 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult Function()? contractBottomSheet,
     TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
     TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -977,6 +1119,10 @@ class _$MainStopBottomSheetAnimationEventEventImpl
         setCanViewScrollUp,
     required TResult Function(MainStopBottomSheetAnimationEventEvent value)
         stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
   }) {
     return stopBottomSheetAnimation(this);
   }
@@ -991,6 +1137,10 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
   }) {
     return stopBottomSheetAnimation?.call(this);
   }
@@ -1005,6 +1155,10 @@ class _$MainStopBottomSheetAnimationEventEventImpl
     TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
     TResult Function(MainStopBottomSheetAnimationEventEvent value)?
         stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
     required TResult orElse(),
   }) {
     if (stopBottomSheetAnimation != null) {
@@ -1017,4 +1171,572 @@ class _$MainStopBottomSheetAnimationEventEventImpl
 abstract class MainStopBottomSheetAnimationEventEvent implements MainEvent {
   const factory MainStopBottomSheetAnimationEventEvent() =
       _$MainStopBottomSheetAnimationEventEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeHasAgreedTermsImplCopyWith<$Res> {
+  factory _$$ChangeHasAgreedTermsImplCopyWith(_$ChangeHasAgreedTermsImpl value,
+          $Res Function(_$ChangeHasAgreedTermsImpl) then) =
+      __$$ChangeHasAgreedTermsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool hasAgreedTerms});
+}
+
+/// @nodoc
+class __$$ChangeHasAgreedTermsImplCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$ChangeHasAgreedTermsImpl>
+    implements _$$ChangeHasAgreedTermsImplCopyWith<$Res> {
+  __$$ChangeHasAgreedTermsImplCopyWithImpl(_$ChangeHasAgreedTermsImpl _value,
+      $Res Function(_$ChangeHasAgreedTermsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? hasAgreedTerms = null,
+  }) {
+    return _then(_$ChangeHasAgreedTermsImpl(
+      null == hasAgreedTerms
+          ? _value.hasAgreedTerms
+          : hasAgreedTerms // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeHasAgreedTermsImpl implements _ChangeHasAgreedTerms {
+  const _$ChangeHasAgreedTermsImpl(this.hasAgreedTerms);
+
+  @override
+  final bool hasAgreedTerms;
+
+  @override
+  String toString() {
+    return 'MainEvent.changeHasAgreedTerms(hasAgreedTerms: $hasAgreedTerms)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeHasAgreedTermsImpl &&
+            (identical(other.hasAgreedTerms, hasAgreedTerms) ||
+                other.hasAgreedTerms == hasAgreedTerms));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, hasAgreedTerms);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeHasAgreedTermsImplCopyWith<_$ChangeHasAgreedTermsImpl>
+      get copyWith =>
+          __$$ChangeHasAgreedTermsImplCopyWithImpl<_$ChangeHasAgreedTermsImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
+  }) {
+    return changeHasAgreedTerms(hasAgreedTerms);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
+  }) {
+    return changeHasAgreedTerms?.call(hasAgreedTerms);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int index)? changeNavigation,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
+    required TResult orElse(),
+  }) {
+    if (changeHasAgreedTerms != null) {
+      return changeHasAgreedTerms(hasAgreedTerms);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainChangeNavigationEvent value) changeNavigation,
+    required TResult Function(MainInitBottomSheetEvent value) initBottomSheet,
+    required TResult Function(MainExpandBottomSheetEvent value)
+        expandBottomSheet,
+    required TResult Function(MainContractBottomSheetEvent value)
+        contractBottomSheet,
+    required TResult Function(MainCanViewScrollUpEventEvent value)
+        setCanViewScrollUp,
+    required TResult Function(MainStopBottomSheetAnimationEventEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
+  }) {
+    return changeHasAgreedTerms(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult? Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult? Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
+  }) {
+    return changeHasAgreedTerms?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
+    required TResult orElse(),
+  }) {
+    if (changeHasAgreedTerms != null) {
+      return changeHasAgreedTerms(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeHasAgreedTerms implements MainEvent {
+  const factory _ChangeHasAgreedTerms(final bool hasAgreedTerms) =
+      _$ChangeHasAgreedTermsImpl;
+
+  bool get hasAgreedTerms;
+  @JsonKey(ignore: true)
+  _$$ChangeHasAgreedTermsImplCopyWith<_$ChangeHasAgreedTermsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeHasCheckedPermissionsImplCopyWith<$Res> {
+  factory _$$ChangeHasCheckedPermissionsImplCopyWith(
+          _$ChangeHasCheckedPermissionsImpl value,
+          $Res Function(_$ChangeHasCheckedPermissionsImpl) then) =
+      __$$ChangeHasCheckedPermissionsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool hasCheckedPermissions});
+}
+
+/// @nodoc
+class __$$ChangeHasCheckedPermissionsImplCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$ChangeHasCheckedPermissionsImpl>
+    implements _$$ChangeHasCheckedPermissionsImplCopyWith<$Res> {
+  __$$ChangeHasCheckedPermissionsImplCopyWithImpl(
+      _$ChangeHasCheckedPermissionsImpl _value,
+      $Res Function(_$ChangeHasCheckedPermissionsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? hasCheckedPermissions = null,
+  }) {
+    return _then(_$ChangeHasCheckedPermissionsImpl(
+      null == hasCheckedPermissions
+          ? _value.hasCheckedPermissions
+          : hasCheckedPermissions // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeHasCheckedPermissionsImpl
+    implements _ChangeHasCheckedPermissions {
+  const _$ChangeHasCheckedPermissionsImpl(this.hasCheckedPermissions);
+
+  @override
+  final bool hasCheckedPermissions;
+
+  @override
+  String toString() {
+    return 'MainEvent.changeHasCheckedPermissions(hasCheckedPermissions: $hasCheckedPermissions)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeHasCheckedPermissionsImpl &&
+            (identical(other.hasCheckedPermissions, hasCheckedPermissions) ||
+                other.hasCheckedPermissions == hasCheckedPermissions));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, hasCheckedPermissions);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeHasCheckedPermissionsImplCopyWith<_$ChangeHasCheckedPermissionsImpl>
+      get copyWith => __$$ChangeHasCheckedPermissionsImplCopyWithImpl<
+          _$ChangeHasCheckedPermissionsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
+  }) {
+    return changeHasCheckedPermissions(hasCheckedPermissions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
+  }) {
+    return changeHasCheckedPermissions?.call(hasCheckedPermissions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int index)? changeNavigation,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
+    required TResult orElse(),
+  }) {
+    if (changeHasCheckedPermissions != null) {
+      return changeHasCheckedPermissions(hasCheckedPermissions);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainChangeNavigationEvent value) changeNavigation,
+    required TResult Function(MainInitBottomSheetEvent value) initBottomSheet,
+    required TResult Function(MainExpandBottomSheetEvent value)
+        expandBottomSheet,
+    required TResult Function(MainContractBottomSheetEvent value)
+        contractBottomSheet,
+    required TResult Function(MainCanViewScrollUpEventEvent value)
+        setCanViewScrollUp,
+    required TResult Function(MainStopBottomSheetAnimationEventEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
+  }) {
+    return changeHasCheckedPermissions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult? Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult? Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
+  }) {
+    return changeHasCheckedPermissions?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
+    required TResult orElse(),
+  }) {
+    if (changeHasCheckedPermissions != null) {
+      return changeHasCheckedPermissions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeHasCheckedPermissions implements MainEvent {
+  const factory _ChangeHasCheckedPermissions(final bool hasCheckedPermissions) =
+      _$ChangeHasCheckedPermissionsImpl;
+
+  bool get hasCheckedPermissions;
+  @JsonKey(ignore: true)
+  _$$ChangeHasCheckedPermissionsImplCopyWith<_$ChangeHasCheckedPermissionsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeThemeModeImplCopyWith<$Res> {
+  factory _$$ChangeThemeModeImplCopyWith(_$ChangeThemeModeImpl value,
+          $Res Function(_$ChangeThemeModeImpl) then) =
+      __$$ChangeThemeModeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ThemeMode themeMode});
+}
+
+/// @nodoc
+class __$$ChangeThemeModeImplCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$ChangeThemeModeImpl>
+    implements _$$ChangeThemeModeImplCopyWith<$Res> {
+  __$$ChangeThemeModeImplCopyWithImpl(
+      _$ChangeThemeModeImpl _value, $Res Function(_$ChangeThemeModeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeMode = null,
+  }) {
+    return _then(_$ChangeThemeModeImpl(
+      null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeThemeModeImpl implements _ChangeThemeMode {
+  const _$ChangeThemeModeImpl(this.themeMode);
+
+  @override
+  final ThemeMode themeMode;
+
+  @override
+  String toString() {
+    return 'MainEvent.changeThemeMode(themeMode: $themeMode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeThemeModeImpl &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, themeMode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeThemeModeImplCopyWith<_$ChangeThemeModeImpl> get copyWith =>
+      __$$ChangeThemeModeImplCopyWithImpl<_$ChangeThemeModeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int index) changeNavigation,
+    required TResult Function(double? maxHeight) initBottomSheet,
+    required TResult Function() expandBottomSheet,
+    required TResult Function() contractBottomSheet,
+    required TResult Function(bool canViewScrollUp) setCanViewScrollUp,
+    required TResult Function() stopBottomSheetAnimation,
+    required TResult Function(bool hasAgreedTerms) changeHasAgreedTerms,
+    required TResult Function(bool hasCheckedPermissions)
+        changeHasCheckedPermissions,
+    required TResult Function(ThemeMode themeMode) changeThemeMode,
+  }) {
+    return changeThemeMode(themeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int index)? changeNavigation,
+    TResult? Function(double? maxHeight)? initBottomSheet,
+    TResult? Function()? expandBottomSheet,
+    TResult? Function()? contractBottomSheet,
+    TResult? Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult? Function()? stopBottomSheetAnimation,
+    TResult? Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult? Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult? Function(ThemeMode themeMode)? changeThemeMode,
+  }) {
+    return changeThemeMode?.call(themeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int index)? changeNavigation,
+    TResult Function(double? maxHeight)? initBottomSheet,
+    TResult Function()? expandBottomSheet,
+    TResult Function()? contractBottomSheet,
+    TResult Function(bool canViewScrollUp)? setCanViewScrollUp,
+    TResult Function()? stopBottomSheetAnimation,
+    TResult Function(bool hasAgreedTerms)? changeHasAgreedTerms,
+    TResult Function(bool hasCheckedPermissions)? changeHasCheckedPermissions,
+    TResult Function(ThemeMode themeMode)? changeThemeMode,
+    required TResult orElse(),
+  }) {
+    if (changeThemeMode != null) {
+      return changeThemeMode(themeMode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainChangeNavigationEvent value) changeNavigation,
+    required TResult Function(MainInitBottomSheetEvent value) initBottomSheet,
+    required TResult Function(MainExpandBottomSheetEvent value)
+        expandBottomSheet,
+    required TResult Function(MainContractBottomSheetEvent value)
+        contractBottomSheet,
+    required TResult Function(MainCanViewScrollUpEventEvent value)
+        setCanViewScrollUp,
+    required TResult Function(MainStopBottomSheetAnimationEventEvent value)
+        stopBottomSheetAnimation,
+    required TResult Function(_ChangeHasAgreedTerms value) changeHasAgreedTerms,
+    required TResult Function(_ChangeHasCheckedPermissions value)
+        changeHasCheckedPermissions,
+    required TResult Function(_ChangeThemeMode value) changeThemeMode,
+  }) {
+    return changeThemeMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult? Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult? Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult? Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult? Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult? Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult? Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult? Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult? Function(_ChangeThemeMode value)? changeThemeMode,
+  }) {
+    return changeThemeMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainChangeNavigationEvent value)? changeNavigation,
+    TResult Function(MainInitBottomSheetEvent value)? initBottomSheet,
+    TResult Function(MainExpandBottomSheetEvent value)? expandBottomSheet,
+    TResult Function(MainContractBottomSheetEvent value)? contractBottomSheet,
+    TResult Function(MainCanViewScrollUpEventEvent value)? setCanViewScrollUp,
+    TResult Function(MainStopBottomSheetAnimationEventEvent value)?
+        stopBottomSheetAnimation,
+    TResult Function(_ChangeHasAgreedTerms value)? changeHasAgreedTerms,
+    TResult Function(_ChangeHasCheckedPermissions value)?
+        changeHasCheckedPermissions,
+    TResult Function(_ChangeThemeMode value)? changeThemeMode,
+    required TResult orElse(),
+  }) {
+    if (changeThemeMode != null) {
+      return changeThemeMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeThemeMode implements MainEvent {
+  const factory _ChangeThemeMode(final ThemeMode themeMode) =
+      _$ChangeThemeModeImpl;
+
+  ThemeMode get themeMode;
+  @JsonKey(ignore: true)
+  _$$ChangeThemeModeImplCopyWith<_$ChangeThemeModeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

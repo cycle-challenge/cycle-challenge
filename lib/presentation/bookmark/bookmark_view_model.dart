@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+
+
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/use_cases.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/bookmark/bookmark_state.dart';
@@ -38,7 +40,7 @@ class BookmarkViewModel with ChangeNotifier {
         success: (travels) {
           _state = _state.copyWith(
               travels: travels,
-              travelIdSet: travels.map((travel) => travel.id).toSet());
+              travelIdSet: travels.map((travel) => travel.id!).toSet());
           notifyListeners();
         },
         error: (message) =>
@@ -61,7 +63,7 @@ class BookmarkViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void _onDeletePlace(PlaceModel place) async {
+  void _onDeletePlace(Place place) async {
     final result = await useCases.deletePlaceBookmarkUseCase(place.id);
 
     result.when(
@@ -76,8 +78,8 @@ class BookmarkViewModel with ChangeNotifier {
                 _mainEventController.add(MainUiEvent.showSnackbar(message))));
   }
 
-  void _onDeleteTravel(TravelModel travel) async {
-    final result = await useCases.deleteTravelBookmarkUseCase(travel.id);
+  void _onDeleteTravel(Travel travel) async {
+    final result = await useCases.deleteTravelBookmarkUseCase(travel.id!);
 
     result.when(
         success: (_) {
@@ -92,7 +94,7 @@ class BookmarkViewModel with ChangeNotifier {
   }
 
 
-  void _onAddPlace(PlaceModel place) async {
+  void _onAddPlace(Place place) async {
     final result = await useCases.addPlaceBookmarkUseCase(place.id);
 
     result.when(
@@ -107,8 +109,8 @@ class BookmarkViewModel with ChangeNotifier {
                 _mainEventController.add(MainUiEvent.showSnackbar(message))));
   }
 
-  void _onAddTravel(TravelModel travel) async {
-    final result = await useCases.addTravelBookmarkUseCase(travel.id);
+  void _onAddTravel(Travel travel) async {
+    final result = await useCases.addTravelBookmarkUseCase(travel.id!);
 
     result.when(
         success: (_) {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/data/models/place_model.dart';
-import 'package:yeohaeng_ttukttak/data/models/travel_model.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
+import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/main/main_view_model.dart';
-import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_view_model.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/place_list_view.dart';
 
@@ -19,14 +19,15 @@ class BottomSheetView extends StatelessWidget {
     final mapViewModel = context.watch<MapViewModel>();
     final state = viewModel.state;
 
-    List<PlaceModel> places = mapViewModel.filterState.filteredPlaces;
-    List<TravelModel> travels = mapViewModel.filterState.filteredTravels;
+    List<Place> places = mapViewModel.filterState.filteredPlaces;
+    List<Travel> travels = mapViewModel.filterState.filteredTravels;
 
     Widget? view = viewModel.state.navigationIndex == 1
         ? PlaceListView(places: places)
         : (viewModel.state.navigationIndex == 2)
             ? TravelListView(travels: travels)
             : null;
+    final colorTheme = Theme.of(context).colorTheme;
 
     return Listener(
       onPointerMove: (event) {
@@ -52,7 +53,7 @@ class BottomSheetView extends StatelessWidget {
             viewModel.onEvent(const MainEvent.stopBottomSheetAnimation()),
         curve: Curves.fastOutSlowIn,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: colorTheme.background,
             borderRadius: state.isExpanded
                 ? null
                 : const BorderRadius.vertical(top: Radius.circular(20))),

@@ -2,19 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeohaeng_ttukttak/presentation/search/place_search_result.dart';
+import 'package:yeohaeng_ttukttak/domain/model/place.dart';
 import 'package:yeohaeng_ttukttak/presentation/search/search_event.dart';
 import 'package:yeohaeng_ttukttak/presentation/search/search_view_model.dart';
 
-class Search extends SearchDelegate<PlaceSearchResult?> {
+class Search extends SearchDelegate<Place?> {
   StreamSubscription? _subscription;
 
   @override
-  void close(BuildContext context, PlaceSearchResult? result) {
-    final viewModel = context.read<SearchViewModel>();
+  void close(BuildContext context, Place? result) {
     query = '';
     _subscription?.cancel();
-    viewModel.onEvent(const SearchEvent.initState());
 
     super.close(context, result);
   }
@@ -80,7 +78,7 @@ class Search extends SearchDelegate<PlaceSearchResult?> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(places[index].name),
-            subtitle: Text(places[index].address),
+            subtitle: Text(places[index].localAddr),
             leading: const Icon(Icons.place_outlined),
             onTap: () {
               viewModel.onEvent(SearchEvent.search(places[index]));
@@ -97,16 +95,15 @@ class Search extends SearchDelegate<PlaceSearchResult?> {
     viewModel.onEvent(SearchEvent.autoComplete(query));
 
     _subscription ??= context.read<SearchViewModel>().stream.listen((event) =>
-        event.when(
-            searchComplete: (detail, place) => close(
-                context, PlaceSearchResult(detail: detail, place: place))));
+        event.when(searchComplete: (place) => close(context, place)));
+
 
     return ListView.builder(
       itemCount: places.length,
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(places[index].name),
-          subtitle: Text(places[index].address),
+          subtitle: Text(places[index].roadAddr),
           leading: query.isEmpty
               ? const Icon(Icons.access_time)
               : const Icon(Icons.place_outlined),

@@ -20,30 +20,30 @@ mixin _$BookmarkEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startEdit,
     required TResult Function() endEdit,
-    required TResult Function(PlaceModel place) deletePlace,
-    required TResult Function(TravelModel travel) deleteTravel,
-    required TResult Function(PlaceModel place) addPlace,
-    required TResult Function(TravelModel travel) addTravel,
+    required TResult Function(Place place) deletePlace,
+    required TResult Function(Travel travel) deleteTravel,
+    required TResult Function(Place place) addPlace,
+    required TResult Function(Travel travel) addTravel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startEdit,
     TResult? Function()? endEdit,
-    TResult? Function(PlaceModel place)? deletePlace,
-    TResult? Function(TravelModel travel)? deleteTravel,
-    TResult? Function(PlaceModel place)? addPlace,
-    TResult? Function(TravelModel travel)? addTravel,
+    TResult? Function(Place place)? deletePlace,
+    TResult? Function(Travel travel)? deleteTravel,
+    TResult? Function(Place place)? addPlace,
+    TResult? Function(Travel travel)? addTravel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startEdit,
     TResult Function()? endEdit,
-    TResult Function(PlaceModel place)? deletePlace,
-    TResult Function(TravelModel travel)? deleteTravel,
-    TResult Function(PlaceModel place)? addPlace,
-    TResult Function(TravelModel travel)? addTravel,
+    TResult Function(Place place)? deletePlace,
+    TResult Function(Travel travel)? deleteTravel,
+    TResult Function(Place place)? addPlace,
+    TResult Function(Travel travel)? addTravel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,10 +141,10 @@ class _$BookmarkStartEditEventImpl implements BookmarkStartEditEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startEdit,
     required TResult Function() endEdit,
-    required TResult Function(PlaceModel place) deletePlace,
-    required TResult Function(TravelModel travel) deleteTravel,
-    required TResult Function(PlaceModel place) addPlace,
-    required TResult Function(TravelModel travel) addTravel,
+    required TResult Function(Place place) deletePlace,
+    required TResult Function(Travel travel) deleteTravel,
+    required TResult Function(Place place) addPlace,
+    required TResult Function(Travel travel) addTravel,
   }) {
     return startEdit();
   }
@@ -154,10 +154,10 @@ class _$BookmarkStartEditEventImpl implements BookmarkStartEditEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startEdit,
     TResult? Function()? endEdit,
-    TResult? Function(PlaceModel place)? deletePlace,
-    TResult? Function(TravelModel travel)? deleteTravel,
-    TResult? Function(PlaceModel place)? addPlace,
-    TResult? Function(TravelModel travel)? addTravel,
+    TResult? Function(Place place)? deletePlace,
+    TResult? Function(Travel travel)? deleteTravel,
+    TResult? Function(Place place)? addPlace,
+    TResult? Function(Travel travel)? addTravel,
   }) {
     return startEdit?.call();
   }
@@ -167,10 +167,10 @@ class _$BookmarkStartEditEventImpl implements BookmarkStartEditEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startEdit,
     TResult Function()? endEdit,
-    TResult Function(PlaceModel place)? deletePlace,
-    TResult Function(TravelModel travel)? deleteTravel,
-    TResult Function(PlaceModel place)? addPlace,
-    TResult Function(TravelModel travel)? addTravel,
+    TResult Function(Place place)? deletePlace,
+    TResult Function(Travel travel)? deleteTravel,
+    TResult Function(Place place)? addPlace,
+    TResult Function(Travel travel)? addTravel,
     required TResult orElse(),
   }) {
     if (startEdit != null) {
@@ -270,10 +270,10 @@ class _$BookmarkConfirmEditEventImpl implements BookmarkConfirmEditEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startEdit,
     required TResult Function() endEdit,
-    required TResult Function(PlaceModel place) deletePlace,
-    required TResult Function(TravelModel travel) deleteTravel,
-    required TResult Function(PlaceModel place) addPlace,
-    required TResult Function(TravelModel travel) addTravel,
+    required TResult Function(Place place) deletePlace,
+    required TResult Function(Travel travel) deleteTravel,
+    required TResult Function(Place place) addPlace,
+    required TResult Function(Travel travel) addTravel,
   }) {
     return endEdit();
   }
@@ -283,10 +283,10 @@ class _$BookmarkConfirmEditEventImpl implements BookmarkConfirmEditEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startEdit,
     TResult? Function()? endEdit,
-    TResult? Function(PlaceModel place)? deletePlace,
-    TResult? Function(TravelModel travel)? deleteTravel,
-    TResult? Function(PlaceModel place)? addPlace,
-    TResult? Function(TravelModel travel)? addTravel,
+    TResult? Function(Place place)? deletePlace,
+    TResult? Function(Travel travel)? deleteTravel,
+    TResult? Function(Place place)? addPlace,
+    TResult? Function(Travel travel)? addTravel,
   }) {
     return endEdit?.call();
   }
@@ -296,10 +296,10 @@ class _$BookmarkConfirmEditEventImpl implements BookmarkConfirmEditEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startEdit,
     TResult Function()? endEdit,
-    TResult Function(PlaceModel place)? deletePlace,
-    TResult Function(TravelModel travel)? deleteTravel,
-    TResult Function(PlaceModel place)? addPlace,
-    TResult Function(TravelModel travel)? addTravel,
+    TResult Function(Place place)? deletePlace,
+    TResult Function(Travel travel)? deleteTravel,
+    TResult Function(Place place)? addPlace,
+    TResult Function(Travel travel)? addTravel,
     required TResult orElse(),
   }) {
     if (endEdit != null) {
@@ -363,7 +363,9 @@ abstract class _$$BookmarkDeletePlaceEventImplCopyWith<$Res> {
           $Res Function(_$BookmarkDeletePlaceEventImpl) then) =
       __$$BookmarkDeletePlaceEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PlaceModel place});
+  $Res call({Place place});
+
+  $PlaceCopyWith<$Res> get place;
 }
 
 /// @nodoc
@@ -384,8 +386,16 @@ class __$$BookmarkDeletePlaceEventImplCopyWithImpl<$Res>
       null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel,
+              as Place,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceCopyWith<$Res> get place {
+    return $PlaceCopyWith<$Res>(_value.place, (value) {
+      return _then(_value.copyWith(place: value));
+    });
   }
 }
 
@@ -395,7 +405,7 @@ class _$BookmarkDeletePlaceEventImpl implements BookmarkDeletePlaceEvent {
   const _$BookmarkDeletePlaceEventImpl(this.place);
 
   @override
-  final PlaceModel place;
+  final Place place;
 
   @override
   String toString() {
@@ -425,10 +435,10 @@ class _$BookmarkDeletePlaceEventImpl implements BookmarkDeletePlaceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startEdit,
     required TResult Function() endEdit,
-    required TResult Function(PlaceModel place) deletePlace,
-    required TResult Function(TravelModel travel) deleteTravel,
-    required TResult Function(PlaceModel place) addPlace,
-    required TResult Function(TravelModel travel) addTravel,
+    required TResult Function(Place place) deletePlace,
+    required TResult Function(Travel travel) deleteTravel,
+    required TResult Function(Place place) addPlace,
+    required TResult Function(Travel travel) addTravel,
   }) {
     return deletePlace(place);
   }
@@ -438,10 +448,10 @@ class _$BookmarkDeletePlaceEventImpl implements BookmarkDeletePlaceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startEdit,
     TResult? Function()? endEdit,
-    TResult? Function(PlaceModel place)? deletePlace,
-    TResult? Function(TravelModel travel)? deleteTravel,
-    TResult? Function(PlaceModel place)? addPlace,
-    TResult? Function(TravelModel travel)? addTravel,
+    TResult? Function(Place place)? deletePlace,
+    TResult? Function(Travel travel)? deleteTravel,
+    TResult? Function(Place place)? addPlace,
+    TResult? Function(Travel travel)? addTravel,
   }) {
     return deletePlace?.call(place);
   }
@@ -451,10 +461,10 @@ class _$BookmarkDeletePlaceEventImpl implements BookmarkDeletePlaceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startEdit,
     TResult Function()? endEdit,
-    TResult Function(PlaceModel place)? deletePlace,
-    TResult Function(TravelModel travel)? deleteTravel,
-    TResult Function(PlaceModel place)? addPlace,
-    TResult Function(TravelModel travel)? addTravel,
+    TResult Function(Place place)? deletePlace,
+    TResult Function(Travel travel)? deleteTravel,
+    TResult Function(Place place)? addPlace,
+    TResult Function(Travel travel)? addTravel,
     required TResult orElse(),
   }) {
     if (deletePlace != null) {
@@ -508,10 +518,10 @@ class _$BookmarkDeletePlaceEventImpl implements BookmarkDeletePlaceEvent {
 }
 
 abstract class BookmarkDeletePlaceEvent implements BookmarkEvent {
-  const factory BookmarkDeletePlaceEvent(final PlaceModel place) =
+  const factory BookmarkDeletePlaceEvent(final Place place) =
       _$BookmarkDeletePlaceEventImpl;
 
-  PlaceModel get place;
+  Place get place;
   @JsonKey(ignore: true)
   _$$BookmarkDeletePlaceEventImplCopyWith<_$BookmarkDeletePlaceEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -524,7 +534,9 @@ abstract class _$$BookmarkDeleteTravelEventImplCopyWith<$Res> {
           $Res Function(_$BookmarkDeleteTravelEventImpl) then) =
       __$$BookmarkDeleteTravelEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TravelModel travel});
+  $Res call({Travel travel});
+
+  $TravelCopyWith<$Res> get travel;
 }
 
 /// @nodoc
@@ -545,8 +557,16 @@ class __$$BookmarkDeleteTravelEventImplCopyWithImpl<$Res>
       null == travel
           ? _value.travel
           : travel // ignore: cast_nullable_to_non_nullable
-              as TravelModel,
+              as Travel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TravelCopyWith<$Res> get travel {
+    return $TravelCopyWith<$Res>(_value.travel, (value) {
+      return _then(_value.copyWith(travel: value));
+    });
   }
 }
 
@@ -556,7 +576,7 @@ class _$BookmarkDeleteTravelEventImpl implements BookmarkDeleteTravelEvent {
   const _$BookmarkDeleteTravelEventImpl(this.travel);
 
   @override
-  final TravelModel travel;
+  final Travel travel;
 
   @override
   String toString() {
@@ -586,10 +606,10 @@ class _$BookmarkDeleteTravelEventImpl implements BookmarkDeleteTravelEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startEdit,
     required TResult Function() endEdit,
-    required TResult Function(PlaceModel place) deletePlace,
-    required TResult Function(TravelModel travel) deleteTravel,
-    required TResult Function(PlaceModel place) addPlace,
-    required TResult Function(TravelModel travel) addTravel,
+    required TResult Function(Place place) deletePlace,
+    required TResult Function(Travel travel) deleteTravel,
+    required TResult Function(Place place) addPlace,
+    required TResult Function(Travel travel) addTravel,
   }) {
     return deleteTravel(travel);
   }
@@ -599,10 +619,10 @@ class _$BookmarkDeleteTravelEventImpl implements BookmarkDeleteTravelEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startEdit,
     TResult? Function()? endEdit,
-    TResult? Function(PlaceModel place)? deletePlace,
-    TResult? Function(TravelModel travel)? deleteTravel,
-    TResult? Function(PlaceModel place)? addPlace,
-    TResult? Function(TravelModel travel)? addTravel,
+    TResult? Function(Place place)? deletePlace,
+    TResult? Function(Travel travel)? deleteTravel,
+    TResult? Function(Place place)? addPlace,
+    TResult? Function(Travel travel)? addTravel,
   }) {
     return deleteTravel?.call(travel);
   }
@@ -612,10 +632,10 @@ class _$BookmarkDeleteTravelEventImpl implements BookmarkDeleteTravelEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startEdit,
     TResult Function()? endEdit,
-    TResult Function(PlaceModel place)? deletePlace,
-    TResult Function(TravelModel travel)? deleteTravel,
-    TResult Function(PlaceModel place)? addPlace,
-    TResult Function(TravelModel travel)? addTravel,
+    TResult Function(Place place)? deletePlace,
+    TResult Function(Travel travel)? deleteTravel,
+    TResult Function(Place place)? addPlace,
+    TResult Function(Travel travel)? addTravel,
     required TResult orElse(),
   }) {
     if (deleteTravel != null) {
@@ -669,10 +689,10 @@ class _$BookmarkDeleteTravelEventImpl implements BookmarkDeleteTravelEvent {
 }
 
 abstract class BookmarkDeleteTravelEvent implements BookmarkEvent {
-  const factory BookmarkDeleteTravelEvent(final TravelModel travel) =
+  const factory BookmarkDeleteTravelEvent(final Travel travel) =
       _$BookmarkDeleteTravelEventImpl;
 
-  TravelModel get travel;
+  Travel get travel;
   @JsonKey(ignore: true)
   _$$BookmarkDeleteTravelEventImplCopyWith<_$BookmarkDeleteTravelEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -685,7 +705,9 @@ abstract class _$$BookmarkAddPlaceEventImplCopyWith<$Res> {
           $Res Function(_$BookmarkAddPlaceEventImpl) then) =
       __$$BookmarkAddPlaceEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PlaceModel place});
+  $Res call({Place place});
+
+  $PlaceCopyWith<$Res> get place;
 }
 
 /// @nodoc
@@ -705,8 +727,16 @@ class __$$BookmarkAddPlaceEventImplCopyWithImpl<$Res>
       null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
-              as PlaceModel,
+              as Place,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlaceCopyWith<$Res> get place {
+    return $PlaceCopyWith<$Res>(_value.place, (value) {
+      return _then(_value.copyWith(place: value));
+    });
   }
 }
 
@@ -716,7 +746,7 @@ class _$BookmarkAddPlaceEventImpl implements BookmarkAddPlaceEvent {
   const _$BookmarkAddPlaceEventImpl(this.place);
 
   @override
-  final PlaceModel place;
+  final Place place;
 
   @override
   String toString() {
@@ -746,10 +776,10 @@ class _$BookmarkAddPlaceEventImpl implements BookmarkAddPlaceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startEdit,
     required TResult Function() endEdit,
-    required TResult Function(PlaceModel place) deletePlace,
-    required TResult Function(TravelModel travel) deleteTravel,
-    required TResult Function(PlaceModel place) addPlace,
-    required TResult Function(TravelModel travel) addTravel,
+    required TResult Function(Place place) deletePlace,
+    required TResult Function(Travel travel) deleteTravel,
+    required TResult Function(Place place) addPlace,
+    required TResult Function(Travel travel) addTravel,
   }) {
     return addPlace(place);
   }
@@ -759,10 +789,10 @@ class _$BookmarkAddPlaceEventImpl implements BookmarkAddPlaceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startEdit,
     TResult? Function()? endEdit,
-    TResult? Function(PlaceModel place)? deletePlace,
-    TResult? Function(TravelModel travel)? deleteTravel,
-    TResult? Function(PlaceModel place)? addPlace,
-    TResult? Function(TravelModel travel)? addTravel,
+    TResult? Function(Place place)? deletePlace,
+    TResult? Function(Travel travel)? deleteTravel,
+    TResult? Function(Place place)? addPlace,
+    TResult? Function(Travel travel)? addTravel,
   }) {
     return addPlace?.call(place);
   }
@@ -772,10 +802,10 @@ class _$BookmarkAddPlaceEventImpl implements BookmarkAddPlaceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startEdit,
     TResult Function()? endEdit,
-    TResult Function(PlaceModel place)? deletePlace,
-    TResult Function(TravelModel travel)? deleteTravel,
-    TResult Function(PlaceModel place)? addPlace,
-    TResult Function(TravelModel travel)? addTravel,
+    TResult Function(Place place)? deletePlace,
+    TResult Function(Travel travel)? deleteTravel,
+    TResult Function(Place place)? addPlace,
+    TResult Function(Travel travel)? addTravel,
     required TResult orElse(),
   }) {
     if (addPlace != null) {
@@ -829,10 +859,10 @@ class _$BookmarkAddPlaceEventImpl implements BookmarkAddPlaceEvent {
 }
 
 abstract class BookmarkAddPlaceEvent implements BookmarkEvent {
-  const factory BookmarkAddPlaceEvent(final PlaceModel place) =
+  const factory BookmarkAddPlaceEvent(final Place place) =
       _$BookmarkAddPlaceEventImpl;
 
-  PlaceModel get place;
+  Place get place;
   @JsonKey(ignore: true)
   _$$BookmarkAddPlaceEventImplCopyWith<_$BookmarkAddPlaceEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -845,7 +875,9 @@ abstract class _$$BookmarkAddTravelEventImplCopyWith<$Res> {
           $Res Function(_$BookmarkAddTravelEventImpl) then) =
       __$$BookmarkAddTravelEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TravelModel travel});
+  $Res call({Travel travel});
+
+  $TravelCopyWith<$Res> get travel;
 }
 
 /// @nodoc
@@ -866,8 +898,16 @@ class __$$BookmarkAddTravelEventImplCopyWithImpl<$Res>
       null == travel
           ? _value.travel
           : travel // ignore: cast_nullable_to_non_nullable
-              as TravelModel,
+              as Travel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TravelCopyWith<$Res> get travel {
+    return $TravelCopyWith<$Res>(_value.travel, (value) {
+      return _then(_value.copyWith(travel: value));
+    });
   }
 }
 
@@ -877,7 +917,7 @@ class _$BookmarkAddTravelEventImpl implements BookmarkAddTravelEvent {
   const _$BookmarkAddTravelEventImpl(this.travel);
 
   @override
-  final TravelModel travel;
+  final Travel travel;
 
   @override
   String toString() {
@@ -907,10 +947,10 @@ class _$BookmarkAddTravelEventImpl implements BookmarkAddTravelEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startEdit,
     required TResult Function() endEdit,
-    required TResult Function(PlaceModel place) deletePlace,
-    required TResult Function(TravelModel travel) deleteTravel,
-    required TResult Function(PlaceModel place) addPlace,
-    required TResult Function(TravelModel travel) addTravel,
+    required TResult Function(Place place) deletePlace,
+    required TResult Function(Travel travel) deleteTravel,
+    required TResult Function(Place place) addPlace,
+    required TResult Function(Travel travel) addTravel,
   }) {
     return addTravel(travel);
   }
@@ -920,10 +960,10 @@ class _$BookmarkAddTravelEventImpl implements BookmarkAddTravelEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startEdit,
     TResult? Function()? endEdit,
-    TResult? Function(PlaceModel place)? deletePlace,
-    TResult? Function(TravelModel travel)? deleteTravel,
-    TResult? Function(PlaceModel place)? addPlace,
-    TResult? Function(TravelModel travel)? addTravel,
+    TResult? Function(Place place)? deletePlace,
+    TResult? Function(Travel travel)? deleteTravel,
+    TResult? Function(Place place)? addPlace,
+    TResult? Function(Travel travel)? addTravel,
   }) {
     return addTravel?.call(travel);
   }
@@ -933,10 +973,10 @@ class _$BookmarkAddTravelEventImpl implements BookmarkAddTravelEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startEdit,
     TResult Function()? endEdit,
-    TResult Function(PlaceModel place)? deletePlace,
-    TResult Function(TravelModel travel)? deleteTravel,
-    TResult Function(PlaceModel place)? addPlace,
-    TResult Function(TravelModel travel)? addTravel,
+    TResult Function(Place place)? deletePlace,
+    TResult Function(Travel travel)? deleteTravel,
+    TResult Function(Place place)? addPlace,
+    TResult Function(Travel travel)? addTravel,
     required TResult orElse(),
   }) {
     if (addTravel != null) {
@@ -990,10 +1030,10 @@ class _$BookmarkAddTravelEventImpl implements BookmarkAddTravelEvent {
 }
 
 abstract class BookmarkAddTravelEvent implements BookmarkEvent {
-  const factory BookmarkAddTravelEvent(final TravelModel travel) =
+  const factory BookmarkAddTravelEvent(final Travel travel) =
       _$BookmarkAddTravelEventImpl;
 
-  TravelModel get travel;
+  Travel get travel;
   @JsonKey(ignore: true)
   _$$BookmarkAddTravelEventImplCopyWith<_$BookmarkAddTravelEventImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -3,66 +3,48 @@
 part of 'place.dart';
 
 // **************************************************************************
-// TypeAdapterGenerator
+// JsonSerializableGenerator
 // **************************************************************************
 
-class PlaceAdapter extends TypeAdapter<Place> {
-  @override
-  final int typeId = 1;
-
-  @override
-  Place read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return Place(
-      name: fields[0] as String,
-      latitude: fields[1] as double,
-      longitude: fields[2] as double,
-      kakaoId: fields[3] as int,
-      id: fields[4] == null ? -1 : fields[4] as int?,
-      distance: fields[5] == null ? 0.0 : fields[5] as double?,
-      phone: fields[6] == null ? '' : fields[6] as String?,
-      address: fields[7] == null ? '' : fields[7] as String?,
-      roadAddress: fields[8] == null ? '' : fields[8] as String?,
-      detailUrl: fields[9] == null ? '' : fields[9] as String?,
+_$PlaceImpl _$$PlaceImplFromJson(Map<String, dynamic> json) => _$PlaceImpl(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      latitude: (nestedReader(json, 'location/latitude') as num).toDouble(),
+      longitude: (nestedReader(json, 'location/longitude') as num).toDouble(),
+      reviewCount: nestedReader(json, 'reviewReport/count') as int? ?? 0,
+      reviewAvg:
+          (nestedReader(json, 'reviewReport/ratingAvg') as num?)?.toDouble() ??
+              0,
+      googlePlaceId: json['googlePlaceId'] as String,
+      localAddr: json['localAddress'] as String?,
+      roadAddr: json['roadAddress'] as String?,
+      type: PlaceType.of(json['type'] as String),
+      images: json['images'] == null
+          ? const []
+          : Place._imagesFromJson(json['images'] as List),
     );
-  }
 
-  @override
-  void write(BinaryWriter writer, Place obj) {
-    writer
-      ..writeByte(10)
-      ..writeByte(0)
-      ..write(obj.name)
-      ..writeByte(1)
-      ..write(obj.latitude)
-      ..writeByte(2)
-      ..write(obj.longitude)
-      ..writeByte(3)
-      ..write(obj.kakaoId)
-      ..writeByte(4)
-      ..write(obj.id)
-      ..writeByte(5)
-      ..write(obj.distance)
-      ..writeByte(6)
-      ..write(obj.phone)
-      ..writeByte(7)
-      ..write(obj.address)
-      ..writeByte(8)
-      ..write(obj.roadAddress)
-      ..writeByte(9)
-      ..write(obj.detailUrl);
-  }
+Map<String, dynamic> _$$PlaceImplToJson(_$PlaceImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'location/latitude': instance.latitude,
+      'location/longitude': instance.longitude,
+      'reviewReport/count': instance.reviewCount,
+      'reviewReport/ratingAvg': instance.reviewAvg,
+      'googlePlaceId': instance.googlePlaceId,
+      'localAddress': instance.localAddr,
+      'roadAddress': instance.roadAddr,
+      'type': _$PlaceTypeEnumMap[instance.type]!,
+      'images': instance.images,
+    };
 
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PlaceAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
+const _$PlaceTypeEnumMap = {
+  PlaceType.food: 'food',
+  PlaceType.nature: 'nature',
+  PlaceType.attraction: 'attraction',
+  PlaceType.leisure: 'leisure',
+  PlaceType.culture: 'culture',
+  PlaceType.hotel: 'hotel',
+  PlaceType.theme: 'theme',
+};

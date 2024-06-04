@@ -1,8 +1,9 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_detail.dart';
-import 'package:yeohaeng_ttukttak/domain/model/place_suggestion.dart';
-import 'package:yeohaeng_ttukttak/domain/model/session.dart';
+import 'package:yeohaeng_ttukttak/domain/model/profile.dart';
 import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class GoogleApi {
@@ -10,56 +11,58 @@ class GoogleApi {
 
   final String apiKey = const String.fromEnvironment('PLACE_API_KEY');
 
-  Future<Result<List<PlaceSuggestion>, String>> autoComplete(
-      String query, Session session) async {
+  Future<Result<PlaceDetail, String>> getDetail(String googlePlaceId) async {
     try {
-      debugPrint('[SESSION_TOKEN] ${session.token}');
-      final response =
-          await dio.post('https://places.googleapis.com/v1/places:autocomplete',
-              data: {
-                'input': query,
-                'sessionToken': session.token,
-                'includedRegionCodes': ['kr']
-              },
-              options: Options(headers: {
-                'Accept-Language': 'ko',
-                'X-Goog-Api-Key': apiKey,
-              }));
+      final headers = {'Accept-Language': 'ko'};
 
-      if (!response.data.containsKey('suggestions')) {
-        return const Result.success([]);
-      }
+      final response = await dio.get(
+          'https://places.googleapis.com/v1/places/$googlePlaceId',
+          queryParameters: {
+            'fields': 'id,nationalPhoneNumber,regularOpeningHours,websiteUri',
+            'key': apiKey
+          },
+          options: Options(headers: headers));
 
-      final places = List.of(response.data['suggestions'])
-          .map((e) => PlaceSuggestion.fromJson(e))
-          .toList();
-
-      return Result.success(places);
+      return Result.success(PlaceDetail.of(response.data));
     } on DioException catch (e) {
       debugPrint(e.response?.data);
       return const Result.error('서버와 통신 중 오류가 발생했습니다.');
     }
   }
 
-  Future<Result<PlaceDetail, String>> getDetail(String googlePlaceId,
-      {Session? session}) async {
+  Future<Result<Profile, String>> getProfile(String accessToken) async {
     try {
-      final headers = {'Accept-Language': 'ko'};
-
-      if (session != null) {
-        headers.addAll({'sessionToken': session.token});
-      }
+      final headers = {
+        'Accept-Language': 'ko',
+        'Authorization': 'Bearer $accessToken'
+      };
 
       final response = await dio.get(
-          'https://places.googleapis.com/v1/places/$googlePlaceId',
+          'https://people.googleapis.com/v1/people/me',
+          options: Options(headers: headers),
           queryParameters: {
-            'fields':
-                'id,formattedAddress,nationalPhoneNumber,regularOpeningHours,websiteUri,location',
-            'key': apiKey
-          },
-          options: Options(headers: headers));
+            'personFields': 'emailAddresses,birthdays,genders,names,photos'
+          });
 
-      return Result.success(PlaceDetail.of(response.data));
+      return Result.success(Profile.fromJson(response.data));
+    } on DioException catch (e) {
+      debugPrint(e.response?.data);
+      return const Result.error('서버와 통신 중 오류가 발생했습니다.');
+    }
+  }
+
+  Future<Result<void, String>> revokeAccount(String accessToken) async {
+    try {
+      final headers = {
+        'Accept-Language': 'ko',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+
+      await dio.post('https://oauth2.googleapis.com/revoke',
+          options: Options(headers: headers),
+          queryParameters: {'token': accessToken});
+
+      return const Result.success(null);
     } on DioException catch (e) {
       debugPrint(e.response?.data);
       return const Result.error('서버와 통신 중 오류가 발생했습니다.');
