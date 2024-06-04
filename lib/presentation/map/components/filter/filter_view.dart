@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeohaeng_ttukttak/data/vo/place/place_type.dart';
+import 'package:yeohaeng_ttukttak/main.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/filter/travel_filter_view.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/components/icon_choice_chip.dart';
 import 'package:yeohaeng_ttukttak/presentation/map/map_event.dart';
@@ -18,6 +19,8 @@ class FilterView extends StatelessWidget {
 
     final placeFilter = viewModel.filterState.placeFilter;
     final travelFilter = viewModel.filterState.travelFilter;
+
+    final colorTheme = Theme.of(context).colorTheme;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

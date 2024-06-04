@@ -14,6 +14,9 @@ class VisitRepository {
     return remoteAPI.createTravelVisits(travelId, visits);
   }
 
+  Future<Result<void, ApiError>> delete(int travelId, int visitId) {
+    return remoteAPI.deleteTravelVisit(travelId, visitId);
+  }
   Future<Result<List<Visit>, ApiError>> findAllByTravel(int travelId) async {
     return remoteAPI.findTravelVisits(travelId);
   }

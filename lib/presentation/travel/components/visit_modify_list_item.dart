@@ -27,7 +27,7 @@ class VisitModifyListItem extends StatelessWidget {
             child: const Align(
                 alignment: Alignment.centerRight,
                 child: Icon(Icons.delete_forever_outlined))),
-        key: Key(visit.place.id.toString()),
+        key: Key(visit.id.toString()),
         onDismissed: (_) {
           final viewModel = context.read<TravelViewModel>();
           viewModel.onEvent(TravelEvent.deleteVisit(index + 1));

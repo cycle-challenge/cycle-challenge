@@ -45,36 +45,36 @@ class CreateTravelSheet extends StatelessWidget {
                           decoration: const InputDecoration(
                               labelText: "이름", hintText: "여행 이름을 입력하세요.")),
                       const SizedBox(height: 36),
-                      Text('공개 범위',
-                          style: textTheme.bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.w600)),
-                      FormBuilderRadioGroup(
-                          orientation: OptionsOrientation.vertical,
-                          name: 'visibility',
-                          disabled: const [
-                            'public'
-                          ],
-                          options: [
-                            FormBuilderFieldOption(
-                                value: 'public',
-                                child: ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  title: Text('공개',
-                                      style: textTheme.bodyLarge?.copyWith(
-                                          fontWeight: FontWeight.w600)),
-                                  subtitle: const Text('다른 사용자에게 내 여행을 공개합니다.'),
-                                )),
-                            FormBuilderFieldOption(
-                                value: 'private',
-                                child: ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  title: Text('비공개',
-                                      style: textTheme.bodyLarge?.copyWith(
-                                          fontWeight: FontWeight.w600)),
-                                  subtitle: const Text('나만 여행을 볼 수 있습니다.'),
-                                )),
-                          ]),
-                      const SizedBox(height: 36),
+                      // Text('공개 범위',
+                      //     style: textTheme.bodyLarge
+                      //         ?.copyWith(fontWeight: FontWeight.w600)),
+                      // FormBuilderRadioGroup(
+                      //     orientation: OptionsOrientation.vertical,
+                      //     name: 'visibility',
+                      //     disabled: const [
+                      //       'public'
+                      //     ],
+                      //     options: [
+                            // FormBuilderFieldOption(
+                            //     value: 'public',
+                            //     child: ListTile(
+                            //       contentPadding: EdgeInsets.zero,
+                            //       title: Text('공개',
+                            //           style: textTheme.bodyLarge?.copyWith(
+                            //               fontWeight: FontWeight.w600)),
+                            //       subtitle: const Text('다른 사용자에게 내 여행을 공개합니다.'),
+                            //     )),
+                          //   FormBuilderFieldOption(
+                          //       value: 'private',
+                          //       child: ListTile(
+                          //         contentPadding: EdgeInsets.zero,
+                          //         title: Text('비공개',
+                          //             style: textTheme.bodyLarge?.copyWith(
+                          //                 fontWeight: FontWeight.w600)),
+                          //         subtitle: const Text('나만 여행을 볼 수 있습니다.'),
+                          //       )),
+                          // ]),
+                      // const SizedBox(height: 36),
                       OutlinedButton(
                           style: ElevatedButton.styleFrom(
                             foregroundColor: colorScheme.surface,
@@ -93,7 +93,7 @@ class CreateTravelSheet extends StatelessWidget {
 
                             final travel = Travel(
                                 name: values['name'],
-                                visibility: values['visibility']);
+                                visibility: 'private');
 
                             await Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(

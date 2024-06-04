@@ -124,15 +124,19 @@ class TravelViewModel with ChangeNotifier {
             _mainEventController.add(MainUiEvent.showSnackbar(message!)));
   }
 
-  void _onDeleteVisit(int index) {
+  void _onDeleteVisit(int index) async {
     final newItems = List.of(_state.items)..removeAt(index);
+    final target = _state.items[index].whenOrNull(item: (item) => item);
 
-    final visits = newItems
-        .map((e) => e.whenOrNull(item: (visit) => visit))
-        .whereType<Visit>()
-        .toList();
+    final result = await useCases.deleteVisitUseCase(_state.travel, target!);
 
-    _init(visits);
+    result.when(
+        success: (visits) {
+          _state = _state.copyWith(items: newItems);
+          notifyListeners();
+        },
+        error: (message) =>
+            _mainEventController.add(MainUiEvent.showSnackbar(message!)));
   }
 
   void _onReorderVisit(int oldIndex, int newIndex) {
@@ -225,6 +229,7 @@ class TravelViewModel with ChangeNotifier {
     visits.forEach((visit) {
       group.putIfAbsent(visit.dayOfTravel, () => []).add(visit);
     });
+
 
     group.entries.forEach((entry) {
       final index = entry.key;

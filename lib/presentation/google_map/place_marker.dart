@@ -31,7 +31,7 @@ class PlaceMarker extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
               color: colorScheme.surface),
-          child: Text(place.name, style: textTheme.labelSmall))
+          child: Text(place.name, style: const TextStyle(fontSize: 9)))
     ]);
   }
 }

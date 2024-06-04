@@ -1,11 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:yeohaeng_ttukttak/domain/model/travel.dart';
 
 class TravelEditSheet extends StatelessWidget {
-
   final Travel travel;
 
   TravelEditSheet({super.key, required this.travel});
@@ -21,7 +19,7 @@ class TravelEditSheet extends StatelessWidget {
 
     return Padding(
       padding:
-      EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.fromLTRB(36, 36, 36, 60),
@@ -35,9 +33,10 @@ class TravelEditSheet extends StatelessWidget {
               const SizedBox(height: 18),
               FormBuilder(
                   key: _formKey,
-                  initialValue:  {
+                  initialValue: {
                     'name': travel.name,
-                    'visibility': travel.visibility},
+                    'visibility': travel.visibility
+                  },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -48,35 +47,34 @@ class TravelEditSheet extends StatelessWidget {
                           decoration: const InputDecoration(
                               labelText: "이름", hintText: "여행 이름을 입력하세요.")),
                       const SizedBox(height: 36),
-                      Text('공개 범위',
-                          style: textTheme.bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.w600)),
-                      FormBuilderRadioGroup(
-                          key: _visibilityFieldKey,
-                          orientation: OptionsOrientation.vertical,
-                          name: 'visibility',
-                          disabled: const ['public'],
-                          options: [
-                            FormBuilderFieldOption(
-                                value: 'public',
-                                child: ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  title: Text('공개',
-                                      style: textTheme.bodyLarge?.copyWith(
-                                          fontWeight: FontWeight.w600)),
-                                  subtitle: const Text('다른 사용자에게 내 여행을 공개합니다.'),
-                                )),
-                            FormBuilderFieldOption(
-                                value: 'private',
-                                child: ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  title: Text('비공개',
-                                      style: textTheme.bodyLarge?.copyWith(
-                                          fontWeight: FontWeight.w600)),
-                                  subtitle: const Text('나만 여행을 볼 수 있습니다.'),
-                                )),
-                          ]),
-                      const SizedBox(height: 36),
+                      // Text('공개 범위',
+                      //     style: textTheme.bodyLarge
+                      //         ?.copyWith(fontWeight: FontWeight.w600)),
+                      // FormBuilderRadioGroup(
+                      //     key: _visibilityFieldKey,
+                      //     orientation: OptionsOrientation.vertical,
+                      //     name: 'visibility',
+                      //     options: [
+                      // FormBuilderFieldOption(
+                      //     value: 'public',
+                      //     child: ListTile(
+                      //       contentPadding: EdgeInsets.zero,
+                      //       title: Text('공개',
+                      //           style: textTheme.bodyLarge?.copyWith(
+                      //               fontWeight: FontWeight.w600)),
+                      //       subtitle: const Text('다른 사용자에게 내 여행을 공개합니다.'),
+                      //     )),
+                      //   FormBuilderFieldOption(
+                      //       value: 'private',
+                      //       child: ListTile(
+                      //         contentPadding: EdgeInsets.zero,
+                      //         title: Text('비공개',
+                      //             style: textTheme.bodyLarge?.copyWith(
+                      //                 fontWeight: FontWeight.w600)),
+                      //         subtitle: const Text('나만 여행을 볼 수 있습니다.'),
+                      //       )),
+                      // ]),
+                      // const SizedBox(height: 36),
                       OutlinedButton(
                           style: ElevatedButton.styleFrom(
                             foregroundColor: colorScheme.surface,
@@ -85,7 +83,7 @@ class TravelEditSheet extends StatelessWidget {
                           ),
                           onPressed: () {
                             final isValid =
-                            _formKey.currentState?.saveAndValidate();
+                                _formKey.currentState?.saveAndValidate();
 
                             final values = _formKey.currentState?.value;
 
@@ -93,10 +91,9 @@ class TravelEditSheet extends StatelessWidget {
                               return;
                             }
 
-                            Navigator.of(context).pop(Travel(
-                                name: values['name'],
-                                visibility: values['visibility']));
-                            },
+                            Navigator.of(context)
+                                .pop(travel.copyWith(name: values['name']));
+                          },
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             height: 48,

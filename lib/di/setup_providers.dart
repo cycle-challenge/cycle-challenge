@@ -23,6 +23,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_place_review_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/delete_visit_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_images_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_reviews_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_travels_use_case.dart';
@@ -135,6 +136,8 @@ List<SingleChildWidget> dependentModules = [
   Provider<CreateVisitsUseCase>(
       create: (context) =>
           CreateVisitsUseCase(context.read<VisitRepository>())),
+  Provider<DeleteVisitUseCase>(
+      create: (context) => DeleteVisitUseCase(context.read<VisitRepository>())),
   Provider<GetTravelVisitsUseCase>(
       create: (context) =>
           GetTravelVisitsUseCase(context.read<VisitRepository>())),
@@ -142,8 +145,7 @@ List<SingleChildWidget> dependentModules = [
       create: (context) =>
           DeleteGoogleAccountUseCase(context.read<AuthRepository>())),
   Provider<AppleSignInUseCase>(
-      create: (context) =>
-         AppleSignInUseCase(context.read<AuthRepository>())),
+      create: (context) => AppleSignInUseCase(context.read<AuthRepository>())),
   ProxyProvider<PlaceRepository, GetPlaceDetailUseCase>(
       update: (context, repository, _) => GetPlaceDetailUseCase(repository)),
   ProxyProvider<PlaceRepository, GetPlaceImageUseCase>(
@@ -186,7 +188,8 @@ List<SingleChildWidget> dependentModules = [
           googleSignInUseCase: context.read<GoogleSignInUseCase>(),
           revokeGoogleAccountUseCase:
               context.read<DeleteGoogleAccountUseCase>(),
-          appleSignInUseCase: context.read<AppleSignInUseCase>()))
+          appleSignInUseCase: context.read<AppleSignInUseCase>(),
+          deleteVisitUseCase: context.read<DeleteVisitUseCase>()))
 ];
 
 List<SingleChildWidget> viewModels = [

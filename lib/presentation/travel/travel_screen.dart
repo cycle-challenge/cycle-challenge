@@ -22,6 +22,7 @@ import 'package:yeohaeng_ttukttak/presentation/travel/travel_add_visit/travel_ad
 
 import 'package:yeohaeng_ttukttak/utils/json.dart';
 import 'package:yeohaeng_ttukttak/utils/marker.dart';
+import 'package:yeohaeng_ttukttak/utils/widget.dart';
 
 import 'components/visit_modify_list_view.dart';
 
@@ -114,6 +115,7 @@ class _TravelScreenState extends State<TravelScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
+      // extendBody: true,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: AnimatedContainer(
@@ -164,6 +166,7 @@ class _TravelScreenState extends State<TravelScreen> {
                       ])))))),
       body: LayoutBuilder(builder: (context, constraints) {
         MediaQueryData mediaQuery = MediaQuery.of(context);
+        final navHeight = mediaQuery.padding.bottom;
 
         const double panelMinHeight = 60;
         final double panelMaxHeight =
@@ -264,7 +267,8 @@ class _TravelScreenState extends State<TravelScreen> {
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       floatingActionButton: isModifiable
-          ? FloatingActionButton(
+          ? (state.isModifying ? FloatingActionButton(
+              child: const Icon(Icons.add),
               onPressed: () async {
                 final places = await Navigator.of(context).push<List<Place>>(
                     MaterialPageRoute(
@@ -272,30 +276,21 @@ class _TravelScreenState extends State<TravelScreen> {
 
                 if (places == null) return;
                 viewModel.onEvent(TravelEvent.addVisit(places));
-              },
-              elevation: 0,
-              backgroundColor: colorScheme.secondaryContainer,
-              foregroundColor: colorScheme.onSecondaryContainer,
-              child: const Icon(Icons.add))
+              }) : null)
           : FloatingActionButton(
               onPressed: isBookmarked
                   ? () => bookmarkViewModel
                       .onEvent(BookmarkEvent.deleteTravel(state.travel))
                   : () => bookmarkViewModel
                       .onEvent(BookmarkEvent.addTravel(state.travel)),
-              elevation: 0,
-              backgroundColor: colorScheme.secondaryContainer,
               child: Icon(
                   isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
                   color: colorScheme.onSurface),
             ),
-      bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-              border:
-                  Border(top: BorderSide(color: colorScheme.outlineVariant))),
-          child: state.isModifying
-              ? const TravelModifyBottomAppBar()
-              : BottomAppBar(surfaceTintColor: colorScheme.surface)),
+      bottomNavigationBar: SizedBox(
+        child: state.isModifying
+            ? const TravelModifyBottomAppBar()
+            : const BottomAppBar()).blur()
     );
   }
 }

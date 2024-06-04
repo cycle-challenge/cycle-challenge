@@ -17,8 +17,6 @@ class FilterWidgetGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle? titleLarge = Theme.of(context).textTheme.titleLarge;
-    TextStyle? bodyMedium = Theme.of(context).textTheme.bodyMedium;
 
     final textTheme = Theme.of(context).textTheme;
 

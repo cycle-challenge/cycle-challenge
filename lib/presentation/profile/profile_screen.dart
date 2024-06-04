@@ -42,21 +42,24 @@ class ProfileScreen extends StatelessWidget {
                   text: TextSpan(style: textTheme.labelLarge, children: [
                 const TextSpan(text: '여행 '),
                 TextSpan(text: '${state.myTravels.length}').bold(),
-                const TextSpan(text: ' • 리뷰 '),
-                const TextSpan(text: '0').bold()
+                // const TextSpan(text: ' • 리뷰 '),
+                // const TextSpan(text: '0').bold()
               ]))),
           const SizedBox(height: 8),
-          Expanded(
+          const Expanded(
               child: DefaultTabController(
-                  length: 2,
+                  length: 1,
                   child: Column(children: [
-                    const TabBar(
-                      isScrollable: true,
-                      tabAlignment: TabAlignment.start,
-                        tabs: [Tab(child: Text('여행')), Tab(child: Text('리뷰'))]),
+                    TabBar(
+                        isScrollable: true,
+                        tabAlignment: TabAlignment.start,
+                        tabs: [
+                          Tab(child: Text('여행')),
+                          // Tab(child: Text('리뷰'))
+                        ]),
                     Expanded(
-                      child: FadeTabBarView(
-                          children: [const MyTravelListView(), Container()]),
+                      child:
+                          FadeTabBarView(children: [MyTravelListView()]),
                     )
                   ])))
         ]));

@@ -421,7 +421,18 @@ class RemoteAPI {
 
   Future<Result<void, ApiError>> deleteAccount() async {
     try {
-      final response = await dio.delete('$remoteUrl/api/v1/members/',
+      await dio.delete('$remoteUrl/api/v1/members/',
+          options: Options(headers: headers));
+
+      return const Result.success(null);
+    } on DioException catch (e) {
+      return Result.error(ApiError.fromResponse(e.response));
+    }
+  }
+
+  Future<Result<void, ApiError>> deleteTravelVisit(int travelId, int visitId) async {
+    try {
+      await dio.delete('$remoteUrl/api/v1/travels/$travelId/visits/$visitId',
           options: Options(headers: headers));
 
       return const Result.success(null);

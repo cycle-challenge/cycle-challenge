@@ -68,6 +68,7 @@ class _MainScreenState extends State<MainScreen> {
   void _onShowSnackBar(String message) {
 
     final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
         content: Text(message,
             style: const TextStyle(fontWeight: FontWeight.w600)));
 

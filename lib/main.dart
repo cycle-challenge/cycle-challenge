@@ -132,7 +132,7 @@ ThemeData buildCustomTheme(ThemeData themeData) {
     dividerTheme:
         themeData.dividerTheme.copyWith(color: colorTheme.borderLight),
     bottomSheetTheme: themeData.bottomSheetTheme
-        .copyWith(backgroundColor: colorTheme.background),
+        .copyWith(backgroundColor: colorTheme.background, elevation: 0),
     chipTheme: themeData.chipTheme.copyWith(
         backgroundColor: colorTheme.background,
         checkmarkColor: colorTheme.background,

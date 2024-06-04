@@ -8,6 +8,7 @@ import 'package:yeohaeng_ttukttak/domain/use_case/copy_text_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_place_review_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_travel_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/create_visits_use_case.dart';
+import 'package:yeohaeng_ttukttak/domain/use_case/delete_visit_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_images_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_reviews_use_case.dart';
 import 'package:yeohaeng_ttukttak/domain/use_case/find_place_travels_use_case.dart';
@@ -46,6 +47,7 @@ class UseCases {
   final CreateTravelUseCase createTravelUseCase;
   final ModifyTravelUseCase modifyTravelUseCase;
   final CreateVisitsUseCase createVisitsUseCase;
+  final DeleteVisitUseCase deleteVisitUseCase;
   final GetTravelVisitsUseCase getTravelVisitsUseCase;
   final CalculateBoundUseCase calculateBoundUseCase;
   final GetMyTravelsUseCase getMyTravelsUseCase;
@@ -85,6 +87,7 @@ class UseCases {
     required this.createPlaceReviewUseCase,
     required this.googleSignInUseCase,
     required this.revokeGoogleAccountUseCase,
-    required this.appleSignInUseCase
+    required this.appleSignInUseCase,
+    required this.deleteVisitUseCase
   });
 }

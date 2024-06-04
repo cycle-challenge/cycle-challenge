@@ -156,7 +156,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen>
         bottomNavigationBar: ClipRRect(
           child: BottomAppBar(
               child: Row(children: [
-            IconButton(icon: const Icon(Icons.share), onPressed: () {}),
+            // IconButton(icon: const Icon(Icons.share), onPressed: () {}),
             IconButton(
                 icon: const Icon(Icons.phone),
                 onPressed: () => viewModel

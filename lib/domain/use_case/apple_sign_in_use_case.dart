@@ -11,6 +11,7 @@ import 'package:yeohaeng_ttukttak/utils/result.dart';
 
 class AppleSignInUseCase {
   final AuthRepository authRepository;
+  final remoteUrl = const String.fromEnvironment("REMOTE_URL");
 
   AppleSignInUseCase(this.authRepository);
 
@@ -19,17 +20,14 @@ class AppleSignInUseCase {
       'client_id': 'app.yeohaeng.ttukttak.com',
       'response_mode': 'form_post',
       'response_type': 'code',
-      'redirect_uri':
-          'https://fffe-221-160-191-58.ngrok-free.app/api/v1/members/sign-in/apple',
-      'scope': ['name', 'email'].join(' ')
+      'redirect_uri':  '$remoteUrl/api/v1/members/sign-in/apple',
+      'scope': 'email'
     });
 
     final response = await FlutterWebAuth2.authenticate(
         url: uri.toString(), callbackUrlScheme: 'com.yeohaeng.ttukttak.app');
 
     final params = Uri.parse(response).queryParameters;
-
-    print(params);
 
     if (params['status'] == 'fail') return Result.error(params['message']!);
 
