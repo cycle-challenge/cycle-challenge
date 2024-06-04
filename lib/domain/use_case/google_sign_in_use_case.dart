@@ -21,7 +21,7 @@ class GoogleSignInUseCase {
       'response_type': 'code',
       'access_type': 'offline',
       'prompt': 'consent',
-      'redirect_uri': 'http://172.30.1.25.nip.io:8080/api/v1/members/sign-in/google',
+      'redirect_uri': '$remoteUrl/api/v1/members/sign-in/google',
       'scope': 'https://www.googleapis.com/auth/userinfo.email'
     });
 

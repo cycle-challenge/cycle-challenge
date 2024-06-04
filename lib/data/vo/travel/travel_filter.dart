@@ -56,7 +56,7 @@ class TravelFilter implements Filter<Travel> {
 
     return travels
         .where((travel) =>
-            _filterSingle<TravelAgeGroup>(_ageGroup, travel.ageGroup!) &&
+            _filterSingle<TravelAgeGroup>(_ageGroup, travel.ageGroup ?? TravelAgeGroup.other) &&
             (_period.isEmpty ||
                 _period.intersection(travel.seasons).isNotEmpty) &&
             _filterSingle<TravelTransport>(_transport, travel.transport!) &&
